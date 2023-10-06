@@ -50,10 +50,10 @@ body{
 }
 
 body .app-container{
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray;
     border-radius: 10px;
     width: 900px;
-    margin: 100px auto;
+    margin: 100px auto; */
     padding: 30px;
 }
 
@@ -61,7 +61,7 @@ header .logo-text{
     height: 40px;
 }
 
-nav .nav-icon{
+header .nav-icon{
     float: right;
     width: 40px;
 }
@@ -92,17 +92,63 @@ nav .nav-user-info .dpt{
 }
 
 nav .nav-user-info a {
+    display: block;
+    font-size: 9px;
+    margin-top: 5px;
+    width: 110px;
+}
+
+.customer-lookup {
+    margin: 50px 100px;
+}
+
+.customer-lookup h1{
+    font-size: 20px;
+    color: grey;
+}
+
+.primary-btn{
     background: #236477;
     border: 1px solid none;
     border-radius: 30px;
     color: white;
-    display: block;
-    font-size: 9px;
-    margin-top: 5px;
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
-    width: 110px;
+}
+
+/* SEARCH BAR */
+
+.search-bar {
+    border: 2px solid #dadada;
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    padding: 10px 40px 10px 15px;
+    position: relative;
+    width: 90%;
+}
+  
+.search-bar:focus {
+    border-color: lightblue;
+    box-shadow: 0 0 10px lightblue;
+    outline: none;
+}
+  
+::placeholder {
+    color: lightgray;
+    opacity: 1;
+}
+  
+.search-icon {
+    color: lightgray;
+    font-size: 15px;
+    position: relative;
+    right: 45px;
+    background-color: transparent;
+    border: none;
 }
 
 
