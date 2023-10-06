@@ -43,14 +43,66 @@ table {
 }
 /*End Reset*/
 
+/*////////////////////////// STYLE FOR LAPTOP SCREEN MIN 1024 PX ////////////////////////*/
+
 body{
     font-family: 'Roboto', sans-serif;
 }
 
-.app-container{
-    border: 1px solid blue;
+body .app-container{
+    border: 1px solid lightgray;
     border-radius: 10px;
     width: 900px;
     margin: 100px auto;
     padding: 30px;
 }
+
+header .logo-text{
+    height: 40px;
+}
+
+nav .nav-icon{
+    float: right;
+    width: 40px;
+}
+
+nav .two-col-user{
+    display: grid;
+    grid-template-columns: 1fr 2.2fr;
+    margin: auto;
+    margin-top: -10px;
+    margin-left: 20px;
+}
+
+nav .nav-user-info{
+    text-transform: uppercase;
+    position: relative;
+    top: 10px;
+    width: 160px;
+    color: #236477;
+}
+
+nav .nav-user-info .nm {
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+nav .nav-user-info .dpt{
+    font-size: 11px;
+}
+
+nav .nav-user-info a {
+    background: #236477;
+    border: 1px solid none;
+    border-radius: 30px;
+    color: white;
+    display: block;
+    font-size: 9px;
+    margin-top: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 110px;
+}
+
+

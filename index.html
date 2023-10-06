@@ -11,7 +11,36 @@
 </head>
 <body>
     <div class="app-container">
-        <h1>Emma's small engines</h1>
+        <nav>
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <img src="/images/hamburger-menu.png" alt="" class="nav-icon">
+              </a>
+    
+              <div>
+                  <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header pb-0">
+                      <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="two-col-user">
+                            <div class="nav-user-img">
+                                <img src="/images/user-profile.png" alt="">
+                            </div>
+                            <div class="nav-user-info">
+                                <p class="nm">Amy Johnson</p>
+                                <p class="dpt"><small>Sales Department</small></p> 
+                                <a href="" class="">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+        </nav>
+
+        <header>
+            <img src="/images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
+        </header>
     </div>
 </body>
 </html>
