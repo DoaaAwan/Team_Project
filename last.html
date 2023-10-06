@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script>
+	var list_signedup = [{"f":"Sarah", "l":"Willard", "e":"sw@gmail.com"}, {"f":"Bill", "l":"Willard", "e":"bw@gmail.com"}, {"f":"Kelly", "l":"Willard", "e":"kw@gmail.com"}];
+	function get_new_name()
+	{
+		const new_rec = {"f":"", "l":"", "e":""}
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		new_rec["f"] = urlParams.get('fname');
+		new_rec["l"] = urlParams.get('lname');
+		new_rec["e"] = urlParams.get('email');
+		list_signedup.push(new_rec)
+		build_table();
+	}
+
+	function build_table()
+	{
+		table = "<table border=1><tr><th>First</th><th>Last</th><th>email</th></tr>"
+		for (var i in list_signedup){
+			table = table + "<tr>";
+				table = table + "<td>" + list_signedup[i]['f'] + "</td>";
+				table = table + "<td>" + list_signedup[i]['l'] + "</td>";
+				table = table + "<td>" + list_signedup[i]['e'] + "</td>";
+			table = table + "</tr>";
+		}
+			
+		table = table + "</table>";
+		
+		document.getElementById("display").innerHTML = table;
+	}
+</script>
+
+</head>
+
+<body onload="get_new_name();">
+
+<h1>Thank you for signing up.</h1>
+<p id="display"></p>
+<a href="index.html">Return to front page.</a>
+
+</body>
+</html>

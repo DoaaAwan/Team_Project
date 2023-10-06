@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function check_email()
+		{
+			message = "";
+			a = document.getElementById("fname").value;
+			b = document.getElementById("lname").value;
+			c = document.getElementById("email").value;
+			d = document.getElementById("test").value;
+			if (a == "")
+			{
+				message = message + " First name is required."
+			}
+			if (b == "")
+			{
+				message = message + " Last name is required."
+			}
+			if (c != d || c == "" || d == "")
+			{
+				message = message + " Emails do not match."
+			}
+						
+			if (message != "")
+			{
+				window.alert(message);
+			}
+			else
+			{
+				document.main.submit();
+			}
+		}
+	</script>
+</head>
+<body>
+
+<form method="get" name="main" id="main" action="last.html">
+  <label for="fname" >First name:</label><br>
+  <input type="text" id="fname" name="fname" placeholder="Your first name." tabindex="1"><br>
+  <label for="lname"  >Last name:</label><br>
+  <input type="text" id="lname" name="lname" placeholder="Your last name." tabindex="2"><br>
+  <label for="email" >Email:</label><br>
+  <input type="text" id="email" name="email" placeholder="ex. example@company.com" tabindex="3"><br>
+  <label for="test" >Re-enter email:</label><br>
+  <input type="text" id="test" name="test" placeholder="ex. example@company.com" tabindex="4"><br>
+  <input type="button" value="Submit" onclick="check_email()" tabindex="5"/>
+</form> 
+
+</body>
+</html>
