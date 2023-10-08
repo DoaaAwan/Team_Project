@@ -26,6 +26,9 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1;
 }
+button{
+    border: none;
+}
 ol, ul {
     list-style: none;
 }
@@ -53,6 +56,8 @@ body .app-container{
     padding: 30px;
 }
 
+
+
 header .logo-text{
     height: 40px;
 }
@@ -62,13 +67,24 @@ header .nav-icon{
     max-width: 40px;
 }
 
+nav a {
+    text-decoration: none;
+}
+
+nav .sidebar{
+    /* display: block; */
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
 nav .two-col-user{
     display: grid;
     grid-template-columns: 1fr 2.2fr;
     margin: auto;
     margin-top: -10px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
+
 
 nav .nav-user-info{
     text-transform: uppercase;
@@ -79,19 +95,32 @@ nav .nav-user-info{
 }
 
 nav .nav-user-info .nm {
-    font-size: 15px;
-    margin-bottom: 2px;
+    font-size: 18px;
+    margin-bottom: 5px;
 }
 
 nav .nav-user-info .dpt{
-    font-size: 11px;
+    font-size: 13px;
 }
 
 nav .nav-user-info a {
     display: block;
-    font-size: 9px;
-    margin-top: 5px;
-    width: 110px;
+    font-size: 13px;
+    margin-top: 8px;
+    width: 130px;
+}
+
+nav .nav-btn{
+    border: 1px solid #236477;
+    border-radius: 10px;
+    padding: 10px 0;
+    margin: 25px 18px 0;
+}
+
+nav .nav-btn-txt{
+    margin-top: 20px;
+    color: #236477;
+    margin-left: 13px;
 }
 
 .customer-lookup {
@@ -111,7 +140,7 @@ nav .nav-user-info a {
     border: 1px solid none;
     border-radius: 30px;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 10px;
     text-align: center;
     text-decoration: none;
 }
@@ -138,15 +167,5 @@ nav .nav-user-info a {
     color: lightgray;
     opacity: 1;
 }
-/*   
-.search-icon {
-    display: block;
-    color: lightgray;
-    font-size: 15px;
-    position: relative;
-    right: 45px;
-    background-color: transparent;
-    border: none;
-} */
 
 

@@ -17,20 +17,48 @@
         <nav>
             <div>
                 <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header pb-0">
+                <div class="offcanvas-header pb-0 ps-0 pe-0">
                     <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <div class="two-col-user">
-                        <div class="nav-user-img">
-                            <img src="/images/user-profile.png" alt="">
+                    <div class="container">
+                        <div class="d-flex justify-content-center ">
+                            <div class="nav-user-img">
+                                <div><img src="/images/user-profile.png" class="" alt=""></div>
+                            </div>
+                            <div class="ms-3">
+                                <div class="nav-user-info">
+                                    <p class="nm">Amy Johnson</p>
+                                    <p class="dpt"><small>Sales Department</small></p> 
+                                    <a href="" class="primary-btn">Sign Out</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="nav-user-info">
-                            <p class="nm">Amy Johnson</p>
-                            <p class="dpt"><small>Sales Department</small></p> 
-                            <a href="" class="primary-btn">Sign Out</a>
-                        </div>
+                        <a href="">
+                            <div class="nav-btn d-flex justify-content-center">
+                                <div class="nav-btn-icon">
+                                    <img src="/images/customer-lookup.png" alt="">
+                                </div>
+                                <div class="nav-btn-txt"><p>Search Customer</p></div>
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="nav-btn d-flex justify-content-center ">
+                                <div class="nav-btn-icon">
+                                    <img src="/images/customer-create.png" alt="">
+                                </div>
+                                <div class="nav-btn-txt"><p>Create Customer</p></div>
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="nav-btn d-flex justify-content-center ">
+                                <div class="nav-btn-icon">
+                                    <img src="/images/customer-details.png" alt="">
+                                </div>
+                                <div class="nav-btn-txt"><p>Customer Details</p></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 </div>
@@ -60,7 +88,7 @@
                               />
                         </form>
                     </div>
-                    <div class="col ps-2">
+                    <div class="col ps-2 pe-0">
                         <button class="btn btn-primary">Search</button>
                     </div>
                 </div>
