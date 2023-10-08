@@ -56,13 +56,25 @@ body .app-container{
     padding: 30px;
 }
 
+header{
+    background: #236477;
+    padding: 40px 30px 10px;
+    border-radius: 10px 10px 0 0;
+}
 
+h1{
+    margin-bottom: 30px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 500;
+}
 
-header .logo-text{
+nav .logo-text{
     height: 40px;
 }
 
-header .nav-icon{
+nav .nav-icon{
     float: right;
     max-width: 40px;
 }
@@ -72,7 +84,6 @@ nav a {
 }
 
 nav .sidebar{
-    /* display: block; */
     padding: 0 20px;
     margin: 0 auto;
 }
@@ -82,9 +93,7 @@ nav .two-col-user{
     grid-template-columns: 1fr 2.2fr;
     margin: auto;
     margin-top: -10px;
-    /* margin-left: 20px; */
 }
-
 
 nav .nav-user-info{
     text-transform: uppercase;
@@ -153,26 +162,31 @@ nav .nav-btn-txt, .nav-btn-icon{
     height: 100%;
 }
 
-.nav-btn-txt{
+nav .nav-btn-txt{
     margin-left: 10px;
 }
 
-.nav-btn-icon{
+nav .nav-btn-icon{
     margin-left: -20px;
     font-size: 1.5em;
 }
 
-.customer-lookup {
+.page-container {
     border: 1px solid lightgray;
     border-radius: 10px;
     margin: 60px;
+}
+
+.page {
     padding: 50px 60px;
 }
 
-.customer-lookup h1{
+.page-container h2{
     font-size: 20px;
     color: grey;
 }
+
+/* BUTTONS */
 
 .primary-btn{
     background: #236477;
@@ -182,6 +196,10 @@ nav .nav-btn-txt, .nav-btn-icon{
     padding: 8px 10px;
     text-align: center;
     text-decoration: none;
+}
+
+.search-btn {
+    width: 100%;
 }
 
 /* SEARCH BAR */
