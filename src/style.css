@@ -110,17 +110,56 @@ nav .nav-user-info a {
     width: 130px;
 }
 
-nav .nav-btn{
-    border: 1px solid #236477;
-    border-radius: 10px;
-    padding: 10px 0;
-    margin: 25px 18px 0;
+nav .nav-buttons{
+    margin-top: 20px;
+    text-align: center;
 }
 
-nav .nav-btn-txt{
-    margin-top: 20px;
-    color: #236477;
-    margin-left: 13px;
+nav .nav-btn-grp-title{
+    text-transform: uppercase;
+    /* text-align: start; */
+    font-size: 13px;
+    color: grey;
+    margin: 10px;
+}
+
+nav .nav-btn{
+    display: inline-flex;
+    width: auto;
+    height: 50px;
+    padding: 0;
+    background: #009578;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 16px;
+    margin: 10px;
+    line-height: 50px;
+}
+
+nav .nav-btn:hover{
+    background: #008168;
+}
+nav .nav-btn:active{
+    background: #006e58;
+}
+
+nav .nav-btn-txt, .nav-btn-icon{
+    display: inline-flex;
+    align-items: center;
+    padding: 0 24px;
+    color: white;
+    height: 100%;
+}
+
+.nav-btn-txt{
+    margin-left: 10px;
+}
+
+.nav-btn-icon{
+    margin-left: -20px;
+    font-size: 1.5em;
 }
 
 .customer-lookup {
