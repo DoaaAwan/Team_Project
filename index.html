@@ -37,25 +37,34 @@
             </div>
         </nav>
         <header>
-            <img src="/images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
-            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                <img src="/images/hamburger-menu.png" alt="" class="nav-icon">
-            </a>
+            <div class="">
+                <img src="/images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
+                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <img src="/images/hamburger-menu.png" alt="" class="nav-icon">
+                </a>
+            </div>
         </header>
         <section class="customer-lookup">
             <h1>Search for a customer</h1>
-            <form class="col" id="search-form">
-                <input
-                  type="search"
-                  placeholder="Search by name, number, or email address"
-                  autocomplete="off"
-                  autofocus
-                  id="search-value"
-                  class="search-bar"
-                />
-                <button class="fa-solid fa-magnifying-glass search-icon"></button>
-            </form>
-
+            <div class="container">
+                <div class="row mt-3">
+                    <div class="col-10 p-0">
+                        <form class="" id="search-form">
+                            <input
+                              type="search"
+                              placeholder="Search by name, number, or email address"
+                              autocomplete="off"
+                              autofocus
+                              id="search-value"
+                              class="search-bar"
+                              />
+                        </form>
+                    </div>
+                    <div class="col ps-2">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </body>

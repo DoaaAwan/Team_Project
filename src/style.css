@@ -50,10 +50,6 @@ body{
 }
 
 body .app-container{
-    /* border: 1px solid lightgray;
-    border-radius: 10px;
-    width: 900px;
-    margin: 100px auto; */
     padding: 30px;
 }
 
@@ -63,7 +59,7 @@ header .logo-text{
 
 header .nav-icon{
     float: right;
-    width: 40px;
+    max-width: 40px;
 }
 
 nav .two-col-user{
@@ -99,7 +95,10 @@ nav .nav-user-info a {
 }
 
 .customer-lookup {
-    margin: 50px 100px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin: 60px;
+    padding: 50px 60px;
 }
 
 .customer-lookup h1{
@@ -125,10 +124,8 @@ nav .nav-user-info a {
     background-color: transparent;
     font-size: 15px;
     margin-bottom: 10px;
-    margin-top: 20px;
     padding: 10px 40px 10px 15px;
-    position: relative;
-    width: 90%;
+    width: 100%;
 }
   
 .search-bar:focus {
@@ -141,14 +138,15 @@ nav .nav-user-info a {
     color: lightgray;
     opacity: 1;
 }
-  
+/*   
 .search-icon {
+    display: block;
     color: lightgray;
     font-size: 15px;
     position: relative;
     right: 45px;
     background-color: transparent;
     border: none;
-}
+} */
 
 
