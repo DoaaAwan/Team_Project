@@ -52,9 +52,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-body .app-container{
-    padding: 30px;
-}
+
 
 header{
     background: #236477;
@@ -77,6 +75,16 @@ nav .logo-text{
 nav .nav-icon{
     float: right;
     max-width: 40px;
+}
+
+nav .main-nav{
+    position: fixed;
+    padding: 30px 30px 20px 30px;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
 }
 
 nav a {
@@ -122,6 +130,8 @@ nav .nav-user-info a {
 nav .nav-buttons{
     margin-top: 20px;
     text-align: center;
+    /* display: block; */
+    /* width: auto; */
 }
 
 nav .nav-btn-grp-title{
@@ -129,15 +139,16 @@ nav .nav-btn-grp-title{
     /* text-align: start; */
     font-size: 13px;
     color: grey;
-    margin: 10px;
+    margin: 15px auto;
 }
 
 nav .nav-btn{
-    display: inline-flex;
-    width: auto;
+    display: grid;
+    grid-template-columns: 2fr 0.8fr;
+    /* display: inline-flex; */
+    width: 90%;
     height: 50px;
     padding: 0;
-    background: #009578;
     border: none;
     outline: none;
     border-radius: 5px;
@@ -147,34 +158,33 @@ nav .nav-btn{
     line-height: 50px;
 }
 
-nav .nav-btn:hover{
-    background: #008168;
-}
-nav .nav-btn:active{
-    background: #006e58;
-}
-
 nav .nav-btn-txt, .nav-btn-icon{
-    display: inline-flex;
+    /* display: inline-flex; */
     align-items: center;
-    padding: 0 24px;
+    padding: 0 12px;
     color: white;
     height: 100%;
 }
 
 nav .nav-btn-txt{
-    margin-left: 10px;
+    /* position: relative; */
+    /* right: -30px; */
+    text-align: center;
+    padding-left: 50px;
+    /* margin-left: 40px; */
 }
 
 nav .nav-btn-icon{
-    margin-left: -20px;
+    /* margin-left: -20px; */
     font-size: 1.5em;
+    display: inline-flex;
 }
 
 .page-container {
     border: 1px solid lightgray;
     border-radius: 10px;
-    margin: 60px;
+    margin: 160px 90px;
+    
 }
 
 .page {
@@ -225,4 +235,54 @@ nav .nav-btn-icon{
     opacity: 1;
 }
 
+/* BUTTON COLOR COMBINATIONS */
+
+.bg-grp1{
+    background: #256e84;
+}
+
+.bg-grp2{
+    background: #3c6e7d;
+}
+
+.bg-grp3{
+    background: #306170;
+}
+
+.bg-grp4{
+    background: #204b58;
+}
+
+/* .bg-grp2:hover{
+    background: #3492af;
+}
+
+.bg-grp2:active{
+    background: #2c7d96;
+} */
+
+
+.bg-grp-green{
+    background: #009578;
+}
+
+.bg-grp-green:hover{
+    background: #008168;
+}
+
+.bg-grp-green:active{
+    background: #006e58;
+}
+
+.bg-grp-primary{
+    background: #236477;
+}
+
+.bg-grp-primary:hover{
+    background: #125061;
+}
+
+.bg-grp-primary:active{
+    background: #033746;
+}
 
