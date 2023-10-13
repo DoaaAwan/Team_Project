@@ -52,9 +52,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-body .app-container{
-    padding: 30px;
-}
+
 
 header{
     background: #236477;
@@ -77,6 +75,16 @@ nav .logo-text{
 nav .nav-icon{
     float: right;
     max-width: 40px;
+}
+
+nav .main-nav{
+    position: fixed;
+    padding: 30px 30px 20px 30px;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
 }
 
 nav a {
@@ -175,7 +183,8 @@ nav .nav-btn-icon{
 .page-container {
     border: 1px solid lightgray;
     border-radius: 10px;
-    margin: 60px;
+    margin: 160px 90px;
+    
 }
 
 .page {
