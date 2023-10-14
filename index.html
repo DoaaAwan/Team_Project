@@ -122,15 +122,23 @@
         
         <section class="page-container shadow">
             <header>
-                <h1>Customer Search</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Customer Search</h1>
+                    </div>
+                    <div>
+                        <a href="./pages/customer-create.html" class="button secondary-btn">Add Customer</a>
+                    </div>
+        
+                </div>
             </header>
 
             <div class="page">
                 <h2>Search for a customer</h2>
                 <div class="container">
                     <div class="row mt-3">
-                        <div class="col-10 p-0">
-                            <form class="" id="search-form">
+                        <div class="p-0">
+                            <form class="d-flex" id="search-form">
                                 <input
                                   type="search"
                                   placeholder="Search by name, number, or email address"
@@ -138,11 +146,12 @@
                                   autofocus
                                   id="search-value"
                                   class="search-bar"
+                                  required
                                   />
+                                  <div class="ps-2">
+                                      <button type="submit" class="button btn-search">Search</button>
+                                  </div>
                             </form>
-                        </div>
-                        <div class="col ps-2 pe-0">
-                            <button class="btn btn-primary search-btn">Search</button>
                         </div>
                     </div>
                 </div>
