@@ -198,26 +198,11 @@ nav .nav-btn-icon{
 
 /* BUTTONS */
 
-.primary-btn{
-    background: #236477;
-    border: 1px solid none;
-    border-radius: 30px;
-    color: white;
-    padding: 8px 10px;
-    text-align: center;
-    text-decoration: none;
-}
-
-.search-btn {
-    width: 100%;
-}
-
 .button {
     border: none;
     border-radius: 10px;
-    color: white;
     font-size: 15px;
-    padding: 10px 30px;
+    padding: 15px 30px;
     text-decoration: none;
     height: 100%;
     margin: 0;
@@ -229,23 +214,43 @@ nav .nav-btn-icon{
     background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
-input[type="submit"]:active{
-    background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
-
-}
-
 .button:active{
     background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
 }
 
 .btn-cancel{
     background: rgb(146, 34, 34);
+    color: white;
 }
 
 .btn-save{
     background: #0f72d4; 
     color: #FFF;
 }
+
+.btn-search{
+    background: #0f72d4; 
+    color: #FFF;
+    width: 100%;
+    padding: 13.755px 40px !important;
+    height: auto;
+}
+
+.primary-btn{
+    background: #236477;
+    border: 1px solid none;
+    border-radius: 30px;
+    color: white;
+    padding: 8px 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.secondary-btn{
+    border: 1px solid white !important;
+    color: white;
+}
+
 
 /* SEARCH BAR */
 
@@ -260,8 +265,8 @@ input[type="submit"]:active{
 }
   
 .search-bar:focus {
-    border-color: lightblue;
-    box-shadow: 0 0 10px lightblue;
+    border-color: transparent;
+    box-shadow: 0 0 5px lightskyblue;
     outline: none;
 }
   
