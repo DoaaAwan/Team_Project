@@ -212,6 +212,41 @@ nav .nav-btn-icon{
     width: 100%;
 }
 
+.button {
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    padding: 10px 30px;
+    text-decoration: none;
+    height: 100%;
+    margin: 0;
+    width: 120px;
+    text-align: center;
+}
+
+.button:hover{
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+input[type="submit"]:active{
+    background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
+
+}
+
+.button:active{
+    background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
+}
+
+.btn-cancel{
+    background: rgb(146, 34, 34);
+}
+
+.btn-save{
+    background: #0f72d4; 
+    color: #FFF;
+}
+
 /* SEARCH BAR */
 
 .search-bar {
