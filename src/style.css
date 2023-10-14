@@ -249,6 +249,17 @@ nav .nav-btn-icon{
 .secondary-btn{
     border: 1px solid white !important;
     color: white;
+    padding: 12px 20px;
+    position: relative;
+    bottom: 5px;
+}
+
+.secondary-btn ion-icon{
+    padding-left: 5px;
+    font-size: 1.3em;
+    position: relative;
+    top: 4px;
+   
 }
 
 
