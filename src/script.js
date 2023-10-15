@@ -11,9 +11,9 @@
   const equipmentDatabase = {
     1: {
         equipmentId: 1,
-        price: "$1000.00",
+        equipmentType: "Mower",
         itemNumber: 332,
-        equipmentName: "Lawn Mower",
+        equipmentName: "JohnDeere Electric Mower",
         serialNumber: "20931890",
         modelNumber: "A02B",
         manufacturer: "Pro-Power Canada",
@@ -21,7 +21,7 @@
     },
     2: {
         equipmentId: 2,
-        price: "$800.00",
+        equipmentType: "Mower",
         itemNumber: 456,
         equipmentName: "Lawn Mower",
         serialNumber: "987654321",
@@ -29,7 +29,7 @@
         manufacturer: "Troy-Bilt",
         colour: "Green",
     },
-}
+}//can add more equipment as needed, just for display/functionality display purposes, and for debugging.
 
   const searchForm = document.getElementById("search-form");
   const searchValue = document.getElementById("search-value");
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const equipmentDetails = document.createElement("div");
                 equipmentDetails.innerHTML = `
                     <h3>Equipment ID: ${equipment.equipmentId}</h3>
-                    <p>Price: ${equipment.price}</p>
+                    <p>Equipment Type: ${equipment.equipmentType}</p>
                     <p>Equipment Name: ${equipment.equipmentName}</p>
                     <p>Item Number: ${equipment.itemNumber}</p>
                     <p>Serial Number: ${equipment.serialNumber}</p>
