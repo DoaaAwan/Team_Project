@@ -17,6 +17,12 @@
 <body>
     <div class="app-container">
         <nav>
+            <div class="main-nav">
+                <img src="./images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
+                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <img src="./images/hamburger-menu.png" alt="" class="nav-icon">
+                </a>
+            </div>
             <div>
                 <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header pb-0 ps-0 pe-0">
@@ -38,9 +44,17 @@
                             </div>
                         </div>
                         <div class="nav-buttons">
+                            <a href="">
+                                <div class="nav-btn bg-grp1">
+                                    <span class="nav-btn-txt"><p>Back to Home</p></span>
+                                    <span class="nav-btn-icon">
+                                        <ion-icon name="home-outline"></ion-icon>
+                                    </span>
+                                </div>
+                            </a>
                             <p class="nav-btn-grp-title">customer</p>
                             <a href="./index.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp2">
                                     <span class="nav-btn-txt"><p>Search Customer</p>
                                     </span>
                                     <span class="nav-btn-icon" height="10">
@@ -49,7 +63,7 @@
                                 </div>
                             </a>
                             <a href="./pages/customer-create.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp2">
                                     <span class="nav-btn-txt"><p>Create Customer</p></span>
                                     <span class="nav-btn-icon">
                                         <ion-icon name="person-add-outline"></ion-icon>
@@ -57,7 +71,7 @@
                                 </div>
                             </a>
                             <a href="./pages/customer-details.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp2">
                                     <div class="nav-btn-txt"><p>Customer Details</p></div>
                                     <div class="nav-btn-icon">
                                         <ion-icon name="person-outline"></ion-icon>
@@ -66,7 +80,7 @@
                             </a>
                             <p class="nav-btn-grp-title">equipment</p>
                             <a href="./pages/equipment-search.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp3">
                                     <span class="nav-btn-txt"><p>Search Equipment</p>
                                     </span>
                                     <span class="nav-btn-icon" height="10">
@@ -75,7 +89,7 @@
                                 </div>
                             </a>
                             <a href="./pages/equipment-create.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp3">
                                     <span class="nav-btn-txt"><p>Create Equipment</p></span>
                                     <span class="nav-btn-icon">
                                         <ion-icon name="add-outline"></ion-icon>
@@ -83,7 +97,7 @@
                                 </div>
                             </a>
                             <a href="./pages/equipment-details.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp3">
                                     <span class="nav-btn-txt"><p>Equipment Details</p></span>
                                     <span class="nav-btn-icon">
                                         <ion-icon name="cog-outline"></ion-icon>
@@ -92,16 +106,8 @@
                             </a>
                             <p class="nav-btn-grp-title">order</p>
                             <a href="./pages/repair-details.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp4">
                                     <span class="nav-btn-txt"><p>Fill Repair Request</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="clipboard-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="">
-                                <div class="nav-btn">
-                                    <span class="nav-btn-txt"><p>Go Back Home</p></span>
                                     <span class="nav-btn-icon">
                                         <ion-icon name="clipboard-outline"></ion-icon>
                                     </span>
@@ -112,24 +118,29 @@
                 </div>
                 </div>
             </div>
-            <div class="">
-                <img src="./images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
-                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                    <img src="./images/hamburger-menu.png" alt="" class="nav-icon">
-                </a>
-            </div>
         </nav>
-        <section class="page-container shadow">
+        
+        <section class="page-container">
             <header>
-                <h1>Customer Search</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Customer Search</h1>
+                    </div>
+                    <div>
+                        <a href="./pages/customer-create.html" class="button secondary-btn">
+                            New Customer
+                            <ion-icon name="person-add-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
             </header>
 
             <div class="page">
                 <h2>Search for a customer</h2>
                 <div class="container">
                     <div class="row mt-3">
-                        <div class="col-10 p-0">
-                            <form class="" id="search-form">
+                        <div class="p-0">
+                            <form class="d-flex" id="search-form">
                                 <input
                                   type="search"
                                   placeholder="Search by name, number, or email address"
@@ -137,17 +148,31 @@
                                   autofocus
                                   id="search-value"
                                   class="search-bar"
+                                  required
                                   />
+                                  <div class="ps-2">
+                                      <button type="submit" class="button btn-search">Search</button>
+                                  </div>
                             </form>
                         </div>
-                        <div class="col ps-2 pe-0">
-                            <button class="btn btn-primary search-btn">Search</button>
-                        </div>
                     </div>
+                </div>
+                
+                <div id="search-results" style="display: none;">
+                    <h3>Customers Found</h3>
+                    <a href="pages/customer-details.html" class="result shadow d-flex justify-content-start">
+                        <img src="images/green-customer-details.png" alt="">
+                        <div id="customer-info">
+                            <p id="customer-name" class="name"></p>
+                            <p id="customer-email" class="email"></p>
+                            <p id="customer-number" class="number"></p>
+                        </div>
+                    </a>
                 </div>
             </div>
 
         </section>
     </div>
+    <script src="./src/script.js"></script>
 </body>
 </html>

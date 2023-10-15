@@ -18,6 +18,12 @@
 <body>
     <div class="app-container">
         <nav>
+            <div class="main-nav">
+                <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
+                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
+                </a>
+            </div>
             <div>
                 <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header pb-0 ps-0 pe-0">
@@ -39,9 +45,17 @@
                             </div>
                         </div>
                         <div class="nav-buttons">
+                            <a href="../index.html">
+                                <div class="nav-btn bg-grp1">
+                                    <span class="nav-btn-txt"><p>Back to Home</p></span>
+                                    <span class="nav-btn-icon">
+                                        <ion-icon name="home-outline"></ion-icon>
+                                    </span>
+                                </div>
+                            </a>
                             <p class="nav-btn-grp-title">customer</p>
                             <a href="../index.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp2">
                                     <span class="nav-btn-txt"><p>Search Customer</p>
                                     </span>
                                     <span class="nav-btn-icon" height="10">
@@ -50,7 +64,7 @@
                                 </div>
                             </a>
                             <a href="../pages/customer-create.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp2">
                                     <span class="nav-btn-txt"><p>Create Customer</p></span>
                                     <span class="nav-btn-icon">
                                         <ion-icon name="person-add-outline"></ion-icon>
@@ -58,7 +72,7 @@
                                 </div>
                             </a>
                             <a href="../pages/customer-details.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp2">
                                     <div class="nav-btn-txt"><p>Customer Details</p></div>
                                     <div class="nav-btn-icon">
                                         <ion-icon name="person-outline"></ion-icon>
@@ -67,7 +81,7 @@
                             </a>
                             <p class="nav-btn-grp-title">equipment</p>
                             <a href="../pages/equipment-search.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp3">
                                     <span class="nav-btn-txt"><p>Search Equipment</p>
                                     </span>
                                     <span class="nav-btn-icon" height="10">
@@ -76,7 +90,7 @@
                                 </div>
                             </a>
                             <a href="../pages/equipment-create.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp3">
                                     <span class="nav-btn-txt"><p>Create Equipment</p></span>
                                     <span class="nav-btn-icon">
                                         <ion-icon name="add-outline"></ion-icon>
@@ -84,7 +98,7 @@
                                 </div>
                             </a>
                             <a href="../pages/equipment-details.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp3">
                                     <span class="nav-btn-txt"><p>Equipment Details</p></span>
                                     <span class="nav-btn-icon">
                                         <ion-icon name="cog-outline"></ion-icon>
@@ -93,7 +107,7 @@
                             </a>
                             <p class="nav-btn-grp-title">order</p>
                             <a href="../pages/repair-details.html">
-                                <div class="nav-btn">
+                                <div class="nav-btn bg-grp4">
                                     <span class="nav-btn-txt"><p>Fill Repair Request</p></span>
                                     <span class="nav-btn-icon">
                                         <ion-icon name="clipboard-outline"></ion-icon>
@@ -105,16 +119,21 @@
                 </div>
                 </div>
             </div>
-            <div class="">
-                <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
-                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
-                </a>
-            </div>
         </nav>
-        <section class="page-container shadow">
+
+        <section class="page-container">
             <header>
-                <h1>Create Customer</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Create Customer</h1>
+                    </div>
+                    <div>
+                        <a href="../index.html" class="button secondary-btn">
+                            Back to Search
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
             </header>
 
             <div class="page">
@@ -127,21 +146,20 @@
             
                                 <section class="two-col">
                                     <div>
-                                        <label for="name">First Name</label>
-                                        <input type="text" placeholder="John Smith" id="name" name="name" required>
+                                        <label for="first-name">First Name</label>
+                                        <input type="text" placeholder="John" id="first-name" name="first-name" required>
                                     </div>
                                     <div>
-                                        <label for="name">Last Name</label>
-                                        <input type="text" placeholder="John Smith" id="name" name="name" required>
+                                        <label for="last-name">Last Name</label>
+                                        <input type="text" placeholder="Smith" id="last-name" name="last-name" required>
                                     </div>
                                     <div>
                                         <label for="email">Email</label>
-                                        <input id="email" name="email" type="email" placeholder="problemtoits@gmail.com" required>
+                                        <input id="email" name="email" type="email" placeholder="johnsmith@gmail.com" required>
                                     </div>
                                     <div>
-                                        <label for="phone">Telephone</label>
-                                        <input type="tel" placeholder="123 456-7890" id="phone" name="phone" 
-                                            pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" required>
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" placeholder="(123) 456 - 7890" id="phone" name="phone" required>
                                     </div>
                                 </section>
                             </fieldset>
@@ -150,50 +168,73 @@
                                 <section >
                                     <div class="two-col">
                                         <div>
-                                            <label for="name">Address</label>
-                                            <input type="text" placeholder="John Smith" id="name" name="name" required>
+                                            <label for="address">Address</label>
+                                            <input type="text" placeholder="22 Full Moon Crescent" id="address" name="address" required>
                                         </div>
                                         <div>
-                                            <label for="name">Apartment, Suite, etc.</label>
-                                            <input type="text" placeholder="John Smith" id="name" name="name" required>
-                                        </div>
-                                        <div>
-                                            <label for="name">Postal Code</label>
-                                            <input type="text" placeholder="John Smith" id="name" name="name" required>
-                                        </div>
-                                        <div>
-                                            <label for="name">Country/Region</label>
-                                            <input type="text" placeholder="John Smith" id="name" name="name" required>
+                                            <label for="unit">Apartment, Suite, etc.</label>
+                                            <input type="text" placeholder="370" id="unit" name="unit" required>
                                         </div>
                                         <div>
                                             <label for="city">City</label>
+                                            <input id="city" name="city" type="text" placeholder="Welland" required>
+                                            <!-- <label for="city">City</label>
                                             <select name="city" id="city" required>
                                                 <option value="S308">St.Catharines</option>
                                                 <option value="S306">Welland</option>
                                                 <option value="L2">Niagara Falls</option>
                                                 <option value="ME201">Thorold</option>
                                                 <option value="ME215">Fonthill</option>
+                                            </select> -->
+                                        </div>
+                                        <div>
+                                            <label for="province">Province</label>
+                                            <select name="province" id="province" required>
+                                                <option value="">Select a Province</option>
+                                                <option value="Alberta">Alberta</option>
+                                                <option value="BC">British Columbia</option>
+                                                <option value="Manitoba">Manitoba</option>
+                                                <option value="New Brunswick">New Brunswick</option>
+                                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                                <option value="Northwest Territories">Northwest Territories</option>
+                                                <option value="Nova Scotia">Nova Scotia</option>
+                                                <option value="Nunavut">Nunavut</option>
+                                                <option value="Ontario">Ontario</option>
+                                                <option value="Prince Edward Island">Prince Edward Island</option>
+                                                <option value="Quebec">Quebec</option>
+                                                <option value="Saskatchewan">Saskatchewan</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label for="prov">Province</label>
-                                            <select name="prov" id="prov" required>
-                                                <option value="ontario">Ontario</option>
+                                            <label for="postal">Postal Code</label>
+                                            <input id="postal" name="postal" type="text" placeholder="L3C 0A8" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" required>
+                                            
+                                        </div>
+                                        <div>
+                                            <label for="country">Country/Region</label>
+                                            <select name="country" id="country" required>
+                                                <option value="S308">Canada</option>
+                                                <option value="S306">United States</option>
                                             </select>
                                         </div>
+
                                     </div>
                                 </section>
                             </fieldset>
-
-                            <div> <input type="submit" value="Create"> </div>
+                            <div class="d-flex justify-content-end"> 
+                                <a href="../index.html" class="button btn-cancel me-4" id="cancelButton">
+                                    Cancel
+                                </a>
+                                <button type="submit" value="Save" class="button btn-save">
+                                    Save
+                                </button>
+                            </div>
                         </form>
                     </main>
-            
-
                 </div>
             </div>
-
         </section>
     </div>
+    <script src="../scripts/customer-create.js"></script>
 </body>
 </html>

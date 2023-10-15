@@ -28,6 +28,8 @@ legend {
 
 label {
     font-size: 14px;
+    color: grey;
+    padding-left: 5px;
 }
 
 /* User Input Fields */
@@ -67,7 +69,7 @@ input[type="tel"] {
     border-bottom: 1px solid var(--input-outline);
     box-sizing: border-box;
     display: block;
-    padding: 6px 0px;
+    padding: 6px;
     width: 100%;
 }
 
@@ -75,7 +77,7 @@ input[type="radio"] {margin-bottom: 10px;}
 
 input[type="text"], input[type="email"], input[type="tel"], input[type="date"] {height: 25px;}
 
-input[type="submit"] {
+/* input[type="submit"] {
     border: none;
     border-radius: 5px;
     background: #0f72d4; 
@@ -86,7 +88,7 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     opacity: 90%;
-}
+} */
 
 /* Placeholder */
 
