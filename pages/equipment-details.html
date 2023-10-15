@@ -13,7 +13,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/eqipment-details.css">
+    <link rel="stylesheet" href="../styles/equipment-details.css">
 </head>
 <body>
     <div class="app-container">
@@ -128,9 +128,12 @@
 
             <div class="page">
                 <div class="equipment-details" id="equipment-details">
-                    
 
-
+                </div>
+                <div>
+                    <a href="../pages/equipment-search.html" class="btn btn-secondary">
+                        Return
+                    </a>
                 </div>
             </div>
 
@@ -139,6 +142,31 @@
                 const equipmentIDs = urlParams.get('ids');
         
                 const equipmentDatabase = {
+
+            1: {
+                equipmentId: 1,
+                price: "$1000.00",
+                itemNumber: 332,
+                equipmentName: "GrassGlider Pro",
+                equipmentType: "Lawn Mower",
+                serialNumber: "20931890",
+                modelNumber: "A02B",
+                manufacturer: "Pro-Power Canada",
+                colour: "Red"
+            },
+            2: {
+                equipmentId: 2,
+                price: "$800.00",
+                itemNumber: 456,
+                equipmentName: "LawnMaster 2000",
+                equipmentType: "Lawn Mower",
+                serialNumber: "987654321",
+                modelNumber: "B05C",
+                manufacturer: "Troy-Bilt",
+                colour: "Green",
+            },
+        };
+=======
                     1: {
                         equipmentId: 1,
                         equipmentType: "Mower",
@@ -161,6 +189,7 @@
                     },
                 }//can add more equipment as needed, just for display/functionality display purposes, and for debugging.
 
+
         
                 function populateEquipmentDetails(equipmentIDArray) {
                     const equipmentDetails = document.getElementById("equipment-details");
@@ -177,11 +206,13 @@
                                     <h3>Equipment ID: ${equipment.equipmentId}</h3>
                                     <p>Price: ${equipment.equipmentType}</p>
                                     <p>Equipment Name: ${equipment.equipmentName}</p>
+                                    <p>Equipment Type: ${equipment.equipmentType}</p>
                                     <p>Item Number: ${equipment.itemNumber}</p>
                                     <p>Serial Number: ${equipment.serialNumber}</p>
                                     <p>Model Number: ${equipment.modelNumber}</p>
                                     <p>Manufacturer: ${equipment.manufacturer}</p>
                                     <p>Colour: ${equipment.colour}</p>
+                                    <a href="../pages/equipment-update.html?id=${equipment.equipmentId}" class="btn btn-primary">Update</a>
                                     <hr>
                                 `;
         

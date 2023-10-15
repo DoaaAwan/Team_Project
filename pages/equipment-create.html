@@ -128,32 +128,92 @@
 
             <div class="page">
                 <div class="equipment-create">
-
                     <main>
-                        <form action="https://webdevbasics.net/scripts/demo.php" method="post" onsubmit="return validateForm()">
+                        <form action="https://webdevbasics.net/scripts/demo.php" method="post">
                             <fieldset>
+
+                                <legend>Equipment Description</legend>
+                                <section class="two-col">
+                                    <div>
+                                        <label for="equipment-name">Equipment Name</label>
+                                        <input type="text" placeholder="TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
+
                                 <legend>Equipment Details</legend>
             
                                 <div class="">
                                     <div>
                                         <label for="itemNumber">Item Number</label>
                                         <input type="number" placeholder="0..1..2" id="itemNumber" name="itemNumber" required>
+
                                     </div>
                                     <div>
-                                        <label for="equipmentName">Equipment Name</label>
-                                        <input type="text" placeholder="Tractor" id="equipmentName" name="equipmentName" required>
+                                        <label for="equipment-type">Equipment Type</label>
+                                        <select id="equipment-type" name="equipment-type">
+                                            <option value="" disabled selected>Select Equipment Type</option>
+                                            <option value="Lawn Mower">
+                                                Lawn Mower
+                                            </option>
+                                            <option value="Leaf Blower">
+                                                Leaf Blower
+                                            </option>
+                                            <option value="Chainsaw">
+                                                Chainsaw
+                                            </option>
+                                        </select>
                                     </div>
                                     <div>
-                                        <label for="serialNumber">Serial Number</label>
-                                        <input type="text" placeholder="012345678" id="serialNumber" name="serialNumber" required>
+                                        <label for="manufacturer">Manufacturer</label>
+                                        <select name="manufacturer" id="manufacturer" required>
+                                            <option value="" disabled selected>Select Manufacturer</option>
+                                            <option value="Pro-Power Canada">
+                                                Pro-Power Canada
+                                            </option>
+                                            <option value="Troy-Bilt">
+                                                Troy-Bilt
+                                            </option>
+                                            <option value="Toro">
+                                                Toro
+                                            </option>
+                                            <option value="Alpine Lawn & Garden Equipment">
+                                                Alpine Lawn & Garden Equipment
+                                            </option>
+                                        </select>
                                     </div>
                                     <div>
-                                        <label for="modelNumber">Model Number</label>
-                                        <input type="text" placeholder="A02B" id="modelNumber" name="modelNumber" required>
+                                        <label for="colour">Colour</label>
+                                        <select id="colour" name="colour">
+                                            <option value="" disabled selected>Select Colour</option>
+                                            <option value="Red">
+                                                Red
+                                            </option>
+                                            <option value="Green">
+                                                Green
+                                            </option>
+                                            <option value="Blue">
+                                                Blue
+                                            </option>
+                                            <option value="Yellow">
+                                                Yellow
+                                            </option>
+                                        </select>
                                     </div>
-                                </div>
                             </fieldset>
                             <fieldset>
+
+                                <legend>Equipment Numbers</legend>
+                                <section class="two-col">
+                                    <div>
+                                        <label for="item-number">Item Number</label>
+                                        <input type="text" placeholder="123" id="item-number" name="item-number" required>
+                                    </div>
+                                    <div>
+                                        <label for="serial-number">Serial Number</label>
+                                        <input type="text" placeholder="12345678" id="serial-number" name="serial-number" required>
+                                    </div>
+                                    <div>
+                                        <label for="model-number">Model Number</label>
+                                        <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
+
                                 <legend>Manufacturer</legend>
                                 <section>
                                     <div class="">
@@ -184,12 +244,20 @@
                                                 <option value="snowBlower">Snow Blower</option>
                                             </select>
                                         </div>
+
                                     </div>
                                 </section>
                             </fieldset>
-                            <div> <input type="submit" value="Create"> </div>
+                            <div class="d-flex justify-content-between"> 
+                                <a href="../pages/equipment-search.html" class="button btn-cancel">
+                                    Cancel
+                                </a>
+                                <button type="submit" value="Save" class="button btn-save">
+                                    Save
+                                </button>
+                            </div>
                         </form>
-                    </main>
+                    <main>
                 </div>
             
                 <script>
