@@ -1,44 +1,41 @@
-.page-container h2 {
+.customer-details h2 {
     color: #000;
     font-size: 24px;
 }
 
-p {
+.customer-details p {
     font-size: 22px;
     line-height: 1.8;
 }
 
-hr {
+.customer-details hr {
     border: 2px solid #2363775a;
     border-radius: 2px;
     opacity: 1;
 }
 
-select {
+.customer-details select {
     height: 10em;
     margin-top: 5px;
     margin-bottom: 5px;
     width: 38em;
 }
 
-.btns {
+.customer-details .btns {
     width: 50%;
     margin: 5px;
 }
 
-.button-container {
-    display: flex;
-  }
-
-
 /* Columns */
-.column {
+
+
+.customer-details .column {
     float: left;
     width: 45%;
     padding: 10px;
   }
   
-  .row:after {
+.customer-details .row:after {
     content: "";
     display: table;
     clear: both;
