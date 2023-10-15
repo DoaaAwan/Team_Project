@@ -127,14 +127,81 @@
             </header>
 
             <div class="page">
-                <div class="equipment-details">
+                <div class="equipment-details" id="equipment-details">
+                    
 
-                    <!-- ADD CODE HERE -->
 
                 </div>
             </div>
 
+            <script>
+                const urlParams = new URLSearchParams(window.location.search);
+                const equipmentIDs = urlParams.get('ids');
+        
+                const equipmentDatabase = {
+                    1: {
+                        equipmentId: 1,
+                        price: "$1000.00",
+                        itemNumber: 332,
+                        equipmentName: "Lawn Mower",
+                        serialNumber: "20931890",
+                        modelNumber: "A02B",
+                        manufacturer: "Pro-Power Canada",
+                        colour: "Red"
+                    },
+                    2: {
+                        equipmentId: 2,
+                        price: "$800.00",
+                        itemNumber: 456,
+                        equipmentName: "Lawn Mower",
+                        serialNumber: "987654321",
+                        modelNumber: "B05C",
+                        manufacturer: "Troy-Bilt",
+                        colour: "Green",
+                    },
+                };
+        
+                function populateEquipmentDetails(equipmentIDArray) {
+                    const equipmentDetails = document.getElementById("equipment-details");
+                    
+        
+                    if (equipmentIDArray.length > 0) {
+                        equipmentIDArray.forEach(equipmentId => {
+                            const equipment = equipmentDatabase[equipmentId];
+        
+                            if (equipment) {
+                                // Create elements to display equipment details
+                                const equipmentDiv = document.createElement("div");
+                                equipmentDiv.innerHTML = `
+                                    <h3>Equipment ID: ${equipment.equipmentId}</h3>
+                                    <p>Price: ${equipment.price}</p>
+                                    <p>Equipment Name: ${equipment.equipmentName}</p>
+                                    <p>Item Number: ${equipment.itemNumber}</p>
+                                    <p>Serial Number: ${equipment.serialNumber}</p>
+                                    <p>Model Number: ${equipment.modelNumber}</p>
+                                    <p>Manufacturer: ${equipment.manufacturer}</p>
+                                    <p>Colour: ${equipment.colour}</p>
+                                    <hr>
+                                `;
+        
+                                equipmentDetails.appendChild(equipmentDiv);
+                            }
+                        });
+                    } else {
+                        equipmentDetails.innerHTML = "<p>No equipment details available.</p>";
+                    }
+                }
+        
+                if (equipmentIDs) {
+                    const equipmentIDArray = equipmentIDs.split(',');
+        
+                    populateEquipmentDetails(equipmentIDArray);
+                } else {
+                    console.log('No equipment IDs found in the URL.');
+                }
+            </script>
         </section>
     </div>
+    
 </body>
 </html>

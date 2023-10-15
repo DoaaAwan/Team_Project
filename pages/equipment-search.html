@@ -129,12 +129,31 @@
             <div class="page">
                 <div class="equipment-search">
 
-                    <!-- ADD CODE HERE -->
+                    <main>
+                        <form id="searchForm" action="https://webdevbasics.net/scripts/demo.php" method="post">
+                            <fieldset>
+                                <legend>Search for Equipment</legend>
+                                <label for="searchId">Equipment ID:</label>
+                                <input type="text" id="searchId" placeholder="Enter ID" pattern="[0-9]+">
+                                <label for="searchItemNumber">Item Number:</label>
+                                <input type="text" id="searchItemNumber" placeholder="Enter Item Number" pattern="[0-9]+">
+                                <label for="searchSerialNumber">Serial Number:</label>
+                                <input type="text" id="searchSerialNumber" placeholder="Enter Serial Number">
+                                <label for="searchModelNumber">Model Number:</label>
+                                <input type="text" id="searchModelNumber" placeholder="Enter Model Number">
+                                <label for="searchManufacturer">Manufacturer:</label>
+                                <input type="text" id="searchManufacturer" placeholder="Enter Manufacturer" pattern="[A-Za-z]+">
+
+                                <button type="button" onclick="searchEquipment()">Search</button>
+                            </fieldset>
+                        </form>
+                    </main>
 
                 </div>
             </div>
 
         </section>
     </div>
+    <script src="../src\script.js"></script>
 </body>
 </html>
