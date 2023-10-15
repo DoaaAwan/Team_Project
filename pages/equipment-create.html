@@ -129,7 +129,101 @@
             <div class="page">
                 <div class="equipment-create">
 
-                    <!-- ADD CODE HERE -->
+                    <main>
+                        <form action="https://webdevbasics.net/scripts/demo.php" method="post" onsubmit="return validateForm()">
+                            <fieldset>
+                                <legend>Equipment Details</legend>
+            
+                                <div class="">
+                                    <div>
+                                        <label for="price">Price</label>
+                                        <input type="text" placeholder="$0.00" id="price" name="price" required>
+                                    </div>
+                                    <div>
+                                        <label for="itemNumber">Item Number</label>
+                                        <input type="number" placeholder="0..1..2" id="itemNumber" name="itemNumber" required>
+                                    </div>
+                                    <div>
+                                        <label for="equipmentName">Equipment Name</label>
+                                        <input type="text" placeholder="Tractor" id="equipmentName" name="equipmentName" required>
+                                    </div>
+                                    <div>
+                                        <label for="serialNumber">Serial Number</label>
+                                        <input type="text" placeholder="012345678" id="serialNumber" name="serialNumber" required>
+                                    </div>
+                                    <div>
+                                        <label for="modelNumber">Model Number</label>
+                                        <input type="text" placeholder="A02B" id="modelNumber" name="modelNumber" required>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Manufacturer</legend>
+                                <section>
+                                    <div class="">
+                                        <div>
+                                            <label for="manufacturer">Manufacturer</label>
+                                            <select name="manufacturer" id="manufacturer" required>
+                                                <option value="1">Pro-Power Canada</option>
+                                                <option value="2">Troy-Bilt</option>
+                                                <option value="3">Toro</option>
+                                                <option value="4">Alpine Lawn & Garden Equipment</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="colour">Colour</label>
+                                            <select name="colour" id="colour" required>
+                                                <option value="red">Red</option>
+                                                <option value="blue">Blue</option>
+                                                <option value="green">Green</option>
+                                                <option value="yellow">Yellow</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </section>
+                            </fieldset>
+                            <div> <input type="submit" value="Create"> </div>
+                        </form>
+                    </main>
+                </div>
+            
+                <script>
+                    function validateForm() {
+                        const price = document.getElementById("price");
+                        const itemNumber = document.getElementById("itemNumber");
+                        const equipmentName = document.getElementById("equipmentName");
+                        const serialNumber = document.getElementById("serialNumber");
+                        const modelNumber = document.getElementById("modelNumber");
+            
+                        if (!validatePrice(price)) return false;
+                        if (!validateItemNumber(itemNumber)) return false;
+                        if (!validateEquipmentName(equipmentName)) return false;
+                        if (!validateSerialNumber(serialNumber)) return false;
+                        if (!validateModelNumber(modelNumber)) return false;
+            
+                        return true;
+                    }
+            
+                    function validatePrice(input) {
+                        const pricePattern = /^\$\d+(\.\d{2})?$/;
+                        if (!pricePattern.test(input.value)) {
+                            alert("Price should match the pattern: $#.##");
+                            input.focus();
+                            return false;
+                        }
+                        return true;
+                    }
+            
+                    function validateItemNumber(input) {
+                        if (isNaN(input.value)) {
+                            alert("Item Number must be a number.");
+                            input.focus();
+                            return false;
+                        }
+                        return true;
+                    }
+                    
+                </script> 
 
                 </div>
             </div>
