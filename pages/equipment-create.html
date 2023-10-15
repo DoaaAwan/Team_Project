@@ -136,10 +136,6 @@
             
                                 <div class="">
                                     <div>
-                                        <label for="price">Price</label>
-                                        <input type="text" placeholder="$0.00" id="price" name="price" required>
-                                    </div>
-                                    <div>
                                         <label for="itemNumber">Item Number</label>
                                         <input type="number" placeholder="0..1..2" id="itemNumber" name="itemNumber" required>
                                     </div>
@@ -179,6 +175,15 @@
                                                 <option value="yellow">Yellow</option>
                                             </select>
                                         </div>
+                                        <div>
+                                            <label for="equipmentType">Equipment Type</label>
+                                            <select name="colour" id="colour" required>
+                                                <option value="lawnMower">Mower</option>
+                                                <option value="trimmer">Tractor</option>
+                                                <option value="utiltyEquipment">Utility Equipment</option>
+                                                <option value="snowBlower">Snow Blower</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </section>
                             </fieldset>
@@ -197,9 +202,6 @@
             
                         if (!validatePrice(price)) return false;
                         if (!validateItemNumber(itemNumber)) return false;
-                        if (!validateEquipmentName(equipmentName)) return false;
-                        if (!validateSerialNumber(serialNumber)) return false;
-                        if (!validateModelNumber(modelNumber)) return false;
             
                         return true;
                     }
