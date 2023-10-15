@@ -123,7 +123,17 @@
 
         <section class="page-container">
             <header>
-                <h1>Create Customer</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Create Customer</h1>
+                    </div>
+                    <div>
+                        <a href="../index.html" class="button secondary-btn">
+                            Back to Search
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
             </header>
 
             <div class="page">
@@ -149,8 +159,7 @@
                                     </div>
                                     <div>
                                         <label for="phone">Phone Number</label>
-                                        <input type="tel" placeholder="123 456 -7890" id="phone" name="phone" 
-                                            pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" required>
+                                        <input type="tel" placeholder="(123) 456 - 7890" id="phone" name="phone" required>
                                     </div>
                                 </section>
                             </fieldset>
@@ -212,8 +221,8 @@
                                     </div>
                                 </section>
                             </fieldset>
-                            <div class="d-flex justify-content-between"> 
-                                <a href="../index.html" class="button btn-cancel">
+                            <div class="d-flex justify-content-end"> 
+                                <a href="../index.html" class="button btn-cancel me-4" id="cancelButton">
                                     Cancel
                                 </a>
                                 <button type="submit" value="Save" class="button btn-save">
@@ -222,12 +231,10 @@
                             </div>
                         </form>
                     </main>
-            
-
                 </div>
             </div>
-
         </section>
     </div>
+    <script src="../scripts/customer-create.js"></script>
 </body>
 </html>
