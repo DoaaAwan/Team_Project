@@ -24,6 +24,8 @@
 .customer-details .btns {
     width: 50%;
     margin: 5px;
+    color: white;
+    background-color: #236477;
 }
 
 /* Columns */
