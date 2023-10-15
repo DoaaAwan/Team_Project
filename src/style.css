@@ -52,8 +52,6 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-
-
 header{
     background: #236477;
     padding: 40px 30px 10px;
@@ -196,6 +194,29 @@ nav .nav-btn-icon{
     color: grey;
 }
 
+/* SEARCH BAR */
+
+.search-bar {
+    border: 2px solid #dadada;
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px 40px 10px 15px;
+    width: 100%;
+}
+  
+.search-bar:focus {
+    border-color: transparent;
+    box-shadow: 0 0 5px lightskyblue;
+    outline: none;
+}
+  
+::placeholder {
+    color: lightgray;
+    opacity: 1;
+}
+
 /* CUSTOMER SEARCH RESULT */
 
 h3 {
@@ -312,47 +333,37 @@ h3 {
    
 }
 
-
-/* SEARCH BAR */
-
-.search-bar {
-    border: 2px solid #dadada;
-    border-radius: 10px;
-    background-color: transparent;
-    font-size: 15px;
-    margin-bottom: 10px;
-    padding: 10px 40px 10px 15px;
-    width: 100%;
-}
-  
-.search-bar:focus {
-    border-color: transparent;
-    box-shadow: 0 0 5px lightskyblue;
-    outline: none;
-}
-  
-::placeholder {
-    color: lightgray;
-    opacity: 1;
-}
-
-/* BUTTON COLOR COMBINATIONS */
-
 .bg-grp1{
-    background: #256e84;
+    background: #205072;
+    /* background: linear-gradient(180deg, hsla(194, 55%, 30%, 1) 0%, hsla(205, 56%, 29%, 1) 100%); */
+    /* background: #256e84; */
 }
 
 .bg-grp2{
-    background: #3c6e7d;
+    background: #329d9c;
+    /* background: #3c6e7d; */
 }
 
 .bg-grp3{
-    background: #306170;
+    background: #56c596;
+    /* background: #306170; */
 }
 
 .bg-grp4{
-    background: #204b58;
+    background: #7be495;
+    /* background: linear-gradient(180deg, hsla(155, 49%, 55%, 1) 0%, hsla(135, 66%, 69%, 1) 100%); */
+    /* background: #204b58; */
 }
+
+.nav-btn:hover{
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.nav-btn:active{
+    background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
+}
+
+/* BUTTON COLOR COMBINATIONS */
 
 /* .bg-grp2:hover{
     background: #3492af;
@@ -362,7 +373,7 @@ h3 {
     background: #2c7d96;
 } */
 
-
+/* 
 .bg-grp-green{
     background: #009578;
 }
@@ -385,5 +396,5 @@ h3 {
 
 .bg-grp-primary:active{
     background: #033746;
-}
+} */
 
