@@ -131,11 +131,20 @@
                     <main>
                         <form action="https://webdevbasics.net/scripts/demo.php" method="post">
                             <fieldset>
+
                                 <legend>Equipment Description</legend>
                                 <section class="two-col">
                                     <div>
                                         <label for="equipment-name">Equipment Name</label>
                                         <input type="text" placeholder="TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
+
+                                <legend>Equipment Details</legend>
+            
+                                <div class="">
+                                    <div>
+                                        <label for="itemNumber">Item Number</label>
+                                        <input type="number" placeholder="0..1..2" id="itemNumber" name="itemNumber" required>
+
                                     </div>
                                     <div>
                                         <label for="equipment-type">Equipment Type</label>
@@ -190,6 +199,7 @@
                                     </div>
                             </fieldset>
                             <fieldset>
+
                                 <legend>Equipment Numbers</legend>
                                 <section class="two-col">
                                     <div>
@@ -203,6 +213,38 @@
                                     <div>
                                         <label for="model-number">Model Number</label>
                                         <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
+
+                                <legend>Manufacturer</legend>
+                                <section>
+                                    <div class="">
+                                        <div>
+                                            <label for="manufacturer">Manufacturer</label>
+                                            <select name="manufacturer" id="manufacturer" required>
+                                                <option value="1">Pro-Power Canada</option>
+                                                <option value="2">Troy-Bilt</option>
+                                                <option value="3">Toro</option>
+                                                <option value="4">Alpine Lawn & Garden Equipment</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="colour">Colour</label>
+                                            <select name="colour" id="colour" required>
+                                                <option value="red">Red</option>
+                                                <option value="blue">Blue</option>
+                                                <option value="green">Green</option>
+                                                <option value="yellow">Yellow</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="equipmentType">Equipment Type</label>
+                                            <select name="colour" id="colour" required>
+                                                <option value="lawnMower">Mower</option>
+                                                <option value="trimmer">Tractor</option>
+                                                <option value="utiltyEquipment">Utility Equipment</option>
+                                                <option value="snowBlower">Snow Blower</option>
+                                            </select>
+                                        </div>
+
                                     </div>
                                 </section>
                             </fieldset>
@@ -228,9 +270,6 @@
             
                         if (!validatePrice(price)) return false;
                         if (!validateItemNumber(itemNumber)) return false;
-                        if (!validateEquipmentName(equipmentName)) return false;
-                        if (!validateSerialNumber(serialNumber)) return false;
-                        if (!validateModelNumber(modelNumber)) return false;
             
                         return true;
                     }
