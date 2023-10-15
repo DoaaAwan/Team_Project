@@ -127,114 +127,15 @@
             </header>
 
             <div class="page">
-                <div class="equipment-details" id="equipment-details">
-
-                </div>
+                <div class="equipment-details" id="equipment-details"></div>
                 <div>
                     <a href="../pages/equipment-search.html" class="btn btn-secondary">
                         Return
                     </a>
                 </div>
             </div>
-
-            <script>
-                const urlParams = new URLSearchParams(window.location.search);
-                const equipmentIDs = urlParams.get('ids');
-        
-                const equipmentDatabase = {
-
-            1: {
-                equipmentId: 1,
-                price: "$1000.00",
-                itemNumber: 332,
-                equipmentName: "GrassGlider Pro",
-                equipmentType: "Lawn Mower",
-                serialNumber: "20931890",
-                modelNumber: "A02B",
-                manufacturer: "Pro-Power Canada",
-                colour: "Red"
-            },
-            2: {
-                equipmentId: 2,
-                price: "$800.00",
-                itemNumber: 456,
-                equipmentName: "LawnMaster 2000",
-                equipmentType: "Lawn Mower",
-                serialNumber: "987654321",
-                modelNumber: "B05C",
-                manufacturer: "Troy-Bilt",
-                colour: "Green",
-            },
-        };
-=======
-                    1: {
-                        equipmentId: 1,
-                        equipmentType: "Mower",
-                        itemNumber: 332,
-                        equipmentName: "JohnDeere Electric Mower",
-                        serialNumber: "20931890",
-                        modelNumber: "A02B",
-                        manufacturer: "Pro-Power Canada",
-                        colour: "Red"
-                    },
-                    2: {
-                        equipmentId: 2,
-                        equipmentType: "Mower",
-                        itemNumber: 456,
-                        equipmentName: "Lawn Mower",
-                        serialNumber: "987654321",
-                        modelNumber: "B05C",
-                        manufacturer: "Troy-Bilt",
-                        colour: "Green",
-                    },
-                }//can add more equipment as needed, just for display/functionality display purposes, and for debugging.
-
-
-        
-                function populateEquipmentDetails(equipmentIDArray) {
-                    const equipmentDetails = document.getElementById("equipment-details");
-                    
-        
-                    if (equipmentIDArray.length > 0) {
-                        equipmentIDArray.forEach(equipmentId => {
-                            const equipment = equipmentDatabase[equipmentId];
-        
-                            if (equipment) {
-                                // Create elements to display equipment details
-                                const equipmentDiv = document.createElement("div");
-                                equipmentDiv.innerHTML = `
-                                    <h3>Equipment ID: ${equipment.equipmentId}</h3>
-                                    <p>Price: ${equipment.equipmentType}</p>
-                                    <p>Equipment Name: ${equipment.equipmentName}</p>
-                                    <p>Equipment Type: ${equipment.equipmentType}</p>
-                                    <p>Item Number: ${equipment.itemNumber}</p>
-                                    <p>Serial Number: ${equipment.serialNumber}</p>
-                                    <p>Model Number: ${equipment.modelNumber}</p>
-                                    <p>Manufacturer: ${equipment.manufacturer}</p>
-                                    <p>Colour: ${equipment.colour}</p>
-                                    <a href="../pages/equipment-update.html?id=${equipment.equipmentId}" class="btn btn-primary">Update</a>
-                                    <hr>
-                                `;
-        
-                                equipmentDetails.appendChild(equipmentDiv);
-                            }
-                        });
-                    } else {
-                        equipmentDetails.innerHTML = "<p>No equipment details available.</p>";
-                    }
-                }
-        
-                if (equipmentIDs) {
-                    const equipmentIDArray = equipmentIDs.split(',');
-        
-                    populateEquipmentDetails(equipmentIDArray);
-                } else {
-                    console.log('No equipment IDs found in the URL.');
-                }//error passed console if generally the event listener function isnt being executed before the page loads. The scripts to load these details must load before 
-                //the page is loaded to the user to avoid the error
-            </script>
         </section>
     </div>
-    
+    <script src="../scripts/christian.js"></script>
 </body>
 </html>
