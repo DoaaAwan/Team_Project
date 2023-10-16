@@ -13,7 +13,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/equipment-create.css">
+    <link rel="stylesheet" href="../styles/customer-create.css">
 </head>
 <body>
     <div class="app-container">
@@ -138,139 +138,74 @@
 
             <div class="page">
                 <div class="equipment-create">
-                    <main>
-                        <form action="https://webdevbasics.net/scripts/demo.php" method="post">
-                            <fieldset>
-
-                                <legend>Equipment Description</legend>
-                                <section class="two-col">
-                                    <div>
-                                        <label for="equipment-name">Equipment Name</label>
-                                        <input type="text" placeholder="TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
-
-                                <legend>Equipment Details</legend>
-            
-                                <div class="">
-                                    <div>
-                                        <label for="itemNumber">Item Number</label>
-                                        <input type="number" placeholder="0..1..2" id="itemNumber" name="itemNumber" required>
-
-                                    </div>
-                                    <div>
-                                        <label for="equipment-type">Equipment Type</label>
-                                        <select id="equipment-type" name="equipment-type">
-                                            <option value="" disabled selected>Select Equipment Type</option>
-                                            <option value="Lawn Mower">
-                                                Lawn Mower
-                                            </option>
-                                            <option value="Leaf Blower">
-                                                Leaf Blower
-                                            </option>
-                                            <option value="Chainsaw">
-                                                Chainsaw
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="manufacturer">Manufacturer</label>
-                                        <select name="manufacturer" id="manufacturer" required>
-                                            <option value="" disabled selected>Select Manufacturer</option>
-                                            <option value="Pro-Power Canada">
-                                                Pro-Power Canada
-                                            </option>
-                                            <option value="Troy-Bilt">
-                                                Troy-Bilt
-                                            </option>
-                                            <option value="Toro">
-                                                Toro
-                                            </option>
-                                            <option value="Alpine Lawn & Garden Equipment">
-                                                Alpine Lawn & Garden Equipment
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="colour">Colour</label>
-                                        <select id="colour" name="colour">
-                                            <option value="" disabled selected>Select Colour</option>
-                                            <option value="Red">
-                                                Red
-                                            </option>
-                                            <option value="Green">
-                                                Green
-                                            </option>
-                                            <option value="Blue">
-                                                Blue
-                                            </option>
-                                            <option value="Yellow">
-                                                Yellow
-                                            </option>
-                                        </select>
-                                    </div>
-                            </fieldset>
-                            <fieldset>
-
-                                <legend>Equipment Numbers</legend>
-                                <section class="two-col">
-                                    <div>
-                                        <label for="item-number">Item Number</label>
-                                        <input type="text" placeholder="123" id="item-number" name="item-number" required>
-                                    </div>
-                                    <div>
-                                        <label for="serial-number">Serial Number</label>
-                                        <input type="text" placeholder="12345678" id="serial-number" name="serial-number" required>
-                                    </div>
-                                    <div>
-                                        <label for="model-number">Model Number</label>
-                                        <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
-
-                                <legend>Manufacturer</legend>
-                                <section>
-                                    <div class="">
-                                        <div>
-                                            <label for="manufacturer">Manufacturer</label>
-                                            <select name="manufacturer" id="manufacturer" required>
-                                                <option value="1">Pro-Power Canada</option>
-                                                <option value="2">Troy-Bilt</option>
-                                                <option value="3">Toro</option>
-                                                <option value="4">Alpine Lawn & Garden Equipment</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label for="colour">Colour</label>
-                                            <select name="colour" id="colour" required>
-                                                <option value="red">Red</option>
-                                                <option value="blue">Blue</option>
-                                                <option value="green">Green</option>
-                                                <option value="yellow">Yellow</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label for="equipmentType">Equipment Type</label>
-                                            <select name="colour" id="colour" required>
-                                                <option value="lawnMower">Mower</option>
-                                                <option value="trimmer">Tractor</option>
-                                                <option value="utiltyEquipment">Utility Equipment</option>
-                                                <option value="snowBlower">Snow Blower</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
+                    <form method="post">
+                        <fieldset>
+                            <legend>Equipment Details</legend>
+                            <section class="two-col">
+                                <div>
+                                    <label for="equipment-name">Equipment Name</label>
+                                    <input type="text" placeholder="TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
+                                </div>
+                                <div>
+                                    <label for="manufacturer">Manufacturer</label>
+                                    <select name="manufacturer" id="manufacturer" required>
+                                        <option value="1">Pro-Power Canada</option>
+                                        <option value="2">Troy-Bilt</option>
+                                        <option value="3">Toro</option>
+                                        <option value="4">Alpine Lawn & Garden Equipment</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="equipmentType">Equipment Type</label>
+                                    <select name="colour" id="colour" required>
+                                        <option value="lawnMower">Mower</option>
+                                        <option value="trimmer">Tractor</option>
+                                        <option value="utiltyEquipment">Utility Equipment</option>
+                                        <option value="snowBlower">Snow Blower</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="colour">Colour</label>
+                                    <select name="colour" id="colour" required>
+                                        <option value="red">Red</option>
+                                        <option value="blue">Blue</option>
+                                        <option value="green">Green</option>
+                                        <option value="yellow">Yellow</option>
+                                    </select>
+                                </div>
+                            </section>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Equipment Numbers</legend>
+                            <section class="two-col">
+                                <div>
+                                    <label for="item-number">Item Number</label>
+                                    <input type="text" placeholder="123" id="item-number" name="item-number" required>
+                                </div>
+                                <div>
+                                    <label for="serial-number">Serial Number</label>
+                                    <input type="text" placeholder="12345678" id="serial-number" name="serial-number" required>
+                                </div>
+                                <div>
+                                    <label for="model-number">Model Number</label>
+                                    <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
                                 </section>
-                            </fieldset>
-                            <div class="d-flex justify-content-between"> 
-                                <a href="../pages/equipment-search.html" class="button btn-cancel">
-                                    Cancel
-                                </a>
-                                <button type="submit" value="Save" class="button btn-save">
-                                    Save
-                                </button>
-                            </div>
-                        </form>
-                    <main>
+                        </fieldset>
+                    </form>
+
+                    <div class="d-flex justify-content-end"> 
+                        <a href="../pages/equipment-search.html" class="button btn-cancel me-4">
+                            Cancel
+                        </a>
+                        <button type="submit" value="Save" class="button btn-save">
+                            Save
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </div> 
+
         </section>
+
     </div>
     <script src="../scripts/equipment-create.js"></script>
 </body>
