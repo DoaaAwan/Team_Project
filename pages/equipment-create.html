@@ -154,9 +154,9 @@
 
             <div class="page">
                 <div class="equipment-create">
-                    <form method="post">
+                    <form method="post" action="https://webdevbasics.net/scripts/demo.php">
                         <fieldset>
-                            <legend>Equipment Details</legend>
+                            <legend>Equipment Description</legend>
                             <section class="two-col">
                                 <div>
                                     <label for="equipment-name">Equipment Name</label>
@@ -165,38 +165,65 @@
                                 <div>
                                     <label for="manufacturer">Manufacturer</label>
                                     <select name="manufacturer" id="manufacturer" required>
-                                        <option value="1">Pro-Power Canada</option>
-                                        <option value="2">Troy-Bilt</option>
-                                        <option value="3">Toro</option>
-                                        <option value="4">Alpine Lawn & Garden Equipment</option>
+                                        <option value="" disabled selected>Select Manufacturer</option>
+                                        <option value="Craftsman">
+                                            Craftsman
+                                        </option>
+                                        <option value="Pro-Power Canada">
+                                            Pro-Power Canada
+                                        </option>
+                                        <option value="Troy-Bilt">
+                                            Troy-Bilt
+                                        </option>
+                                        <option value="Toro">
+                                            Toro
+                                        </option>
+                                        <option value="Alpine Lawn & Garden Equipment">
+                                            Alpine Lawn & Garden Equipment
+                                        </option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="equipmentType">Equipment Type</label>
-                                    <select name="colour" id="colour" required>
-                                        <option value="lawnMower">Mower</option>
-                                        <option value="trimmer">Tractor</option>
-                                        <option value="utiltyEquipment">Utility Equipment</option>
-                                        <option value="snowBlower">Snow Blower</option>
+                                    <label for="equipment-type">Equipment Type</label>
+                                    <select id="equipment-type" name="equipment-type" required>
+                                        <option value="" disabled selected>Select Equipment Type</option>
+                                        <option value="Lawn Mower">
+                                            Lawn Mower
+                                        </option>
+                                        <option value="Leaf Blower">
+                                            Leaf Blower
+                                        </option>
+                                        <option value="Chainsaw">
+                                            Chainsaw
+                                        </option>
                                     </select>
                                 </div>
                                 <div>
                                     <label for="colour">Colour</label>
-                                    <select name="colour" id="colour" required>
-                                        <option value="red">Red</option>
-                                        <option value="blue">Blue</option>
-                                        <option value="green">Green</option>
-                                        <option value="yellow">Yellow</option>
+                                    <select id="colour" name="colour" required>
+                                        <option value="" disabled selected>Select Colour</option>
+                                        <option value="Red">
+                                            Red
+                                        </option>
+                                        <option value="Green">
+                                            Green
+                                        </option>
+                                        <option value="Blue">
+                                            Blue
+                                        </option>
+                                        <option value="Yellow">
+                                            Yellow
+                                        </option>
                                     </select>
                                 </div>
-                            </section>
                         </fieldset>
                         <fieldset>
                             <legend>Equipment Numbers</legend>
                             <section class="two-col">
                                 <div>
                                     <label for="item-number">Item Number</label>
-                                    <input type="text" placeholder="123" id="item-number" name="item-number" required>
+                                    <input type="text" placeholder="123" id="item-number" name="item-number" pattern="[0-9]*" 
+                                    title="Must be only numbers." required>
                                 </div>
                                 <div>
                                     <label for="serial-number">Serial Number</label>
@@ -205,18 +232,18 @@
                                 <div>
                                     <label for="model-number">Model Number</label>
                                     <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
-                                </section>
+                                </div>
+                            </section>
                         </fieldset>
+                        <div class="d-flex justify-content-end"> 
+                            <a href="../pages/equipment-search.html" class="button btn-cancel me-4">
+                                Cancel
+                            </a>
+                            <button type="submit" value="Save" class="button btn-save">
+                                Save
+                            </button>
+                        </div>
                     </form>
-
-                    <div class="d-flex justify-content-end"> 
-                        <a href="../pages/equipment-search.html" class="button btn-cancel me-4">
-                            Cancel
-                        </a>
-                        <button type="submit" value="Save" class="button btn-save">
-                            Save
-                        </button>
-                    </div>
                 </div>
             </div> 
 
