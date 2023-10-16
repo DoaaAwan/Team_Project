@@ -1,0 +1,44 @@
+.customer-details h2 {
+    color: #000;
+    font-size: 24px;
+}
+
+.customer-details p {
+    font-size: 22px;
+    line-height: 1.8;
+}
+
+.customer-details hr {
+    border: 2px solid #2363775a;
+    border-radius: 2px;
+    opacity: 1;
+}
+
+.customer-details select {
+    height: 10em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 38em;
+}
+
+.customer-details .btns {
+    width: 50%;
+    margin: 5px;
+    color: white;
+    background-color: #236477;
+}
+
+/* Columns */
+
+
+.customer-details .column {
+    float: left;
+    width: 45%;
+    padding: 10px;
+  }
+  
+.customer-details .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
