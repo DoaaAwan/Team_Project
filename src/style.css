@@ -334,8 +334,8 @@ h3 {
 }
 
 .bg-grp1{
-    background: #205072;
-    /* background: linear-gradient(180deg, hsla(194, 55%, 30%, 1) 0%, hsla(205, 56%, 29%, 1) 100%); */
+    /* background: #205072; */
+    background: linear-gradient(180deg, hsla(194, 55%, 30%, 1) 0%, hsla(205, 56%, 29%, 1) 100%);
     /* background: #256e84; */
 }
 
