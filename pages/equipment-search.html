@@ -13,7 +13,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/equipment-search.css">
+    <!-- <link rel="stylesheet" href="../styles/equipment-search.css"> -->
 </head>
 <body>
     <div class="app-container">
@@ -143,6 +143,10 @@
                         <h1>Search Equipment</h1>
                     </div>
                     <div>
+                        <a href="../pages/customer-details.html" class="button secondary-btn me-4">
+                            Back to Customer
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
                         <a href="../pages/equipment-create.html" class="button secondary-btn">
                             New Equipment
                             <ion-icon name="add-outline"></ion-icon>
@@ -168,21 +172,22 @@
                                       required
                                       />
                                       <div class="ps-2">
-                                          <button type="button" onclick="showEquipResult()" class="button btn-search">Search</button>
+                                          <button type="submit" class="button btn-search">Search</button>
                                       </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div id="equipment-results" style="display: none;">
+                    <div id="equipment-results">
                         <h3>Equipment Found</h3>
-                        <a href="../pages/equipment-details.html" class="result shadow d-flex justify-content-start">
-                            <img src="../images/green-customer-details.png" alt="">
+                        <a href="../pages/equipment-details.html" class="result shadow d-flex justify-content-between">
+                            <img src="../images/equip.png" alt="">
                             <div id="equipment-details">
-                                <p id="searchManufacturer" class="name">Manufacturer</p>
-                                <p id="searchItemNumber" class="email">Item Number</p>
-                                <p id="searchModelNumber" class="email">Model Number</p>
-                                <p id="searchSerialNumber" class="number">Serial Number</p>
+                                <p id="searchManufacturer" class="name">CRAFTSMAN Electric Lawn Mower</p>
+                                <p id="searchItemNumber" class="email">Type: Electric</p>
+                                <p id="searchItemNumber" class="email">Color: Red</p>
+                                <p id="searchModelNumber" class="email">M/N: 1345432</p>
+                                <p id="searchSerialNumber" class="number">S/N: 543U28</p>
                             </div>
                         </a>
                     </div>
@@ -210,6 +215,6 @@
         </section>
     </div>
 
-    <script src="../src/script.js"></script>
+    <!-- <script src="../src/script.js"></script> -->
 </body>
 </html>
