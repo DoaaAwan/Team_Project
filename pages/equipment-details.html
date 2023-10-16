@@ -13,7 +13,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/equipment-details.css">
+    <link rel="stylesheet" href="../styles/customer-details.css">
+    <!-- <link rel="stylesheet" href="../styles/equipment-details.css"> -->
 </head>
 <body>
     <div class="app-container">
@@ -105,7 +106,7 @@
                                     </span>
                                 </div>
                             </a>
-                            <p class="nav-btn-grp-title">order</p>
+                            <!-- <p class="nav-btn-grp-title">order</p>
                             <a href="../pages/repair-details.html">
                                 <div class="nav-btn bg-grp4">
                                     <span class="nav-btn-txt"><p>Fill Repair Request</p></span>
@@ -113,7 +114,7 @@
                                         <ion-icon name="clipboard-outline"></ion-icon>
                                     </span>
                                 </div>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -123,19 +124,56 @@
 
         <section class="page-container">
             <header>
-                <h1>Equipment Details</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Equipment Details</h1>
+                    </div>
+                    <div>
+                        <a href="../pages/equipment-search.html" class="button secondary-btn me-4">
+                            Back to Search
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
+                        <a href="../pages/equipment-update.html" class="button secondary-btn">
+                            Update Equipment
+                            <ion-icon name="cog-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
             </header>
 
             <div class="page">
-                <div class="equipment-details" id="equipment-details"></div>
-                <div>
+                <div class="customer-details" id="equipment-details">
+                    <h2>CRAFTSMAN Electric Lawn Mower</h2>
+                    <hr>
+                    <div class="row">
+                        <div class="column">
+                            <p>Manufacturer: Craftsman<br>S/N: 136728<br>M/N: 673829<br>Colour: Red<br>Type: Electric<br></p>
+                        </div>
+
+                        <div class="column">
+                            <!-- <h2>Order History</h2>
+                            <select name="Orders" size="5">  
+                                <option value="Order1"> Order 1 </option>  
+                                <option value="Order2"> Order 2 </option>  
+                                <option value="Order3"> Order 3 </option>  
+                                <option value="Order4"> Order 4 </option>  
+                            </select> -->
+                            <!-- <div class="d-flex">
+                                <a href="../pages/equipment-update.html" class="button btns">Update Equipment</a>
+                                <a href="../pages/equipment-create.html" class="button btns">Create Repair Request</a>
+                            </div> -->
+                        </div>
+                    </div> 
+
+                </div>
+                <!-- <div>
                     <a href="../pages/equipment-search.html" class="btn btn-secondary">
                         Return
                     </a>
-                </div>
+                </div> -->
             </div>
         </section>
     </div>
-    <script src="../scripts/christian.js"></script>
+    <!-- <script src="../scripts/christian.js"></script> -->
 </body>
 </html>
