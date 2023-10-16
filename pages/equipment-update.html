@@ -161,12 +161,15 @@
                                 <section class="two-col">
                                     <div>
                                         <label for="equipment-name">Equipment Name</label>
-                                        <input type="text" placeholder="TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
+                                        <input type="text" placeholder="TurfTamer Supreme" value="CRAFTSMAN Electric Lawn Mower" id="equipment-name" name="equipment-name" required>
                                     </div>
                                     <div>
                                         <label for="manufacturer">Manufacturer</label>
                                         <select name="manufacturer" id="manufacturer" required>
                                             <option value="" disabled selected>Select Manufacturer</option>
+                                            <option value="Craftsman">
+                                                Craftsman
+                                            </option>
                                             <option value="Pro-Power Canada">
                                                 Pro-Power Canada
                                             </option>
@@ -183,7 +186,7 @@
                                     </div>
                                     <div>
                                         <label for="equipment-type">Equipment Type</label>
-                                        <select id="equipment-type" name="equipment-type">
+                                        <select id="equipment-type" name="equipment-type" required>
                                             <option value="" disabled selected>Select Equipment Type</option>
                                             <option value="Lawn Mower">
                                                 Lawn Mower
@@ -198,7 +201,7 @@
                                     </div>
                                     <div>
                                         <label for="colour">Colour</label>
-                                        <select id="colour" name="colour">
+                                        <select id="colour" name="colour" required>
                                             <option value="" disabled selected>Select Colour</option>
                                             <option value="Red">
                                                 Red
@@ -220,17 +223,16 @@
                                 <section class="two-col">
                                     <div>
                                         <label for="item-number">Item Number</label>
-                                        <input type="text" placeholder="123" id="item-number" name="item-number" pattern="[0-9]*" 
+                                        <input type="text" placeholder="123" value="435" id="item-number" name="item-number" pattern="[0-9]*" 
                                         title="Must be only numbers." required>
                                     </div>
                                     <div>
                                         <label for="serial-number">Serial Number</label>
-                                        <input type="text" placeholder="12345678" id="serial-number" name="serial-number" pattern="[0-9]*"
-                                        title="Must be only numbers." required>
+                                        <input type="text" placeholder="12345678" value="136728" id="serial-number" name="serial-number" required>
                                     </div>
                                     <div>
                                         <label for="model-number">Model Number</label>
-                                        <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
+                                        <input type="text" placeholder="C03S" value="673829" id="model-number" name="model-number" required>
                                     </div>
                                 </section>
                             </fieldset>
@@ -249,5 +251,10 @@
         </section>
     </div>
     <!-- <script src="../scripts/equipment-update.js"></script> -->
+    <script>
+        document.getElementById("equipment-type").value = "Lawn Mower"
+        document.getElementById("manufacturer").value = "Craftsman"
+        document.getElementById("colour").value = "Red"
+    </script>
 </body>
 </html>
