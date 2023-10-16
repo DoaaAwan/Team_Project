@@ -8,6 +8,13 @@
     // Add more customer data as needed
   ];
 
+  //EQUIPMENT SEARCH
+  const equipResults = document.getElementById("equipment-results");
+
+  function showEquipResult(){
+    equipResults.style.display = "block";
+  }
+
   const searchForm = document.getElementById("search-form");
   const searchValue = document.getElementById("search-value");
   const searchResults = document.getElementById("search-results");
@@ -48,8 +55,13 @@
       searchResults.style.display = "block";
     } else {
       // Display a message if no matching customers are found
-      customerName.textContent = "No matching customers found.";
-      searchResults.style.display = "block";
+      var confirmCancel = window.confirm("No matching customers found. Would you like to create one?");
+
+      if (confirmCancel) {
+          // If the user clicks "OK" in the confirmation dialog, navigate to the index page
+          window.location.href = "../pages/customer-create.html";
+      }
+      // If the user clicks "Cancel" in the confirmation dialog, do nothing
     }
   }
 

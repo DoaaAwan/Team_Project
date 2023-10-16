@@ -105,7 +105,7 @@
                                     </span>
                                 </div>
                             </a>
-                            <p class="nav-btn-grp-title">order</p>
+                            <!-- <p class="nav-btn-grp-title">order</p>
                             <a href="../pages/repair-details.html">
                                 <div class="nav-btn bg-grp4">
                                     <span class="nav-btn-txt"><p>Fill Repair Request</p></span>
@@ -113,7 +113,7 @@
                                         <ion-icon name="clipboard-outline"></ion-icon>
                                     </span>
                                 </div>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -123,13 +123,36 @@
 
         <section class="page-container">
             <header>
-                <h1>Customer Details</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Customer Details</h1>
+                    </div>
+                    <div>
+                        <a href="../index.html" class="button secondary-btn">
+                            Back to Search
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
             </header>
 
             <div class="page">
                 <div class="customer-details">
 
-                    <!-- ADD CODE HERE -->
+                        <div class="column">
+                            <h2>Order History</h2>
+                            <select name="Orders" size="5">  
+                                <option value="Order1"> Order 1 </option>  
+                                <option value="Order2"> Order 2 </option>  
+                                <option value="Order3"> Order 3 </option>  
+                                <option value="Order4"> Order 4 </option>  
+                            </select>
+                            <div class="d-flex">
+                                <a href="../pages/customer-update.html" class="button btns">Update Customer</a>
+                                <a href="../pages/equipment-search.html" class="button btns">Add Equipment</a>
+                            </div>
+                        </div>
+                    </div> 
 
                 </div>
             </div>
