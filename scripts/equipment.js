@@ -73,9 +73,9 @@ const equipmentDatabase = [
 ];
 
 // Equipment Search Code.
-if (window.location.href.includes("equipment-search.html")){
+if (window.location.href.includes("equipment-search")){
 
-    document.getElementById("search-form").addEventListener("submit", function(e){ 
+    document.getElementById("search-btn").addEventListener("click", function(e){ 
         e.preventDefault();
         let searchDiv = document.getElementById("search-grid");
         searchDiv.innerHTML = "";
@@ -145,7 +145,7 @@ if (window.location.href.includes("equipment-search.html")){
 
 
 //Equipment Details Code
-if (window.location.href.includes("equipment-details.html")){
+if (window.location.href.includes("equipment-details")){
     document.addEventListener("DOMContentLoaded", function() {
 
         const urlParam = new URLSearchParams(window.location.search);
@@ -179,7 +179,7 @@ if (window.location.href.includes("equipment-details.html")){
 }
 
 //Equipment Update Code
-if (window.location.href.includes("equipment-update.html")){
+if (window.location.href.includes("equipment-update")){
     const urlParam = new URLSearchParams(window.location.search);
     const equipmentId = urlParam.getAll("id");
 
