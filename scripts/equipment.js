@@ -85,18 +85,15 @@ if (window.location.href.includes("equipment-search")){
         
         equipmentDatabase.forEach(equipment => {
             if (equipment.equipmentName.toLowerCase().includes(equipSearch) ||
+                equipment.equipmentType.toLowerCase().includes(equipSearch) ||
                 equipment.manufacturer.toLowerCase().includes(equipSearch) ||
-                equipment.serialNumber.toLowerCase().includes(equipSearch) ||
-                equipment.modelNumber.toLowerCase().includes(equipSearch)){
+                equipment.modelNumber.toLowerCase().includes(equipSearch) || 
+                equipment.serialNumber.toLowerCase().includes(equipSearch)){
 
                 results.push(equipment);
 
             }
         });
-
-        results.sort
-
-
 
         if (results.length > 0){
 
