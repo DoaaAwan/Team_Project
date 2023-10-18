@@ -75,7 +75,7 @@ const equipmentDatabase = [
 // Equipment Search Code.
 if (window.location.href.includes("equipment-search.html")){
 
-    document.getElementById("search-form").addEventListener("submit", function(e){ 
+    document.getElementById("search-btn").addEventListener("click", function(e){ 
         e.preventDefault();
         let searchDiv = document.getElementById("search-grid");
         searchDiv.innerHTML = "";
