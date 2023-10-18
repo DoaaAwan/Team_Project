@@ -70,3 +70,10 @@ h3 {
 .result img {
     margin-left: 10px;
 }
+
+.search-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 25px;
+}

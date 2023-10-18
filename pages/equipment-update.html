@@ -144,7 +144,7 @@
                         <h1>Update Equipment</h1>
                     </div>
                     <div>
-                        <a href="../pages/equipment-details.html" class="button secondary-btn">
+                        <a href="../pages/equipment-details.html" id="back-to-equipment" class="button secondary-btn">
                             Back to Equipment
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
@@ -161,7 +161,7 @@
                                 <section class="two-col">
                                     <div>
                                         <label for="equipment-name">Equipment Name</label>
-                                        <input type="text" placeholder="TurfTamer Supreme" value="CRAFTSMAN Electric Lawn Mower" id="equipment-name" name="equipment-name" required>
+                                        <input type="text" placeholder="TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
                                     </div>
                                     <div>
                                         <label for="manufacturer">Manufacturer</label>
@@ -179,8 +179,11 @@
                                             <option value="Toro">
                                                 Toro
                                             </option>
-                                            <option value="Alpine Lawn & Garden Equipment">
-                                                Alpine Lawn & Garden Equipment
+                                            <option value="SnowMaster">
+                                                SnowMaster
+                                            </option>
+                                            <option value="HedgeMaster">
+                                                HedgeMaster
                                             </option>
                                         </select>
                                     </div>
@@ -196,6 +199,15 @@
                                             </option>
                                             <option value="Chainsaw">
                                                 Chainsaw
+                                            </option>
+                                            <option value="Hedge Trimmer">
+                                                Hedge Trimmer
+                                            </option>
+                                            <option value="Snow Blower">
+                                                Snow Blower
+                                            </option>
+                                            <option value="Pressure Washer">
+                                                Pressure Washer
                                             </option>
                                         </select>
                                     </div>
@@ -215,6 +227,15 @@
                                             <option value="Yellow">
                                                 Yellow
                                             </option>
+                                            <option value="White">
+                                                White
+                                            </option>
+                                            <option value="Silver">
+                                                Silver
+                                            </option>
+                                            <option value="Black">
+                                                Black
+                                            </option>
                                         </select>
                                     </div>
                             </fieldset>
@@ -223,16 +244,16 @@
                                 <section class="two-col">
                                     <div>
                                         <label for="item-number">Item Number</label>
-                                        <input type="text" placeholder="123" value="435" id="item-number" name="item-number" pattern="[0-9]*" 
+                                        <input type="text" placeholder="123" id="item-number" name="item-number" pattern="[0-9]*" 
                                         title="Must be only numbers." required>
                                     </div>
                                     <div>
                                         <label for="serial-number">Serial Number</label>
-                                        <input type="text" placeholder="12345678" value="136728" id="serial-number" name="serial-number" required>
+                                        <input type="text" placeholder="12345678" id="serial-number" name="serial-number" required>
                                     </div>
                                     <div>
                                         <label for="model-number">Model Number</label>
-                                        <input type="text" placeholder="C03S" value="673829" id="model-number" name="model-number" required>
+                                        <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
                                     </div>
                                 </section>
                             </fieldset>
@@ -250,11 +271,6 @@
             </div>
         </section>
     </div>
-    <!-- <script src="../scripts/equipment-update.js"></script> -->
-    <script>
-        document.getElementById("equipment-type").value = "Lawn Mower"
-        document.getElementById("manufacturer").value = "Craftsman"
-        document.getElementById("colour").value = "Red"
-    </script>
+    <script src="../scripts/equipment.js"></script>
 </body>
 </html>
