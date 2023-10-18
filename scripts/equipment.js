@@ -122,7 +122,7 @@ if (window.location.href.includes("equipment-search")){
                     <div id="equipment-details">
                         <p id="searchManufacturer" class="name">${equipment.equipmentName}</p>
                         <p id="searchItemNumber" class="email">Type: ${equipment.equipmentType}</p>
-                        <p id="searchItemNumber" class="email">Colour: ${equipment.colour}</p>
+                        <p id="searchItemNumber" class="email">Manufacturer: ${equipment.manufacturer}</p>
                         <p id="searchModelNumber" class="email">M/N: ${equipment.modelNumber}</p>
                         <p id="searchSerialNumber" class="number">S/N: ${equipment.serialNumber}</p>
                     </div>
@@ -185,6 +185,7 @@ if (window.location.href.includes("equipment-update")){
 
     if (equipmentId.length > 0) {
         document.getElementById("back-to-equipment").href = `../pages/equipment-details.html?id=${equipmentId}`
+        document.getElementById("cancel-to-details").href = `../pages/equipment-details.html?id=${equipmentId}`
         let equipment = equipmentDatabase.find(e => e.id == equipmentId);
 
         document.getElementById("equipment-name").value = equipment.equipmentName;
