@@ -227,6 +227,13 @@ h3 {
 
 }
 
+.search-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 25px;
+}
+
 .result{
     padding: 18px;
     border: 1px solid lightgray;

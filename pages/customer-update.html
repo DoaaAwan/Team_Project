@@ -30,7 +30,7 @@
                         <h1>Update Customer</h1>
                     </div>
                     <div>
-                        <a href="../pages/customer-details.html" class="button secondary-btn">
+                        <a href="../pages/customer-details.html" class="button secondary-btn" id="back-to-customer">
                             Back to Customer
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
@@ -75,7 +75,7 @@
                                         </div>
                                         <div>
                                             <label for="unit">Apartment, Suite, etc.</label>
-                                            <input type="text" placeholder="370" id="unit" name="unit" required>
+                                            <input type="text" placeholder="370" id="unit" name="unit">
                                         </div>
                                         <div>
                                             <label for="city">City</label>
@@ -92,9 +92,9 @@
                                         <div>
                                             <label for="province">Province</label>
                                             <select name="province" id="province" required>
-                                                <option value="">Select a Province</option>
+                                                <option value="" disabled selected>Select a Province</option>
                                                 <option value="Alberta">Alberta</option>
-                                                <option value="BC">British Columbia</option>
+                                                <option value="British Columbia">British Columbia</option>
                                                 <option value="Manitoba">Manitoba</option>
                                                 <option value="New Brunswick">New Brunswick</option>
                                                 <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
@@ -110,16 +110,13 @@
                                         <div>
                                             <label for="postal">Postal Code</label>
                                             <input id="postal" name="postal" type="text" placeholder="L3C 0A8" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" required>
-                                            
                                         </div>
                                         <div>
                                             <label for="country">Country/Region</label>
-                                            <select name="country" id="country" required>
-                                                <option value="S308">Canada</option>
-                                                <option value="S306">United States</option>
+                                            <select name="country" id="country">
+                                                <option value="Canada" selected>Canada</option>
                                             </select>
                                         </div>
-
                                     </div>
                                 </section>
                             </fieldset>
@@ -133,11 +130,10 @@
                             </div>
                         </form>
                     </main>
-
                 </div>
             </div>
-
         </section>
     </div>
+    <script type="module" src="../scripts/customer-update.js"></script>
 </body>
 </html>
