@@ -38,30 +38,30 @@ document.getElementById("search-btn").addEventListener("click", function(e){
 
         results.forEach(equipment => {
 
-        let equipmentDiv = document.createElement("div");
-        equipmentDiv.innerHTML = 
-        `<div id="equipment-results">
-            <a href="../pages/equipment-details.html?id=${equipment.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
-                <!-- <img src="../images/equip.png" alt=""> -->
-                <div id="equipment-details">
-                    <p id="searchManufacturer" class="name">${equipment.equipmentName}</p>
-                    <p id="searchItemNumber" class="email">Type: ${equipment.equipmentType}</p>
-                    <p id="searchItemNumber" class="email">Manufacturer: ${equipment.manufacturer}</p>
-                    <p id="searchModelNumber" class="email">M/N: ${equipment.modelNumber}</p>
-                    <p id="searchSerialNumber" class="number">S/N: ${equipment.serialNumber}</p>
-                </div>
-            </a>
-        </div>`;
+            let equipmentDiv = document.createElement("div");
+            equipmentDiv.innerHTML = 
+            `<div>
+                <a href="../pages/equipment-details.html?id=${equipment.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
+                    <!-- <img src="../images/equip.png" alt=""> -->
+                    <div id="equipment-details">
+                        <p id="searchManufacturer" class="name">${equipment.equipmentName}</p>
+                        <p id="searchItemNumber" class="email">Type: ${equipment.equipmentType}</p>
+                        <p id="searchItemNumber" class="email">Manufacturer: ${equipment.manufacturer}</p>
+                        <p id="searchModelNumber" class="email">M/N: ${equipment.modelNumber}</p>
+                        <p id="searchSerialNumber" class="number">S/N: ${equipment.serialNumber}</p>
+                    </div>
+                </a>
+            </div>`;
 
-        searchDiv.appendChild(equipmentDiv);
+            searchDiv.appendChild(equipmentDiv);
         })
     }
     else{
         var confirmCancel = window.confirm("No matching equipments found. Would you like to create one?");
 
         if (confirmCancel) {
-        // If the user clicks "OK" in the confirmation dialog, navigate to the index page
-        window.location.href = "../pages/equipment-create.html";
+            // If the user clicks "OK" in the confirmation dialog, navigate to the index page
+            window.location.href = "../pages/equipment-create.html";
         }
     }
 });

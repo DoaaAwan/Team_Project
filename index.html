@@ -42,24 +42,26 @@
                 <div class="container">
                     <div class="row mt-3">
                         <div class="p-0">
-                            <form class="d-flex" id="search-form">
+                            <div class="d-flex" id="search-form">
                                 <input
                                   type="search"
-                                  placeholder="Search by name, number, or email address"
+                                  placeholder="Search by first or last name"
                                   autocomplete="off"
                                   autofocus
                                   id="search-value"
                                   class="search-bar"
                                   required>
                                   <div class="ps-2">
-                                      <button type="submit" class="button btn-search">Search</button>
+                                      <button id="search-btn" class="button btn-search">Search</button>
                                   </div>
-                            </form>
+                                </div>
                         </div>
                     </div>
                 </div>
-                
-                <div id="search-results" style="display: none;">
+
+                <div class="search-grid" id="search-grid"></div>
+
+                <!--<div id="search-results" style="display: none;">
                     <h3>Customers Found</h3>
                     <a href="pages/customer-details.html" class="result shadow d-flex justify-content-start">
                         <img src="images/green-customer-details.png" alt="">
@@ -69,11 +71,12 @@
                             <p id="customer-number" class="number"></p>
                         </div>
                     </a>
-                </div>
+                </div> -->
             </div>
 
         </section>
     </div>
-    <script src="./src/script.js"></script>
+    <script type="module" src="../scripts/customer-search.js"></script>
+    <!-- <script src="./src/script.js"></script> -->
 </body>
 </html>
