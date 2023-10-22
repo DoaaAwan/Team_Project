@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "itemNumber": 332,
+    "equipmentName": "GrassGlider Pro",
+    "equipmentType": "Lawn Mower",
+    "serialNumber": "20931890",
+    "modelNumber": "A02B",
+    "manufacturer": "Pro-Power Canada",
+    "colour": "Red"
+  },
+  {
+    "id": 2,
+    "itemNumber": 456,
+    "equipmentName": "LawnMaster 2000",
+    "equipmentType": "Lawn Mower",
+    "serialNumber": "987654321",
+    "modelNumber": "B05C",
+    "manufacturer": "Troy-Bilt",
+    "colour": "Green"
+  },
+  {
+    "id": 3,
+    "itemNumber": 789,
+    "equipmentName": "PowerHedge 300",
+    "equipmentType": "Hedge Trimmer",
+    "serialNumber": "123456789",
+    "modelNumber": "H12D",
+    "manufacturer": "HedgeMaster",
+    "colour": "Blue"
+  },
+  {
+    "id": 4,
+    "itemNumber": 567,
+    "equipmentName": "LeafBlaster 5000",
+    "equipmentType": "Leaf Blower",
+    "serialNumber": "456789123",
+    "modelNumber": "L30X",
+    "manufacturer": "Toro",
+    "colour": "Yellow"
+  },
+  {
+    "id": 5,
+    "itemNumber": 123,
+    "equipmentName": "SnowBuster Deluxe",
+    "equipmentType": "Snow Blower",
+    "serialNumber": "987654987",
+    "modelNumber": "S08M",
+    "manufacturer": "SnowMaster",
+    "colour": "White"
+  },
+  {
+    "id": 6,
+    "itemNumber": 234,
+    "equipmentName": "PressureWasher Pro",
+    "equipmentType": "Pressure Washer",
+    "serialNumber": "654321789",
+    "modelNumber": "P15T",
+    "manufacturer": "Pro-Power Canada",
+    "colour": "Silver"
+  },
+  {
+    "id": 7,
+    "itemNumber": 890,
+    "equipmentName": "ChainSaw Master",
+    "equipmentType": "Chainsaw",
+    "serialNumber": "789123456",
+    "modelNumber": "C10R",
+    "manufacturer": "Craftsman",
+    "colour": "Black"
+  }
+]

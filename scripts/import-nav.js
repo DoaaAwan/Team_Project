@@ -1,1 +1,4 @@
-$("#shared-nav").load("../shared/shared-nav.html");
+$(function() {
+    $("#shared-nav").load("../shared/shared-nav.html");
+});
+
