@@ -21,13 +21,7 @@
 
         <!--shared nav imported from ./shared/shared-nav.html-->
         <nav id="shared-nav"></nav>
-        <script>
-            $("#shared-nav").load("../shared/shared-nav.html", function (){
-                setTimeout(function() {
-                    main.show('blind');
-                }, 200);
-            });
-        </script>
+        <script>$("#shared-nav").load("../shared/shared-nav.html");</script>
 
         <div class="page-container">
             <header>
