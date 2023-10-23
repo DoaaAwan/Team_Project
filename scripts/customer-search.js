@@ -42,8 +42,8 @@ document.getElementById("search-btn").addEventListener("click", function(e){
                     <img src="images/green-customer-details.png" style="margin-right: 20px" alt="">
                     <div id="equipment-details">
                         <p class="name">${customer.firstName} ${customer.lastName}</p>
-                        <p class="email">Type: ${customer.email}</p>
-                        <p class="number">S/N: ${customer.phone}</p>
+                        <p class="email">${customer.email}</p>
+                        <p class="number">${customer.phone}</p>
                     </div>
                 </a>
             </div>`;
