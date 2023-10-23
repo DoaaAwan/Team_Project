@@ -71,7 +71,8 @@ nav .logo-text{
 }
 
 nav .nav-icon{
-    float: right;
+    float: left;
+    margin-right: 25px;
     max-width: 40px;
 }
 
