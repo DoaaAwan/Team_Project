@@ -38,7 +38,7 @@ document.getElementById("search-btn").addEventListener("click", function(e){
             let customerDiv = document.createElement("div");
             customerDiv.innerHTML = 
             `<div>
-                <a href="../pages/customer-details.html?id=${customer.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
+                <a href="../pages/customer-details.html?cid=${customer.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
                     <img src="images/green-customer-details.png" style="margin-right: 20px" alt="">
                     <div id="equipment-details">
                         <p class="name">${customer.firstName} ${customer.lastName}</p>

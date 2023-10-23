@@ -2,7 +2,7 @@ import { fetchData } from './functions.js';
 
 const customerDatabase = await fetchData('../scripts/json/customer.json');
 const urlParam = new URLSearchParams(window.location.search);
-const customerId = urlParam.getAll("id");
+const customerId = urlParam.getAll("cid");
 
 if (customerId.length > 0) {
     let customerDetailsDiv = document.getElementById("customer-details");
@@ -25,8 +25,8 @@ if (customerId.length > 0) {
                     <option value="Order4"> Order 4 </option>  
                 </select>
                 <div class="d-flex">
-                    <a href="../pages/customer-update.html?id=${customer.id}" class="button btns">Update Customer</a>
-                    <a href="../pages/equipment-search.html" class="button btns">Add Equipment</a>
+                    <a href="../pages/customer-update.html?cid=${customer.id}" class="button btns">Update Customer</a>
+                    <a href="../pages/equipment-search.html?cid=${customer.id}" class="button btns">Add Equipment</a>
                 </div>
             </div>
         </div>

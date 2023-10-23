@@ -30,7 +30,7 @@
                         <h1>Create Equipment</h1>
                     </div>
                     <div>
-                        <a href="../pages/equipment-search.html" class="button secondary-btn">
+                        <a href="../pages/equipment-search.html" id="back-to-search" class="button secondary-btn">
                             Back to Search
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
@@ -40,7 +40,7 @@
 
             <div class="page">
                 <div class="equipment-create">
-                    <form method="post" action="https://webdevbasics.net/scripts/demo.php">
+                    <form method="post" action="https://webdevbasics.net/scripts/demo.php" id="equipment-form">
                         <fieldset>
                             <legend>Equipment Description</legend>
                             <section class="two-col">
@@ -150,6 +150,13 @@
                                 Save
                             </button>
                         </div>
+                        <!-- Stores customer id in form. -->
+                        <div style="display: none;">
+                            <label for="cid">cid</label>
+                            <select name="cid" id="cid">
+                                <option value="" selected id="cidvalue"></option>
+                        </div>
+
                     </form>
                 </div>
             </div> 

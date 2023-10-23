@@ -1,6 +1,17 @@
 import { fetchData } from './functions.js';
 
 const equipmentDatabase = await fetchData('../scripts/json/equipment.json');
+const urlParam = new URLSearchParams(window.location.search);
+const customerId = urlParam.getAll("cid");
+
+if (customerId > 0){
+    const customerButton = document.getElementById("back-to-customer");
+    const newEquipmentButton = document.getElementById("new-equipment");
+
+    customerButton.style.display = "inline";
+    customerButton.href = `../pages/customer-details.html?cid=${customerId}`;
+    newEquipmentButton.href = `../pages/equipment-create.html?cid=${customerId}`;
+}
 
 document.getElementById("search-btn").addEventListener("click", function(e){ 
     e.preventDefault();
@@ -41,7 +52,7 @@ document.getElementById("search-btn").addEventListener("click", function(e){
             let equipmentDiv = document.createElement("div");
             equipmentDiv.innerHTML = 
             `<div>
-                <a href="../pages/equipment-details.html?id=${equipment.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
+                <a href="../pages/equipment-details.html?eid=${equipment.id}${customerId.length > 0 ? `&cid=${customerId}` : ""}" style="width: 100%;" class="result shadow d-flex justify-content-start">
                     <!-- <img src="../images/equip.png" alt=""> -->
                     <div id="equipment-details">
                         <p id="searchManufacturer" class="name">${equipment.equipmentName}</p>
