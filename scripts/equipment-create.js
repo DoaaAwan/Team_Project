@@ -5,6 +5,7 @@ if (customerId > 0){
     const equipmentForm = document.getElementById("equipment-form");
     const cidValueFormInput = document.getElementById("cidvalue");
     const backToSearchButton = document.getElementById("back-to-search");
+    const cancelToSearchButton = document.getElementById("cancel-to-search");
 
     equipmentForm.method = "get";
     equipmentForm.action = `../pages/customer-details.html`;
@@ -13,4 +14,7 @@ if (customerId > 0){
     cidValueFormInput.innerHTML = customerId;
 
     backToSearchButton.href = `../pages/equipment-search.html?cid=${customerId}`;
+    cancelToSearchButton.href = `../pages/equipment-search.html?cid=${customerId}`;
+}else{
+    document.getElementById("cid-container").innerHTML = "";
 }
