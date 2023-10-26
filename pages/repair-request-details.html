@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma's Small Engines</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/44b9581dbb.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../src/jquery-3.7.1.min.js"></script>
+    <script async src="../scripts/import-nav.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../styles/repair-request-details.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <!--shared nav imported from ./shared/shared-nav.html-->
+        <nav id="shared-nav"></nav>
+
+        <section class="page-container">
+            <header>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Repair Request Details</h1>
+                    </div>
+                    <div>
+                        <a href="../pages/customer-details.html" id="back-to-customer" class="button secondary-btn">
+                            Back to Customer
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page">
+                <div class="repair-request-details" id="repair-request-details">
+                    <h2 id="repair-request-info"></h2>
+                    <hr>
+                    <div class="repair-request-grid">
+                        <div class="column">
+                            <p id="repair-customer"></p>
+                            <p id="repair-date"></p>
+                            <p id="repair-number"></p>
+                            <p id="repair-issue"></p>
+                            <p id="repair-warranty"></p>
+                            <p id="repair-balance"></p>
+                            <div class="update-repair-request-btn">
+                                <a href="../pages/repair-request-update.html" class="button btns">Update Repair Request</a>
+                            </div>
+                        </div>
+                        <div id="repair-requests" style="display: none;">
+                            <h2>Repair Requests</h2>
+                            <select name="Orders" id="repair-requests-list" size="5">   
+                            </select>
+                            <div class="d-flex">
+                                <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair</a>
+                                <a href="../pages/repair-request-details.html" style="display: none;" id="details-repair-request" class="button btns">Repair Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <script type="module" src="../scripts/repair-request-details.js"></script>
+</body>
+</html>

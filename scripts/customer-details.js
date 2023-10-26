@@ -103,7 +103,8 @@ if (customerId.length > 0) {
     document.getElementById("repair-requests-list").addEventListener("change", function() {
         $("#details-repair-request").show();
         const selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
-        $("#details-repair-request").attr("href", `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
+        $("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
+                                                                    `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
     });
 
 } else {

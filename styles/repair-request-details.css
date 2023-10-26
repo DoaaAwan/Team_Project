@@ -1,0 +1,81 @@
+.repair-request-details h2 {
+    color: #000;
+    font-size: 24px;
+}
+
+.repair-request-details p {
+    font-size: 22px;
+    line-height: 1.8;
+}
+
+.repair-request-details hr {
+    border: 2px solid #2363775a;
+    border-radius: 2px;
+    opacity: 1;
+}
+
+.repair-request-details select {
+    height: 10em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 38em;
+}
+
+.repair-request-details .btns {
+    width: 90%;
+    margin: 5px;
+    color: white;
+    background-color: #236477;
+}
+
+/* Columns */
+
+.repair-request-btn {
+    margin-top:30px;
+}
+
+.repair-request-btn a {
+    margin-top: 0px;
+}
+
+.repair-request-details-grid {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 50px;
+    grid-template-columns: 1fr;
+}
+
+.repair-request-lists-grid {
+    display: grid;
+    grid-column-gap: 20px;
+    grid-template-columns: 1fr 2fr;
+}
+
+.repair-request-details-grid select {
+    width: 100%;
+    height: 204px;
+}
+
+.update-repair-request-btn {
+    margin-top: 20px;
+}
+
+
+
+/*.repair-request-details .column {
+    float: left;
+    width: 45%;
+    padding: 10px;
+}*/
+  
+/*.repair-request-details .row::after {
+    content: "";
+    display: table;
+    clear: both;
+} */
+
+@media screen and (min-width: 1300px) {
+    .repair-request-details-grid {
+        grid-template-columns: 1fr 2fr;
+    }
+}
