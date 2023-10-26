@@ -67,6 +67,7 @@ if (customerId.length > 0) {
     document.getElementById("equipment-list").addEventListener("change", function() {
         $("#repair-requests-list").empty();
         $("#details-repair-request").hide();
+        $("#no-repair-requests").hide();
 
         const selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
         $("#create-repair-request").attr("href", selectedEquipment != 0 ? `../pages/repair-request-create.html?cid=${customerId}eid=${selectedEquipment}` : 
@@ -82,7 +83,6 @@ if (customerId.length > 0) {
 
         if (repairRequests.length > 0){
             $("#repair-requests").show();
-            $("#no-repair-requests").html("");
             repairRequests.forEach(r => {
                 var option = document.createElement('option')
                 option.value = r.id;
