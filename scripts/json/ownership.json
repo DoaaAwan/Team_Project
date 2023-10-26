@@ -1,0 +1,103 @@
+[
+    {
+      "id": 1,
+      "customerId": 1,
+      "equipmentId": 1
+    },
+    {
+      "id": 2,
+      "customerId": 1,
+      "equipmentId": 3
+    },
+    {
+      "id": 3,
+      "customerId": 2,
+      "equipmentId": 2
+    },
+    {
+      "id": 4,
+      "customerId": 2,
+      "equipmentId": 4
+    },
+    {
+      "id": 5,
+      "customerId": 3,
+      "equipmentId": 5
+    },
+    {
+      "id": 6,
+      "customerId": 3,
+      "equipmentId": 7
+    },
+    {
+      "id": 7,
+      "customerId": 4,
+      "equipmentId": 6
+    },
+    {
+      "id": 8,
+      "customerId": 4,
+      "equipmentId": 8
+    },
+    {
+      "id": 9,
+      "customerId": 5,
+      "equipmentId": 9
+    },
+    {
+      "id": 10,
+      "customerId": 5,
+      "equipmentId": 11
+    },
+    {
+      "id": 11,
+      "customerId": 6,
+      "equipmentId": 10
+    },
+    {
+      "id": 12,
+      "customerId": 6,
+      "equipmentId": 12
+    },
+    {
+      "id": 13,
+      "customerId": 7,
+      "equipmentId": 1
+    },
+    {
+      "id": 14,
+      "customerId": 7,
+      "equipmentId": 3
+    },
+    {
+      "id": 15,
+      "customerId": 8,
+      "equipmentId": 5
+    },
+    {
+      "id": 16,
+      "customerId": 8,
+      "equipmentId": 7
+    },
+    {
+      "id": 17,
+      "customerId": 9,
+      "equipmentId": 9
+    },
+    {
+      "id": 18,
+      "customerId": 9,
+      "equipmentId": 11
+    },
+    {
+      "id": 19,
+      "customerId": 1,
+      "equipmentId": 10
+    },
+    {
+      "id": 20,
+      "customerId": 2,
+      "equipmentId": 12
+    }
+  ]
+  

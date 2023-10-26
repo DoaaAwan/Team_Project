@@ -22,6 +22,7 @@ if (equipmentId.length > 0) {
 
     $("#update-equipment-btn").attr("href", customerId > 0 ? `../pages/customer-details.html?eid=${equipment.id}&cid=${customerId}` :
                                                              `../pages/equipment-update.html?eid=${equipment.id}`);
+    $("#update-equipment-btn").html(customerId > 0 ? "Select Equipment" : "Update Equipment");
 
 } else {
     $("#equipment-details").html("<h2>No equipment details found.</h2>");

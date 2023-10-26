@@ -68,5 +68,55 @@
     "modelNumber": "C10R",
     "manufacturer": "Craftsman",
     "colour": "Black"
+  },
+  {
+    "id": 8,
+    "itemNumber": 998,
+    "equipmentName": "TurfMaster 1500",
+    "equipmentType": "Lawn Mower",
+    "serialNumber": "876543210",
+    "modelNumber": "TM15Z",
+    "manufacturer": "Pro-Power Canada",
+    "colour": "Red"
+  },
+  {
+    "id": 9,
+    "itemNumber": 876,
+    "equipmentName": "LeafSweeper Pro",
+    "equipmentType": "Leaf Blower",
+    "serialNumber": "123789456",
+    "modelNumber": "LS20Y",
+    "manufacturer": "Toro",
+    "colour": "Yellow"
+  },
+  {
+    "id": 10,
+    "itemNumber": 432,
+    "equipmentName": "EdgeTrimmer X",
+    "equipmentType": "Hedge Trimmer",
+    "serialNumber": "789456123",
+    "modelNumber": "ET10W",
+    "manufacturer": "HedgeMaster",
+    "colour": "Blue"
+  },
+  {
+    "id": 11,
+    "itemNumber": 654,
+    "equipmentName": "ProSnow 3000",
+    "equipmentType": "Snow Blower",
+    "serialNumber": "321654987",
+    "modelNumber": "PS30Q",
+    "manufacturer": "SnowMaster",
+    "colour": "White"
+  },
+  {
+    "id": 12,
+    "itemNumber": 321,
+    "equipmentName": "PowerChain X",
+    "equipmentType": "Chainsaw",
+    "serialNumber": "456123789",
+    "modelNumber": "PC12K",
+    "manufacturer": "Craftsman",
+    "colour": "Black"
   }
 ]
