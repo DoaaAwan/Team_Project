@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "invoiceDate": "2023-10-08",
+    "invoiceNumber": 1234567,
+    "issueDescription": "Engine won't start.",
+    "hasWarranty": true,
+    "ownershipId": 1
+  },
+  {
+    "id": 2,
+    "invoiceDate": "2023-10-26",
+    "invoiceNumber": 1234567,
+    "issueDescription": "Blades need sharpening",
+    "hasWarranty": true,
+    "ownershipId": 1
+  },
+  {
+    "id": 3,
+    "invoiceDate": "2023-07-14",
+    "invoiceNumber": 1234568,
+    "issueDescription": "Battery replacement needed",
+    "hasWarranty": false,
+    "ownershipId": 2
+  },
+  {
+    "id": 4,
+    "invoiceDate": "2023-06-10",
+    "invoiceNumber": 1234569,
+    "issueDescription": "Drive belt snapped",
+    "hasWarranty": true,
+    "ownershipId": 3
+  },
+  {
+    "id": 5,
+    "invoiceDate": "2023-05-22",
+    "invoiceNumber": 1234570,
+    "issueDescription": "Engine won't start",
+    "hasWarranty": false,
+    "ownershipId": 4
+  },
+  {
+    "id": 6,
+    "invoiceDate": "2023-04-18",
+    "invoiceNumber": 1234571,
+    "issueDescription": "Spark plug malfunction",
+    "hasWarranty": true,
+    "ownershipId": 5
+  },
+  {
+    "id": 7,
+    "invoiceDate": "2023-03-15",
+    "invoiceNumber": 1234572,
+    "issueDescription": "Chain needs tightening",
+    "hasWarranty": false,
+    "ownershipId": 6
+  },
+  {
+    "id": 8,
+    "invoiceDate": "2023-02-10",
+    "invoiceNumber": 1234573,
+    "issueDescription": "Hose connector leak",
+    "hasWarranty": true,
+    "ownershipId": 7
+  },
+  {
+    "id": 9,
+    "invoiceDate": "2023-01-05",
+    "invoiceNumber": 1234574,
+    "issueDescription": "Blades not spinning",
+    "hasWarranty": false,
+    "ownershipId": 8
+  },
+  {
+    "id": 10,
+    "invoiceDate": "2023-08-20",
+    "invoiceNumber": 1234575,
+    "issueDescription": "Fan malfunction",
+    "hasWarranty": true,
+    "ownershipId": 9
+  },
+  {
+    "id": 11,
+    "invoiceDate": "2023-09-25",
+    "invoiceNumber": 1234576,
+    "issueDescription": "Fuel line clog",
+    "hasWarranty": false,
+    "ownershipId": 10
+  },
+  {
+    "id": 12,
+    "invoiceDate": "2023-10-01",
+    "invoiceNumber": 1234577,
+    "issueDescription": "Auger not turning",
+    "hasWarranty": true,
+    "ownershipId": 11
+  },
+  {
+    "id": 13,
+    "invoiceDate": "2023-10-08",
+    "invoiceNumber": 1234578,
+    "issueDescription": "Chain came off",
+    "hasWarranty": false,
+    "ownershipId": 12
+  },
+  {
+    "id": 14,
+    "invoiceDate": "2023-10-15",
+    "invoiceNumber": 1234579,
+    "issueDescription": "Handle broken",
+    "hasWarranty": true,
+    "ownershipId": 13
+  },
+  {
+    "id": 15,
+    "invoiceDate": "2023-10-22",
+    "invoiceNumber": 1234580,
+    "issueDescription": "Blades need sharpening",
+    "hasWarranty": false,
+    "ownershipId": 14
+  },
+  {
+    "id": 16,
+    "invoiceDate": "2023-10-29",
+    "invoiceNumber": 1234581,
+    "issueDescription": "Oil leak",
+    "hasWarranty": true,
+    "ownershipId": 15
+  }
+]
