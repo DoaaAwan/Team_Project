@@ -13,12 +13,12 @@ if (equipmentId.length > 0) {
                                                         "../pages/equipment-search.html");
 
     $("#equipment-name").html(equipment.equipmentName);
-    $("#equipment-manufacturer").html(`Manufacturer: ${equipment.manufacturer}`);
-    $("#equipment-type").html(`Type: ${equipment.equipmentType}`);
-    $("#equipment-colour").html(`Colour: ${equipment.colour}`);
-    $("#equipment-item").html(`Item #: ${equipment.itemNumber}`);
-    $("#equipment-serial").html(`S/N: ${equipment.serialNumber}`);
-    $("#equipment-model").html(`M/N: ${equipment.modelNumber}`);
+    $("#equipment-manufacturer").html(`Manufacturer: <b>${equipment.manufacturer}</b>`);
+    $("#equipment-type").html(`Type: <b>${equipment.equipmentType}</b>`);
+    $("#equipment-colour").html(`Colour: <b>${equipment.colour}</b>`);
+    $("#equipment-item").html(`Item Number: <b>${equipment.itemNumber}</b>`);
+    $("#equipment-serial").html(`S/N: <b>${equipment.serialNumber}</b>`);
+    $("#equipment-model").html(`M/N: <b>${equipment.modelNumber}</b>`);
 
     $("#update-equipment-btn").attr("href", customerId > 0 ? `../pages/customer-details.html?eid=${equipment.id}&cid=${customerId}` :
                                                              `../pages/equipment-update.html?eid=${equipment.id}`);

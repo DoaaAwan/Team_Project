@@ -8,6 +8,7 @@ const repairRequestDatabase = await fetchData('../scripts/json/repair-request.js
 
 const urlParam = new URLSearchParams(window.location.search);
 const newequipmentName = urlParam.getAll("equipment-name");
+const newequipmentType = urlParam.getAll("equipment-type")
 const customerId = urlParam.getAll("cid");
 const equipmentId = urlParam.getAll("eid");
 
@@ -16,14 +17,14 @@ if (customerId.length > 0) {
     let customer = customerDatabase.find(c => c.id == customerId);
 
     $("#customer-name").html(`${customer.firstName} ${customer.lastName}`);
-    $("#customer-name-equip").html(`${customer.firstName}'s Equipments`);
+    $("#customer-name-equip").html(`${customer.firstName}'s Equipment`);
 
-    $("#customer-email").html(`E-mail: ${customer.email}`);
-    $("#customer-phone").html(`Phone: ${customer.phone}`);
-    $("#customer-street").html(`Street: ${customer.street}`);
-    $("#customer-city").html(`City: ${customer.city}`);
-    $("#customer-province").html(`Province: ${customer.province}`);
-    $("#customer-postal").html(`Postal Code: ${customer.postalCode}`);
+    $("#customer-email").html(`E-mail: <b>${customer.email}</b>`);
+    $("#customer-phone").html(`Phone: <b>${customer.phone}</b>`);
+    $("#customer-street").html(`Street: <b>${customer.street}</b>`);
+    $("#customer-city").html(`City: <b>${customer.city}</b>`);
+    $("#customer-province").html(`Province: <b>${customer.province}</b>`);
+    $("#customer-postal").html(`Postal Code: <b>${customer.postalCode}</b>`);
 
     $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
 
@@ -42,7 +43,7 @@ if (customerId.length > 0) {
         customerEquipments.forEach(e => {
             var option = document.createElement('option');
             option.value = e.id;
-            option.text = e.equipmentName;
+            option.text = `${e.equipmentName} - ${e.equipmentType}`;
             equipmentList.add(option);
         });
     }
@@ -51,22 +52,28 @@ if (customerId.length > 0) {
         let newEquipment = equipmentDatabase.find(e => e.id == equipmentId);
         var option = document.createElement('option')
         option.value = newEquipment.id;
-        option.text = newEquipment.equipmentName;
+        option.text = `${newEquipment.equipmentName} - ${newEquipment.equipmentType}`;
         equipmentList.add(option);
     }else if(newequipmentName.length > 0){
         var option = document.createElement('option')
         option.value = 0;
-        option.text = newequipmentName;
+        option.text = `${newequipmentName} - ${newequipmentType}`;
         equipmentList.add(option);
+    }
+
+    if (equipmentList.options.length == 0){
+        $("#no-repair-requests").hide();
     }
     
     if(customerEquipments.length == 0 && equipmentId == 0){
-        $("#no-equipments").html("Customer has no equipments. Want to add an equipment?");
+        $("#no-equipments").html("Customer has no equipment. Want to add an equipment?");
     }
 
     document.getElementById("equipment-list").addEventListener("change", function() {
         $("#repair-requests-list").empty();
-        $("#details-repair-request").hide();
+        //$("#details-repair-request").hide();
+        $("#details-repair-request").attr("href", "javascript:void(0)");
+        $("#details-repair-request").css("background-color", "grey");
         $("#no-repair-requests").hide();
 
         const selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
@@ -101,8 +108,9 @@ if (customerId.length > 0) {
     });
 
     document.getElementById("repair-requests-list").addEventListener("change", function() {
-        $("#details-repair-request").show();
+        //$("#details-repair-request").show();
         const selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
+        $("#details-repair-request").css("background-color", "#236477");
         $("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
                                                                     `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
     });

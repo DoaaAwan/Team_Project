@@ -12,8 +12,6 @@ const repairRequestId = urlParam.getAll("rrid");
 //const customerId = urlParam.getAll("cid");
 const equipmentId = urlParam.getAll("eid");
 
-console.log("what");
-
 if (repairRequestId.length > 0) {
 
     let repairRequest = repairRequestDatabase.find(r => r.id == repairRequestId);
@@ -21,14 +19,14 @@ if (repairRequestId.length > 0) {
     let customer = customerDatabase.find(c => c.id == ownership.customerId);
     let equipment = equipmentDatabase.find(e => e.id == ownership.equipmentId);
 
-    $("#back-to-customer").attr("href", `../pages/customer-details.html?cid=${customer.id}&eid=${equipmentId}`)
+    $("#back-to-customer").attr("href", equipmentId > 0 ? `../pages/customer-details.html?cid=${customer.id}&eid=${equipmentId}` : 
+                                                            `../pages/customer-details.html?cid=${customer.id}`)
 
     $("#repair-request-info").html(`Repair Request for a ${equipment.equipmentName}`);
 
-    $("#repair-customer").html(`Customer: ${customer.firstName} ${customer.lastName}`)
-    $("#repair-date").html(`Invoice Date: ${repairRequest.invoiceDate}`);
-    $("#repair-number").html(`Invoice Number: ${repairRequest.invoiceNumber}`);
-    $("#repair-issue").html(`Issue Description: ${repairRequest.issueDescription}`);
-    $("#repair-warranty").html(`Valid Warranty?: ${repairRequest.hasWarranty == true ? "Yes" : "No"}`);
-    $("#repair-date").html(`Invoice Date: ${repairRequest.invoiceDate}`);
+    $("#repair-customer").html(`Customer: <b>${customer.firstName} ${customer.lastName}</b>`)
+    $("#repair-date").html(`Invoice Date: <b>${repairRequest.invoiceDate}</b>`);
+    $("#repair-number").html(`Invoice Number: <b>${repairRequest.invoiceNumber}</b>`);
+    $("#repair-issue").html(`Issue Description: <b>${repairRequest.issueDescription}</b>`);
+    $("#repair-warranty").html(`Valid Warranty?: <b>${repairRequest.hasWarranty == true ? "Yes" : "No"}</b>`);
 }
