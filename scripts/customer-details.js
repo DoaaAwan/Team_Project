@@ -62,11 +62,7 @@ if (customerId.length > 0) {
     }
 
     if (equipmentList.options.length == 0){
-        $("#no-repair-requests").hide();
-    }
-    
-    if(customerEquipments.length == 0 && equipmentId == 0){
-        $("#no-equipments").html("Customer has no equipment. Want to add an equipment?");
+        $("#no-repair-requests").html("Customer has no equipment.<br>Want to add an equipment?");
     }
 
     document.getElementById("equipment-list").addEventListener("change", function() {
