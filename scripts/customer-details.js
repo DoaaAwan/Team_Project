@@ -30,8 +30,10 @@ if (customerId.length > 0) {
     $("#customer-province").html(`Province: <b>${customer.province}</b>`);
     $("#customer-postal").html(`Postal Code: <b>${customer.postalCode}</b>`);
 
-    //gives add equipment button a url with customer id as parameter.
+    //gives buttons a url with customer id as parameter.
     $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
+    $("#update-customer-btn").attr("href", `../pages/customer-update.html?cid=${customerId}`);
+    
 
     //retrieves owned equipment data
     let ownership = ownershipDatabase.filter(o => o.customerId == customerId)
