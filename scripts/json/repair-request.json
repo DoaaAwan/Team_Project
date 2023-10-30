@@ -2,7 +2,7 @@
   {
     "id": 1,
     "invoiceDate": "2023-10-08",
-    "invoiceNumber": 1234567,
+    "invoiceNumber": 1234566,
     "issueDescription": "Engine won't start.",
     "hasWarranty": true,
     "ownershipId": 1
