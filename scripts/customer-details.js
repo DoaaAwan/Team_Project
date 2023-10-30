@@ -136,8 +136,9 @@ if (customerId.length > 0) {
                                                                     `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
     });
 
+    $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
+    
 } else {
     //if no customer id passed as parameter, page is blank with user message
     $(`#customer-details`).html("<h2>No customer details found.</h2>");
 }
-
