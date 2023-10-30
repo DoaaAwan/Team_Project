@@ -1,13 +1,23 @@
 import { fetchData } from './functions.js';
 
+//gets seed data for equipment and ownership
 const equipmentDatabase = await fetchData('../scripts/json/equipment.json');
+const ownershipDatabase = await fetchData('../scripts/json/ownership.json');
+
+//gets customer id if one is passed
 const urlParam = new URLSearchParams(window.location.search);
 const customerId = urlParam.getAll("cid");
 
-if (customerId > 0){
+let equipmentsOwned = []
+
+if (customerId.length > 0){
     const customerButton = document.getElementById("back-to-customer");
     const newEquipmentButton = document.getElementById("new-equipment");
 
+    //gets all equipment ids of equipments customer owns
+    equipmentsOwned = ownershipDatabase.filter(o => o.customerId == customerId).map(o => o.equipmentId);
+
+    //sets link of buttons to include customer parameter
     customerButton.style.display = "inline";
     customerButton.href = `../pages/customer-details.html?cid=${customerId}`;
     newEquipmentButton.href = `../pages/equipment-create.html?cid=${customerId}`;
@@ -19,8 +29,8 @@ document.getElementById("search-btn").addEventListener("click", function(e){
     searchDiv.innerHTML = "";
     let equipSearch = document.getElementById("search-value").value.toLowerCase();
     let results = [];
-
     
+    //gets all equipments matching equipment search
     equipmentDatabase.forEach(equipment => {
         if (equipment.equipmentName.toLowerCase().includes(equipSearch) ||
             equipment.equipmentType.toLowerCase().includes(equipSearch) ||
@@ -28,13 +38,17 @@ document.getElementById("search-btn").addEventListener("click", function(e){
             equipment.modelNumber.toLowerCase().includes(equipSearch) || 
             equipment.serialNumber.toLowerCase().includes(equipSearch)){
 
-            results.push(equipment);
-
+            //only gets results that doesn't already exist as equipment customer owns
+            if (equipmentsOwned.every(e => e != equipment.id)){
+                results.push(equipment);
+            }
         }
     });
 
+    //sorts and displays results if there are results
     if (results.length > 0){
 
+        //sorts results by name
         results.sort((a, b) => {
             const nameA = a.equipmentName.toUpperCase();
             const nameB = b.equipmentName.toUpperCase();
@@ -47,6 +61,7 @@ document.getElementById("search-btn").addEventListener("click", function(e){
             return 0;
         });
 
+        //displays all equipment results
         results.forEach(equipment => {
 
             let equipmentDiv = document.createElement("div");
@@ -68,10 +83,10 @@ document.getElementById("search-btn").addEventListener("click", function(e){
         })
     }
     else{
+        //if equipment doesn't exist, asks user if they want to create a new equipment
         var confirmCancel = window.confirm("No matching equipments found. Would you like to create one?");
 
         if (confirmCancel) {
-            // If the user clicks "OK" in the confirmation dialog, navigate to the index page
             window.location.href = document.getElementById("new-equipment").href;
         }
     }

@@ -1,14 +1,18 @@
 import { fetchData } from './functions.js';
 
+//gets customer seed data and gets customer id
 const customerDatabase = await fetchData('../scripts/json/customer.json');
 const urlParam = new URLSearchParams(window.location.search);
 const customerId = urlParam.getAll("cid");
 
+//checks if theres an customer id
 if (customerId.length > 0) {
+    //sets up link for buttons with customer id
     document.getElementById("back-to-customer").href = `../pages/customer-details.html?cid=${customerId}`
     document.getElementById("cancelButton").href = `../pages/customer-details.html?cid=${customerId}`
-    let customer = customerDatabase.find(c => c.id == customerId);
 
+    //gets customer and displays all data in input fields
+    let customer = customerDatabase.find(c => c.id == customerId);
     document.getElementById("first-name").value = customer.firstName;
     document.getElementById("last-name").value = customer.lastName;
     document.getElementById("email").value = customer.email;

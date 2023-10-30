@@ -15,8 +15,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/equipment-details.css">
-    <!-- <link rel="stylesheet" href="../styles/equipment-details.css"> -->
+    <link rel="stylesheet" href="../styles/repair-request-details.css">
 </head>
 <body>
     <div class="app-container">
@@ -28,11 +27,11 @@
             <header>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h1>Equipment Details</h1>
+                        <h1>Repair Request Details</h1>
                     </div>
                     <div>
-                        <a href="../pages/equipment-search.html" id="back-to-search" class="button secondary-btn me-4">
-                            Back to Search
+                        <a href="../pages/customer-details.html" id="back-to-customer" class="button secondary-btn">
+                            Back to Customer
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
                     </div>
@@ -40,32 +39,36 @@
             </header>
 
             <div class="page">
-                <div class="equipment-details" id="equipment-details">
-                    <h2 id="equipment-name"></h2>
+                <div class="repair-request-details" id="repair-request-details">
+                    <h2 id="repair-request-info"></h2>
                     <hr>
-                    <div class="row">
+                    <div class="repair-request-grid">
                         <div class="column">
-                            <p id="equipment-manufacturer"></p>
-                            <p id="equipment-type"></p>
-                            <p id="equipment-colour"></p>
-                            <p id="equipment-item"></p>
-                            <p id="equipment-serial"></p>
-                            <p id="equipment-model"></p>
+                            <p id="repair-customer"></p>
+                            <p id="repair-date"></p>
+                            <p id="repair-number"></p>
+                            <p id="repair-issue"></p>
+                            <p id="repair-warranty"></p>
+                            <p id="repair-balance"></p>
+                            <div class="update-repair-request-btn">
+                                <a href="../pages/repair-request-update.html" class="button btns">Update Repair Request</a>
+                            </div>
                         </div>
-                        <div class="d-flex">
-                            <a href="../pages/equipment-update.html" class="button btns" id="update-equipment-btn">Update Equipment</a>
+                        <div id="repair-requests" style="display: none;">
+                            <h2>Repair Requests</h2>
+                            <select name="Orders" id="repair-requests-list" size="5">   
+                            </select>
+                            <div class="d-flex">
+                                <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair</a>
+                                <a href="../pages/repair-request-details.html" style="display: none;" id="details-repair-request" class="button btns">Repair Details</a>
+                            </div>
                         </div>
-                    </div> 
-
+                    </div>
                 </div>
-                <!-- <div>
-                    <a href="../pages/equipment-search.html" class="btn btn-secondary">
-                        Return
-                    </a>
-                </div> -->
             </div>
+
         </section>
     </div>
-    <script type="module" src="../scripts/equipment-details.js"></script>
+    <script type="module" src="../scripts/repair-request-details.js"></script>
 </body>
 </html>

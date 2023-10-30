@@ -42,7 +42,7 @@
                 <div class="customer-details" id="customer-details">
                     <h2 id="customer-name"></h2>
                     <hr>
-                    <div class="row">
+                    <div class="customer-details-grid">
                         <div class="column">
                             <p id="customer-email"></p>
                             <p id="customer-phone"></p>
@@ -50,19 +50,29 @@
                             <p id="customer-city"></p>
                             <p id="customer-province"></p>
                             <p id="customer-postal"></p>
-                        </div>
-                        <div class="column">
-                            <h2>Order History</h2>
-                            <select name="Orders" size="5">  
-                                <option value="Order1"> Order 1 </option>  
-                                <option value="Order2"> Order 2 </option>  
-                                <option value="Order3"> Order 3 </option>  
-                                <option value="Order4"> Order 4 </option>  
-                            </select>
                             <div class="d-flex">
                                 <a href="../pages/customer-update.html" class="button btns">Update Customer</a>
-                                <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a>
                             </div>
+                        </div>
+                        <div class="customer-lists-grid">
+                            <div>
+                                <h2 id="customer-name-equip"></h2>
+                                <select name="Orders" class="form-select" id="equipment-list" size="5">   
+                                </select>
+                                <div class="d-flex">
+                                    <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a>
+                                </div>
+                            </div>
+                            <div id="repair-requests" style="display: none;">
+                                <h2>Repair Requests</h2>
+                                <select name="Orders" class="form-select" id="repair-requests-list" size="5">   
+                                </select>
+                                <div class="d-flex">
+                                    <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair Request</a>
+                                    <a href="../pages/repair-request-details.html" id="details-repair-request" class="button btns">Repair Request Details</a>
+                                </div>
+                            </div>
+                            <h2 id="no-repair-requests">Select an equipment to view repair requests.</h2>
                         </div>
                     </div>
                 </div>

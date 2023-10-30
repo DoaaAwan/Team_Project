@@ -97,5 +97,16 @@
     "city": "Markham",
     "province": "Ontario",
     "postalCode": "L2E 3F5"
+  },
+  {
+    "id": 10,
+    "firstName": "Ethan",
+    "lastName": "Miller",
+    "email": "ethanmiller@gmail.com",
+    "phone": "(905) 321-7654",
+    "street": "789 Oak Lane",
+    "city": "Kitchener",
+    "province": "Ontario",
+    "postalCode": "L3M 6N1"
   }
 ]
