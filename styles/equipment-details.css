@@ -1,0 +1,49 @@
+.equipment-details h2 {
+    color: #000;
+    font-size: 24px;
+}
+
+.equipment-details p {
+    font-size: 22px;
+    line-height: 1.8;
+}
+
+.equipment-details hr {
+    border: 2px solid #2363775a;
+    border-radius: 2px;
+    opacity: 1;
+}
+
+.equipment-details select {
+    height: 10em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 38em;
+}
+
+.equipment-details .btns {
+    width: 50%;
+    margin: 5px;
+    color: white;
+    background-color: #236477;
+}
+
+/* Columns */
+
+
+.equipment-details .column {
+    float: left;
+    width: 45%;
+    padding: 10px;
+}
+  
+.equipment-details .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#update-equipment-btn, #select-equipment-btn{
+    height: auto;
+    padding: 20px 30px;
+}

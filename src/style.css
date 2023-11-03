@@ -71,7 +71,8 @@ nav .logo-text{
 }
 
 nav .nav-icon{
-    float: right;
+    float: left;
+    margin-right: 25px;
     max-width: 40px;
 }
 
@@ -225,6 +226,13 @@ h3 {
     color: lightgray;
     margin: 20px 0;
 
+}
+
+.search-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 25px;
 }
 
 .result{
@@ -398,3 +406,8 @@ h3 {
     background: #033746;
 } */
 
+/*** Revert to Default ***/
+
+b {
+    all: revert;
+}

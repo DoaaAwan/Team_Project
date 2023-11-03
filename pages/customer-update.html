@@ -9,132 +9,131 @@
     <script src="https://kit.fontawesome.com/44b9581dbb.js" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../src/jquery-3.7.1.min.js"></script>
+    <script async src="../scripts/import-nav.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/customer-update.css">
+    <link rel="stylesheet" href="../styles/customer-create.css">
 </head>
 <body>
     <div class="app-container">
-        <nav>
-            <div class="main-nav">
-                <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
-                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
-                </a>
-            </div>
-            <div>
-                <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header pb-0 ps-0 pe-0">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div class="container">
-                        <div class="d-flex justify-content-center ">
-                            <div class="nav-user-img">
-                                <div><img src="../images/user-profile.png" class="" alt=""></div>
-                            </div>
-                            <div class="ms-3">
-                                <div class="nav-user-info">
-                                    <p class="nm">Amy Johnson</p>
-                                    <p class="dpt"><small>Sales Department</small></p> 
-                                    <a href="" class="primary-btn">Sign Out</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nav-buttons">
-                            <a href="../index.html">
-                                <div class="nav-btn bg-grp1">
-                                    <span class="nav-btn-txt"><p>Back to Home</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="home-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <p class="nav-btn-grp-title">customer</p>
-                            <a href="../index.html">
-                                <div class="nav-btn bg-grp2">
-                                    <span class="nav-btn-txt"><p>Search Customer</p>
-                                    </span>
-                                    <span class="nav-btn-icon" height="10">
-                                        <ion-icon name="search-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="../pages/customer-create.html">
-                                <div class="nav-btn bg-grp2">
-                                    <span class="nav-btn-txt"><p>Create Customer</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="person-add-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="../pages/customer-details.html">
-                                <div class="nav-btn bg-grp2">
-                                    <div class="nav-btn-txt"><p>Customer Details</p></div>
-                                    <div class="nav-btn-icon">
-                                        <ion-icon name="person-outline"></ion-icon>
-                                    </div>
-                                </div>
-                            </a>
-                            <p class="nav-btn-grp-title">equipment</p>
-                            <a href="../pages/equipment-search.html">
-                                <div class="nav-btn bg-grp3">
-                                    <span class="nav-btn-txt"><p>Search Equipment</p>
-                                    </span>
-                                    <span class="nav-btn-icon" height="10">
-                                        <ion-icon name="search-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="../pages/equipment-create.html">
-                                <div class="nav-btn bg-grp3">
-                                    <span class="nav-btn-txt"><p>Create Equipment</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="add-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="../pages/equipment-details.html">
-                                <div class="nav-btn bg-grp3">
-                                    <span class="nav-btn-txt"><p>Equipment Details</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="cog-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <p class="nav-btn-grp-title">order</p>
-                            <a href="../pages/repair-details.html">
-                                <div class="nav-btn bg-grp4">
-                                    <span class="nav-btn-txt"><p>Fill Repair Request</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="clipboard-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </nav>
+
+        <!--shared nav imported from ./shared/shared-nav.html-->
+        <nav id="shared-nav"></nav>
 
         <section class="page-container">
             <header>
-                <h1>Update Customer</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Update Customer</h1>
+                    </div>
+                    <div>
+                        <a href="../pages/customer-details.html" class="button secondary-btn" id="back-to-customer">
+                            Back to Customer
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
             </header>
 
             <div class="page">
                 <div class="customer-update">
 
-                    <!-- ADD CODE HERE -->
-
+                    <main>
+                        <form action="https://webdevbasics.net/scripts/demo.php" method="post">
+                            <fieldset>
+                                <legend>Contact Info</legend>
+            
+                                <section class="two-col">
+                                    <div>
+                                        <label for="first-name">First Name</label>
+                                        <input type="text" placeholder="John" id="first-name" name="first-name" required>
+                                    </div>
+                                    <div>
+                                        <label for="last-name">Last Name</label>
+                                        <input type="text" placeholder="Smith" id="last-name" name="last-name" required>
+                                    </div>
+                                    <div>
+                                        <label for="email">Email</label>
+                                        <input id="email" name="email" type="email" placeholder="johnsmith@gmail.com" required>
+                                    </div>
+                                    <div>
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" placeholder="(123) 456 - 7890" id="phone" name="phone" required>
+                                    </div>
+                                </section>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Address</legend>
+                                <section >
+                                    <div class="two-col">
+                                        <div>
+                                            <label for="address">Address</label>
+                                            <input type="text" placeholder="22 Full Moon Crescent" id="address" name="address" required>
+                                        </div>
+                                        <div>
+                                            <label for="unit">Apartment, Suite, etc.</label>
+                                            <input type="text" placeholder="370" id="unit" name="unit">
+                                        </div>
+                                        <div>
+                                            <label for="city">City</label>
+                                            <input id="city" name="city" type="text" placeholder="Welland" required>
+                                            <!-- <label for="city">City</label>
+                                            <select name="city" id="city" required>
+                                                <option value="S308">St.Catharines</option>
+                                                <option value="S306">Welland</option>
+                                                <option value="L2">Niagara Falls</option>
+                                                <option value="ME201">Thorold</option>
+                                                <option value="ME215">Fonthill</option>
+                                            </select> -->
+                                        </div>
+                                        <div>
+                                            <label for="province">Province</label>
+                                            <select name="province" id="province" required>
+                                                <option value="" disabled selected>Select a Province</option>
+                                                <option value="Alberta">Alberta</option>
+                                                <option value="British Columbia">British Columbia</option>
+                                                <option value="Manitoba">Manitoba</option>
+                                                <option value="New Brunswick">New Brunswick</option>
+                                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                                <option value="Northwest Territories">Northwest Territories</option>
+                                                <option value="Nova Scotia">Nova Scotia</option>
+                                                <option value="Nunavut">Nunavut</option>
+                                                <option value="Ontario">Ontario</option>
+                                                <option value="Prince Edward Island">Prince Edward Island</option>
+                                                <option value="Quebec">Quebec</option>
+                                                <option value="Saskatchewan">Saskatchewan</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="postal">Postal Code</label>
+                                            <input id="postal" name="postal" type="text" placeholder="L3C 0A8" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" required>
+                                        </div>
+                                        <div>
+                                            <label for="country">Country/Region</label>
+                                            <select name="country" id="country">
+                                                <option value="Canada" selected>Canada</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </section>
+                            </fieldset>
+                            <div class="d-flex justify-content-end"> 
+                                <a href="../pages/customer-details.html" class="button btn-cancel me-4" id="cancelButton">
+                                    Cancel
+                                </a>
+                                <button type="submit" value="Save" class="button btn-save">
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </main>
                 </div>
             </div>
-
         </section>
     </div>
+    <script type="module" src="../scripts/customer-update.js"></script>
 </body>
 </html>
