@@ -51,7 +51,7 @@
                                 <div class="d-flex" id="search-form">
                                     <input
                                       type="text"
-                                      placeholder="Search by model name, type, manufacturer, serial or model number"
+                                      placeholder="Search by model name, type, manufacturer, serial or model number, or customer name"
                                       autocomplete="off"
                                       autofocus
                                       id="search-value"
@@ -60,6 +60,9 @@
                                       <div class="ps-2">
                                           <button id="search-btn" class="button btn-search">Search</button>
                                       </div>
+
+                                      <div id="pagination" class="pagination-container"></div>
+
                                     </div>
                             </div>
                         </div>
@@ -82,8 +85,8 @@
                         <form id="searchForm" action="https://webdevbasics.net/scripts/demo.php" method="post">
                             <fieldset>
                                 <legend>Search for Equipment</legend>
-                                <label for="searchId">Equipment ID:</label>
-                                <input type="text" id="searchId" placeholder="Enter ID" pattern="[0-9]+">
+                                <label for="searchId">Customer Name:</label>
+                                <input type="text" id="customerName" placeholder="Enter Customer Name" pattern="[A-Za-z]+">
                                 <label for="searchItemNumber">Item Number:</label>
                                 <input type="text" id="searchItemNumber" placeholder="Enter Item Number" pattern="[0-9]+">
                                 <label for="searchSerialNumber">Serial Number:</label>

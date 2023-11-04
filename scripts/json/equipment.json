@@ -7,7 +7,8 @@
     "serialNumber": "20931890",
     "modelNumber": "A02B",
     "manufacturer": "Pro-Power Canada",
-    "colour": "Red"
+    "colour": "Red",
+    "customerName" : "John Doe"
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "serialNumber": "987654321",
     "modelNumber": "B05C",
     "manufacturer": "Troy-Bilt",
-    "colour": "Green"
+    "colour": "Green",
+    "customerName" : "Jane Smith"
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "serialNumber": "123456789",
     "modelNumber": "H12D",
     "manufacturer": "HedgeMaster",
-    "colour": "Blue"
+    "colour": "Blue",
+    "customerName": "Emily Johnson"
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "serialNumber": "456789123",
     "modelNumber": "L30X",
     "manufacturer": "Toro",
-    "colour": "Yellow"
+    "colour": "Yellow",
+    "customerName": "William Brown"
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "serialNumber": "987654987",
     "modelNumber": "S08M",
     "manufacturer": "SnowMaster",
-    "colour": "White"
+    "colour": "White",
+    "customerName": "Olivia White"
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
     "serialNumber": "654321789",
     "modelNumber": "P15T",
     "manufacturer": "Pro-Power Canada",
-    "colour": "Silver"
+    "colour": "Silver",
+    "customerName": "Emily Johnson"
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
     "serialNumber": "789123456",
     "modelNumber": "C10R",
     "manufacturer": "Craftsman",
-    "colour": "Black"
+    "colour": "Black",
+    "customerName": "Michael Wilson"
   },
   {
     "id": 8,
@@ -77,7 +84,8 @@
     "serialNumber": "876543210",
     "modelNumber": "TM15Z",
     "manufacturer": "Pro-Power Canada",
-    "colour": "Red"
+    "colour": "Red",
+    "customerName": "Sophia Taylor"
   },
   {
     "id": 9,
@@ -87,7 +95,8 @@
     "serialNumber": "123789456",
     "modelNumber": "LS20Y",
     "manufacturer": "Toro",
-    "colour": "Yellow"
+    "colour": "Yellow",
+    "customerName": "James Thomas"
   },
   {
     "id": 10,
@@ -97,7 +106,8 @@
     "serialNumber": "789456123",
     "modelNumber": "ET10W",
     "manufacturer": "HedgeMaster",
-    "colour": "Blue"
+    "colour": "Blue",
+    "customerName": "Ava Martin"
   },
   {
     "id": 11,
@@ -107,7 +117,8 @@
     "serialNumber": "321654987",
     "modelNumber": "PS30Q",
     "manufacturer": "SnowMaster",
-    "colour": "White"
+    "colour": "White",
+    "customerName": "Ethan Miller"
   },
   {
     "id": 12,
@@ -117,6 +128,7 @@
     "serialNumber": "456123789",
     "modelNumber": "PC12K",
     "manufacturer": "Craftsman",
-    "colour": "Black"
+    "colour": "Black",
+    "customerName" : "James Thomas"
   }
 ]

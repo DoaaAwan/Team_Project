@@ -8,7 +8,8 @@
     "street": "123 Main St.",
     "city": "St. Catharines",
     "province": "Ontario",
-    "postalCode": "L4K 8F9"
+    "postalCode": "L4K 8F9",
+    "fullName" : "John Doe"
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "street": "456 Elm St.",
     "city": "Hamilton",
     "province": "Ontario",
-    "postalCode": "L5T 9K3"
+    "postalCode": "L5T 9K3",
+    "fullName" : "Jane Smith"
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "street": "789 Maple Ave.",
     "city": "Mississauga",
     "province": "Ontario",
-    "postalCode": "L6P 5G7"
+    "postalCode": "L6P 5G7",
+    "fullName" : "Emily Johnson"
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "street": "101 Oak Dr.",
     "city": "Toronto",
     "province": "Ontario",
-    "postalCode": "L7R 2W4"
+    "postalCode": "L7R 2W4",
+    "fullName" : "William Brown"
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "street": "234 Pine St.",
     "city": "Brampton",
     "province": "Ontario",
-    "postalCode": "L8S 3T9"
+    "postalCode": "L8S 3T9",
+    "fullName" : "Olivia White"
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "street": "567 Birch Blvd.",
     "city": "Waterloo",
     "province": "Ontario",
-    "postalCode": "L9Z 2X8"
+    "postalCode": "L9Z 2X8",
+    "fullName" : "Michael Wilson"
   },
   {
     "id": 7,
@@ -74,7 +80,8 @@
     "street": "890 Cedar Ln.",
     "city": "London",
     "province": "Ontario",
-    "postalCode": "L0A 1B2"
+    "postalCode": "L0A 1B2",
+    "fullName" : "Sophia Taylor"
   },
   {
     "id": 8,
@@ -85,7 +92,9 @@
     "street": "123 Walnut St.",
     "city": "Oshawa",
     "province": "Ontario",
-    "postalCode": "L1T 2Y4"
+    "postalCode": "L1T 2Y4",
+    "fullName" : "James Thomas"
+    
   },
   {
     "id": 9,
@@ -96,7 +105,8 @@
     "street": "456 Spruce Ave.",
     "city": "Markham",
     "province": "Ontario",
-    "postalCode": "L2E 3F5"
+    "postalCode": "L2E 3F5",
+    "fullName" : "Ava Martin"
   },
   {
     "id": 10,
@@ -107,6 +117,7 @@
     "street": "789 Oak Lane",
     "city": "Kitchener",
     "province": "Ontario",
-    "postalCode": "L3M 6N1"
+    "postalCode": "L3M 6N1",
+    "fullName" : "Ethan Miller"
   }
 ]
