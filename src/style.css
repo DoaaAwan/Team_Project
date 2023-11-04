@@ -50,6 +50,7 @@ table {
 
 body{
     font-family: 'Roboto', sans-serif;
+    background: #113F4E;
 }
 
 header{
@@ -71,7 +72,7 @@ nav .logo-text{
 }
 
 nav .nav-icon{
-    float: left;
+    float: right;
     margin-right: 25px;
     max-width: 40px;
 }
@@ -180,7 +181,7 @@ nav .nav-btn-icon{
 }
 
 .page-container {
-    padding: 160px 90px;
+    padding: 160px 70px 80px;
 }
 
 .page {
@@ -325,8 +326,10 @@ h3 {
     text-decoration: none;
 }
 
+/* Header Button */
 .secondary-btn{
-    border: 1px solid white !important;
+    border: 1.5px solid white !important;
+    background: #113F4E;
     color: white;
     padding: 12px 20px;
     position: relative;
@@ -341,27 +344,26 @@ h3 {
    
 }
 
+/* Back to Home Button */
 .bg-grp1{
-    background: #205072;
-    /* background: linear-gradient(180deg, hsla(194, 55%, 30%, 1) 0%, hsla(205, 56%, 29%, 1) 100%); */
-    /* background: #256e84; */
+    background: #2E6C6B; 
 }
 
+/* Customer Buttons */
 .bg-grp2{
-    background: #329d9c;
-    /* background: #3c6e7d; */
+    background: #418973;
 }
 
+/* Equipment Buttons */
 .bg-grp3{
-    background: #56c596;
-    /* background: #306170; */
+    /* background: #51A47A; */
+    /* background: #61C07E; */
+    background: #57ad71;
 }
 
-.bg-grp4{
+/* .bg-grp4{
     background: #7be495;
-    /* background: linear-gradient(180deg, hsla(155, 49%, 55%, 1) 0%, hsla(135, 66%, 69%, 1) 100%); */
-    /* background: #204b58; */
-}
+} */
 
 .nav-btn:hover{
     background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
@@ -370,41 +372,6 @@ h3 {
 .nav-btn:active{
     background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
 }
-
-/* BUTTON COLOR COMBINATIONS */
-
-/* .bg-grp2:hover{
-    background: #3492af;
-}
-
-.bg-grp2:active{
-    background: #2c7d96;
-} */
-
-/* 
-.bg-grp-green{
-    background: #009578;
-}
-
-.bg-grp-green:hover{
-    background: #008168;
-}
-
-.bg-grp-green:active{
-    background: #006e58;
-}
-
-.bg-grp-primary{
-    background: #236477;
-}
-
-.bg-grp-primary:hover{
-    background: #125061;
-}
-
-.bg-grp-primary:active{
-    background: #033746;
-} */
 
 /*** Revert to Default ***/
 
