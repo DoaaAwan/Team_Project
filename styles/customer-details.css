@@ -37,7 +37,7 @@
 .customer-lists-grid {
     display: grid;
     grid-column-gap: 30px;
-    grid-template-columns: 1.3fr 2fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .customer-lists-grid div{
@@ -67,7 +67,7 @@
     clear: both;
 } */
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1550px) {
     .customer-details-grid {
         grid-template-columns: 0.7fr 2fr;
     }

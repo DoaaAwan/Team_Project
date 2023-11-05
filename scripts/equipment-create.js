@@ -23,4 +23,5 @@ if (customerId.length > 0){
 }else{
     //if theres no customer id, it removes hidden form input meant to store customer id
     document.getElementById("cid-container").innerHTML = "";
+    document.getElementById("serial-number-container").innerHTML = "";
 }
