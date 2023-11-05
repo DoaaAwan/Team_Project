@@ -29,7 +29,7 @@ legend {
 label {
     font-size: 14px;
     color: grey;
-    padding-left: 5px;
+    /* padding-left: 5px; */
 }
 
 /* User Input Fields */
@@ -42,8 +42,10 @@ input, select, textarea {
 input:focus,
 select:focus,
 textarea:focus {
-    background-color: rgba(220, 231, 235, 0.2);
+    /* background-color: rgba(220, 231, 235, 0.2); */
     outline: none;
+    box-shadow: 0 0 5px #236477;
+    border-radius: 10px;
 }
 
 select {
@@ -69,7 +71,7 @@ input[type="tel"] {
     border-bottom: 1px solid var(--input-outline);
     box-sizing: border-box;
     display: block;
-    padding: 6px;
+    padding: 15px;
     width: 100%;
 }
 
@@ -95,13 +97,13 @@ input[type="submit"]:hover {
 ::-webkit-input-placeholder {
     color: var(--placeholder);
     font-size: 13px;
-    padding-left: 5px;
+    /* padding-left: 5px; */
 }
 
 ::placeholder {
     color: var(--placeholder);
     font-size: 13px;
-    padding-left: 5px;
+    /* padding-left: 5px; */
 }
 
 .two-col {
