@@ -50,9 +50,8 @@ table {
 
 body{
     font-family: 'Roboto', sans-serif;
+    background: #113F4E;
 }
-
-
 
 header{
     background: #236477;
@@ -74,6 +73,7 @@ nav .logo-text{
 
 nav .nav-icon{
     float: right;
+    margin-right: 25px;
     max-width: 40px;
 }
 
@@ -83,8 +83,9 @@ nav .main-nav{
     top: 0;
     right: 0;
     width: 100%;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 nav a {
@@ -181,12 +182,11 @@ nav .nav-btn-icon{
 }
 
 .page-container {
-    padding: 160px 90px;
+    padding: 160px 70px 80px;
 }
 
 .page {
     padding: 50px 60px;
-    border: 1px solid lightgray;
     border-radius: 0 0 10px 10px;
     background: white;
 }
@@ -194,6 +194,29 @@ nav .nav-btn-icon{
 .page-container h2{
     font-size: 20px;
     color: grey;
+}
+
+/* SEARCH BAR */
+
+.search-bar {
+    border: 2px solid #dadada;
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px 40px 10px 15px;
+    width: 100%;
+}
+  
+.search-bar:focus {
+    border-color: transparent;
+    box-shadow: 0 0 5px lightskyblue;
+    outline: none;
+}
+  
+::placeholder {
+    color: lightgray;
+    opacity: 1;
 }
 
 /* CUSTOMER SEARCH RESULT */
@@ -204,6 +227,13 @@ h3 {
     color: lightgray;
     margin: 20px 0;
 
+}
+
+.search-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-column-gap: 25px;
 }
 
 .result{
@@ -296,8 +326,10 @@ h3 {
     text-decoration: none;
 }
 
+/* Header Button */
 .secondary-btn{
-    border: 1px solid white !important;
+    border: 1.5px solid white !important;
+    background: #113F4E;
     color: white;
     padding: 12px 20px;
     position: relative;
@@ -312,78 +344,36 @@ h3 {
    
 }
 
-
-/* SEARCH BAR */
-
-.search-bar {
-    border: 2px solid #dadada;
-    border-radius: 10px;
-    background-color: transparent;
-    font-size: 15px;
-    margin-bottom: 10px;
-    padding: 10px 40px 10px 15px;
-    width: 100%;
-}
-  
-.search-bar:focus {
-    border-color: transparent;
-    box-shadow: 0 0 5px lightskyblue;
-    outline: none;
-}
-  
-::placeholder {
-    color: lightgray;
-    opacity: 1;
-}
-
-/* BUTTON COLOR COMBINATIONS */
-
+/* Back to Home Button */
 .bg-grp1{
-    background: #256e84;
+    background: #2E6C6B; 
 }
 
+/* Customer Buttons */
 .bg-grp2{
-    background: #3c6e7d;
+    background: #418973;
 }
 
+/* Equipment Buttons */
 .bg-grp3{
-    background: #306170;
+    /* background: #51A47A; */
+    background: #57ad71;
 }
 
 .bg-grp4{
-    background: #204b58;
+    background: #61C07E;
 }
 
-/* .bg-grp2:hover{
-    background: #3492af;
+.nav-btn:hover{
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
-.bg-grp2:active{
-    background: #2c7d96;
-} */
-
-
-.bg-grp-green{
-    background: #009578;
+.nav-btn:active{
+    background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
 }
 
-.bg-grp-green:hover{
-    background: #008168;
-}
+/*** Revert to Default ***/
 
-.bg-grp-green:active{
-    background: #006e58;
+b {
+    all: revert;
 }
-
-.bg-grp-primary{
-    background: #236477;
-}
-
-.bg-grp-primary:hover{
-    background: #125061;
-}
-
-.bg-grp-primary:active{
-    background: #033746;
-}
-

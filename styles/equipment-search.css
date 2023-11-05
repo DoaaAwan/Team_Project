@@ -1,0 +1,89 @@
+
+/* SEARCH BAR */
+
+.search-bar {
+    border: 2px solid #dadada;
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px 40px 10px 15px;
+    width: 100%;
+}
+  
+.search-bar:focus {
+    border-color: transparent;
+    box-shadow: 0 0 5px lightskyblue;
+    outline: none;
+}
+  
+::placeholder {
+    color: lightgray;
+    opacity: 1;
+}
+
+/* CUSTOMER SEARCH RESULT */
+
+h3 {
+    font-size: 18px;
+    text-transform: capitalize;
+    color: lightgray;
+    margin: 20px 0;
+
+}
+
+.result{
+    padding: 18px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    width: 30%;
+    margin: 20px 0 ;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+.result #customer-info{
+    margin-left: 20px;
+}
+
+.result:hover{
+    border-color: #236477;
+}
+
+.result .name{
+    color: #236477;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+.result .email{
+    margin-bottom: 6px;
+}
+
+.result .email, .result .number{
+    color: #236477;
+    font-size: 16px;
+}
+
+.result img {
+    margin-left: 10px;
+}
+
+label {
+    font-size: 14px;
+    color: grey;
+    padding-left: 5px;
+    margin-bottom: 5px;
+}
+
+.flex-search-button {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end;
+}
+
+.flex-search-button button{
+    margin-bottom:10px;
+}
