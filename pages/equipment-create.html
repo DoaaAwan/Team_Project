@@ -123,24 +123,14 @@
                                         </option>
                                     </select>
                                 </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Equipment Numbers</legend>
-                            <section class="two-col">
-                                <div>
-                                    <label for="item-number">Item Number</label>
-                                    <input type="text" placeholder="123" id="item-number" name="item-number" pattern="[0-9]*" 
-                                    title="Must be only numbers." required>
-                                </div>
-                                <div>
-                                    <label for="serial-number">Serial Number</label>
-                                    <input type="text" placeholder="12345678" id="serial-number" name="serial-number" required>
-                                </div>
                                 <div>
                                     <label for="model-number">Model Number</label>
                                     <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
                                 </div>
-                            </section>
+                                <div id="serial-number-container">
+                                    <label for="serial-number">Serial Number</label>
+                                    <input type="text" placeholder="12345678" id="serial-number" name="serial-number" required>
+                                </div>
                         </fieldset>
                         <div class="d-flex justify-content-end"> 
                             <a href="../pages/equipment-search.html" id="cancel-to-search" class="button btn-cancel me-4">
@@ -155,6 +145,7 @@
                             <label for="cid">cid</label>
                             <select name="cid" id="cid">
                                 <option value="" selected id="cidvalue"></option>
+                            </select>
                         </div>
 
                     </form>

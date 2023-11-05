@@ -44,26 +44,41 @@
 
             <div class="page">
                 <div class="equipment-search">
-                    <h2>Search for equipment</h2>
+                    <h2 id="search-heading">Search for customer owned equipments</h2>
                     <div class="container">
                         <div class="row mt-3">
                             <div class="p-0">
                                 <div class="d-flex" id="search-form">
-                                    <input
-                                      type="text"
-                                      placeholder="Search by model name, type, manufacturer, serial or model number, or customer name"
-                                      autocomplete="off"
-                                      autofocus
-                                      id="search-value"
-                                      class="search-bar"
-                                      />
-                                      <div class="ps-2">
-                                          <button id="search-btn" class="button btn-search">Search</button>
-                                      </div>
-
+                                    <div style="width:100%">
+                                        <input
+                                            type="text"
+                                            placeholder="Search by model name, type, manufacturer, serial or model number"
+                                            autocomplete="off"
+                                            autofocus
+                                            
+                                            id="search-value"
+                                            class="search-bar"
+                                        />
+                                        <div class="collapse show" id="customer-collapse">
+                                            <input
+                                                type="text"
+                                                placeholder="Search by customer name"
+                                                autocomplete="off"
+                                                id="search-customer"
+                                                class="search-bar"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="ps-2">
+                                        <button id="search-btn" class="button btn-search">Search</button>
+                                    </div>
                                       <div id="pagination" class="pagination-container"></div>
 
-                                    </div>
+                                </div>
+                                <div style="width:500px; margin-top:20px;" >
+                                    <button type="button" style="display:none;" data-bs-toggle="collapse" id="filterToggle" data-bs-target="#customer-collapse" aria-expanded="false" aria-controls="customer-collapse" class="button btn-search">Click To Search Equipments</button>
+                                </div>
+
                             </div>
                         </div>
                     </div>

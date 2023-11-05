@@ -8,12 +8,14 @@ class EquipmentSearchPage {
   async init() {
 
     //gets seed data for equipment and ownership
+    this.customerDatabase = await fetchData('../scripts/json/customer.json')
     this.equipmentDatabase = await fetchData('../scripts/json/equipment.json');
     this.ownershipDatabase = await fetchData('../scripts/json/ownership.json');
 
     //gets customer id if one is passed
     this.customerId = new URLSearchParams(window.location.search).getAll("cid");
     this.equipmentsOwned = this.getEquipmentsOwned();
+    this.searchEquipments = false;
     this.setupButtons();
     this.addSearchButtonEventListener();
     this.triggerSearch();
@@ -33,15 +35,34 @@ class EquipmentSearchPage {
       const newEquipmentButton = document.getElementById("new-equipment");
       
       //sets link of buttons to include customer parameter
+      $("#customer-collapse").removeClass("show");
+      this.searchEquipments = true;
       customerButton.style.display = "inline";
       customerButton.href = `../pages/customer-details.html?cid=${this.customerId}`;
       newEquipmentButton.href = `../pages/equipment-create.html?cid=${this.customerId}`;
+    }else{
+      $("#filterToggle").show();
     }
   }
 
   addSearchButtonEventListener() {
     document.getElementById("search-btn").addEventListener("click", (e) => {
       e.preventDefault();
+      this.performSearch();
+    });
+    document.getElementById("filterToggle").addEventListener("click", (e) => {
+      e.preventDefault();
+      if (this.searchEquipments){
+        $('#filterToggle').html("Click To Search Equipments");
+        $('#search-heading').html("Search for customer owned equipments");
+        
+        this.searchEquipments = false;
+      }else{
+        $('#filterToggle').html("Click To Search Customer Owned Equipments");
+        $('#search-heading').html("Search for equipment");
+        document.getElementById("search-customer").value = "";
+        this.searchEquipments = true;
+      }
       this.performSearch();
     });
   }
@@ -52,22 +73,48 @@ class EquipmentSearchPage {
 
   //gets all equipments matching equipment search
   performSearch(searchQuery = document.getElementById("search-value").value.toLowerCase()) {
+    let customerSearch = document.getElementById("search-customer");
     let searchDiv = document.getElementById("search-grid");
     searchDiv.innerHTML = "";
-    let results = this.equipmentDatabase.filter(equipment => {
-      return (equipment.equipmentName.toLowerCase().includes(searchQuery) ||
-              equipment.equipmentType.toLowerCase().includes(searchQuery) ||
-              equipment.manufacturer.toLowerCase().includes(searchQuery) ||
-              equipment.modelNumber.toLowerCase().includes(searchQuery) ||
-              equipment.customerName.toLowerCase().includes(searchQuery) ||
-              equipment.serialNumber.toLowerCase().includes(searchQuery)) &&
-              this.equipmentsOwned.every(e => e != equipment.id);
-    });
+    let results = [];
 
+    if (!this.searchEquipments){
+      let customersFilter = this.customerDatabase .filter(c => {
+        return (c.firstName.toLowerCase().includes(customerSearch.value.toLowerCase())) || 
+              (c.lastName.toLowerCase().includes(customerSearch.value.toLowerCase()))
+      }).map(c => c.id);
+      
+      let equipmentFilter = this.equipmentDatabase.filter(e => {
+        return (e.equipmentName.toLowerCase().includes(searchQuery) ||
+        e.equipmentType.toLowerCase().includes(searchQuery) ||
+        e.manufacturer.toLowerCase().includes(searchQuery) ||
+        e.modelNumber.toLowerCase().includes(searchQuery) ||
+        e.serialNumber.toLowerCase().includes(searchQuery))
+      }).map(e => e.id);
+
+      results = this.ownershipDatabase.filter(o => {
+        return (customersFilter.includes(o.customerId)) && (equipmentFilter.includes(o.equipmentId))
+      });
+
+    }
+    else{
+      results = this.equipmentDatabase.filter(equipment => {
+        return (equipment.equipmentName.toLowerCase().includes(searchQuery) ||
+                equipment.equipmentType.toLowerCase().includes(searchQuery) ||
+                equipment.manufacturer.toLowerCase().includes(searchQuery) ||
+                equipment.modelNumber.toLowerCase().includes(searchQuery) ||
+                equipment.customerName.toLowerCase().includes(searchQuery) ||
+                equipment.serialNumber.toLowerCase().includes(searchQuery)) &&
+                this.equipmentsOwned.every(e => e != equipment.id);
+      });
+    }
+    
+    
     //only gets results that doesn't already exist as equipment customer owns
     if (results.length > 0) {
-      results.sort((a, b) => a.equipmentName.toUpperCase().localeCompare(b.equipmentName.toUpperCase()));
-      results.forEach(equipment => searchDiv.appendChild(this.createEquipmentDiv(equipment)));
+      this.searchEquipments ? results.sort((a, b) => a.equipmentName.toUpperCase().localeCompare(b.equipmentName.toUpperCase())) : 
+                              results.sort((a, b) => this.customerDatabase.find(c => a.customerId == c.id).fullName.toUpperCase().localeCompare(this.customerDatabase.find(c => b.customerId == c.id).fullName.toUpperCase()));
+      results.forEach(result => searchDiv.appendChild(this.createEquipmentDiv(result)));
     } else {
       if (window.confirm("No matching equipments found. Would you like to create one?")) {
         window.location.href = document.getElementById("new-equipment").href;
@@ -76,22 +123,43 @@ class EquipmentSearchPage {
   }
 
   //displays all equipment results
-  createEquipmentDiv(equipment) {
+  createEquipmentDiv(result) {
     let equipmentDiv = document.createElement("div");
-            equipmentDiv.innerHTML = 
-            `<div>
-                <a href="../pages/equipment-details.html?eid=${equipment.id}${customerId.length > 0 ? `&cid=${customerId}` : ""}" style="width: 100%;" class="result shadow d-flex justify-content-start">
-                    <!-- <img src="../images/equip.png" alt=""> -->
-                    <div id="equipment-details">
-                        <p id="searchCustName" class="name">${equipment.customerName}
-                        <p id="searchName" class="name">${equipment.equipmentName}</p>
-                        <p id="searchType" class="email">Type: ${equipment.equipmentType}</p>
-                        <p id="searchManufacturer" class="email">Manufacturer: ${equipment.manufacturer}</p>
-                        <p id="searchModelNumber" class="email">M/N: ${equipment.modelNumber}</p>
-                        <p id="searchSerialNumber" class="number">S/N: ${equipment.serialNumber}</p>
-                    </div>
-                </a>
-            </div>`;
+
+    if (!this.searchEquipments){
+      let c = this.customerDatabase.find(c => c.id == result.customerId);
+      let e = this.equipmentDatabase.find(e => e.id == result.equipmentId);
+
+      equipmentDiv.innerHTML = 
+      `<div>
+          <a href="../pages/equipment-details.html?oid=${result.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
+              <!-- <img src="../images/equip.png" alt=""> -->
+              <div id="equipment-details">
+                  <p id="searchCustName" class="name">${c.firstName} ${c.lastName}</p>
+                  <p id="searchName" class="name">${e.equipmentName}</p>
+                  <p id="searchType" class="email">Type: ${e.equipmentType}</p>
+                  <p id="searchManufacturer" class="email">Manufacturer: ${e.manufacturer}</p>
+                  <p id="searchModelNumber" class="email">M/N: ${e.modelNumber}</p>
+                  <p id="searchSerialNumber" class="number">S/N: ${result.serialNumber}</p>
+              </div>
+          </a>
+      </div>`;
+    }
+    else{
+      equipmentDiv.innerHTML = 
+      `<div>
+          <a href="../pages/equipment-details.html?eid=${result.id}${this.customerId.length > 0 ? `&cid=${this.customerId}` : ""}" style="width: 100%;" class="result shadow d-flex justify-content-start">
+              <!-- <img src="../images/equip.png" alt=""> -->
+              <div id="equipment-details">
+                  <p id="searchName" class="name">${result.equipmentName}</p>
+                  <p id="searchType" class="email">Type: ${result.equipmentType}</p>
+                  <p id="searchManufacturer" class="email">Manufacturer: ${result.manufacturer}</p>
+                  <p id="searchModelNumber" class="email">M/N: ${result.modelNumber}</p>
+              </div>
+          </a>
+      </div>`;
+    }
+
     return equipmentDiv;
   }
 
@@ -102,7 +170,7 @@ class EquipmentSearchPage {
 new EquipmentSearchPage();
 
 
-
+/*
 './functions.js';
 
 //gets seed data for equipment and ownership
@@ -198,4 +266,4 @@ document.getElementById("search-btn").addEventListener("click", function(e){
             window.location.href = document.getElementById("new-equipment").href;
         }
     }
-});
+});*/
