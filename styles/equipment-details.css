@@ -43,7 +43,7 @@
     clear: both;
 }
 
-#update-equipment-btn, #select-equipment-btn{
+#update-equipment-btn, #select-equipment-btn, #update-serial-btn{
     height: auto;
     padding: 20px 30px;
 }

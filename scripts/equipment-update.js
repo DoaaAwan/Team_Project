@@ -1,8 +1,8 @@
-import { fetchData } from './functions.js';
+//import { fetchData } from './functions.js';
 
 //gets equipment seed data and gets equipment id
-const equipmentDatabase = await fetchData('../scripts/json/equipment.json');
-const ownershipDatabase = await fetchData('../scripts/json/ownership.json');
+const equipmentDatabase = getEquipmentData();
+const ownershipDatabase = getOwnershipData();
 
 const urlParam = new URLSearchParams(window.location.search);
 const equipmentId = urlParam.getAll("eid");
@@ -14,12 +14,15 @@ const equipmentManufacturer = urlParam.getAll("manufacturer")
 const equipmentColour = urlParam.getAll("colour")
 const equipmentModelNumber = urlParam.getAll("model-number")
 const serialNumber = urlParam.getAll("serial-number");
+const buttonAction = urlParam.getAll("button-action")
 
 //checks if theres an equipment id
-if (equipmentId.length > 0 && ownershipId.length == 0 && customerId.length == 0) {
+if ((equipmentId.length > 0 && ownershipId.length == 0 && customerId.length == 0) || buttonAction == "updateEquipment") {
     //sets up link for buttons with equipment id
-    document.getElementById("back-to-equipment").href = `../pages/equipment-details.html?eid=${equipmentId}`;
-    document.getElementById("cancel-to-details").href = `../pages/equipment-details.html?eid=${equipmentId}`;
+    document.getElementById("back-to-equipment").href = ownershipId > 0 ?   `../pages/equipment-details.html?oid=${ownershipId}` : 
+                                                                            `../pages/equipment-details.html?eid=${equipmentId}`;
+    document.getElementById("cancel-to-details").href = ownershipId > 0 ?   `../pages/equipment-details.html?oid=${ownershipId}` : 
+                                                                            `../pages/equipment-details.html?eid=${equipmentId}`;
 
     //gets equipment and displays all data in input fields
     let equipment = equipmentDatabase.find(e => e.id == equipmentId);
@@ -121,3 +124,255 @@ document.getElementById('equipment-form').addEventListener('submit', function() 
     $("#colour").prop("disabled", false);
     $("#model-number").prop("disabled", false);
 });
+
+
+function getOwnershipData(){
+    return [
+        {
+          "id": 1,
+          "customerId": 1,
+          "equipmentId": 1,
+          "serialNumber": "6S985C78866"
+        },
+        {
+          "id": 2,
+          "customerId": 1,
+          "equipmentId": 3,
+          "serialNumber": "7U942Z45486"
+        },
+        {
+          "id": 3,
+          "customerId": 2,
+          "equipmentId": 2,
+          "serialNumber": "2Z867N46698"
+        },
+        {
+          "id": 4,
+          "customerId": 2,
+          "equipmentId": 4,
+          "serialNumber": "6D247A85967"
+        },
+        {
+          "id": 5,
+          "customerId": 3,
+          "equipmentId": 5,
+          "serialNumber": "8A979P36869"
+        },
+        {
+          "id": 6,
+          "customerId": 3,
+          "equipmentId": 7,
+          "serialNumber": "8E445U62644"
+        },
+        {
+          "id": 7,
+          "customerId": 4,
+          "equipmentId": 6,
+          "serialNumber": "5Z935M24736"
+        },
+        {
+          "id": 8,
+          "customerId": 4,
+          "equipmentId": 8,
+          "serialNumber": "7E537T79592"
+        },
+        {
+          "id": 9,
+          "customerId": 5,
+          "equipmentId": 9,
+          "serialNumber": "8S828W84428"
+        },
+        {
+          "id": 10,
+          "customerId": 5,
+          "equipmentId": 11,
+          "serialNumber": "6W727K88322"
+        },
+        {
+          "id": 11,
+          "customerId": 6,
+          "equipmentId": 10,
+          "serialNumber": "6V897N22689"
+        },
+        {
+          "id": 12,
+          "customerId": 6,
+          "equipmentId": 12,
+          "serialNumber": "5J638F23992"
+        },
+        {
+          "id": 13,
+          "customerId": 7,
+          "equipmentId": 1,
+          "serialNumber": "9B475T53372"
+        },
+        {
+          "id": 14,
+          "customerId": 7,
+          "equipmentId": 3,
+          "serialNumber": "6H483T94664"
+        },
+        {
+          "id": 15,
+          "customerId": 8,
+          "equipmentId": 5,
+          "serialNumber": "9Y864M68339"
+        },
+        {
+          "id": 16,
+          "customerId": 8,
+          "equipmentId": 7,
+          "serialNumber": "5L383T77572"
+        },
+        {
+          "id": 17,
+          "customerId": 9,
+          "equipmentId": 9,
+          "serialNumber": "7N992J69283"
+        },
+        {
+          "id": 18,
+          "customerId": 9,
+          "equipmentId": 11,
+          "serialNumber": "7H826B47548"
+        },
+        {
+          "id": 19,
+          "customerId": 1,
+          "equipmentId": 10,
+          "serialNumber": "7Y686J58959"
+        },
+        {
+          "id": 20,
+          "customerId": 2,
+          "equipmentId": 12,
+          "serialNumber": "5X522H66584"
+        }
+      ];
+}
+
+
+function getOwnershipData(){
+    return [
+        {
+          "id": 1,
+          "customerId": 1,
+          "equipmentId": 1,
+          "serialNumber": "6S985C78866"
+        },
+        {
+          "id": 2,
+          "customerId": 1,
+          "equipmentId": 3,
+          "serialNumber": "7U942Z45486"
+        },
+        {
+          "id": 3,
+          "customerId": 2,
+          "equipmentId": 2,
+          "serialNumber": "2Z867N46698"
+        },
+        {
+          "id": 4,
+          "customerId": 2,
+          "equipmentId": 4,
+          "serialNumber": "6D247A85967"
+        },
+        {
+          "id": 5,
+          "customerId": 3,
+          "equipmentId": 5,
+          "serialNumber": "8A979P36869"
+        },
+        {
+          "id": 6,
+          "customerId": 3,
+          "equipmentId": 7,
+          "serialNumber": "8E445U62644"
+        },
+        {
+          "id": 7,
+          "customerId": 4,
+          "equipmentId": 6,
+          "serialNumber": "5Z935M24736"
+        },
+        {
+          "id": 8,
+          "customerId": 4,
+          "equipmentId": 8,
+          "serialNumber": "7E537T79592"
+        },
+        {
+          "id": 9,
+          "customerId": 5,
+          "equipmentId": 9,
+          "serialNumber": "8S828W84428"
+        },
+        {
+          "id": 10,
+          "customerId": 5,
+          "equipmentId": 11,
+          "serialNumber": "6W727K88322"
+        },
+        {
+          "id": 11,
+          "customerId": 6,
+          "equipmentId": 10,
+          "serialNumber": "6V897N22689"
+        },
+        {
+          "id": 12,
+          "customerId": 6,
+          "equipmentId": 12,
+          "serialNumber": "5J638F23992"
+        },
+        {
+          "id": 13,
+          "customerId": 7,
+          "equipmentId": 1,
+          "serialNumber": "9B475T53372"
+        },
+        {
+          "id": 14,
+          "customerId": 7,
+          "equipmentId": 3,
+          "serialNumber": "6H483T94664"
+        },
+        {
+          "id": 15,
+          "customerId": 8,
+          "equipmentId": 5,
+          "serialNumber": "9Y864M68339"
+        },
+        {
+          "id": 16,
+          "customerId": 8,
+          "equipmentId": 7,
+          "serialNumber": "5L383T77572"
+        },
+        {
+          "id": 17,
+          "customerId": 9,
+          "equipmentId": 9,
+          "serialNumber": "7N992J69283"
+        },
+        {
+          "id": 18,
+          "customerId": 9,
+          "equipmentId": 11,
+          "serialNumber": "7H826B47548"
+        },
+        {
+          "id": 19,
+          "customerId": 1,
+          "equipmentId": 10,
+          "serialNumber": "7Y686J58959"
+        },
+        {
+          "id": 20,
+          "customerId": 2,
+          "equipmentId": 12,
+          "serialNumber": "5X522H66584"
+        }
+      ];
+}
