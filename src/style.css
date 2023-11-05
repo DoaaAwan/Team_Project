@@ -187,7 +187,6 @@ nav .nav-btn-icon{
 
 .page {
     padding: 50px 60px;
-    border: 1px solid lightgray;
     border-radius: 0 0 10px 10px;
     background: white;
 }
@@ -358,13 +357,12 @@ h3 {
 /* Equipment Buttons */
 .bg-grp3{
     /* background: #51A47A; */
-    /* background: #61C07E; */
     background: #57ad71;
 }
 
-/* .bg-grp4{
-    background: #7be495;
-} */
+.bg-grp4{
+    background: #61C07E;
+}
 
 .nav-btn:hover{
     background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
