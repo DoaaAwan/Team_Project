@@ -1,10 +1,10 @@
-import { fetchData } from './functions.js';
+//import { fetchData } from './functions.js';
 
 // fetching seed data
-const customerDatabase = await fetchData('../scripts/json/customer.json');
-const equipmentDatabase = await fetchData('../scripts/json/equipment.json');
-const ownershipDatabase = await fetchData('../scripts/json/ownership.json');
-const repairRequestDatabase = await fetchData('../scripts/json/repair-request.json');
+const customerDatabase = getCustomerData();
+const equipmentDatabase = getEquipmentData();
+const ownershipDatabase = getOwnershipData();
+const repairRequestDatabase = getRepairRequestData();
 
 // retrieves all url parameters to display the right customer and equipments from previous page.
 const urlParam = new URLSearchParams(window.location.search);
@@ -150,9 +150,11 @@ if (customerId.length > 0) {
         //$("#details-repair-request").show();
         //gets selected id for repair record and "activates" the button by adding the url with parameter to button
         const selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
+        if (selectedRepairRequest != ""){
         $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
         $("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
                                                                     `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
+        }
     });
 
     $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
@@ -162,7 +164,12 @@ if (customerId.length > 0) {
     $(`#customer-details`).html("<h2>No customer details found.</h2>");
 }
 
-/*
+
+
+
+
+
+
 function getCustomerData(){
     return [
         {
@@ -658,4 +665,4 @@ function getRepairRequestData(){
           "ownershipId": 15
         }
       ];
-}*/
+}

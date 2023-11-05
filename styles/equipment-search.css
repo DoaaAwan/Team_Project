@@ -70,3 +70,20 @@ h3 {
 .result img {
     margin-left: 10px;
 }
+
+label {
+    font-size: 14px;
+    color: grey;
+    padding-left: 5px;
+    margin-bottom: 5px;
+}
+
+.flex-search-button {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end;
+}
+
+.flex-search-button button{
+    margin-bottom:10px;
+}
