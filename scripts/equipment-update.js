@@ -8,6 +8,11 @@ const urlParam = new URLSearchParams(window.location.search);
 const equipmentId = urlParam.getAll("eid");
 const customerId = urlParam.getAll("cid");
 const ownershipId = urlParam.getAll("oid");
+const equipmentName = urlParam.getAll("equipment-name");
+const equipmentType = urlParam.getAll("equipment-type")
+const equipmentManufacturer = urlParam.getAll("manufacturer")
+const equipmentColour = urlParam.getAll("colour")
+const equipmentModelNumber = urlParam.getAll("model-number")
 const serialNumber = urlParam.getAll("serial-number");
 
 //checks if theres an equipment id
@@ -27,7 +32,7 @@ if (equipmentId.length > 0 && ownershipId.length == 0 && customerId.length == 0)
     $("#serial-number-container").html("");
     document.getElementById("cid-container").innerHTML = "";
     document.getElementById("eid-container").innerHTML = "";
-}else if(ownershipId.length > 0 || customerId.length > 0){
+}else if((ownershipId.length > 0 || customerId.length > 0) && equipmentName.length == 0){
 
 
     $("#serial-number-container").show();
@@ -75,7 +80,44 @@ if (equipmentId.length > 0 && ownershipId.length == 0 && customerId.length == 0)
         $("#update-equipment-heading").html("Update Equipment Serial Number")
         document.getElementById("serial-number").value = ownedEquipment.serialNumber;
     }
+}else if(equipmentName.length > 0){
+
+    $("#serial-number-container").show();
+    document.getElementById("serial-number").value = serialNumber;
+    $("#serial-number").focus()
+
+    document.getElementById("back-to-equipment").href = `../pages/equipment-details.html?equipment-name=${equipmentName}&manufacturer=${equipmentManufacturer}&equipment-type=${equipmentType}` + 
+                                                        `&colour=${equipmentColour}&model-number=${equipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`;
+    document.getElementById("cancel-to-details").href = `../pages/equipment-details.html?equipment-name=${equipmentName}&manufacturer=${equipmentManufacturer}&equipment-type=${equipmentType}` + 
+                                                        `&colour=${equipmentColour}&model-number=${equipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`;
+    $("#update-equipment-heading").html("Update Equipment Serial Number");
+
+    document.getElementById("equipment-name").value = equipmentName;
+    $("#equipment-name").prop("disabled", true);
+    document.getElementById("manufacturer").value = equipmentManufacturer;
+    $("#manufacturer").prop("disabled", true);
+    document.getElementById("equipment-type").value = equipmentType;
+    $("#equipment-type").prop("disabled", true);
+    document.getElementById("colour").value = equipmentColour;
+    $("#colour").prop("disabled", true);
+    document.getElementById("model-number").value = equipmentModelNumber;
+    $("#model-number").prop("disabled", true);
+
+    document.getElementById("equipment-form").method = "get";
+    document.getElementById("equipment-form").action = `../pages/customer-details.html`;
+
+    document.getElementById("cidvalue").value = customerId;
+    document.getElementById("cidvalue").innerHTML = customerId;
+    $("#eid").prop("disabled", true);
 }else{
     window.alert("No equipment selected for update.");
     window.location.href = "../pages/equipment-search.html";
 }
+
+document.getElementById('equipment-form').addEventListener('submit', function() {
+    $("#equipment-name").prop("disabled", false);
+    $("#manufacturer").prop("disabled", false);
+    $("#equipment-type").prop("disabled", false);
+    $("#colour").prop("disabled", false);
+    $("#model-number").prop("disabled", false);
+});

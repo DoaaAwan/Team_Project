@@ -53,12 +53,12 @@ class EquipmentSearchPage {
     document.getElementById("filterToggle").addEventListener("click", (e) => {
       e.preventDefault();
       if (this.searchEquipments){
-        $('#filterToggle').html("Click To Search Equipments");
-        $('#search-heading').html("Search for customer owned equipments");
+        $('#filterToggle').html("Click To Search Equipment");
+        $('#search-heading').html("Search for customer owned equipment");
         
         this.searchEquipments = false;
       }else{
-        $('#filterToggle').html("Click To Search Customer Owned Equipments");
+        $('#filterToggle').html("Click To Search Customer Owned Equipment");
         $('#search-heading').html("Search for equipment");
         document.getElementById("search-customer").value = "";
         this.searchEquipments = true;
