@@ -6,8 +6,12 @@ class EquipmentSearchPage {
   }
 
   async init() {
+
+    //gets seed data for equipment and ownership
     this.equipmentDatabase = await fetchData('../scripts/json/equipment.json');
     this.ownershipDatabase = await fetchData('../scripts/json/ownership.json');
+
+    //gets customer id if one is passed
     this.customerId = new URLSearchParams(window.location.search).getAll("cid");
     this.equipmentsOwned = this.getEquipmentsOwned();
     this.setupButtons();
@@ -15,6 +19,7 @@ class EquipmentSearchPage {
     this.triggerSearch();
   }
 
+  //gets all equipment ids of equipments customer owns
   getEquipmentsOwned() {
     if (this.customerId.length > 0) {
       return this.ownershipDatabase.filter(o => o.customerId == this.customerId).map(o => o.equipmentId);
@@ -27,6 +32,7 @@ class EquipmentSearchPage {
       const customerButton = document.getElementById("back-to-customer");
       const newEquipmentButton = document.getElementById("new-equipment");
       
+      //sets link of buttons to include customer parameter
       customerButton.style.display = "inline";
       customerButton.href = `../pages/customer-details.html?cid=${this.customerId}`;
       newEquipmentButton.href = `../pages/equipment-create.html?cid=${this.customerId}`;
@@ -44,6 +50,7 @@ class EquipmentSearchPage {
     this.performSearch('');
   }
 
+  //gets all equipments matching equipment search
   performSearch(searchQuery = document.getElementById("search-value").value.toLowerCase()) {
     let searchDiv = document.getElementById("search-grid");
     searchDiv.innerHTML = "";
@@ -57,6 +64,7 @@ class EquipmentSearchPage {
               this.equipmentsOwned.every(e => e != equipment.id);
     });
 
+    //only gets results that doesn't already exist as equipment customer owns
     if (results.length > 0) {
       results.sort((a, b) => a.equipmentName.toUpperCase().localeCompare(b.equipmentName.toUpperCase()));
       results.forEach(equipment => searchDiv.appendChild(this.createEquipmentDiv(equipment)));
@@ -67,6 +75,7 @@ class EquipmentSearchPage {
     }
   }
 
+  //displays all equipment results
   createEquipmentDiv(equipment) {
     let equipmentDiv = document.createElement("div");
             equipmentDiv.innerHTML = 
