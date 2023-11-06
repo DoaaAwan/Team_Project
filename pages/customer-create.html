@@ -71,34 +71,43 @@
                                         <input type="text" placeholder="E.g. 370" id="unit" name="unit">
                                     </div>
                                     <div>
-                                        <!-- <label for="city">City</label>
-                                        <input id="city" name="city" type="text" placeholder="Welland" required> -->
                                         <label for="city">City</label>
-                                        <select name="city" id="city" required>
-                                            <option value="St.Catharines">St.Catharines</option>
-                                            <option value="Welland">Welland</option>
-                                            <option value="Niagara Falls">Niagara Falls</option>
-                                            <option value="Thorold">Thorold</option>
-                                            <option value="Fonthill">Fonthill</option>
-                                        </select>
+                                        <div class="d-flex">
+                                            <select name="city" id="city" required>
+                                                <option value="Select city">Select a City</option>
+                                                <option value="St.Catharines">St.Catharines</option>
+                                                <option value="Welland">Welland</option>
+                                                <option value="Niagara Falls">Niagara Falls</option>
+                                                <option value="Thorold">Thorold</option>
+                                                <option value="Fonthill">Fonthill</option>
+                                            </select>
+                                            <a href="../pages/lookup-update.html" class="edit-lookup-icon" title="Edit city list" id="updateCityFromCustCreate">
+                                                <ion-icon name="create-outline"></ion-icon>
+                                            </a>
+                                        </div>
                                     </div>
                                     <div>
                                         <label for="province">Province</label>
-                                        <select name="province" id="province" required>
-                                            <option value="" disabled selected>Select a Province</option>
-                                            <option value="Alberta">Alberta</option>
-                                            <option value="British Columbia">British Columbia</option>
-                                            <option value="Manitoba">Manitoba</option>
-                                            <option value="New Brunswick">New Brunswick</option>
-                                            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-                                            <option value="Northwest Territories">Northwest Territories</option>
-                                            <option value="Nova Scotia">Nova Scotia</option>
-                                            <option value="Nunavut">Nunavut</option>
-                                            <option value="Ontario">Ontario</option>
-                                            <option value="Prince Edward Island">Prince Edward Island</option>
-                                            <option value="Quebec">Quebec</option>
-                                            <option value="Saskatchewan">Saskatchewan</option>
-                                        </select>
+                                        <div class="d-flex">
+                                            <select name="province" id="province" required>
+                                                <option value="Select province">Select a Province</option>
+                                                <option value="Alberta">Alberta</option>
+                                                <option value="British Columbia">British Columbia</option>
+                                                <option value="Manitoba">Manitoba</option>
+                                                <option value="New Brunswick">New Brunswick</option>
+                                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                                <option value="Northwest Territories">Northwest Territories</option>
+                                                <option value="Nova Scotia">Nova Scotia</option>
+                                                <option value="Nunavut">Nunavut</option>
+                                                <option value="Ontario">Ontario</option>
+                                                <option value="Prince Edward Island">Prince Edward Island</option>
+                                                <option value="Quebec">Quebec</option>
+                                                <option value="Saskatchewan">Saskatchewan</option>
+                                            </select>
+                                            <a href="../pages/lookup-update.html" class="edit-lookup-icon" title="Edit province list" id="updateProvFromCustCreate">
+                                                <ion-icon name="create-outline"></ion-icon>
+                                            </a>
+                                        </div>
                                     </div>
                                     <div>
                                         <label for="postal">Postal Code</label>
@@ -125,6 +134,7 @@
             </div>
         </div>
     </div>
+    <script src="../scripts/lookup-update.js"></script>
     <!-- <script src="../scripts/customer-create.js"></script> -->
 </body>
 </html>

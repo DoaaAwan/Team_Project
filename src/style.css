@@ -46,6 +46,10 @@ table {
 }
 /*End Reset*/
 
+:root {
+    --main-colour: #236477;
+}
+
 /*////////////////////////// STYLE FOR LAPTOP SCREEN MIN 1024 PX ////////////////////////*/
 
 body{
