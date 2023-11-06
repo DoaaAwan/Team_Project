@@ -80,8 +80,7 @@ class EquipmentSearchPage {
 
     if (!this.searchEquipments){
       let customersFilter = this.customerDatabase .filter(c => {
-        return (c.firstName.toLowerCase().includes(customerSearch.value.toLowerCase())) || 
-              (c.lastName.toLowerCase().includes(customerSearch.value.toLowerCase()))
+        return (c.fullName.toLowerCase().includes(customerSearch.value.toLowerCase()))
       }).map(c => c.id);
       
       let equipmentFilter = this.equipmentDatabase.filter(e => {
