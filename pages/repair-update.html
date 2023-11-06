@@ -9,11 +9,13 @@
     <script src="https://kit.fontawesome.com/44b9581dbb.js" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../src/jquery-3.7.1.min.js"></script>
+    <script async src="../scripts/import-nav.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/repair-details.css">
+    <link rel="stylesheet" href="../styles/repair-request-details.css">
 </head>
 <style>
     /*decrease width of section*/
@@ -41,109 +43,9 @@
 
 <body>
     <div class="app-container">
-        <nav>
-            <div class="main-nav">
-                <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
-                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
-                </a>
-            </div>
-            <div>
-                <div class="offcanvas offcanvas-start sidebar" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header pb-0 ps-0 pe-0">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div class="container">
-                        <div class="d-flex justify-content-center ">
-                            <div class="nav-user-img">
-                                <div><img src="../images/user-profile.png" class="" alt=""></div>
-                            </div>
-                            <div class="ms-3">
-                                <div class="nav-user-info">
-                                    <p class="nm">Amy Johnson</p>
-                                    <p class="dpt"><small>Sales Department</small></p> 
-                                    <a href="" class="primary-btn">Sign Out</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="nav-buttons">
-                            <a href="../index.html">
-                                <div class="nav-btn bg-grp1">
-                                    <span class="nav-btn-txt"><p>Back to Home</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="home-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <p class="nav-btn-grp-title">customer</p>
-                            <a href="../index.html">
-                                <div class="nav-btn bg-grp2">
-                                    <span class="nav-btn-txt"><p>Search Customer</p>
-                                    </span>
-                                    <span class="nav-btn-icon" height="10">
-                                        <ion-icon name="search-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="../pages/customer-create.html">
-                                <div class="nav-btn bg-grp2">
-                                    <span class="nav-btn-txt"><p>Create Customer</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="person-add-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="../pages/customer-details.html">
-                                <div class="nav-btn bg-grp2">
-                                    <div class="nav-btn-txt"><p>Customer Details</p></div>
-                                    <div class="nav-btn-icon">
-                                        <ion-icon name="person-outline"></ion-icon>
-                                    </div>
-                                </div>
-                            </a>
-                            <p class="nav-btn-grp-title">equipment</p>
-                            <a href="../pages/equipment-search.html">
-                                <div class="nav-btn bg-grp3">
-                                    <span class="nav-btn-txt"><p>Search Equipment</p>
-                                    </span>
-                                    <span class="nav-btn-icon" height="10">
-                                        <ion-icon name="search-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="../pages/equipment-create.html">
-                                <div class="nav-btn bg-grp3">
-                                    <span class="nav-btn-txt"><p>Create Equipment</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="add-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="../pages/equipment-details.html">
-                                <div class="nav-btn bg-grp3">
-                                    <span class="nav-btn-txt"><p>Equipment Details</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="cog-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                            <p class="nav-btn-grp-title">order</p>
-                            <a href="../pages/repair-details.html">
-                                <div class="nav-btn bg-grp4">
-                                    <span class="nav-btn-txt"><p>Fill Repair Request</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="clipboard-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </nav>
+
+        <!--shared nav imported from ./shared/shared-nav.html-->
+        <nav id="shared-nav"></nav>
 
         <section class="page-container">
             <header>
