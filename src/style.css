@@ -350,22 +350,30 @@ h3 {
 
 /* Back to Home Button */
 .bg-grp1{
-    background: #2E6C6B; 
+    /* background: #2E6C6B;  */
+    /* background: #2B6D76; */
+    background: #307676;
 }
 
 /* Customer Buttons */
 .bg-grp2{
-    background: #418973;
+    /* background: #418973; */
+    /* background: #327775; */
+    background: #3D8974;
 }
 
 /* Equipment Buttons */
 .bg-grp3{
     /* background: #51A47A; */
-    background: #57ad71;
+    /* background: #57ad71; */
+    /* background: #3A8074; */
+    background: #4A9B73;
 }
 
 .bg-grp4{
-    background: #61C07E;
+    /* background: #61C07E; */
+    /* background: #418973; */
+    background: #57AD71;
 }
 
 .nav-btn:hover{
