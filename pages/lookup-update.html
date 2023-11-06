@@ -15,7 +15,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/repair-request-details.css">
+    <link rel="stylesheet" href="../styles/lookup-update.css">
 </head>
 <body>
     <div class="app-container">
@@ -154,15 +154,15 @@
         <!--shared nav imported from ./shared/shared-nav.html
         <nav id="shared-nav"></nav>-->
 
-        <section class="page-container">
+        <div class="page-container">
             <header>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h1>Repair Request Details</h1>
+                        <h1>Add Province / City</h1>
                     </div>
-                    <div>
-                        <a href="../pages/customer-details.html" id="back-to-customer" class="button secondary-btn">
-                            Back to Customer
+                    <div id="btnBack">
+                        <a href="javascript:history.back()" class="button secondary-btn">
+                            Go Back
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
                     </div>
@@ -170,36 +170,118 @@
             </header>
 
             <div class="page">
-                <div class="repair-request-details" id="repair-request-details">
-                    <h2 id="repair-request-info"></h2>
-                    <hr>
-                    <div class="repair-request-grid">
-                        <div class="column">
-                            <p id="repair-customer"></p>
-                            <p id="repair-date"></p>
-                            <p id="repair-number"></p>
-                            <p id="repair-issue"></p>
-                            <p id="repair-warranty"></p>
-                            <p id="repair-balance"></p>
-                            <div class="update-repair-request-btn">
-                                <a href="../pages/repair-request-update.html" class="button btns">Update Repair Request</a>
+                <div class="lookup-update" >
+                    <div class="two-col-lookup">
+                        <div class="add-prov">
+                            <h2>Add a province</h2>
+                            <form action="" >
+                                <div class="container row mt-3">
+                                    <div class="d-flex p-0" id="search-form">
+                                        <input
+                                            type="search"
+                                            placeholder="Enter a province"
+                                            autocomplete="off"
+                                            autofocus
+                                            id="search-value"
+                                            class="search-bar"
+                                            required>
+                                            <div class="ps-2">
+                                                <button id="add-prov" class="button btn-search">Add</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="prov-list" id="prov-list">
+                                <div class="d-flex justify-content-between list-header">
+                                    <label>List of Provinces</label>
+                                    <button class="update-btn" id="update-prov"> 
+                                        Update List
+                                        <ion-icon name="create-outline" class="edit-icon"></ion-icon>
+                                    </button>
+                                </div>
+                                <div class="prov-list-container" id="prov-list-container">
+                                    <input type="text" value="Ontario" class="prov-list-item" required disabled>
+                                    <input type="text" value="Alberta" class="prov-list-item" required disabled>
+                                    <input type="text" value="British Columbia" class="prov-list-item" required disabled>
+                                    <input type="text" value="Manitoba" class="prov-list-item" required disabled>
+                                    <input type="text" value="New Brunswick" class="prov-list-item" required disabled>
+                                    <input type="text" value="Newfoundland and Labrador" class="prov-list-item" required disabled>
+                                    <input type="text" value="Northwest Territories" class="prov-list-item" required disabled>
+                                    <input type="text" value="Nova Scotia" class="prov-list-item" required disabled>
+                                    <input type="text" value="Nunavut" class="prov-list-item" required disabled>
+                                    <input type="text" value="Ontario" class="prov-list-item" required disabled>
+                                    <input type="text" value="Prince Edward Island" class="prov-list-item" required disabled>
+                                    <input type="text" value="Quebec" class="prov-list-item" required disabled>
+                                    <input type="text" value="Saskatchewan" class="prov-list-item" required disabled>
+                                </div>
+                                <div class="action-btns" id="action-btns" style="display: none;"> 
+                                    <!-- <button class="button btn-cancel me-4" id="cancel-btn">
+                                        Cancel
+                                    </button> -->
+                                    <button type="submit" value="Save" class="button btn-save" id="save-prov" onclick="saveUpdate()">
+                                        Save
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div id="repair-requests" style="display: none;">
-                            <h2>Repair Requests</h2>
-                            <select name="Orders" id="repair-requests-list" size="5">   
-                            </select>
-                            <div class="d-flex">
-                                <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair</a>
-                                <a href="../pages/repair-request-details.html" style="display: none;" id="details-repair-request" class="button btns">Repair Details</a>
+                        <div class="add-city">
+                            <h2>Add a city</h2>
+                            <form action="" >
+                                <div class="container row mt-3">
+                                    <div class="d-flex p-0" id="search-form">
+                                        <input
+                                            type="search"
+                                            placeholder="Enter a city"
+                                            autocomplete="off"
+                                            autofocus
+                                            id="city-input"
+                                            class="search-bar"
+                                            required>
+                                            <div class="ps-2">
+                                                <button id="add-city" class="button btn-search">Add</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="city-list" id="city-list">
+                                <div class="d-flex justify-content-between list-header">
+                                    <label>List of Cities</label>
+                                    <button class="update-btn" id="update-city"> 
+                                        Update List
+                                        <ion-icon name="create-outline" class="edit-icon"></ion-icon>
+                                    </button>
+                                </div>
+                                <div class="city-list-container" id="city-list-container">
+                                    <input type="text" value="Brampton" class="city-list-item" required disabled>
+                                    <input type="text" value="Fonthill" class="city-list-item" required disabled>
+                                    <input type="text" value="Hamilton" class="city-list-item" required disabled>
+                                    <input type="text" value="Kitchener" class="city-list-item" required disabled>
+                                    <input type="text" value="London" class="city-list-item" required disabled>
+                                    <input type="text" value="Markham" class="city-list-item" required disabled>
+                                    <input type="text" value="Mississauga" class="city-list-item" required disabled>
+                                    <input type="text" value="Niagara Falls" class="city-list-item" required disabled>
+                                    <input type="text" value="Oshawa" class="city-list-item" required disabled>
+                                    <input type="text" value="St. Catharines" class="city-list-item" required disabled>
+                                    <input type="text" value="Thorold" class="city-list-item" required disabled>
+                                    <input type="text" value="Toronto" class="city-list-item" required disabled>
+                                    <input type="text" value="Waterloo" class="city-list-item" required disabled>
+                                    <input type="text" value="Welland" class="city-list-item" required disabled>
+                                </div>
+                                <div class="action-btns" id="action-btns-city" style="display: none;"> 
+                                    <!-- <button class="button btn-cancel me-4" id="cancel-btn">
+                                        Cancel
+                                    </button> -->
+                                    <button type="submit" value="Save" class="button btn-save" id="save-city" onclick="saveUpdate()">
+                                        Save
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </section>
+        </div>
     </div>
-    <script src="../scripts/repair-request-details.js"></script>
+    <script src="../scripts/lookup-update.js"></script>
 </body>
 </html>

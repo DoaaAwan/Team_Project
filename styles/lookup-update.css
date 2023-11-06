@@ -1,0 +1,65 @@
+
+label{
+    margin-top: 10px;
+    font-size: 18px;
+    color: var(--main-colour);
+}
+
+.two-col-lookup{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.highlighted {
+    background-color: #0d66be;
+    color: white;
+  }
+
+.prov-list, .city-list{
+    margin: 20px 40px 0 0;
+    border: 1px solid var(--main-colour);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.list-header{
+    margin-bottom: 20px;
+}
+
+.update-btn{
+    background-color: var(--main-colour);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 400;
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.edit-icon{
+    margin-left: 10px;
+    margin-bottom: 3px;
+    font-size: 19px;
+
+}
+
+.action-btns{
+    display: flex;
+    justify-content: end;
+}
+
+.prov-list-container, .city-list-container{
+    max-height: 400px; /* Adjust the height as needed */
+    overflow: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.prov-list-item, .city-list-item{
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+    padding: 5px;
+}
+
