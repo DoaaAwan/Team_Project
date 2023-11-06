@@ -29,7 +29,6 @@ legend {
 label {
     font-size: 14px;
     color: grey;
-    /* padding-left: 5px; */
 }
 
 /* User Input Fields */
@@ -42,15 +41,28 @@ input, select, textarea {
 input:focus,
 select:focus,
 textarea:focus {
-    /* background-color: rgba(220, 231, 235, 0.2); */
     outline: none;
     box-shadow: 0 0 5px #236477;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
+/* City/ Province drop downs */
 select {
     background: #FFF;
-    height: 30px;
+    height: auto;
+    border: 1px solid var(--input-outline);
+    border-radius: 10px 0 0 10px;
+    box-sizing: border-box;
+    display: block;
+    padding: 0 10px;
+    width: 100%;
+}
+
+/* country/ region drop down */
+select:last-child{
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 35px;
 }
 
 textarea {
@@ -62,13 +74,14 @@ textarea {
     width: 100%;
 }
 
-select,
+
 input[type="date"],
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
     border: none;
-    border-bottom: 1px solid var(--input-outline);
+    border: 1px solid var(--input-outline);
+    border-radius: 10px;
     box-sizing: border-box;
     display: block;
     padding: 15px;
@@ -78,21 +91,6 @@ input[type="tel"] {
 input[type="radio"] {margin-bottom: 10px;}
 
 input[type="text"], input[type="email"], input[type="tel"], input[type="date"] {height: 25px;}
-
-/* input[type="submit"] {
-    border: none;
-    border-radius: 5px;
-    background: #0f72d4; 
-    color: #FFF;
-    font-size: 15px;
-    padding: 15px 30px;
-}
-
-input[type="submit"]:hover {
-    opacity: 90%;
-} */
-
-/* Placeholder */
 
 ::-webkit-input-placeholder {
     color: var(--placeholder);
@@ -104,6 +102,16 @@ input[type="submit"]:hover {
     color: var(--placeholder);
     font-size: 13px;
     /* padding-left: 5px; */
+}
+
+.edit-lookup-icon{
+    margin-top: 5px;
+    font-size: 20px;
+    color: white;
+    background-color: #236477;
+    padding: 5px 8px;
+    border-radius: 0 10px 10px 0;
+
 }
 
 .two-col {
