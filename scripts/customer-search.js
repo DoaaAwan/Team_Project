@@ -1,16 +1,17 @@
 // import { fetchData } from './functions.js';
 
 const customerDatabase = getCustomerData();
+let searchDiv = document.getElementById("search-grid");
 
 function displayAllCustomers() {
-  const searchDiv = document.getElementById("search-grid");
+
   searchDiv.innerHTML = "";
 
   customerDatabase.forEach(customer => {
     let customerDiv = document.createElement("div");
     customerDiv.innerHTML = `
       <div>
-        <a href="../pages/customer-details.html?cid=${customer.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
+        <a href="./pages/customer-details.html?cid=${customer.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
           <img src="images/green-customer-details.png" style="margin-right: 20px" alt="">
           <div id="equipment-details">
             <p class="name">${customer.firstName} ${customer.lastName}</p>
@@ -32,6 +33,7 @@ document.getElementById("search-btn").addEventListener("click", function(e) {
 
 function handleCustomerSearch() {
   let custSearch = document.getElementById("search-value").value.toLowerCase();
+  searchDiv.innerHTML = "";
   let results = [];
 
   customerDatabase.forEach(customer => { 
@@ -47,8 +49,8 @@ function handleCustomerSearch() {
     
 
     results.sort((a,b) => {
-      const nameA = a.firstName.toUpperCase();
-      const nameB = b.firstName.toUpperCase();
+      const nameA = a.fullName.toUpperCase();
+      const nameB = b.fullName.toUpperCase();
 
       if (nameA < nameB) {
         return -1;
@@ -65,7 +67,7 @@ function handleCustomerSearch() {
 
       customerDiv.innerHTML = 
       `<div>
-          <a href="../pages/customer-details.html?cid=${customer.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
+          <a href="./pages/customer-details.html?cid=${customer.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
               <img src="images/green-customer-details.png" style="margin-right: 20px" alt="">
               <div id="equipment-details">
                   <p class="name">${customer.firstName} ${customer.lastName}</p>
@@ -90,7 +92,7 @@ function handleCustomerSearch() {
   }
 }
 
-displayAllCustomers();
+handleCustomerSearch();
 
 function getCustomerData(){
   return [
