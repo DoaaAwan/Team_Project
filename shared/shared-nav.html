@@ -110,21 +110,29 @@
                             </span>
                         </div>
                     </a> 
-                    -->
-
                     <p class="nav-btn-grp-title">order</p>
-                <a href="../pages/repair-request-create.html" data-role="technician">
-                    <div class="nav-btn bg-grp4">
-                        <span class="nav-btn-txt"><p>Repair Request</p></span>
-                        <span class="nav-btn-icon">
-                            <ion-icon name="clipboard-outline"></ion-icon>
-                        </span>
+                    <a href="../pages/repair-request-create.html" data-role="technician">
+                        <div class="nav-btn bg-grp4">
+                            <span class="nav-btn-txt"><p>Repair Request</p></span>
+                            <span class="nav-btn-icon">
+                                <ion-icon name="clipboard-outline"></ion-icon>
+                            </span>
+                        </div>
+                    </a>
+
+                    <div class="role-select">
+                                <label for="userRoleList">Select Your Role: </label>
+                                <select id="userRoleList">
+                                    <option value="default">Select a Role</option>
+                                    <option value="salesRep">Sales Rep</option>
+                                    <option value="technician">Technician</option>
+                                </select>
                     </div>
-                </a>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="../../scripts/role-based-nav.js"></script>
+<script src="./../scripts/role-based-nav.js"></script>
