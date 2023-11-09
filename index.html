@@ -19,6 +19,8 @@
 <body>
     <div class="app-container">
 
+        
+
         <nav>
             <div class="main-nav">
                 <a href="./index.html">
@@ -50,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="nav-buttons">
-                                <a href="./index.html">
+                                <a href="./index.html" data-roles="all">
                                     <div class="nav-btn bg-grp1">
                                         <span class="nav-btn-txt">Back to Home</span>
                                         <span class="nav-btn-icon">
@@ -59,8 +61,8 @@
                                     </div>
                                 </a>
                                 <p class="nav-btn-grp-title">customer</p>
-                                <a href="./index.html">
-                                    <div class="nav-btn bg-grp2">
+                                <a href="./index.html" data-roles="salesRep">
+                                    <div class="nav-btn bg-grp2" >
                                         <span class="nav-btn-txt">Search Customer
                                         </span>
                                         <span class="nav-btn-icon">
@@ -68,7 +70,7 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="./pages/customer-create.html">
+                                <a href="./pages/customer-create.html" data-roles="salesRep">
                                     <div class="nav-btn bg-grp2">
                                         <span class="nav-btn-txt">Create Customer</span>
                                         <span class="nav-btn-icon">
@@ -79,14 +81,14 @@
             
                                 <!--
                                 <a href="../pages/customer-details.html">
-                                    <div class="nav-btn bg-grp2">
+                                    <div class="nav-btn bg-grp2" data-roles="salesRep">
                                         <div class="nav-btn-txt">Customer Details</div>
                                         <div class="nav-btn-icon">
                                             <ion-icon name="person-outline"></ion-icon>
                                         </div>
                                     </div>
                                 </a>
-                                <a href="../pages/customer-update.html">
+                                <a href="../pages/customer-update.html" >
                                     <div class="nav-btn bg-grp2">
                                         <span class="nav-btn-txt">Update Customer</span>
                                         <span class="nav-btn-icon">
@@ -97,7 +99,7 @@
                                 -->
             
                                 <p class="nav-btn-grp-title">equipment</p>
-                                <a href="./pages/equipment-search.html">
+                                <a href="./pages/equipment-search.html" data-roles="technician">
                                     <div class="nav-btn bg-grp3">
                                         <span class="nav-btn-txt">Search Equipment
                                         </span>
@@ -106,7 +108,7 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="./pages/equipment-create.html">
+                                <a href="./pages/equipment-create.html" data-roles="technician">
                                     <div class="nav-btn bg-grp3">
                                         <span class="nav-btn-txt">Create Equipment</span>
                                         <span class="nav-btn-icon">
@@ -114,9 +116,11 @@
                                         </span>
                                     </div>
                                 </a>
+                                
+                                
             
                                 <!--
-                                <a href="../pages/equipment-details.html">
+                                <a href="../pages/equipment-details.html" >
                                     <div class="nav-btn bg-grp3">
                                         <span class="nav-btn-txt">Equipment Details</span>
                                         <span class="nav-btn-icon">
@@ -135,7 +139,7 @@
                                 -->
             
                                 <p class="nav-btn-grp-title">order</p>
-                            <a href="./pages/repair-request-create.html">
+                            <a href="./pages/repair-request-create.html" data-roles="technician">
                                 <div class="nav-btn bg-grp4">
                                     <span class="nav-btn-txt"><p>Repair Request</p></span>
                                     <span class="nav-btn-icon">
@@ -143,12 +147,23 @@
                                     </span>
                                 </div>
                             </a>
+
+                            <div class="role-select">
+                                <label for="userRoleList">Select Your Role: </label>
+                                <select id="userRoleList">
+                                    <option value="salesRep">Sales Rep</option>
+                                    <option value="technician">Technician</option>
+                                </select>
+                                <button id="changeRoleListBtn">Change Role</button>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
+
+        
 
         <!--shared nav imported from ./shared/shared-nav.html
         <nav id="shared-nav"></nav>-->
@@ -206,7 +221,11 @@
             </div>
 
         </section>
+    
     </div>
+
+    
+    <script src="./scripts/role-based-nav.js"></script>
     <script src="./scripts/customer-search.js"></script>
     <!-- <script src="./src/script.js"></script> -->
 </body>

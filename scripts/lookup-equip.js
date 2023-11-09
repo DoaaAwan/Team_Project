@@ -111,7 +111,8 @@ document.getElementById("update-city").addEventListener("click", function(){
         });
         actionButtons.style.display = "none";
     })
-})
+});
+
 
 
 
