@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    //updates nav item based on role
     function updateNavItemsBasedOnRole() {
-        const selectedRole = localStorage.getItem('selectedRole') || 'salesRep'; // Default to 'salesRep'
+        const selectedRole = localStorage.getItem('selectedRole') || 'default'; // Default assignment of the select list
 
-
+        //loops through the nav bar btns and gets their attributes to use in the conditional statement 
         const navItems = document.querySelectorAll('.nav-btn');
         navItems.forEach((item) => {
 
@@ -12,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const allowedRoles = rolesData.split(' ');
 
                 if (!allowedRoles.includes(selectedRole) && !allowedRoles.includes('all')) {
-                    item.parentElement.style.display = 'none';
+                    item.parentElement.style.display = 'none';//hides btns
                 } else {
-                    item.parentElement.style.display = 'flex'; 
+                    item.parentElement.style.display = 'flex';//shows btns 
                 }
             }
         });
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const roleSelect = document.getElementById('userRoleList');
         if (roleSelect) {
             roleSelect.value = selectedRole;
-        }
+        }//parses roleselect list for the selected value
     }
 
     function changeRole(event) {
@@ -36,5 +38,5 @@ document.addEventListener('DOMContentLoaded', function() {
         roleSelect.addEventListener('change', changeRole);
     }
 
-    updateNavItemsBasedOnRole();
+    updateNavItemsBasedOnRole();//calls function initally on page load
 });
