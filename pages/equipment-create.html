@@ -177,10 +177,11 @@
                             <section class="two-col">
                                 <div>
                                     <label for="equipment-name">Equipment Name</label>
-                                    <input type="text" placeholder="TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
+                                    <input type="text" placeholder="E.g. TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
                                 </div>
                                 <div>
                                     <label for="manufacturer">Manufacturer</label>
+                                    <div class="d-flex">
                                     <select name="manufacturer" id="manufacturer" required>
                                         <option value="" disabled selected>Select Manufacturer</option>
                                         <option value="Craftsman">
@@ -202,9 +203,14 @@
                                             HedgeMaster
                                         </option>
                                     </select>
+                                    <a href="../pages/lookup-equip.html" class="edit-lookup-icon" title="Edit Manufacturer List" id="updateProvFromCustCreate">
+                                        <ion-icon name="create-outline"></ion-icon>
+                                    </a>
+                                </div>
                                 </div>
                                 <div>
                                     <label for="equipment-type">Equipment Type</label>
+                                    <div class="d-flex">
                                     <select id="equipment-type" name="equipment-type" required>
                                         <option value="" disabled selected>Select Equipment Type</option>
                                         <option value="Lawn Mower">
@@ -226,6 +232,10 @@
                                             Pressure Washer
                                         </option>
                                     </select>
+                                    <a href="../pages/lookup-equip.html" class="edit-lookup-icon" title="Edit Equipment-Type List" id="updateProvFromCustCreate">
+                                        <ion-icon name="create-outline"></ion-icon>
+                                    </a>
+                                </div>
                                 </div>
                                 <div>
                                     <label for="colour">Colour</label>
@@ -256,11 +266,11 @@
                                 </div>
                                 <div>
                                     <label for="model-number">Model Number</label>
-                                    <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
+                                    <input type="text" placeholder="E.g. C03S" id="model-number" name="model-number" required>
                                 </div>
                                 <div id="serial-number-container">
                                     <label for="serial-number">Serial Number</label>
-                                    <input type="text" placeholder="12345678" id="serial-number" name="serial-number" required>
+                                    <input type="text" placeholder="E.g. 12345678" id="serial-number" name="serial-number" required>
                                 </div>
                         </fieldset>
                         <div class="d-flex justify-content-end"> 
