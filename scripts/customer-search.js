@@ -1,13 +1,20 @@
 // import { fetchData } from './functions.js';
 
+const custPerPage = 6;
+let defaultPage = 1;
+let currentPage = 1;
+
+
+
 const customerDatabase = getCustomerData();
 let searchDiv = document.getElementById("search-grid");
 
 function displayAllCustomers() {
 
   searchDiv.innerHTML = "";
+  const paginatedCust = paging(customerDatabase, custPerPage, currentPage)
 
-  customerDatabase.forEach(customer => {
+  paginatedCust.forEach(customer => {
     let customerDiv = document.createElement("div");
     customerDiv.innerHTML = `
       <div>
@@ -23,6 +30,8 @@ function displayAllCustomers() {
     `;
     searchDiv.appendChild(customerDiv);
   });
+
+  displayPagination(customerDatabase.length);
 }
 
 document.getElementById("search-btn").addEventListener("click", function(e) {
@@ -44,42 +53,26 @@ function handleCustomerSearch() {
 
         }
   });
-
+  
   if (results.length > 0) {
-    
-
-    results.sort((a,b) => {
-      const nameA = a.fullName.toUpperCase();
-      const nameB = b.fullName.toUpperCase();
-
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-
-    results.forEach(customer => {
-
+    const paginatedResults = paging(results, custPerPage, defaultPage);
+    paginatedResults.forEach(customer => {
       let customerDiv = document.createElement("div");
-
-      customerDiv.innerHTML = 
-      `<div>
+      customerDiv.innerHTML = `
+        <div>
           <a href="./pages/customer-details.html?cid=${customer.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
-              <img src="images/green-customer-details.png" style="margin-right: 20px" alt="">
-              <div id="equipment-details">
-                  <p class="name">${customer.firstName} ${customer.lastName}</p>
-                  <p class="email">${customer.email}</p>
-                  <p class="number">${customer.phone}</p>
-              </div>
+            <img src="images/green-customer-details.png" style="margin-right: 20px" alt="">
+            <div id="equipment-details">
+              <p class="name">${customer.firstName} ${customer.lastName}</p>
+              <p class="email">${customer.email}</p>
+              <p class="number">${customer.phone}</p>
+            </div>
           </a>
-      </div>`;
-
+        </div>
+      `;
       searchDiv.appendChild(customerDiv);
-
-    })
+    });
+    displayPaging(results.length);
   }
   else {
     //if no customer results, user message asking if they'd like to create one
@@ -219,3 +212,26 @@ function getCustomerData(){
       }
     ];
 }
+
+
+function paging(array, pageSize, pageNum) {
+  return array.slice((pageNum -1 ) * pageSize, pageNum * pageSize);
+} 
+
+function displayPaging(totalCust) {
+  const pageDiv = document.getElementById("pagination");
+  pageDiv.innerHTML = "";
+  const totalPages = Math.ceil(totalCust / custPerPage);
+
+  for (let i = 1; i <= totalPages; i++) {
+      const pageBtn = document.createElement("button");
+      pageBtn.innerText = i;
+      pageBtn.addEventListener("click", () => {
+          currentPage = i;
+          displayAllCustomers();
+      });
+      pageDiv.appendChild(pageBtn); // Corrected here
+  }
+}
+
+displayAllCustomers();
