@@ -223,5 +223,24 @@
     </div>
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/customer-details.js"></script>
+    <script>
+        //passing data to the repairs page
+        document.getElementById("create-repair-request").addEventListener("click", function (e) {
+            e.preventDefault();
+            const customerName = document.getElementById("customer-name").textContent;
+            const equipmentList = document.getElementById("equipment-list");
+
+            const chosenEquipmentId = equipmentList.options[equipmentList.selectedIndex].textContent;
+
+            const createRepairRequestURL = `../pages/repair-request-create.html?customerName=${encodeURIComponent(customerName)}&chosenEquipment=${encodeURIComponent(chosenEquipmentId)}`;
+            
+            console.log(customerName);
+            console.log(chosenEquipmentId);
+            // Navigate to the new page with query parameters
+            window.location.href = createRepairRequestURL;
+        });
+    </script>
+    
+    </script>
 </body>
 </html>
