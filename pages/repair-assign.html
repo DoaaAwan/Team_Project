@@ -37,8 +37,25 @@
         display: inline-block;
         color: red;
     }
-    label{
+
+    /*for the table*/
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    label {
         font-weight: bold;
+    }
+
+    .clicked {
+        color: white;
+        cursor: not-allowed;
     }
 </style>
 
@@ -201,95 +218,77 @@
 
                     <!-- ADD CODE HERE, updated on 20231110 -->
                     <form id="repair-form">
-                        <!-- Invoice date automated -->
-                        <div>
-                            <div class="myDIV">
-                                <label for="invoice-date" style="display: inline;">Invoice Date:</label>
-                                <p id="invoice-date" style="display: inline;"></p>
-                            </div>
-                            <div class="hide" style="position: absolute;">The date is in mm/dd/yyy format.</div>
-                        </div>
-
-                        <!-- Invoice Number -->
-                        <div>
-                            <label for="invoice-number" aria-label="Invoice Number is auto generated">Invoice Number:
-                                2023OCT345</label>
-                        </div>
-
-                        <!--Customer dropdown list-->
-                        <div>
-                            <label for="bill-to">Bill To:</label>
-                            <p id="bill-to" style="display: inline;"></p>
-                        </div>
-                        <!--Equipment dropdown list-->
-                        <div>
-                            <label for="equipment">Equipment:</label>
-                            <p id="equipment" style="display: inline;"></p>
-                        </div>
-                        <!-- Issue Description -->
-                        <div>
-                            <label for="issueDescription">Issue Description:</label>
-                            <br>
-                            <textarea id="issueDescription" name="issueDescription" rows="4" required
-                                style="width: 800px; height: 100px;" aria-label="Describe the issue"></textarea>
-                        </div>
-                        <!-- Warranty -->
-                        <div>
-                            <label for="has-warranty">Has Warranty:</label>
-                            <input type="checkbox" id="hasWarranty" name="hasWarranty" value="yes"
-                                aria-label="Tick the box for warranty if applicatble using the space bar">
-                        </div>
-                        <!-- Submit Button -->
-                        <div>
-                            <!--will collect all the values of all the elements and transfer to another page via js-->
-                            <button id="submit-create" type="submit" class="primary-btn"
-                                aria-label="press enter to submit">Submit</button>
-                        </div>
-                    </form>
+                        <!--used chat gpt to convert the content to tabular-->
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td><label>Invoice Date:</label></td>
+                                <td><label>Invoice Number:</label></td>
+                                <td><label>Bill To:</label></td>
+                                <td><label>Equipment:</label></td>
+                                <td><label>Issue Description:</label></td>
+                                <td><label>Has Warranty:</label></td>
+                                <!-- <td><label>Status:</label></td> -->
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p id="a-invoice-date" style="display: inline;"></p>
+                                </td>
+                                <td>
+                                    <p id="a-invoice-number" style="display: inline;"></p>
+                                </td>
+                                <td>
+                                    <p id="a-bill-to" style="display: inline;"></p>
+                                </td>
+                                <td>
+                                    <p id="a-equipment" style="display: inline;"></p>
+                                </td>
+                                <td>
+                                    <p id="a-issueDescription" name="a-issueDescription" style="display: inline;"></p>
+                                    <!-- <textarea id="c-issueDescription" name="issueDescription" rows="4" required
+                                         style="width: 50%; height: 100%;"
+                                        aria-label="Describe the issue"></textarea></td> -->
+                                <td>
+                                    <p id="a-has-warranty" style="display: inline;"></p>
+                                </td>
+                                <td style="border-color: aliceblue;" class="clicked">
+                                    <button id="pick" type="submit" class="primary-btn"
+                                        aria-label="press enter to submit">Pick this task</button>
+                                </td>
+                                <td style="border-color: aliceblue;">
+                                    <button id="continue" type="button" class="primary-btn"
+                                        aria-label="press enter to submit">Continue</button>
+                                </td>
+                            </tr>
+                        </table>
                 </div>
+                </form>
             </div>
-        </section>
     </div>
-
+    
     <script src="repair.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
     <!--this script wont work in js but works fine here-->
     <script>
-        // Retrieve data from URL parameters
+        //all data recieved from the previous page
         const urlParams = new URLSearchParams(window.location.search);
-        const selectedBillTo = urlParams.get("customerName");
-        console.log("on create"+selectedBillTo);
-        const selectedEquipment = urlParams.get("chosenEquipment");
-        console.log("on create"+selectedEquipment);
-        // Populate elements on this page with the retrieved data
-        document.getElementById("bill-to").textContent = selectedBillTo; //getting value rather than text
-        document.getElementById("equipment").textContent = selectedEquipment; //getting value rather than text
-    </script>
-    <script>
-        //for todays date
-        var d = new Date();
-        var day = d.getDate();
-        var month = d.getMonth() + 1;
-        var year = d.getFullYear();
-        var formattedDate = `${month}/${day}/${year}`;
-        document.getElementById("invoice-date").textContent = formattedDate;
-    </script>
-    <script>
-        //passing the data to assign page=researched
-        document.getElementById("submit-create").addEventListener("click", function (e) {
-            e.preventDefault();
-            // Collect the values
-            const invoiceDate = document.getElementById("invoice-date").textContent;
-            const invoiceNumber = "2023OCT345";
-            const billTo = document.getElementById("bill-to").textContent;
-            const equipment = document.getElementById("equipment").textContent;
-            const issueDescription = document.getElementById("issueDescription").value;
-            const hasWarranty = document.getElementById("hasWarranty").checked ? "yes" : "no";
+        const selectedDate = urlParams.get("invoice_date");
+        const selectedInvoiceNumber = urlParams.get("invoice_number");
+        const selectedIssueDescription = urlParams.get("issueDescription");
 
-            //transfer to another page=researched
-            const url = `repair-assign.html?invoice_date=${invoiceDate}&invoice_number=${invoiceNumber}&bill_to=${billTo}&equipment=${equipment}&issueDescription=${issueDescription}&hasWarranty=${hasWarranty}`;
-            window.location.href = url;
-        });
+        const selectedBillTo = urlParams.get("bill_to");
+        const selectedEquipment = urlParams.get("equipment");
+        const selectedHasWarranty = urlParams.get("hasWarranty");
+
+        //console.log("selectedBillTo:", selectedBillTo);
+        //console.log("selectedEquipment:", selectedEquipment);
+
+        // Populate elements on this page from the previous page
+        document.getElementById("a-invoice-date").textContent = selectedDate;
+        document.getElementById("a-invoice-number").textContent = selectedInvoiceNumber;
+        document.getElementById("a-bill-to").textContent = selectedBillTo;//getting value rather than text
+        document.getElementById("a-equipment").textContent = selectedEquipment;//getting value rather than text
+        document.getElementById("a-issueDescription").textContent = selectedIssueDescription;
+        document.getElementById("a-has-warranty").textContent = selectedHasWarranty;
     </script>
     <script>
         function DynamicIndex() {
@@ -307,8 +306,51 @@
 
         // Call the function
         DynamicIndex();
-    </script>    
+    </script>
+    <script>
+        // Check if the button was previously clicked=research and chatgpt
+        var isButtonClicked = sessionStorage.getItem('isButtonClicked');
 
+        if (isButtonClicked) {
+            disableButton();
+        }
+        //passing the data forward to update page
+        document.getElementById("pick").addEventListener("click", function (e) {
+            e.preventDefault();
+            // Change button color
+            this.classList.add('clicked');
+
+            // Set a flag in sessionStorage to indicate the button was clicked
+            sessionStorage.setItem('isButtonClicked', true);
+
+            // Disable the button
+            disableButton();
+            // Collect the values
+            const invoiceDate = document.getElementById("a-invoice-date").textContent;
+            const invoiceNumber = "2023OCT345";
+            const billTo = document.getElementById("a-bill-to").textContent;
+            const equipment = document.getElementById("a-equipment").textContent;
+            const issueDescription = document.getElementById("a-issueDescription").textContent;
+            const hasWarranty = document.getElementById("a-has-warranty").textContent;
+
+            //transfer to another page=researched
+            const url = `repair-update.html?invoice_date=${invoiceDate}&invoice_number=${invoiceNumber}&bill_to=${billTo}&equipment=${equipment}&issueDescription=${issueDescription}&hasWarranty=${hasWarranty}`;
+            window.location.href = url;
+        });
+
+        //chatGpt
+        function disableButton() {
+            var pickButton = document.getElementById("pick");
+            pickButton.disabled = true;
+            pickButton.style.cursor = "not-allowed";
+            pickButton.innerHTML = "Assigned";
+        }
+    </script>
+    <script>
+        document.getElementById("continue").addEventListener("click", function () {
+            window.history.forward();
+        });
+    </script>
 </body>
 
 </html>
