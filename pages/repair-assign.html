@@ -126,7 +126,7 @@
 
         <section class="page-container">
             <header>
-                <h1>Repair Request Form</h1>
+                <h1>Jobs List</h1>
             </header>
 
             <div class="page">
@@ -172,7 +172,7 @@
                                 </td>
                                 <td style="border-color: aliceblue;">
                                     <button id="continue" type="button" class="primary-btn"
-                                        aria-label="press enter to submit">Continue</button>
+                                        aria-label="press enter to submit" style="display: none;">Continue</button>
                                 </td>
                             </tr>
                         </table>
@@ -260,6 +260,10 @@
             pickButton.disabled = true;
             pickButton.style.cursor = "not-allowed";
             pickButton.innerHTML = "Assigned";
+            pickButton.style.backgroundColor= 'grey';
+
+            var continueButton = document.getElementById("continue");
+            continueButton.style.display='inline-block';
         }
     </script>
     <script>
