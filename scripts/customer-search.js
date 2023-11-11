@@ -1,6 +1,6 @@
 // import { fetchData } from './functions.js';
 
-const custPerPage = 6;
+const custPerPage = 9;
 let defaultPage = 1;
 let currentPage = 1;
 
@@ -209,6 +209,104 @@ function getCustomerData(){
         "province": "Ontario",
         "postalCode": "L3M 6N1",
         "fullName" : "Ethan Miller"
+      },
+      {
+        "id": 11,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "jSmith@gmail.com",
+        "phone": "(905) 377-7654",
+        "street": "789 Oak Lane",
+        "city": "Waterloo",
+        "province": "Ontario",
+        "postalCode": "L3M 6N1",
+        "fullName" : "John Smith"
+      }
+      ,
+      {
+        "id": 12,
+        "firstName": "Kaylee",
+        "lastName": "Johnson",
+        "email": "johnsonKay@gmail.com",
+        "phone": "(905) 367-3345",
+        "street": "180 Russel Lane",
+        "city": "Niagara Falls",
+        "province": "Ontario",
+        "postalCode": "L5Q 6F1",
+        "fullName" : "Kaylee Johnson"
+      },
+      {
+        "id": 13,
+        "firstName": "Andrew",
+        "lastName": "Blackwell",
+        "email": "andrew20@gmail.com",
+        "phone": "(289) 663-7654",
+        "street": "10 Water Street",
+        "city": "St. Catharines",
+        "province": "Ontario",
+        "postalCode": "L2R 7H7",
+        "fullName" : "Andrew Blackwell"
+      },
+      {
+        "id": 14,
+        "firstName": "James",
+        "lastName": "Perez",
+        "email": "jPerez@gmail.com",
+        "phone": "(289) 402-3133",
+        "street": "700 Watertown Street",
+        "city": "London",
+        "province": "Ontario",
+        "postalCode": "N6B 2W6",
+        "fullName" : "James Perez"
+      },
+      {
+        "id": 15,
+        "firstName": "Xander",
+        "lastName": "Kohut",
+        "email": "xander999@gmail.com",
+        "phone": "(289) 407-2132",
+        "street": "800 Township Rd",
+        "city": "Thorold",
+        "province": "Ontario",
+        "postalCode": "L2E 4H4",
+        "fullName" : "Xander Kohut"
+      }
+      ,
+      {
+        "id": 16,
+        "firstName": "Vladimir",
+        "lastName": "Rosolov",
+        "email": "vRosolov@gmail.com",
+        "phone": "(304) 111-2222",
+        "street": "100 Main Street",
+        "city": "Toronto",
+        "province": "Ontario",
+        "postalCode": "L3M 6N1",
+        "fullName" : "Vladimir Rosolov"
+      },
+      {
+        "id": 17,
+        "firstName": "Drake",
+        "lastName": "Taylor",
+        "email": "dTaylor@gmail.com",
+        "phone": "(404) 337-3254",
+        "street": "10 Oak Lane",
+        "city": "Waterloo",
+        "province": "Ontario",
+        "postalCode": "L3M 4H4",
+        "fullName" : "Drake Taylor"
+      },
+      {
+        "id": 18,
+        "firstName": "David",
+        "lastName": "Bernard",
+        "email": "dBernard@gmail.com",
+        "phone": "(905) 668-0933",
+        "street": "10 Carlton Street",
+        "city": "St.Catharines",
+        "province": "Ontario",
+        "postalCode": "L2R 2L2",
+        "fullName" : "David Bernard"
       }
     ];
 }
