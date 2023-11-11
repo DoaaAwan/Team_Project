@@ -1,13 +1,20 @@
 // import { fetchData } from './functions.js';
 
+const custPerPage = 9;
+let defaultPage = 1;
+let currentPage = 1;
+
+
+
 const customerDatabase = getCustomerData();
 let searchDiv = document.getElementById("search-grid");
 
 function displayAllCustomers() {
 
   searchDiv.innerHTML = "";
+  const paginatedCust = paging(customerDatabase, custPerPage, currentPage)
 
-  customerDatabase.forEach(customer => {
+  paginatedCust.forEach(customer => {
     let customerDiv = document.createElement("div");
     customerDiv.innerHTML = `
       <div>
@@ -23,6 +30,8 @@ function displayAllCustomers() {
     `;
     searchDiv.appendChild(customerDiv);
   });
+
+  displayPagination(customerDatabase.length);
 }
 
 document.getElementById("search-btn").addEventListener("click", function(e) {
@@ -44,42 +53,26 @@ function handleCustomerSearch() {
 
         }
   });
-
+  
   if (results.length > 0) {
-    
-
-    results.sort((a,b) => {
-      const nameA = a.fullName.toUpperCase();
-      const nameB = b.fullName.toUpperCase();
-
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-
-    results.forEach(customer => {
-
+    const paginatedResults = paging(results, custPerPage, defaultPage);
+    paginatedResults.forEach(customer => {
       let customerDiv = document.createElement("div");
-
-      customerDiv.innerHTML = 
-      `<div>
+      customerDiv.innerHTML = `
+        <div>
           <a href="./pages/customer-details.html?cid=${customer.id}" style="width: 100%;" class="result shadow d-flex justify-content-start">
-              <img src="images/green-customer-details.png" style="margin-right: 20px" alt="">
-              <div id="equipment-details">
-                  <p class="name">${customer.firstName} ${customer.lastName}</p>
-                  <p class="email">${customer.email}</p>
-                  <p class="number">${customer.phone}</p>
-              </div>
+            <img src="images/green-customer-details.png" style="margin-right: 20px" alt="">
+            <div id="equipment-details">
+              <p class="name">${customer.firstName} ${customer.lastName}</p>
+              <p class="email">${customer.email}</p>
+              <p class="number">${customer.phone}</p>
+            </div>
           </a>
-      </div>`;
-
+        </div>
+      `;
       searchDiv.appendChild(customerDiv);
-
-    })
+    });
+    displayPaging(results.length);
   }
   else {
     //if no customer results, user message asking if they'd like to create one
@@ -216,6 +209,127 @@ function getCustomerData(){
         "province": "Ontario",
         "postalCode": "L3M 6N1",
         "fullName" : "Ethan Miller"
+      },
+      {
+        "id": 11,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "jSmith@gmail.com",
+        "phone": "(905) 377-7654",
+        "street": "789 Oak Lane",
+        "city": "Waterloo",
+        "province": "Ontario",
+        "postalCode": "L3M 6N1",
+        "fullName" : "John Smith"
+      }
+      ,
+      {
+        "id": 12,
+        "firstName": "Kaylee",
+        "lastName": "Johnson",
+        "email": "johnsonKay@gmail.com",
+        "phone": "(905) 367-3345",
+        "street": "180 Russel Lane",
+        "city": "Niagara Falls",
+        "province": "Ontario",
+        "postalCode": "L5Q 6F1",
+        "fullName" : "Kaylee Johnson"
+      },
+      {
+        "id": 13,
+        "firstName": "Andrew",
+        "lastName": "Blackwell",
+        "email": "andrew20@gmail.com",
+        "phone": "(289) 663-7654",
+        "street": "10 Water Street",
+        "city": "St. Catharines",
+        "province": "Ontario",
+        "postalCode": "L2R 7H7",
+        "fullName" : "Andrew Blackwell"
+      },
+      {
+        "id": 14,
+        "firstName": "James",
+        "lastName": "Perez",
+        "email": "jPerez@gmail.com",
+        "phone": "(289) 402-3133",
+        "street": "700 Watertown Street",
+        "city": "London",
+        "province": "Ontario",
+        "postalCode": "N6B 2W6",
+        "fullName" : "James Perez"
+      },
+      {
+        "id": 15,
+        "firstName": "Xander",
+        "lastName": "Kohut",
+        "email": "xander999@gmail.com",
+        "phone": "(289) 407-2132",
+        "street": "800 Township Rd",
+        "city": "Thorold",
+        "province": "Ontario",
+        "postalCode": "L2E 4H4",
+        "fullName" : "Xander Kohut"
+      }
+      ,
+      {
+        "id": 16,
+        "firstName": "Vladimir",
+        "lastName": "Rosolov",
+        "email": "vRosolov@gmail.com",
+        "phone": "(304) 111-2222",
+        "street": "100 Main Street",
+        "city": "Toronto",
+        "province": "Ontario",
+        "postalCode": "L3M 6N1",
+        "fullName" : "Vladimir Rosolov"
+      },
+      {
+        "id": 17,
+        "firstName": "Drake",
+        "lastName": "Taylor",
+        "email": "dTaylor@gmail.com",
+        "phone": "(404) 337-3254",
+        "street": "10 Oak Lane",
+        "city": "Waterloo",
+        "province": "Ontario",
+        "postalCode": "L3M 4H4",
+        "fullName" : "Drake Taylor"
+      },
+      {
+        "id": 18,
+        "firstName": "David",
+        "lastName": "Bernard",
+        "email": "dBernard@gmail.com",
+        "phone": "(905) 668-0933",
+        "street": "10 Carlton Street",
+        "city": "St.Catharines",
+        "province": "Ontario",
+        "postalCode": "L2R 2L2",
+        "fullName" : "David Bernard"
       }
     ];
 }
+
+
+function paging(array, pageSize, pageNum) {
+  return array.slice((pageNum -1 ) * pageSize, pageNum * pageSize);
+} 
+
+function displayPaging(totalCust) {
+  const pageDiv = document.getElementById("pagination");
+  pageDiv.innerHTML = "";
+  const totalPages = Math.ceil(totalCust / custPerPage);
+
+  for (let i = 1; i <= totalPages; i++) {
+      const pageBtn = document.createElement("button");
+      pageBtn.innerText = i;
+      pageBtn.addEventListener("click", () => {
+          currentPage = i;
+          displayAllCustomers();
+      });
+      pageDiv.appendChild(pageBtn); // Corrected here
+  }
+}
+
+displayAllCustomers();
