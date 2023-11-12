@@ -12,6 +12,9 @@ let searchDiv = document.getElementById("search-grid");
 function displayAllCustomers() {
 
   searchDiv.innerHTML = "";
+
+  customerDatabase.sort((a, b) => a.fullName.localeCompare(b.fullName))
+
   const paginatedCust = paging(customerDatabase, custPerPage, currentPage)
 
   paginatedCust.forEach(customer => {
