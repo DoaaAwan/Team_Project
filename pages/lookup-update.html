@@ -16,6 +16,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/lookup-update.css">
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -116,6 +117,10 @@
                                             <div class="ps-2">
                                                 <button id="add-prov" class="button btn-search">Add</button>
                                             </div>
+
+                                            <button class="help-icon" aria-label="Help">
+                                                <span class="tooltip-text">To add a new Province to the list, please enter a name, followed by the add button. To update, please click update list and update a name below.</span>
+                                            </button>   
                                     </div>
                                 </div>
                             </form>
@@ -168,6 +173,11 @@
                                             <div class="ps-2">
                                                 <button id="add-city" class="button btn-search">Add</button>
                                             </div>
+
+                                            <button class="help-icon" aria-label="Help">
+                                                <span class="tooltip-text">To add a new City, please enter the name and hit add. To update, please click update list and update a name below.</span>
+                                            </button>   
+
                                     </div>
                                 </div>
                             </form>
@@ -212,5 +222,6 @@
     </div>
     <script src="../scripts/lookup-update.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
 </body>
 </html>
