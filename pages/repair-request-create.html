@@ -20,6 +20,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/repair-request-details.css">
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <style>
     /* Spacing between divs */
@@ -160,6 +161,11 @@
                             <!--will collect all the values of all the elements and transfer to another page via js-->
                             <button id="submit-create" type="submit" class="primary-btn"
                                 aria-label="press enter to submit">Submit</button>
+
+                                <button class="help-icon" aria-label="Help">
+                                    <span class="tooltip-text">Please fill out the form to the best of your ability inside of the description. If a customer has a warranty, click the checkbox and when you're finished hit submit to move onto the next page.</span>
+                                  </button>
+                            
                         </div>
                     </form>
                 </div>
@@ -226,5 +232,7 @@
     </script>    
 
 </body>
+
+<script src="../scripts/help-tooltip.js"
 
 </html>

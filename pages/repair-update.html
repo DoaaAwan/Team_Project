@@ -20,6 +20,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/repair-request-details.css">
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <style>
      /* Spacing between divs */
@@ -182,9 +183,14 @@
                             <!-- Start Time -->
                             <div>
                                 <label>Start Time:</label>
+                                
                                 <input type="datetime-local" id="startTime" name="startTime" required
                                     placeholder="Not yet started"
                                     aria-label="Current date and time is selected as default as Start Time">
+                                <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                    <span class="tooltip-text">To select a Start Time, either type the date as shown in the format, or select a date and time from the list when the calander icon is clicked.</span>
+                                </button>   
+                                    
                             </div>
                             <!-- Parts used -->
                             <div class="cloneParts">
@@ -236,6 +242,9 @@
                                     </table>
                                     <button type="button" class="primary-btn" style="background-color:brown;"
                                         id="addNewRow" aria-label="press enter to submit">Add New Row</button>
+                                    <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                            <span class="tooltip-text">To add a new row to the parts list, click the Add New Row button</span>
+                                    </button>
                                 </div>
                             </div>
                             <!-- Stop Time -->
@@ -244,6 +253,9 @@
                                 <input type="datetime-local" id="stopTime" onchange="calculateHoursDifference(this)"
                                     name="stopTime" required placeholder="Not applicable"
                                     aria-label="Current date and time is selected as default as Stop Time">
+                                <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                    <span class="tooltip-text">To select an End Time, either type the date as shown in the format, or select a date and time from the list when the calander icon is clicked.</span>
+                                </button>
                             </div>
                         </div>
                         <!--Add a new day-->
@@ -285,6 +297,11 @@
                                 <td class="button-container">
                                     <button id="invoice" type="submit" class="primary-btn"
                                         aria-label="press enter to submit">Submit Invoice</button>
+                                </td>
+
+                                <td><button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                    <span class="tooltip-text">Once you are finished with inputting data, please click one of the three options beside.</span>
+                                </button>
                                 </td>
                             </tr>
                         </table>
@@ -527,6 +544,9 @@
         });
     </script>
 
+    <script src="../scripts/help-tooltip.js"></script>
+
 </body>
+    
 
 </html>

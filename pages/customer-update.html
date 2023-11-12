@@ -16,6 +16,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/form-style.css">
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -195,6 +196,11 @@
                                 <button type="submit" value="Save" class="button btn-save">
                                     Save
                                 </button>
+
+                                <button class="help-icon" aria-label="Help">
+                                    <span class="tooltip-text">To update an existing customer, please edit in any of the fields in the form above.</span>
+                                </button>
+
                             </div>
                         </form>
                     </main>
@@ -204,5 +210,6 @@
     </div>
     <script src="../scripts/customer-update.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
 </body>
 </html>
