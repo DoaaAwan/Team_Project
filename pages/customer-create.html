@@ -16,6 +16,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/form-style.css">
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -102,7 +103,6 @@
                     <form action="https://webdevbasics.net/scripts/demo.php" method="post">
                         <fieldset>
                             <legend>Customer Info</legend>
-        
                             <div class="two-col m-3">
                                 <div>
                                     <label for="first-name">First Name</label>
@@ -195,7 +195,14 @@
                             <button type="submit" value="Save" class="button btn-save">
                                 Save
                             </button>
+
+                            <button class="help-icon" aria-label="Help">
+                                <span class="tooltip-text">To create a new customer, please fill in all the required fields in the form above.</span>
+                            </button>
                         </div>
+
+                        
+
                     </form>
                 </div>
             </div>
@@ -203,6 +210,7 @@
     </div>
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/lookup-update.js"></script>
+    <script src="../scripts/help-tooltip.js"
     <!-- <script src="../scripts/customer-create.js"></script> -->
 </body>
 </html>

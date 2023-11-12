@@ -14,6 +14,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./styles/help-button.css"
 </head>
 <body>
     <div class="app-container">
@@ -99,7 +100,7 @@
                     <div class="row mt-3">
                         <div class="p-0">
                             <div class="d-flex" id="search-form">
-                                <input
+                                <input                  
                                   type="search"
                                   placeholder="Search by first or last name"
                                   autocomplete="off"
@@ -107,9 +108,15 @@
                                   id="search-value"
                                   class="search-bar"
                                   required>
+                                  
                                   <div class="ps-2">
                                       <button id="search-btn" class="button btn-search">Search</button>
                                   </div>
+
+                                  <button class="help-icon" aria-label="Help">
+                                    <span class="tooltip-text">Please try to enter a Customers name, if none appear please try widening your search.</span>
+                                  </button>
+
                                 </div>
                         </div>
                     </div>
@@ -119,6 +126,7 @@
             </div>
         </section>
     </div>
+    <script src="./scripts/help-tooltip.js"></script>
     <script src="./scripts/role-based-nav.js"></script>
     <script src="./scripts/customer-search.js"></script>
 </body>

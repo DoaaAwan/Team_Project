@@ -16,6 +16,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/lookup-update.css">
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -116,6 +117,10 @@
                                             <div class="ps-2">
                                                 <button id="add-prov" class="button btn-search">Add</button>
                                             </div>
+                                            
+                                            <button class="help-icon" aria-label="Help">
+                                                <span class="tooltip-text">Please add a new name of a Manufacturer to the list. Or Update by clicking the update button</span>
+                                            </button>
                                     </div>
                                 </div>
                             </form>
@@ -161,7 +166,13 @@
                                             <div class="ps-2">
                                                 <button id="add-city" class="button btn-search">Add</button>
                                             </div>
+
+                                            <button class="help-icon" aria-label="Help">
+                                                <span class="tooltip-text">Please add a new Equipment Type to the list by entering an equipment type and clicking Add. If you want to update the list, please click the update list button.</span>
+                                            </button>
+
                                     </div>
+
                                 </div>
                             </form>
                             <div class="city-list" id="equip-list">
@@ -197,5 +208,6 @@
     </div>
     <script src="../scripts/lookup-equip.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
 </body>
 </html>

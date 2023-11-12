@@ -16,6 +16,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/customer-details.css">
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -121,7 +122,9 @@
                                     <!-- <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a> -->
                                     <a href="../pages/equipment-create.html" class="button btns">Add Equipment</a>
                                     <a id="details-equipment-btn" style="background-color: grey;" class="button btns">Equipment Details</a>
+                                    
                                 </div>
+
                             </div>
                             <div id="repair-requests" style="display: none;">
                                 <h2>Repair Requests</h2>
@@ -141,6 +144,7 @@
     </div>
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/customer-details.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
     <script>
         //passing data to the repairs page
         document.getElementById("create-repair-request").addEventListener("click", function (e) {
