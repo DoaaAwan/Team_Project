@@ -33,7 +33,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -99,7 +99,7 @@
 
             <div class="page">
                 <div class="customer-details" id="customer-details">
-                    <h2 id="customer-name"></h2>
+                    <div id="customer-name"></div>
                     <hr>
                     <div class="customer-details-grid">
                         <div class="column">
@@ -115,7 +115,7 @@
                         </div>
                         <div class="customer-lists-grid">
                             <div>
-                                <h2 id="customer-name-equip"></h2>
+                                <div id="customer-name-equip"></div>
                                 <select name="Orders" class="form-select" id="equipment-list" size="5">   
                                 </select>
                                 <div class="d-flex">
@@ -161,8 +161,6 @@
             // Navigate to the new page with query parameters
             window.location.href = createRepairRequestURL;
         });
-    </script>
-    
     </script>
 </body>
 </html>
