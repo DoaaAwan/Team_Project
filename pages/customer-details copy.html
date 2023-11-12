@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma's Small Engines</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/44b9581dbb.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../src/jquery-3.7.1.min.js"></script>
+    <!--<script async src="../scripts/import-nav.js"></script>-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../styles/customer-details.css">
+    <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
+</head>
+<body>
+    <div class="app-container">
+        <nav>
+            <div class="main-nav">
+                <a href="../index.html">
+                    <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
+                </a>
+                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
+                </a>
+            </div>
+            <div>
+                <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header pb-0 ps-0 pe-0">
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="container">
+                            <div class="d-flex justify-content-center">
+                                <div class="nav-user-img">
+                                    <div><img src="../images/user-profile.png" class="" alt=""></div>
+                                </div>
+                                <div class="ms-3">
+                                    <div class="nav-user-info">
+                                        <p class="nm">Amy Johnson</p>
+                                        <p class="dpt"><small>Sales Department</small></p>
+                                        <a href="" class="primary-btn">Sign Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nav-buttons">
+                                <a href="../index.html" data-roles="all">
+                                    <div class="nav-btn bg-grp1">
+                                        <span class="nav-btn-txt">Back to Home</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="home-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../index.html" data-roles="salesRep default">
+                                    <div class="nav-btn bg-grp2" >
+                                        <span class="nav-btn-txt">Search Customer
+                                        </span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="search-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../pages/customer-create.html" data-roles="salesRep default">
+                                    <div class="nav-btn bg-grp3">
+                                        <span class="nav-btn-txt">Create Customer</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="person-add-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <section class="page-container">
+            <header>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Customer Details</h1>
+                    </div>
+                    <div>
+                        <a href="../index.html" class="button secondary-btn">
+                            Back to Customer Search
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page">
+                <div class="customer-details" id="customer-details">
+                    <div id="customer-name"></div>
+                    <hr>
+                    <div class="customer-details-grid">
+                        <div class="column">
+                            <p id="customer-email"></p>
+                            <p id="customer-phone"></p>
+                            <p id="customer-street"></p>
+                            <p id="customer-city"></p>
+                            <p id="customer-province"></p>
+                            <p id="customer-postal"></p>
+                            <div class="d-flex">
+                                <a href="../pages/customer-update.html" id="update-customer-btn" class="button btns">Update Customer</a>
+                            </div>
+                        </div>
+                        <div class="customer-lists-grid">
+                            <div>
+                                <div id="customer-name-equip"></div>
+                                <select name="Orders" class="form-select" id="equipment-list" size="5">   
+                                </select>
+                                <div class="d-flex">
+                                    <!-- <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a> -->
+                                    <a href="../pages/equipment-create.html" class="button btns">Add Equipment</a>
+                                    <a id="details-equipment-btn" style="background-color: grey;" class="button btns">Equipment Details</a>
+                                </div>
+                            </div>
+                            
+                            <div id="repair-requests" style="display: none;">
+                                <h2>Repair Requests</h2>
+                                <select name="Orders" class="form-select" id="repair-requests-list" size="5">   
+                                </select>
+                                <div class="d-flex">
+                                    <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair Request</a>
+                                    <a id="details-repair-request" class="button btns">Repair Request Details</a>
+                                </div>
+                            </div>
+                            <h2 id="no-repair-requests">Select an equipment to view repair requests.</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="../scripts/role-based-nav.js"></script>
+    <script src="../scripts/customer-details.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
+    <script>
+        //passing data to the repairs page
+        document.getElementById("create-repair-request").addEventListener("click", function (e) {
+            e.preventDefault();
+            const customerName = document.getElementById("customer-name").textContent;
+            const equipmentList = document.getElementById("equipment-list");
+
+            const chosenEquipmentId = equipmentList.options[equipmentList.selectedIndex].textContent;
+
+            const createRepairRequestURL = `../pages/repair-request-create.html?customerName=${encodeURIComponent(customerName)}&chosenEquipment=${encodeURIComponent(chosenEquipmentId)}`;
+            
+            console.log(customerName);
+            console.log(chosenEquipmentId);
+            // Navigate to the new page with query parameters
+            window.location.href = createRepairRequestURL;
+
+
+        });
+    </script>
+
+    
+</body>
+</html>
