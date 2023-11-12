@@ -1,11 +1,11 @@
 .help-icon {
-    background: url('../images/help-button.png') no-repeat center center / contain;
+    background: url('../images/help-btn.png') no-repeat center center / contain;
     border: none;
     cursor: pointer;
     position: relative;
     width: 30px;
     height: 30px;
-    padding: 0;
+    padding: 23px;
     color: transparent;
     margin-left: 4px;
     bottom: 5px;    
