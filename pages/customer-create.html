@@ -32,7 +32,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -103,7 +103,7 @@
                         <fieldset>
                             <legend>Customer Info</legend>
         
-                            <section class="two-col m-3">
+                            <div class="two-col m-3">
                                 <div>
                                     <label for="first-name">First Name</label>
                                     <input type="text" placeholder="E.g. John" id="first-name" name="first-name" required>
@@ -132,7 +132,7 @@
                                         <label for="city">City</label>
                                         <div class="d-flex">
                                             <select name="city" id="city" required>
-                                                <option value="Select city">Select a City</option>
+                                                <option value="">Select a City</option>
                                                 <option value="Brampton">Brampton</option>
                                                 <option value="Fonthill">Fonthill</option>
                                                 <option value="Hamilton">Hamilton</option>
@@ -157,7 +157,7 @@
                                         <label for="province">Province</label>
                                         <div class="d-flex">
                                             <select name="province" id="province" required>
-                                                <option value="Select province">Select a Province</option>
+                                                <option value="">Select a Province</option>
                                                 <option value="Alberta">Alberta</option>
                                                 <option value="British Columbia">British Columbia</option>
                                                 <option value="Manitoba">Manitoba</option>
@@ -186,7 +186,7 @@
                                             <option value="" selected>Canada</option>
                                         </select>
                                     </div>
-                            </section>
+                                </div>
                         </fieldset>
                         <div class="d-flex justify-content-end"> 
                             <a href="../index.html" class="button btn-cancel me-4" id="cancelButton">
