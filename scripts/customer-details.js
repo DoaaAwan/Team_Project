@@ -23,15 +23,15 @@ if (customerId.length > 0) {
     //retrieves customer and displays details
     let customer = customerDatabase.find(c => c.id == customerId);
 
-    $("#customer-name").html(`${customer.firstName} ${customer.lastName}`);
+    $("#customer-name").html(`<b>${customer.firstName} ${customer.lastName}</b>`);
     $("#customer-name-equip").html(`${customer.firstName}'s Equipment`);
 
-    $("#customer-email").html(`E-mail: <b>${customer.email}</b>`);
-    $("#customer-phone").html(`Phone: <b>${customer.phone}</b>`);
-    $("#customer-street").html(`Street: <b>${customer.street}</b>`);
-    $("#customer-city").html(`City: <b>${customer.city}</b>`);
-    $("#customer-province").html(`Province: <b>${customer.province}</b>`);
-    $("#customer-postal").html(`Postal Code: <b>${customer.postalCode}</b>`);
+    $("#customer-email").html(`${customer.email}`);
+    $("#customer-phone").html(`${customer.phone}`);
+    $("#customer-street").html(`${customer.street}`);
+    $("#customer-city").html(`${customer.city}`);
+    $("#customer-province").html(`${customer.province}`);
+    $("#customer-postal").html(`${customer.postalCode}`);
 
     //gives buttons a url with customer id as parameter.
     $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
