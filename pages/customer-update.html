@@ -99,7 +99,7 @@
 
             <div class="page">
                 <div class="customer-update">
-                    <form action="https://webdevbasics.net/scripts/demo.php" method="post">
+                    <form action="../pages/customer-details.html" method="get">
                         <fieldset>
                             <legend>Contact Info</legend>
         
@@ -188,15 +188,17 @@
                                     </select>
                                 </div>
 
+                                <input type="hidden" id="customer-id" name="customer-id">
+
                             </section>
                         </fieldset>
                             <div class="d-flex justify-content-end"> 
                                 <a href="../pages/customer-details.html" class="button btn-cancel me-4" id="cancelButton">
                                     Cancel
                                 </a>
-                                <button type="submit" value="Save" class="button btn-save">
+                                <a href="../index.html" value="Save" class="button btn-save">
                                     Save
-                                </button>
+                                </a>
 
                                 <button class="help-icon" aria-label="Help">
                                     <span class="tooltip-text">To update an existing customer, please edit in any of the fields in the form above.</span>
@@ -207,8 +209,13 @@
             </div>
         </section>
     </div>
+
+
+
     <script src="../scripts/customer-update.js"></script>
     <!-- <script src="../scripts/role-based-nav.js"></script> -->
     <script src="../scripts/help-tooltip.js"></script>
+
+
 </body>
 </html>
