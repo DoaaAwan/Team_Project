@@ -16,7 +16,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/form-style.css">
-    <link rel="stylesheet" href="../styles/help-button.css">
+    <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
 </head>
 <body>
     <div class="app-container">
@@ -103,7 +103,7 @@
                         <fieldset>
                             <legend>Contact Info</legend>
         
-                            <div class="two-col">
+                            <section class="two-col">
                                 <div>
                                     <label for="first-name">First Name</label>
                                     <input type="text" placeholder=" E.g. John" id="first-name" name="first-name" required>
@@ -188,8 +188,8 @@
                                     </select>
                                 </div>
 
-                                </section>
-                            </fieldset>
+                            </section>
+                        </fieldset>
                             <div class="d-flex justify-content-end"> 
                                 <a href="../pages/customer-details.html" class="button btn-cancel me-4" id="cancelButton">
                                     Cancel
@@ -201,25 +201,14 @@
                                 <button class="help-icon" aria-label="Help">
                                     <span class="tooltip-text">To update an existing customer, please edit in any of the fields in the form above.</span>
                                 </button>
-
-
                             </div>
-                        </fieldset>
-                        <div class="d-flex justify-content-end"> 
-                            <a href="../pages/customer-details.html" class="button btn-cancel me-4" id="cancelButton">
-                                Cancel
-                            </a>
-                            <button type="submit" value="Save" class="button btn-save">
-                                Save
-                            </button>
-                        </div>
                     </form>
                 </div>
             </div>
         </section>
     </div>
     <script src="../scripts/customer-update.js"></script>
-    <script src="../scripts/role-based-nav.js"></script>
+    <!-- <script src="../scripts/role-based-nav.js"></script> -->
     <script src="../scripts/help-tooltip.js"></script>
 </body>
 </html>

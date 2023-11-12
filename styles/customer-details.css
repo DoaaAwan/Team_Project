@@ -21,6 +21,50 @@
     background-color: #236477;
 }
 
+/* help button */
+
+.help-icon {
+    background: url('../images/help-btn.png') no-repeat center center / contain;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding: 23px;
+    color: transparent;
+    margin-left: 4px;
+    bottom: 5px;    
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: white;
+    color: #236477;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 70%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.help-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.help-icon:focus .tooltip-text,
+.help-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
 /* Columns */
 
 .customer-btn {
