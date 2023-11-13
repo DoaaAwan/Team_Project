@@ -33,7 +33,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -102,7 +102,7 @@
                     <form method="post" action="https://webdevbasics.net/scripts/demo.php" id="equipment-form">
                         <fieldset>
                             <legend>Equipment Description</legend>
-                            <section class="two-col">
+                            <div class="two-col">
                                 <div>
                                     <label for="equipment-name">Equipment Name</label>
                                     <input type="text" placeholder="E.g. TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
@@ -160,7 +160,8 @@
                                             Pressure Washer
                                         </option>
                                     </select>
-                                    <a href="../pages/lookup-equip.html" class="edit-lookup-icon" title="Edit Equipment-Type List" id="updateProvFromCustCreate">
+                                    <a href="../pages/lookup-equip.html" class="edit-lookup-icon" title="Edit Equipment-Type List" >
+                                        <!-- id="updateProvFromCustCreate" duplicate removed -->
                                         <ion-icon name="create-outline"></ion-icon>
                                     </a>
                                 </div>
@@ -200,6 +201,7 @@
                                     <label for="serial-number">Serial Number</label>
                                     <input type="text" placeholder="E.g. 12345678" id="serial-number" name="serial-number" required>
                                 </div>
+                            </div>
                         </fieldset>
                         <div class="d-flex justify-content-end"> 
                             <a href="javascript:history.back()" class="button btn-cancel me-4">
@@ -218,7 +220,7 @@
                         <div style="display: none;" id="cid-container">
                             <label for="cid">cid</label>
                             <select name="cid" id="cid">
-                                <option value="" selected id="cidvalue"></option>
+                                <option label="customer id" selected id="cidvalue"></option>
                             </select>
                         </div>
 

@@ -20,44 +20,44 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/repair-request-details.css">
+    <style>
+        /* Spacing between divs */
+        div {
+            margin-bottom: 20px;
+        }
+    
+        /*hide the guidline*/
+        .hide {
+            display: none;
+        }
+    
+        /*upon hover*/
+        .myDIV:hover+.hide {
+            display: inline-block;
+            color: red;
+        }
+    
+        /*for the table*/
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    
+        label {
+            font-weight: bold;
+        }
+    
+        .clicked {
+            color: white;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
-<style>
-    /* Spacing between divs */
-    div {
-        margin-bottom: 20px;
-    }
-
-    /*hide the guidline*/
-    .hide {
-        display: none;
-    }
-
-    /*upon hover*/
-    .myDIV:hover+.hide {
-        display: inline-block;
-        color: red;
-    }
-
-    /*for the table*/
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    td {
-        border: 1px solid black;
-        padding: 5px;
-    }
-
-    label {
-        font-weight: bold;
-    }
-
-    .clicked {
-        color: white;
-        cursor: not-allowed;
-    }
-</style>
 
 <body>
     <div class="app-container">
@@ -74,7 +74,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -143,6 +143,8 @@
                                 <td><label>Equipment:</label></td>
                                 <td><label>Issue Description:</label></td>
                                 <td><label>Has Warranty:</label></td>
+                                <td style="border: none"></td>
+                                <td style="border: none"></td>
                                 <!-- <td><label>Status:</label></td> -->
                             </tr>
                             <tr>
@@ -159,26 +161,28 @@
                                     <p id="a-equipment" style="display: inline;"></p>
                                 </td>
                                 <td>
-                                    <p id="a-issueDescription" name="a-issueDescription" style="display: inline;"></p>
+                                    <p id="a-issueDescription" style="display: inline;"></p>
                                     <!-- <textarea id="c-issueDescription" name="issueDescription" rows="4" required
                                          style="width: 50%; height: 100%;"
                                         aria-label="Describe the issue"></textarea></td> -->
                                 <td>
                                     <p id="a-has-warranty" style="display: inline;"></p>
                                 </td>
-                                <td style="border-color: aliceblue;" class="clicked">
+                                <td style="border: none;" class="clicked">
                                     <button id="pick" type="submit" class="primary-btn"
                                         aria-label="press enter to submit">Pick this task</button>
                                 </td>
-                                <td style="border-color: aliceblue;">
+                                <td style="border: none;">
                                     <button id="continue" type="button" class="primary-btn"
                                         aria-label="press enter to submit" style="display: none;">Continue</button>
                                 </td>
+                                <!-- Error: A table row was 8 columns wide and exceeded the column count established by thae first row (6). -->
                             </tr>
                         </table>
+                    </form>
                 </div>
-                </form>
             </div>
+        </section>
     </div>
     
     <script src="repair.js"></script>

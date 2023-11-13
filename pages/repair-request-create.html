@@ -21,31 +21,31 @@
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/repair-request-details.css">
     <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
+    <style>
+        /* Spacing between divs */
+        div {
+            margin-bottom: 20px;
+        }
+    
+        /*hide the guidline*/
+        .hide {
+            display: none;
+        }
+    
+        /*upon hover*/
+        .myDIV:hover+.hide {
+            display: inline-block;
+            color: red;
+        }
+    
+        .primary-btn {
+        padding: 6px 30px;
+        }
+        /* label{
+            font-weight: bold;
+        } */
+    </style>
 </head>
-<style>
-    /* Spacing between divs */
-    div {
-        margin-bottom: 20px;
-    }
-
-    /*hide the guidline*/
-    .hide {
-        display: none;
-    }
-
-    /*upon hover*/
-    .myDIV:hover+.hide {
-        display: inline-block;
-        color: red;
-    }
-
-    .primary-btn {
-    padding: 6px 30px;
-    }
-    /* label{
-        font-weight: bold;
-    } */
-</style>
 
 <body>
     <div class="app-container">
@@ -62,7 +62,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -125,7 +125,7 @@
                         <!-- Invoice date automated -->
                         <div>
                             <div class="myDIV">
-                                <label for="invoice-date" style="display: inline;"><b>Invoice Date:</b></label>
+                                <label style="display: inline;"><b>Invoice Date:</b></label>
                                 <p id="invoice-date" style="display: inline;"></p>
                             </div>
                             <!--div class="hide" style="position: absolute;">The date is in mm/dd/yyy format.</div-->
@@ -133,18 +133,18 @@
 
                         <!-- Invoice Number -->
                         <div>
-                            <label for="invoice-number" aria-label="Invoice Number is auto generated"><b>Invoice Number:</b>
+                            <label aria-label="Invoice Number is auto generated"><b>Invoice Number:</b>
                                 2023OCT345</label>
                         </div>
 
                         <!--Customer dropdown list-->
                         <div>
-                            <label for="bill-to"><b>Bill To:</b></label>
+                            <label><b>Bill To:</b></label>
                             <p id="bill-to" style="display: inline;"></p>
                         </div>
                         <!--Equipment dropdown list-->
                         <div>
-                            <label for="equipment"><b>Equipment:</b></label>
+                            <label><b>Equipment:</b></label>
                             <p id="equipment" style="display: inline;"></p>
                         </div>
                         <!-- Issue Description -->
@@ -156,7 +156,7 @@
                         </div>
                         <!-- Warranty -->
                         <div>
-                            <label for="has-warranty">Has Warranty:</label>
+                            <label>Has Warranty:</label>
                             <input type="checkbox" id="hasWarranty" name="hasWarranty" value="yes"
                                 aria-label="Tick the box for warranty if applicatble using the space bar">
                         </div>
@@ -176,9 +176,9 @@
             </div>
         </section>
     </div>
-
     <script src="repair.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
     <!--this script wont work in js but works fine here-->
     <script>
         // Retrieve data from URL parameters
@@ -230,13 +230,8 @@
                 element.tabIndex = index++;
             });
         }
-
         // Call the function
         DynamicIndex();
     </script>    
-
 </body>
-
-<script src="../scripts/help-tooltip.js"
-
 </html>

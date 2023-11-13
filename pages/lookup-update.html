@@ -33,7 +33,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -103,7 +103,7 @@
                     <div class="two-col-lookup">
                         <div class="add-prov">
                             <h2>Add a province</h2>
-                            <form action="" >
+                            <form>
                                 <div class="container row mt-3">
                                     <div class="d-flex p-0" id="search-form">
                                         <input
@@ -159,14 +159,14 @@
                         </div>
                         <div class="add-city">
                             <h2>Add a city</h2>
-                            <form action="" >
+                            <form>
                                 <div class="container row mt-3">
-                                    <div class="d-flex p-0" id="search-form">
+                                    <div class="d-flex p-0">
+                                        <!-- Removed: id="search-form" (Duplicate ID) -->
                                         <input
                                             type="search"
                                             placeholder="Enter a city"
                                             autocomplete="off"
-                                            autofocus
                                             id="city-input"
                                             class="search-bar"
                                             required>
