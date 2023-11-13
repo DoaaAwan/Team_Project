@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma's Small Engines</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/44b9581dbb.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../src/jquery-3.7.1.min.js"></script>
+    <script async src="../scripts/import-nav.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../styles/repair-request-details.css">
+    <style>
+    /* Spacing between divs */
+    div {
+        margin-bottom: 20px;
+    }
+
+    /*hide the guidline*/
+    .hide {
+        display: none;
+    }
+
+    /*upon hover*/
+    .myDIV:hover+.hide {
+        display: inline-block;
+        color: red;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    /*for the table*/
+    table {
+        width: 75%;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 5px;
+    }
+
+    .cloneNewDay {
+        border: 1px solid black;
+        border-radius: 1cap;
+        border-collapse: collapse;
+        padding: 5px
+    }
+   </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <nav>
+            <div class="main-nav">
+                <a href="../index.html">
+                    <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
+                </a>
+                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
+                </a>
+            </div>
+            <div>
+                <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header pb-0 ps-0 pe-0">
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="container">
+                            <div class="d-flex justify-content-center">
+                                <div class="nav-user-img">
+                                    <div><img src="../images/user-profile.png" class="" alt=""></div>
+                                </div>
+                                <div class="ms-3">
+                                    <div class="nav-user-info">
+                                        <p class="nm">Amy Johnson</p>
+                                        <p class="dpt"><small>Sales Department</small></p>
+                                        <a href="" class="primary-btn">Sign Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nav-buttons">
+                                <a href="../index.html" data-roles="all">
+                                    <div class="nav-btn bg-grp1">
+                                        <span class="nav-btn-txt">Back to Home</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="home-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../index.html" data-roles="salesRep default">
+                                    <div class="nav-btn bg-grp2" >
+                                        <span class="nav-btn-txt">Search Customer
+                                        </span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="search-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../pages/customer-create.html" data-roles="salesRep default">
+                                    <div class="nav-btn bg-grp3">
+                                        <span class="nav-btn-txt">Create Customer</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="person-add-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="page-container">
+            <header>
+                <h1>Technician Repair </h1>
+            </header>
+
+            <div class="page">
+                <div class="repair-details">
+
+                    <!-- ADD CODE HERE,updated on 20231105 -->
+                    <form id="repair-form">
+                        <!--the 'c' in ids represent that they have been imported form the create page-->
+                        <!-- Invoice Date -->
+                        <div>
+                            <div  class="myDIV">
+                                <label style="display: inline;">Invoice Date:</label>
+                                <p id="c-invoice-date" style="display: inline;"></p>
+                            </div>
+                            <!--not able to place it besides the date, not needed anyway as the date is auto-->
+                            <div class="hide" style="position: absolute;">The date is in mm/dd/yyy format.</div>
+                        </div>
+                        <!-- Invoice Number -->
+                        <div>
+                            <label style="display: inline;">Invoice Number:</label>
+                            <p id="c-invoice-number" style="display: inline;"></p>
+                        </div>
+                        <!--Customer dropdown list-->
+                        <div>
+                            <label>Bill To:</label>
+                            <p id="c-bill-to" style="display: inline;"></p>
+                        </div>
+                        <!--Equipment dropdown list-->
+                        <div>
+                            <label >Equipment:</label>
+                            <p id="c-equipment" style="display: inline;"></p>
+                        </div>
+                        <!-- Issue Description -->
+                        <div>
+                            <label >Issue Description:</label>
+                            <br>
+                            <textarea id="c-issueDescription" name="issueDescription" rows="4" required tabindex="5" aria-label="Describe the issue"></textarea>
+                        </div>
+                        <!-- Warranty -->
+                        <div>
+                            <label >Has Warranty:</label>
+                            <p id="c-has-warranty" style="display: inline;"></p>
+                        </div>
+                        
+                        <!--from here the repairing details begin, or to be used in update form-->
+                        <div>
+                            <label style="font-weight: bold;">Repair details below:</label>
+                        </div>
+                        <br>
+                        <!-- Start Time -->
+                        <div>
+                            <label for="startTime">Start Time:</label>
+                            <input type="datetime-local" id="startTime" name="startTime" required tabindex="7" aria-label="Current date and time is selected as default as Start Time">
+                        </div>
+                        <!--Parts used=chatgpt-->
+                        <div>
+                            <label>Parts Used:</label>
+                            <table id="partsUsed" class="parts-used" style="margin: 0 auto;" tabindex="8" aria-label="Pick used details">
+                                <thead>
+                                    <tr>
+                                        <th>Parts</th>
+                                        <th>Unit Cost (CAD)</th>
+                                        <th>Quantity</th>
+                                        <th>Amount (CAD)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select name="parts[]" onchange="updateAmount(this)" tabindex="9" aria-label="Select a part">
+                                                <option value='none'>None</option>
+                                                <option value="part1">Part 1</option>
+                                                <option value="part2">Part 2</option>
+                                                <option value="part3">Part 3</option>
+                                            </select>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="number" step="0.01" name="unitCost[]" min="0.01" oninput="updateAmount(this, 'amount')" tabindex="10" aria-label="Unit cost (minimum 0.01)">
+                                        </td>
+                                        <td>
+                                            <input type="number" step="1" name="quantity[]" min="1" oninput="updateAmount(this)" tabindex="11" aria-label="Quantity (minimum 0)">
+                                        </td>
+                                        <td>
+                                            <input type="number" id="amount" name="amount[]" readonly tabindex="12" aria-label="Amount (auto-calculated)">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Stop Time -->
+                        <div>
+                            <label for="stopTime">Stop Time:</label>
+                            <input type="datetime-local" id="stopTime" onchange="calculateHoursDifference(this)" name="stopTime" required tabindex="12" aria-label="Current date and time is selected as default as Stop Time">
+                        </div>
+                        <!--NOT WORKING-->
+                        <div>
+                            <label>Labour cost for hours worked:</label>
+                            <p id="hoursTaken" style="display: inline;"></p>
+                            <!--input type="text" id="hoursTaken" readonly tabindex="16" aria-label="Hours taken"-->
+                            <br>
+                            <!--label for="labourCost">Labour cost:</label>
+                            <p id="labourCost" style="display: inline;"></p-->
+                            <!--input type="text" id="labourCost" readonly tabindex="17" aria-label="Labour cost"-->
+                        </div>
+                        <!--just to see if the function is working-->
+                        <!--button class="primary-btn" id="calculate" tabindex="18" aria-label="press enter to calculate">calculate</button-->
+
+                        <!-- Repair Cost -->
+                        <div>
+                            <label>Repair Cost:</label>
+                            <p id="repairCost" style="display: inline;"></p>
+                            <!--input type="number" step="0.01" id="repairCost" name="repairCost" required placeholder="Yet to be determined" tabindex="13" aria-label="calculated repair cost"-->
+                        </div>
+                        
+                        <!-- Balance -->
+                        <div>
+                            <label>Balance:</label>
+                            <p id="balance" style="display: inline;"></p>
+                            <!--input type="number" step="0.01" id="balance" name="balance" required placeholder="Yet to be determined" tabindex="14" aria-label="Balance due"-->
+                        </div>
+                        <!-- Submit Button -->
+                        <div>
+                            <!--Should the button be doing something???-->
+                            <button type="submit" class="primary-btn" tabindex="15" aria-label="press enter to submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="repair.js"></script>
+    <script src="../scripts/role-based-nav.js"></script>
+<!--ALL THE SCRIPS BELOW AS IT DID NOT WORK IN SEPERATE JS FILE-->
+
+<script>
+    //save all the input from create page
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedDate = urlParams.get("invoice_date");
+    const selectedInvoiceNumber = urlParams.get("invoice_number");
+    const selectedIssueDescription = urlParams.get("issueDescription");
+    const selectedHasWarranty = urlParams.get("hasWarranty");
+    const selectedBillTo = urlParams.get("bill_to");
+    const selectedEquipment = urlParams.get("equipment");
+
+    // Populate elements on update with create
+    document.getElementById("c-invoice-date").textContent = selectedDate;
+    document.getElementById("c-invoice-number").textContent = selectedInvoiceNumber;
+    document.getElementById("c-bill-to").textContent = selectedBillTo;//getting value rather than text
+    document.getElementById("c-equipment").textContent = selectedEquipment;//getting value rather than text
+    document.getElementById("c-issueDescription").textContent = selectedIssueDescription;
+    document.getElementById("c-has-warranty").textContent = selectedHasWarranty;
+</script>
+
+<script>
+//calculate PARTS amount  
+function updateAmount(input, target) {
+var row = input.parentElement.parentElement;
+var part = row.querySelector('select[name="parts[]"]');
+var quantity = row.querySelector('input[name="quantity[]"]');
+var unitCost = row.querySelector('input[name="unitCost[]"]');
+var amount = row.querySelector('input[name="amount[]"]');
+
+//if parts is none than the quantity will be 0 and unit cost will also be 0
+if (part.value === "none" || quantity.value === 0 || unitCost.value === 0) {
+quantity.value = 0;
+unitCost.value = 0.00;
+amount.value = 0;
+} 
+else {
+var total = (parseFloat(quantity.value) * parseFloat(unitCost.value)).toFixed(2);
+amount.value = total;
+}
+}
+//keep PARTS amount updated
+unitCost.addEventListener('input', function () {updateAmount(this); });
+</script>
+
+<script>
+//difference in hours
+var startTimeInput = document.getElementById('startTime');
+var stopTimeInput = document.getElementById('stopTime');
+var cost ="";
+//document.getElementById("hoursTaken").textContent = "without hours";
+//const hoursTakenInput = document.getElementById('hoursTaken');
+var hoursTakenInput = document.getElementById('hoursTaken');
+
+//set the default stop time at least 1 minute ahead of start time = CHAT GPT
+startTimeInput.addEventListener('change', () => {
+    var startTime = new Date(startTimeInput.value);
+    var minStopTime = new Date(startTime);
+    minStopTime.setMinutes(startTime.getMinutes() + 1);
+
+    var year = minStopTime.getFullYear();
+    var month = String(minStopTime.getMonth() + 1).padStart(2, '0');
+    var day = String(minStopTime.getDate()).padStart(2, '0');
+    var hours = String(minStopTime.getHours()).padStart(2, '0');
+    var minutes = String(minStopTime.getMinutes()).padStart(2, '0');
+
+    var minStopTimeFormatted = `${year}-${month}-${day}T${hours}:${minutes}`;
+ stopTimeInput.setAttribute('min', minStopTimeFormatted);
+ document.getElementById("stopTime").value = minStopTimeFormatted;
+ //document.getElementById("hoursTaken").textContent = minStopTimeFormatted;
+  });
+
+//calculate the time difference in hours
+function calculateHoursDifference() {
+//        document.getElementById("hoursTaken").textContent = "this is diff top";
+
+    var startTime = new Date(startTimeInput.value);
+    var stopTime = new Date(stopTimeInput.value);
+
+    //this is to confirm that technician has not missed on adding parts
+    var confirmParts = confirm("Have you added parts used?");
+    //
+    if (stopTime>startTime && confirmParts) {
+        //alert("Have you addedd the parts")
+        var timeDiffMs = stopTime - startTime;
+        //calculate hour to the nearest quater
+        var timeDiffH = ((timeDiffMs / (1000 * 60 * 60)));
+        var perHour = 75;
+
+        //gives labour cost
+        var totalLabourCost = (timeDiffH * perHour).toFixed(2);
+        //displaying labour cost, which might not be needed for display
+        document.getElementById("hoursTaken").textContent = totalLabourCost;
+    }  
+    else {
+        //nesting for two different errors
+        if (stopTime<startTime) {
+            stopTimeInput.value=""
+            alert("Stop Time has to be after Start Time.");
+        } 
+        else {
+            stopTimeInput.value=""
+            alert("Please add the parts used and set the Stop Time again");
+        }
+    }
+    //document.getElementById("hoursTaken").textContent = amount.value;
+}
+
+// trigger for stop time when start time is selected
+startTimeInput.addEventListener("change", setDefaultStopTime);
+
+// trigger function to both the start and stop time inputs
+//startTimeInput.addEventListener("change", calculateHoursDifference);
+stopTimeInput.addEventListener("change", calculateHoursDifference);
+
+//default stop time when the page loads
+setDefaultStopTime();
+</script>
+<script>
+//calculating labour cost and parts charge to put in repair cost
+//document.getElementById("labourCost").textContent = "updateAmount(this)";
+
+function finalCost() {
+    inputLabour = parseFloat(document.getElementById("hoursTaken").textContent);
+    //inputAmount = document.getElementById("amount").textContent;
+    inputAmount = parseFloat(amount.value);
+    if (inputAmount>0) {
+        cost = (inputLabour) + (inputAmount);
+    } else {
+        cost = (inputLabour);
+    }
+//balance and repair cost are same
+    document.getElementById("repairCost").textContent = cost.toFixed(2);
+    document.getElementById("balance").textContent = cost.toFixed(2);
+    }
+
+    //trigger the function with stop time and change in amount time both, not able to do it with amount
+stopTimeInput.addEventListener('change', function () {finalCost(this); });
+//additionally if the part is added later, not needed as the confirm is added above
+// if(amount.value>0){
+//     finalCost(this);
+// }
+//amount.value.addEventListener('change', function () {finalCost(this); });
+</script>
+
+
+</body>
+</html>

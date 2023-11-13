@@ -23,18 +23,20 @@ if (customerId.length > 0) {
     //retrieves customer and displays details
     let customer = customerDatabase.find(c => c.id == customerId);
 
-    $("#customer-name").html(`${customer.firstName} ${customer.lastName}`);
+    $("#customer-name").html(`<b>${customer.firstName} ${customer.lastName}</b>`);
+    $("#customer-name").show();
     $("#customer-name-equip").html(`${customer.firstName}'s Equipment`);
+    $("#customer-name-equip").show();
 
-    $("#customer-email").html(`E-mail: <b>${customer.email}</b>`);
-    $("#customer-phone").html(`Phone: <b>${customer.phone}</b>`);
-    $("#customer-street").html(`Street: <b>${customer.street}</b>`);
-    $("#customer-city").html(`City: <b>${customer.city}</b>`);
-    $("#customer-province").html(`Province: <b>${customer.province}</b>`);
-    $("#customer-postal").html(`Postal Code: <b>${customer.postalCode}</b>`);
+    $("#customer-email").html(`${customer.email}`);
+    $("#customer-phone").html(`${customer.phone}`);
+    $("#customer-street").html(`${customer.street}`);
+    $("#customer-city").html(`${customer.city}`);
+    $("#customer-province").html(`${customer.province}`);
+    $("#customer-postal").html(`${customer.postalCode}`);
 
     //gives buttons a url with customer id as parameter.
-    $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
+    $("#add-equipment-btn").attr("href", `../pages/equipment-create.html?cid=${customerId}`);
     $("#update-customer-btn").attr("href", `../pages/customer-update.html?cid=${customerId}`);
     
 
@@ -89,6 +91,7 @@ if (customerId.length > 0) {
         //hides user feedback message and empties repair list
         $("#repair-requests-list").empty();
         $("#no-repair-requests").hide();
+        $('#details-repair-request').prop('disabled', true);
         //$("#details-repair-request").hide();
 
         //"disables" repair details button
@@ -106,16 +109,41 @@ if (customerId.length > 0) {
         let ownership = ownershipDatabase.find(o => o.customerId == customerId && o.equipmentId == selectedEquipment)
 
         $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
+        $('#details-equipment-btn').prop('disabled', false);
+
+        if(selectedEquipment != 0){
+          let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
+
+          $("#equipment-name").html(`<b>${equipment.equipmentName}</b>`);
+          $("#equipment-manufacturer").html(`<b>${equipment.manufacturer}</b>`);
+          $("#equipment-type").html(`<b>${equipment.equipmentType}</b>`);
+          $("#equipment-colour").html(`<b>${equipment.colour}</b>`);
+          $("#equipment-model").html(`<b>${equipment.modelNumber}</b>`);
+          $("#equipment-serial").html(`<b>${equipment.serialNumber}</b>`);
+  
+          $("#update-equipment-btn").attr("href", `../pages/equipment-update.html?cid=${customerId}&oid=${ownership.id}&eid=${equipment.id}`);
+        }
+        else if(selectedEquipment == 0){
+          $("#equipment-name").html(`<b>${newEquipmentName}</b>`);
+          $("#equipment-manufacturer").html(`<b>${newEquipmentManufacturer}</b>`);
+          $("#equipment-type").html(`<b>${newEquipmentType}</b>`);
+          $("#equipment-colour").html(`<b>${newEquipmentColour}</b>`);
+          $("#equipment-model").html(`<b>${newEquipmentModelNumber}</b>`);
+          $("#equipment-serial").html(`<b>${serialNumber}</b>`);
+
+          document.getElementById("update-equipment-btn").href = `../pages/equipment-update.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
+                                                        `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`;
+        }
 
         if (ownership != undefined){
-            $("#details-equipment-btn").attr("href", `../pages/equipment-details.html?oid=${ownership.id}&cid=${customerId}`)
+            //$("#details-equipment-btn").attr("href", `../pages/equipment-details.html?oid=${ownership.id}&cid=${customerId}`)
             //if record exists, gets all repair records for selected equipment
             repairRequests = repairRequestDatabase.filter(r => r.ownershipId == ownership.id);
         }else if(selectedEquipment != 0){
-            $("#details-equipment-btn").attr("href", `../pages/equipment-details.html?eid=${selectedEquipment}&cid=${customerId}&serial-number=${serialNumber}`)
+            //$("#details-equipment-btn").attr("href", `../pages/equipment-details.html?eid=${selectedEquipment}&cid=${customerId}&serial-number=${serialNumber}`)
         }else{
-            $("#details-equipment-btn").attr("href",    `../pages/equipment-details.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
-                                                        `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`)
+            //$("#details-equipment-btn").attr("href",    `../pages/equipment-details.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
+            //                                            `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`)
         }
 
         if (repairRequests.length > 0){
@@ -152,13 +180,19 @@ if (customerId.length > 0) {
         const selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
         if (selectedRepairRequest != ""){
         $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
-        $("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
-                                                                    `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
+        //$("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
+        //                                                            `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
+        $('#details-repair-request').prop('disabled', false);
         }
+
+        let repairRequest = repairRequestDatabase.find(r => r.id == selectedRepairRequest);
+
+        $("#invoice-date").html(`<b>${repairRequest.invoiceDate}</b>`);
+        $("#invoice-number").html(`<b>${repairRequest.invoiceNumber}</b>`);
+        $("#issue-description").html(`<b>${repairRequest.issueDescription}</b>`);
+        $("#valid-warranty").html(`<b>${repairRequest.hasWarranty == true ? "Yes" : "No"}</b>`);
     });
 
-    $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
-    
 } else {
     //if no customer id passed as parameter, page is blank with user message
     $(`#customer-details`).html("<h2>No customer details found.</h2>");
@@ -172,127 +206,225 @@ if (customerId.length > 0) {
 
 function getCustomerData(){
     return [
-        {
-          "id": 1,
-          "firstName": "John",
-          "lastName": "Doe",
-          "email": "johndoe@gmail.com",
-          "phone": "(905) 456-7890",
-          "street": "123 Main St.",
-          "city": "St. Catharines",
-          "province": "Ontario",
-          "postalCode": "L4K 8F9",
-          "fullName" : "John Doe"
-        },
-        {
-          "id": 2,
-          "firstName": "Jane",
-          "lastName": "Smith",
-          "email": "janesmith@gmail.com",
-          "phone": "(905) 123-4567",
-          "street": "456 Elm St.",
-          "city": "Hamilton",
-          "province": "Ontario",
-          "postalCode": "L5T 9K3",
-          "fullName" : "Jane Smith"
-        },
-        {
-          "id": 3,
-          "firstName": "Emily",
-          "lastName": "Johnson",
-          "email": "emilyj@gmail.com",
-          "phone": "(905) 789-0123",
-          "street": "789 Maple Ave.",
-          "city": "Mississauga",
-          "province": "Ontario",
-          "postalCode": "L6P 5G7",
-          "fullName" : "Emily Johnson"
-        },
-        {
-          "id": 4,
-          "firstName": "William",
-          "lastName": "Brown",
-          "email": "williambrown@gmail.com",
-          "phone": "(905) 654-3210",
-          "street": "101 Oak Dr.",
-          "city": "Toronto",
-          "province": "Ontario",
-          "postalCode": "L7R 2W4",
-          "fullName" : "William Brown"
-        },
-        {
-          "id": 5,
-          "firstName": "Olivia",
-          "lastName": "White",
-          "email": "oliviawhite@gmail.com",
-          "phone": "(905) 876-5432",
-          "street": "234 Pine St.",
-          "city": "Brampton",
-          "province": "Ontario",
-          "postalCode": "L8S 3T9",
-          "fullName" : "Olivia White"
-        },
-        {
-          "id": 6,
-          "firstName": "Michael",
-          "lastName": "Wilson",
-          "email": "michaelwilson@gmail.com",
-          "phone": "(905) 678-9056",
-          "street": "567 Birch Blvd.",
-          "city": "Waterloo",
-          "province": "Ontario",
-          "postalCode": "L9Z 2X8",
-          "fullName" : "Michael Wilson"
-        },
-        {
-          "id": 7,
-          "firstName": "Sophia",
-          "lastName": "Taylor",
-          "email": "sophiataylor@gmail.com",
-          "phone": "(905) 234-5678",
-          "street": "890 Cedar Ln.",
-          "city": "London",
-          "province": "Ontario",
-          "postalCode": "L0A 1B2",
-          "fullName" : "Sophia Taylor"
-        },
-        {
-          "id": 8,
-          "firstName": "James",
-          "lastName": "Thomas",
-          "email": "jamesthomas@gmail.com",
-          "phone": "(905) 987-6543",
-          "street": "123 Walnut St.",
-          "city": "Oshawa",
-          "province": "Ontario",
-          "postalCode": "L1T 2Y4",
-          "fullName" : "James Thomas"
-          
-        },
-        {
-          "id": 9,
-          "firstName": "Ava",
-          "lastName": "Martin",
-          "email": "avamartin@gmail.com",
-          "phone": "(905) 432-1987",
-          "street": "456 Spruce Ave.",
-          "city": "Markham",
-          "province": "Ontario",
-          "postalCode": "L2E 3F5",
-          "fullName" : "Ava Martin"
-        },
-        {
-          "id": 10,
-          "firstName": "Ethan",
-          "lastName": "Miller",
-          "email": "ethanmiller@gmail.com",
-          "phone": "(905) 321-7654",
-          "street": "789 Oak Lane",
-          "city": "Kitchener",
-          "province": "Ontario",
-          "postalCode": "L3M 6N1",
-          "fullName" : "Ethan Miller"
-        }
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "johndoe@gmail.com",
+        "phone": "(905) 456-7890",
+        "street": "123 Main St.",
+        "city": "St. Catharines",
+        "province": "Ontario",
+        "postalCode": "L4K 8F9",
+        "fullName" : "John Doe"
+      },
+      {
+        "id": 2,
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "email": "janesmith@gmail.com",
+        "phone": "(905) 123-4567",
+        "street": "456 Elm St.",
+        "city": "Hamilton",
+        "province": "Ontario",
+        "postalCode": "L5T 9K3",
+        "fullName" : "Jane Smith"
+      },
+      {
+        "id": 3,
+        "firstName": "Emily",
+        "lastName": "Johnson",
+        "email": "emilyj@gmail.com",
+        "phone": "(905) 789-0123",
+        "street": "789 Maple Ave.",
+        "city": "Mississauga",
+        "province": "Ontario",
+        "postalCode": "L6P 5G7",
+        "fullName" : "Emily Johnson"
+      },
+      {
+        "id": 4,
+        "firstName": "William",
+        "lastName": "Brown",
+        "email": "williambrown@gmail.com",
+        "phone": "(905) 654-3210",
+        "street": "101 Oak Dr.",
+        "city": "Toronto",
+        "province": "Ontario",
+        "postalCode": "L7R 2W4",
+        "fullName" : "William Brown"
+      },
+      {
+        "id": 5,
+        "firstName": "Olivia",
+        "lastName": "White",
+        "email": "oliviawhite@gmail.com",
+        "phone": "(905) 876-5432",
+        "street": "234 Pine St.",
+        "city": "Brampton",
+        "province": "Ontario",
+        "postalCode": "L8S 3T9",
+        "fullName" : "Olivia White"
+      },
+      {
+        "id": 6,
+        "firstName": "Michael",
+        "lastName": "Wilson",
+        "email": "michaelwilson@gmail.com",
+        "phone": "(905) 678-9056",
+        "street": "567 Birch Blvd.",
+        "city": "Waterloo",
+        "province": "Ontario",
+        "postalCode": "L9Z 2X8",
+        "fullName" : "Michael Wilson"
+      },
+      {
+        "id": 7,
+        "firstName": "Sophia",
+        "lastName": "Taylor",
+        "email": "sophiataylor@gmail.com",
+        "phone": "(905) 234-5678",
+        "street": "890 Cedar Ln.",
+        "city": "London",
+        "province": "Ontario",
+        "postalCode": "L0A 1B2",
+        "fullName" : "Sophia Taylor"
+      },
+      {
+        "id": 8,
+        "firstName": "James",
+        "lastName": "Thomas",
+        "email": "jamesthomas@gmail.com",
+        "phone": "(905) 987-6543",
+        "street": "123 Walnut St.",
+        "city": "Oshawa",
+        "province": "Ontario",
+        "postalCode": "L1T 2Y4",
+        "fullName" : "James Thomas"
+        
+      },
+      {
+        "id": 9,
+        "firstName": "Ava",
+        "lastName": "Martin",
+        "email": "avamartin@gmail.com",
+        "phone": "(905) 432-1987",
+        "street": "456 Spruce Ave.",
+        "city": "Markham",
+        "province": "Ontario",
+        "postalCode": "L2E 3F5",
+        "fullName" : "Ava Martin"
+      },
+      {
+        "id": 10,
+        "firstName": "Ethan",
+        "lastName": "Miller",
+        "email": "ethanmiller@gmail.com",
+        "phone": "(905) 321-7654",
+        "street": "789 Oak Lane",
+        "city": "Kitchener",
+        "province": "Ontario",
+        "postalCode": "L3M 6N1",
+        "fullName" : "Ethan Miller"
+      },
+      {
+        "id": 11,
+        "firstName": "John",
+        "lastName": "Smith",
+        "email": "jSmith@gmail.com",
+        "phone": "(905) 377-7654",
+        "street": "789 Oak Lane",
+        "city": "Waterloo",
+        "province": "Ontario",
+        "postalCode": "L3M 6N1",
+        "fullName" : "John Smith"
+      }
+      ,
+      {
+        "id": 12,
+        "firstName": "Kaylee",
+        "lastName": "Johnson",
+        "email": "johnsonKay@gmail.com",
+        "phone": "(905) 367-3345",
+        "street": "180 Russel Lane",
+        "city": "Niagara Falls",
+        "province": "Ontario",
+        "postalCode": "L5Q 6F1",
+        "fullName" : "Kaylee Johnson"
+      },
+      {
+        "id": 13,
+        "firstName": "Andrew",
+        "lastName": "Blackwell",
+        "email": "andrew20@gmail.com",
+        "phone": "(289) 663-7654",
+        "street": "10 Water Street",
+        "city": "St. Catharines",
+        "province": "Ontario",
+        "postalCode": "L2R 7H7",
+        "fullName" : "Andrew Blackwell"
+      },
+      {
+        "id": 14,
+        "firstName": "James",
+        "lastName": "Perez",
+        "email": "jPerez@gmail.com",
+        "phone": "(289) 402-3133",
+        "street": "700 Watertown Street",
+        "city": "London",
+        "province": "Ontario",
+        "postalCode": "N6B 2W6",
+        "fullName" : "James Perez"
+      },
+      {
+        "id": 15,
+        "firstName": "Xander",
+        "lastName": "Kohut",
+        "email": "xander999@gmail.com",
+        "phone": "(289) 407-2132",
+        "street": "800 Township Rd",
+        "city": "Thorold",
+        "province": "Ontario",
+        "postalCode": "L2E 4H4",
+        "fullName" : "Xander Kohut"
+      }
+      ,
+      {
+        "id": 16,
+        "firstName": "Vladimir",
+        "lastName": "Rosolov",
+        "email": "vRosolov@gmail.com",
+        "phone": "(304) 111-2222",
+        "street": "100 Main Street",
+        "city": "Toronto",
+        "province": "Ontario",
+        "postalCode": "L3M 6N1",
+        "fullName" : "Vladimir Rosolov"
+      },
+      {
+        "id": 17,
+        "firstName": "Drake",
+        "lastName": "Taylor",
+        "email": "dTaylor@gmail.com",
+        "phone": "(404) 337-3254",
+        "street": "10 Oak Lane",
+        "city": "Waterloo",
+        "province": "Ontario",
+        "postalCode": "L3M 4H4",
+        "fullName" : "Drake Taylor"
+      },
+      {
+        "id": 18,
+        "firstName": "David",
+        "lastName": "Bernard",
+        "email": "dBernard@gmail.com",
+        "phone": "(905) 668-0933",
+        "street": "10 Carlton Street",
+        "city": "St.Catharines",
+        "province": "Ontario",
+        "postalCode": "L2R 2L2",
+        "fullName" : "David Bernard"
+      }
       ];
 }
 
@@ -530,7 +662,60 @@ function getOwnershipData(){
           "customerId": 2,
           "equipmentId": 12,
           "serialNumber": "5X522H66584"
+        },
+        {
+          "id": 21,
+          "customerId": 11,
+          "equipmentId": 1,
+          "serialNumber": "5324F555584"
         }
+        ,
+        {
+          "id": 22,
+          "customerId": 12,
+          "equipmentId": 2,
+          "serialNumber": "ABSJBSBJ293"
+        },
+        {
+          "id": 23,
+          "customerId": 13,
+          "equipmentId": 3,
+          "serialNumber": "498597BDJHW"
+        },
+        {
+          "id": 24,
+          "customerId": 14,
+          "equipmentId": 4,
+          "serialNumber": "381948741ABJ"
+        },
+        {
+          "id": 25,
+          "customerId": 15,
+          "equipmentId": 5,
+          "serialNumber": "PLSIEJ448313"
+        },
+        {
+          "id": 26,
+          "customerId": 16,
+          "equipmentId": 7,
+          "serialNumber": "WOEJEI213393"
+        },
+        {
+          "id": 27,
+          "customerId": 17,
+          "equipmentId": 12,
+          "serialNumber": "5X309131KDBS"
+        }
+        ,
+        {
+          "id": 28,
+          "customerId": 18,
+          "equipmentId": 10,
+          "serialNumber": "DKNDSJBSAJ39"
+        }
+        
+        
+
       ];
 }
 

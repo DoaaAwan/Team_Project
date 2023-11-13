@@ -14,11 +14,74 @@
     opacity: 1;
 }
 
-.customer-details .btns {
+.modal-footer{
+    border-top: 2px solid #2363775a;
+    border-radius: 2px;
+}
+
+.modal-header{
+    border-bottom: 2px solid #2363775a;
+    border-radius: 2px;
+    color: white;
+    background-color: #236477;
+}
+
+.customer-details .btns{
     width: 100%;
     margin: 5px;
     color: white;
     background-color: #236477;
+}
+
+.modal-footer a{
+    background-color: #236477;
+    color: white;
+    padding: 12px 10px;
+    width: 200px;
+}
+
+/* help button */
+
+.help-icon {
+    background: url('../images/help-btn.png') no-repeat center center / contain;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding: 23px;
+    color: transparent;
+    margin-left: 4px;
+    bottom: 5px;    
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: white;
+    color: #236477;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    padding: 10px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 70%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.help-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.help-icon:focus .tooltip-text,
+.help-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Columns */
@@ -49,6 +112,11 @@
     height: 204px;
     margin: 5px 0;
     width: 100%;
+}
+
+.equipment-details, .repair-request-details {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;    
 }
 
 #no-repair-requests{

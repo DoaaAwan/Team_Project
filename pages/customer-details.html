@@ -16,10 +16,10 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/customer-details.css">
+    <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
 </head>
 <body>
     <div class="app-container">
-
         <nav>
             <div class="main-nav">
                 <a href="../index.html">
@@ -33,7 +33,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="nav-buttons">
-                                <a href="../index.html">
+                                <a href="../index.html" data-roles="all">
                                     <div class="nav-btn bg-grp1">
                                         <span class="nav-btn-txt">Back to Home</span>
                                         <span class="nav-btn-icon">
@@ -59,9 +59,8 @@
                                         </span>
                                     </div>
                                 </a>
-                                <p class="nav-btn-grp-title">customer</p>
-                                <a href="../index.html">
-                                    <div class="nav-btn bg-grp2">
+                                <a href="../index.html" data-roles="salesRep default">
+                                    <div class="nav-btn bg-grp2" >
                                         <span class="nav-btn-txt">Search Customer
                                         </span>
                                         <span class="nav-btn-icon">
@@ -69,91 +68,20 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="../pages/customer-create.html">
-                                    <div class="nav-btn bg-grp2">
+                                <a href="../pages/customer-create.html" data-roles="salesRep default">
+                                    <div class="nav-btn bg-grp3">
                                         <span class="nav-btn-txt">Create Customer</span>
                                         <span class="nav-btn-icon">
                                             <ion-icon name="person-add-outline"></ion-icon>
                                         </span>
                                     </div>
                                 </a>
-            
-                                <!--
-                                <a href="../pages/customer-details.html">
-                                    <div class="nav-btn bg-grp2">
-                                        <div class="nav-btn-txt">Customer Details</div>
-                                        <div class="nav-btn-icon">
-                                            <ion-icon name="person-outline"></ion-icon>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="../pages/customer-update.html">
-                                    <div class="nav-btn bg-grp2">
-                                        <span class="nav-btn-txt">Update Customer</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="create-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-                                -->
-            
-                                <p class="nav-btn-grp-title">equipment</p>
-                                <a href="../pages/equipment-search.html">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Search Equipment
-                                        </span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="search-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-                                <a href="../pages/equipment-create.html">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Create Equipment</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="add-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-            
-                                <!--
-                                <a href="../pages/equipment-details.html">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Equipment Details</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="cog-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-                                <a href="../pages/equipment-update.html">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Update Equipment</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="create-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a> 
-                                -->
-            
-                                <p class="nav-btn-grp-title">order</p>
-                            <a href="../pages/repair-request-create.html">
-                                <div class="nav-btn bg-grp4">
-                                    <span class="nav-btn-txt"><p>Repair Request</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="clipboard-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
-
-        <!--shared nav imported from ./shared/shared-nav.html
-        <nav id="shared-nav"></nav>-->
-
         <section class="page-container">
             <header>
                 <div class="d-flex justify-content-between">
@@ -171,7 +99,7 @@
 
             <div class="page">
                 <div class="customer-details" id="customer-details">
-                    <h2 id="customer-name"></h2>
+                    <h2 id="customer-name" style="display: none;">Customer's Name</h2>
                     <hr>
                     <div class="customer-details-grid">
                         <div class="column">
@@ -187,13 +115,15 @@
                         </div>
                         <div class="customer-lists-grid">
                             <div>
-                                <h2 id="customer-name-equip"></h2>
+                                <h2 id="customer-name-equip" style="display: none;">Customer's Equipments</h2>
                                 <select name="Orders" class="form-select" id="equipment-list" size="5">   
                                 </select>
                                 <div class="d-flex">
-                                    <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a>
-                                    <a id="details-equipment-btn" style="background-color: grey;" class="button btns">Equipment Details</a>
+                                    <!-- <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a> -->
+                                    <a href="../pages/equipment-create.html" class="button btns" id="add-equipment-btn">Add Equipment</a>
+                                    <button disabled id="details-equipment-btn" style="background-color: grey;" class="button btns" data-bs-toggle="modal" data-bs-target="#equipmentDetailsModal">Equipment Details</button>
                                 </div>
+
                             </div>
                             <div id="repair-requests" style="display: none;">
                                 <h2>Repair Requests</h2>
@@ -201,7 +131,7 @@
                                 </select>
                                 <div class="d-flex">
                                     <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair Request</a>
-                                    <a id="details-repair-request" class="button btns">Repair Request Details</a>
+                                    <button disabled id="details-repair-request" class="button btns" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Repair Request Details</button>
                                 </div>
                             </div>
                             <h2 id="no-repair-requests">Select an equipment to view repair requests.</h2>
@@ -211,6 +141,113 @@
             </div>
         </section>
     </div>
+    <div class="modal fade" id="equipmentDetailsModal" tabindex="-1" aria-labelledby="equipmentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="equipmentModalLabel">Selected Equipment Details</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="equipment-details">
+                        <div>
+                            <p>Name:</p>
+                            <hr>
+                            <p>Manufacturer:</p>
+                            <hr>
+                            <p>Equipment Type:</p>
+                            <hr>
+                            <p>Colour:</p>
+                            <hr>
+                            <p>M/N(Model Number):</p>
+                            <hr>
+                            <p>S/N(Serial Number):</p>
+                        </div>
+                        <div>
+                            <p id="equipment-name"></p>
+                            <hr>
+                            <p id="equipment-manufacturer"></p>
+                            <hr>
+                            <p id="equipment-type"></p>
+                            <hr>
+                            <p id="equipment-colour"></p>
+                            <hr>
+                            <p id="equipment-model"></p>
+                            <hr>
+                            <p id="equipment-serial"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="button" id="update-equipment-btn" href="../pages/equipment-update.html">Update Equipment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="repairRequestDetailsModal" tabindex="-1" aria-labelledby="repairRequestModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="repairRequestModalLabel">Selected Repair Request Details</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="repair-request-details">
+                        <div>
+                            <p>Invoice Date:</p>
+                            <hr>
+                            <p>Invoice Number:</p>
+                            <hr>
+                            <p>Issue Description:</p>
+                            <hr>
+                            <p>Valid Warranty?:</p>
+                        </div>
+                        <div>
+                            <p id="invoice-date"></p>
+                            <hr>
+                            <p id="invoice-number"></p>
+                            <hr>
+                            <p id="issue-description"></p>
+                            <hr>
+                            <p id="valid-warranty"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="button" id="update-repair-request-btn" href="../pages/repair-update.html">Update Repair Request</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/customer-details.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
+    <script>
+        //passing data to the repairs page
+        document.getElementById("create-repair-request").addEventListener("click", function (e) {
+            e.preventDefault();
+            const customerName = document.getElementById("customer-name").textContent;
+            const equipmentList = document.getElementById("equipment-list");
+
+            const chosenEquipmentId = equipmentList.options[equipmentList.selectedIndex].textContent;
+
+            const createRepairRequestURL = `../pages/repair-request-create.html?customerName=${encodeURIComponent(customerName)}&chosenEquipment=${encodeURIComponent(chosenEquipmentId)}`;
+            
+            console.log(customerName);
+            console.log(chosenEquipmentId);
+            // Navigate to the new page with query parameters
+            window.location.href = createRepairRequestURL;
+
+
+        });
+    </script>
+
+    
 </body>
 </html>

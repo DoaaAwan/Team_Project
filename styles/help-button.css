@@ -1,35 +1,3 @@
-.equipment-details h2 {
-    color: #000;
-    font-size: 24px;
-}
-
-.equipment-details p {
-    font-size: 22px;
-    line-height: 1.8;
-}
-
-.equipment-details hr {
-    border: 2px solid #2363775a;
-    border-radius: 2px;
-    opacity: 1;
-}
-
-.equipment-details select {
-    height: 10em;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 38em;
-}
-
-.equipment-details .btns {
-    width: 50%;
-    margin: 5px;
-    color: white;
-    background-color: #236477;
-}
-
-/* help button */
-
 .help-icon {
     background: url('../images/help-btn.png') no-repeat center center / contain;
     border: none;
@@ -42,6 +10,7 @@
     margin-left: 4px;
     bottom: 5px;    
 }
+
 
 .tooltip-text {
     visibility: hidden;
@@ -59,35 +28,18 @@
     margin-left: -100px;
     opacity: 0;
     transition: opacity 0.3s;
+
 }
 
 .help-icon:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
 }
+
+
 
 .help-icon:focus .tooltip-text,
 .help-icon:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
-}
-
-/* Columns */
-
-
-.equipment-details .column {
-    float: left;
-    width: 45%;
-    padding: 10px;
-}
-  
-.equipment-details .row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-#update-equipment-btn, #select-equipment-btn, #update-serial-btn{
-    height: auto;
-    padding: 20px 30px;
 }

@@ -87,11 +87,11 @@
             <header>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h1>Add Province / City</h1>
+                        <h1>Add Manufacturer / City</h1>
                     </div>
                     <div id="btnBack">
                         <a href="javascript:history.back()" class="button secondary-btn">
-                            Back to Customer Info
+                            Back to Equipment Info
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
                     </div>
@@ -102,13 +102,13 @@
                 <div class="lookup-update" >
                     <div class="two-col-lookup">
                         <div class="add-prov">
-                            <h2>Add a province</h2>
+                            <h2>Add a Manufacturer</h2>
                             <form>
                                 <div class="container row mt-3">
                                     <div class="d-flex p-0" id="search-form">
                                         <input
                                             type="search"
-                                            placeholder="Enter a province"
+                                            placeholder="Enter a Manufacturer"
                                             autocomplete="off"
                                             autofocus
                                             id="search-value"
@@ -117,35 +117,28 @@
                                             <div class="ps-2">
                                                 <button id="add-prov" class="button btn-search">Add</button>
                                             </div>
-
+                                            
                                             <button class="help-icon" aria-label="Help">
-                                                <span class="tooltip-text">To add a new Province to the list, please enter a name, followed by the add button. To update, please click update list and update a name below.</span>
-                                            </button>   
+                                                <span class="tooltip-text">Please add a new name of a Manufacturer to the list. Or Update by clicking the update button</span>
+                                            </button>
                                     </div>
                                 </div>
                             </form>
-                            <div class="prov-list" id="prov-list">
+                            <div class="prov-list" id="manu-list">
                                 <div class="d-flex justify-content-between list-header">
-                                    <label>List of Provinces</label>
+                                    <label>List of Manu</label>
                                     <button class="update-btn" id="update-prov"> 
                                         Update List
                                         <ion-icon name="create-outline" class="edit-icon"></ion-icon>
                                     </button>
                                 </div>
                                 <div class="prov-list-container" id="prov-list-container">
-                                    <input type="text" value="Ontario" class="prov-list-item" required disabled>
-                                    <input type="text" value="Alberta" class="prov-list-item" required disabled>
-                                    <input type="text" value="British Columbia" class="prov-list-item" required disabled>
-                                    <input type="text" value="Manitoba" class="prov-list-item" required disabled>
-                                    <input type="text" value="New Brunswick" class="prov-list-item" required disabled>
-                                    <input type="text" value="Newfoundland and Labrador" class="prov-list-item" required disabled>
-                                    <input type="text" value="Northwest Territories" class="prov-list-item" required disabled>
-                                    <input type="text" value="Nova Scotia" class="prov-list-item" required disabled>
-                                    <input type="text" value="Nunavut" class="prov-list-item" required disabled>
-                                    <input type="text" value="Ontario" class="prov-list-item" required disabled>
-                                    <input type="text" value="Prince Edward Island" class="prov-list-item" required disabled>
-                                    <input type="text" value="Quebec" class="prov-list-item" required disabled>
-                                    <input type="text" value="Saskatchewan" class="prov-list-item" required disabled>
+                                    <input type="text" value="Pro-Power Canada" class="prov-list-item" required disabled>
+                                    <input type="text" value="Troy-Bilt" class="prov-list-item" required disabled>
+                                    <input type="text" value="HedgeMaster" class="prov-list-item" required disabled>
+                                    <input type="text" value="Toro" class="prov-list-item" required disabled>
+                                    <input type="text" value="SnowMaster" class="prov-list-item" required disabled>
+                                    <input type="text" value="CraftsMan" class="prov-list-item" required disabled>
                                 </div>
                                 <div class="action-btns" id="action-btns" style="display: none;"> 
                                     <!-- <button class="button btn-cancel me-4" id="cancel-btn">
@@ -157,15 +150,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="add-city">
-                            <h2>Add a city</h2>
+                        <div class="add-equip-type">
+                            <h2>Add an Equipment Type</h2>
                             <form>
                                 <div class="container row mt-3">
-                                    <div class="d-flex p-0">
+                                    <div class="d-flex p-0" >
                                         <!-- Removed: id="search-form" (Duplicate ID) -->
                                         <input
                                             type="search"
-                                            placeholder="Enter a city"
+                                            placeholder="Enter an Equipment Type"
                                             autocomplete="off"
                                             id="city-input"
                                             class="search-bar"
@@ -175,35 +168,28 @@
                                             </div>
 
                                             <button class="help-icon" aria-label="Help">
-                                                <span class="tooltip-text">To add a new City, please enter the name and hit add. To update, please click update list and update a name below.</span>
-                                            </button>   
+                                                <span class="tooltip-text">Please add a new Equipment Type to the list by entering an equipment type and clicking Add. If you want to update the list, please click the update list button.</span>
+                                            </button>
 
                                     </div>
+
                                 </div>
                             </form>
-                            <div class="city-list" id="city-list">
+                            <div class="city-list" id="equip-list">
                                 <div class="d-flex justify-content-between list-header">
-                                    <label>List of Cities</label>
+                                    <label>List of Equipment Types</label>
                                     <button class="update-btn" id="update-city"> 
                                         Update List
                                         <ion-icon name="create-outline" class="edit-icon"></ion-icon>
                                     </button>
                                 </div>
                                 <div class="city-list-container" id="city-list-container">
-                                    <input type="text" value="Brampton" class="city-list-item" required disabled>
-                                    <input type="text" value="Fonthill" class="city-list-item" required disabled>
-                                    <input type="text" value="Hamilton" class="city-list-item" required disabled>
-                                    <input type="text" value="Kitchener" class="city-list-item" required disabled>
-                                    <input type="text" value="London" class="city-list-item" required disabled>
-                                    <input type="text" value="Markham" class="city-list-item" required disabled>
-                                    <input type="text" value="Mississauga" class="city-list-item" required disabled>
-                                    <input type="text" value="Niagara Falls" class="city-list-item" required disabled>
-                                    <input type="text" value="Oshawa" class="city-list-item" required disabled>
-                                    <input type="text" value="St. Catharines" class="city-list-item" required disabled>
-                                    <input type="text" value="Thorold" class="city-list-item" required disabled>
-                                    <input type="text" value="Toronto" class="city-list-item" required disabled>
-                                    <input type="text" value="Waterloo" class="city-list-item" required disabled>
-                                    <input type="text" value="Welland" class="city-list-item" required disabled>
+                                    <input type="text" value="Lawn Mower" class="city-list-item" required disabled>
+                                    <input type="text" value="Leaf Blower" class="city-list-item" required disabled>
+                                    <input type="text" value="Chainsaw" class="city-list-item" required disabled>
+                                    <input type="text" value="Hedge Trimmer" class="city-list-item" required disabled>
+                                    <input type="text" value="Snow Blower" class="city-list-item" required disabled>
+                                    <input type="text" value="Pressure Washer" class="city-list-item" required disabled>
                                 </div>
                                 <div class="action-btns" id="action-btns-city" style="display: none;"> 
                                     <!-- <button class="button btn-cancel me-4" id="cancel-btn">
@@ -220,7 +206,7 @@
             </div>
         </div>
     </div>
-    <script src="../scripts/lookup-update.js"></script>
+    <script src="../scripts/lookup-equip.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/help-tooltip.js"></script>
 </body>

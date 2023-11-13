@@ -16,10 +16,10 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/form-style.css">
+    <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
 </head>
 <body>
     <div class="app-container">
-
         <nav>
             <div class="main-nav">
                 <a href="../index.html">
@@ -33,7 +33,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="nav-buttons">
-                                <a href="../index.html">
+                                <a href="../index.html" data-roles="all">
                                     <div class="nav-btn bg-grp1">
                                         <span class="nav-btn-txt">Back to Home</span>
                                         <span class="nav-btn-icon">
@@ -59,9 +59,8 @@
                                         </span>
                                     </div>
                                 </a>
-                                <p class="nav-btn-grp-title">customer</p>
-                                <a href="../index.html">
-                                    <div class="nav-btn bg-grp2">
+                                <a href="../index.html" data-roles="salesRep default">
+                                    <div class="nav-btn bg-grp2" >
                                         <span class="nav-btn-txt">Search Customer
                                         </span>
                                         <span class="nav-btn-icon">
@@ -69,91 +68,20 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="../pages/customer-create.html">
-                                    <div class="nav-btn bg-grp2">
+                                <a href="../pages/customer-create.html" data-roles="salesRep default">
+                                    <div class="nav-btn bg-grp3">
                                         <span class="nav-btn-txt">Create Customer</span>
                                         <span class="nav-btn-icon">
                                             <ion-icon name="person-add-outline"></ion-icon>
                                         </span>
                                     </div>
                                 </a>
-            
-                                <!--
-                                <a href="../pages/customer-details.html">
-                                    <div class="nav-btn bg-grp2">
-                                        <div class="nav-btn-txt">Customer Details</div>
-                                        <div class="nav-btn-icon">
-                                            <ion-icon name="person-outline"></ion-icon>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="../pages/customer-update.html">
-                                    <div class="nav-btn bg-grp2">
-                                        <span class="nav-btn-txt">Update Customer</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="create-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-                                -->
-            
-                                <p class="nav-btn-grp-title">equipment</p>
-                                <a href="../pages/equipment-search.html">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Search Equipment
-                                        </span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="search-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-                                <a href="../pages/equipment-create.html">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Create Equipment</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="add-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-            
-                                <!--
-                                <a href="../pages/equipment-details.html">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Equipment Details</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="cog-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-                                <a href="../pages/equipment-update.html">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Update Equipment</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="create-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a> 
-                                -->
-            
-                                <p class="nav-btn-grp-title">order</p>
-                            <a href="../pages/repair-request-create.html">
-                                <div class="nav-btn bg-grp4">
-                                    <span class="nav-btn-txt"><p>Repair Request</p></span>
-                                    <span class="nav-btn-icon">
-                                        <ion-icon name="clipboard-outline"></ion-icon>
-                                    </span>
-                                </div>
-                            </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
-
-        <!--shared nav imported from ./shared/shared-nav.html
-        <nav id="shared-nav"></nav>-->
-
         <section class="page-container">
             <header>
                 <div class="d-flex justify-content-between">
@@ -161,8 +89,8 @@
                         <h1 id="update-equipment-heading">Update Equipment</h1>
                     </div>
                     <div>
-                        <a href="../pages/equipment-details.html" id="back-to-equipment" class="button secondary-btn">
-                            Back to Equipment
+                        <a href="../pages/customer-details.html" id="back-to-equipment" class="button secondary-btn">
+                            Back to Customer
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
                     </div>
@@ -171,17 +99,17 @@
 
             <div class="page">
                 <div class="equipment-create" id="equipment-update">
-                    <main>
                         <form id="equipment-form" action="https://webdevbasics.net/scripts/demo.php" method="post">
                             <fieldset>
                                 <legend>Equipment Description</legend>
-                                <section class="two-col">
+                                <div class="two-col">
                                     <div>
                                         <label for="equipment-name">Equipment Name</label>
-                                        <input type="text" placeholder="TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
+                                        <input type="text" placeholder="E.g. TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
                                     </div>
                                     <div>
                                         <label for="manufacturer">Manufacturer</label>
+                                        <div class="d-flex">
                                         <select name="manufacturer" id="manufacturer" required>
                                             <option value="" disabled selected>Select Manufacturer</option>
                                             <option value="Craftsman">
@@ -203,9 +131,14 @@
                                                 HedgeMaster
                                             </option>
                                         </select>
+                                        <a href="../pages/lookup-equip.html" class="edit-lookup-icon" title="Edit Manufacturer List" id="updateProvFromCustCreate">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </a>
+                                        </div>
                                     </div>
                                     <div>
                                         <label for="equipment-type">Equipment Type</label>
+                                        <div class="d-flex">
                                         <select id="equipment-type" name="equipment-type" required>
                                             <option value="" disabled selected>Select Equipment Type</option>
                                             <option value="Lawn Mower">
@@ -227,6 +160,11 @@
                                                 Pressure Washer
                                             </option>
                                         </select>
+                                        <a href="../pages/lookup-equip.html" class="edit-lookup-icon" title="Edit Equipment Type" >
+                                            <!-- Removed: id="updateProvFromCustCreate" (Duplicate ID) -->
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </a>
+                                        </div>
                                     </div>
                                     <div>
                                         <label for="colour">Colour</label>
@@ -257,18 +195,19 @@
                                     </div>
                                     <div>
                                         <label for="model-number">Model Number</label>
-                                        <input type="text" placeholder="C03S" id="model-number" name="model-number" required>
+                                        <input type="text" placeholder="E.g. C03S" id="model-number" name="model-number" required>
                                     </div>
+                                    <div>
+                                        <label for="serial-number">Serial Number</label>
+                                        <input type="text" placeholder="ex. 12345678" id="serial-number" name="serial-number" required>
+                                    </div>
+                                </div>
                             </fieldset>
-                            <fieldset id="serial-number-container" style="display: none;">
+                            <!--<fieldset id="serial-number-container" style="display: none;">
                                 <legend>Serial Number</legend>
                                 <section class="two-col">
-                                    <div>
-                                        <label for="serial-number">S/N</label>
-                                        <input type="text" placeholder="12345678" id="serial-number" name="serial-number" required>
-                                    </div>
                                 </section>
-                            </fieldset>
+                            </fieldset>-->
                             <div class="d-flex justify-content-end"> 
                                 <a href="../pages/equipment-details.html" id="cancel-to-details" class="button btn-cancel me-4">
                                     Cancel
@@ -276,26 +215,32 @@
                                 <button type="submit" value="Save" class="button btn-save">
                                     Save
                                 </button>
+
+                                <button class="help-icon" aria-label="Help">
+                                    <span class="tooltip-text">To edit equipment, please change the equipment details above.</span>
+                                  </button>
+
                             </div>
                             <!-- Stores customer id in form. -->
                             <div style="display: none;" id="cid-container">
                                 <label for="cid">cid</label>
                                 <select name="cid" id="cid">
-                                    <option value="" selected id="cidvalue"></option>
+                                    <option label="customer id" selected id="cidvalue"></option>
                                 </select>
                             </div>
                             <div style="display: none;" id="eid-container">
                                 <label for="eid">cid</label>
                                 <select name="eid" id="eid">
-                                    <option value="" selected id="eidvalue"></option>
+                                    <option label="equipment id" selected id="eidvalue"></option>
                                 </select>
                             </div>
                         </form>
-                    <main>
                 </div>
             </div>
         </section>
     </div>
     <script src="../scripts/equipment-update.js"></script>
+    <script src="../scripts/role-based-nav.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
 </body>
 </html>
