@@ -38,9 +38,13 @@
         display: inline-block;
         color: red;
     }
-    label{
-        font-weight: bold;
+
+    .primary-btn {
+    padding: 6px 30px;
     }
+    /* label{
+        font-weight: bold;
+    } */
 </style>
 
 <body>
@@ -121,7 +125,7 @@
                         <!-- Invoice date automated -->
                         <div>
                             <div class="myDIV">
-                                <label for="invoice-date" style="display: inline;">Invoice Date:</label>
+                                <label for="invoice-date" style="display: inline;"><b>Invoice Date:</b></label>
                                 <p id="invoice-date" style="display: inline;"></p>
                             </div>
                             <!--div class="hide" style="position: absolute;">The date is in mm/dd/yyy format.</div-->
@@ -129,23 +133,23 @@
 
                         <!-- Invoice Number -->
                         <div>
-                            <label for="invoice-number" aria-label="Invoice Number is auto generated">Invoice Number:
+                            <label for="invoice-number" aria-label="Invoice Number is auto generated"><b>Invoice Number:</b>
                                 2023OCT345</label>
                         </div>
 
                         <!--Customer dropdown list-->
                         <div>
-                            <label for="bill-to">Bill To:</label>
+                            <label for="bill-to"><b>Bill To:</b></label>
                             <p id="bill-to" style="display: inline;"></p>
                         </div>
                         <!--Equipment dropdown list-->
                         <div>
-                            <label for="equipment">Equipment:</label>
+                            <label for="equipment"><b>Equipment:</b></label>
                             <p id="equipment" style="display: inline;"></p>
                         </div>
                         <!-- Issue Description -->
                         <div>
-                            <label for="issueDescription">Issue Description:</label>
+                            <label for="issueDescription"><b>Issue Description:</b></label>
                             <br>
                             <textarea id="issueDescription" name="issueDescription" rows="4" required
                                 style="width: 800px; height: 100px;" aria-label="Describe the issue"></textarea>
@@ -163,7 +167,7 @@
                                 aria-label="press enter to submit">Submit</button>
 
                                 <button class="help-icon" aria-label="Help">
-                                    <span class="tooltip-text">Please fill out the form to the best of your ability inside of the description. If a customer has a warranty, click the checkbox and when you're finished hit submit to move onto the next page.</span>
+                                    <span class="tooltip-text">Please fill out the issue description. If a customer has a warranty, click the checkbox.</span>
                                   </button>
                             
                         </div>
