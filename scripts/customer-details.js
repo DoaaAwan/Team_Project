@@ -107,6 +107,17 @@ if (customerId.length > 0) {
 
         $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
 
+        let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
+
+        $("#equipment-name").html(`<b>${equipment.equipmentName}</b>`);
+        $("#equipment-manufacturer").html(`<b>${equipment.manufacturer}</b>`);
+        $("#equipment-type").html(`<b>${equipment.equipmentType}</b>`);
+        $("#equipment-colour").html(`<b>${equipment.colour}</b>`);
+        $("#equipment-model").html(`<b>${equipment.modelNumber}</b>`);
+        $("#equipment-serial").html(`<b>${equipment.serialNumber}</b>`);
+
+        $("#update-equipment-btn").attr("href", `../pages/equipment-update.html?cid=${customerId}&oid=${ownership.id}&eid=${equipment.id}`);
+
         if (ownership != undefined){
             $("#details-equipment-btn").attr("href", `../pages/equipment-details.html?oid=${ownership.id}&cid=${customerId}`)
             //if record exists, gets all repair records for selected equipment
