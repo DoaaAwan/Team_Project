@@ -33,7 +33,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -89,8 +89,8 @@
                         <h1 id="update-equipment-heading">Update Equipment</h1>
                     </div>
                     <div>
-                        <a href="../pages/equipment-details.html" id="back-to-equipment" class="button secondary-btn">
-                            Back to Equipment
+                        <a href="../pages/customer-details.html" id="back-to-equipment" class="button secondary-btn">
+                            Back to Customer
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
                     </div>
@@ -99,11 +99,10 @@
 
             <div class="page">
                 <div class="equipment-create" id="equipment-update">
-                    <main>
                         <form id="equipment-form" action="https://webdevbasics.net/scripts/demo.php" method="post">
                             <fieldset>
                                 <legend>Equipment Description</legend>
-                                <section class="two-col">
+                                <div class="two-col">
                                     <div>
                                         <label for="equipment-name">Equipment Name</label>
                                         <input type="text" placeholder="E.g. TurfTamer Supreme" id="equipment-name" name="equipment-name" required>
@@ -161,7 +160,8 @@
                                                 Pressure Washer
                                             </option>
                                         </select>
-                                        <a href="../pages/lookup-equip.html" class="edit-lookup-icon" title="Edit Equipment Type" id="updateProvFromCustCreate">
+                                        <a href="../pages/lookup-equip.html" class="edit-lookup-icon" title="Edit Equipment Type" >
+                                            <!-- Removed: id="updateProvFromCustCreate" (Duplicate ID) -->
                                             <ion-icon name="create-outline"></ion-icon>
                                         </a>
                                         </div>
@@ -197,26 +197,35 @@
                                         <label for="model-number">Model Number</label>
                                         <input type="text" placeholder="E.g. C03S" id="model-number" name="model-number" required>
                                     </div>
-                            </fieldset>
-                            <fieldset id="serial-number-container" style="display: none;">
-                                <legend>Serial Number</legend>
-                                <section class="two-col">
+
+                                </div>
+                            <div id="serial-number-container" style="display: none;">
+                                <div class="two-col">
+
                                     <div>
                                         <label for="serial-number">S/N</label>
                                         <input type="text" placeholder="ex. 12345678" id="serial-number" name="serial-number" required>
                                     </div>
-                                </section>
+
+                                </div>
+                            </div>
+
                             </fieldset>
+                            <!--<fieldset id="serial-number-container" style="display: none;">
+                                <legend>Serial Number</legend>
+                                <section class="two-col">
+                                </section>
+                            </fieldset>-->
                             <div class="d-flex justify-content-end"> 
                                 <a href="../pages/equipment-details.html" id="cancel-to-details" class="button btn-cancel me-4">
                                     Cancel
                                 </a>
-                                <a href="../index.html" value="Save" class="button btn-save">
+                                <a href="../index.html" class="button btn-save">
                                     Save
                                 </a>
 
                                 <button class="help-icon" aria-label="Help">
-                                    <span class="tooltip-text">To edit equipment, please change the serial number above.</span>
+                                    <span class="tooltip-text">To edit equipment, please change the equipment details above.</span>
                                   </button>
 
                             </div>
@@ -224,17 +233,16 @@
                             <div style="display: none;" id="cid-container">
                                 <label for="cid">cid</label>
                                 <select name="cid" id="cid">
-                                    <option value="" selected id="cidvalue"></option>
+                                    <option label="customer id" selected id="cidvalue"></option>
                                 </select>
                             </div>
                             <div style="display: none;" id="eid-container">
                                 <label for="eid">cid</label>
                                 <select name="eid" id="eid">
-                                    <option value="" selected id="eidvalue"></option>
+                                    <option label="equipment id" selected id="eidvalue"></option>
                                 </select>
                             </div>
                         </form>
-                    <main>
                 </div>
             </div>
         </section>

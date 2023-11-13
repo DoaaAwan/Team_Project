@@ -16,8 +16,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/repair-request-details.css">
-</head>
-<style>
+    <style>
     /* Spacing between divs */
     div {
         margin-bottom: 20px;
@@ -55,6 +54,7 @@
         padding: 5px
     }
    </style>
+</head>
 
 <body>
     <div class="app-container">
@@ -71,7 +71,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -135,7 +135,7 @@
                         <!-- Invoice Date -->
                         <div>
                             <div  class="myDIV">
-                                <label for="c-invoice-date" style="display: inline;">Invoice Date:</label>
+                                <label style="display: inline;">Invoice Date:</label>
                                 <p id="c-invoice-date" style="display: inline;"></p>
                             </div>
                             <!--not able to place it besides the date, not needed anyway as the date is auto-->
@@ -143,28 +143,28 @@
                         </div>
                         <!-- Invoice Number -->
                         <div>
-                            <label for="invoice-number" style="display: inline;">Invoice Number:</label>
+                            <label style="display: inline;">Invoice Number:</label>
                             <p id="c-invoice-number" style="display: inline;"></p>
                         </div>
                         <!--Customer dropdown list-->
                         <div>
-                            <label for="bill-to">Bill To:</label>
+                            <label>Bill To:</label>
                             <p id="c-bill-to" style="display: inline;"></p>
                         </div>
                         <!--Equipment dropdown list-->
                         <div>
-                            <label for="equipment">Equipment:</label>
+                            <label >Equipment:</label>
                             <p id="c-equipment" style="display: inline;"></p>
                         </div>
                         <!-- Issue Description -->
                         <div>
-                            <label for="issueDescription">Issue Description:</label>
+                            <label >Issue Description:</label>
                             <br>
                             <textarea id="c-issueDescription" name="issueDescription" rows="4" required tabindex="5" aria-label="Describe the issue"></textarea>
                         </div>
                         <!-- Warranty -->
                         <div>
-                            <label for="has-warranty">Has Warranty:</label>
+                            <label >Has Warranty:</label>
                             <p id="c-has-warranty" style="display: inline;"></p>
                         </div>
                         
@@ -176,11 +176,11 @@
                         <!-- Start Time -->
                         <div>
                             <label for="startTime">Start Time:</label>
-                            <input type="datetime-local" id="startTime" name="startTime" required placeholder="Not yet started" tabindex="7" aria-label="Current date and time is selected as default as Start Time">
+                            <input type="datetime-local" id="startTime" name="startTime" required tabindex="7" aria-label="Current date and time is selected as default as Start Time">
                         </div>
                         <!--Parts used=chatgpt-->
                         <div>
-                            <label for="partsUsed">Parts Used:</label>
+                            <label>Parts Used:</label>
                             <table id="partsUsed" class="parts-used" style="margin: 0 auto;" tabindex="8" aria-label="Pick used details">
                                 <thead>
                                     <tr>
@@ -218,11 +218,11 @@
                         <!-- Stop Time -->
                         <div>
                             <label for="stopTime">Stop Time:</label>
-                            <input type="datetime-local" id="stopTime" onchange="calculateHoursDifference(this)" tabindex="15" name="stopTime" required placeholder="Not applicable" tabindex="12" aria-label="Current date and time is selected as default as Stop Time">
+                            <input type="datetime-local" id="stopTime" onchange="calculateHoursDifference(this)" name="stopTime" required tabindex="12" aria-label="Current date and time is selected as default as Stop Time">
                         </div>
                         <!--NOT WORKING-->
                         <div>
-                            <label for="hoursTaken">Labour cost for hours worked:</label>
+                            <label>Labour cost for hours worked:</label>
                             <p id="hoursTaken" style="display: inline;"></p>
                             <!--input type="text" id="hoursTaken" readonly tabindex="16" aria-label="Hours taken"-->
                             <br>
@@ -235,14 +235,14 @@
 
                         <!-- Repair Cost -->
                         <div>
-                            <label for="repairCost">Repair Cost:</label>
+                            <label>Repair Cost:</label>
                             <p id="repairCost" style="display: inline;"></p>
                             <!--input type="number" step="0.01" id="repairCost" name="repairCost" required placeholder="Yet to be determined" tabindex="13" aria-label="calculated repair cost"-->
                         </div>
                         
                         <!-- Balance -->
                         <div>
-                            <label for="balance">Balance:</label>
+                            <label>Balance:</label>
                             <p id="balance" style="display: inline;"></p>
                             <!--input type="number" step="0.01" id="balance" name="balance" required placeholder="Yet to be determined" tabindex="14" aria-label="Balance due"-->
                         </div>
@@ -254,13 +254,6 @@
                     </form>
                 </div>
             </div>
-        </section>
-    </div>
-
-
-                </div>
-            </div>
-
         </section>
     </div>
     <script src="repair.js"></script>

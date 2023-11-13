@@ -14,11 +14,30 @@
     opacity: 1;
 }
 
-.customer-details .btns {
+.modal-footer{
+    border-top: 2px solid #2363775a;
+    border-radius: 2px;
+}
+
+.modal-header{
+    border-bottom: 2px solid #2363775a;
+    border-radius: 2px;
+    color: white;
+    background-color: #236477;
+}
+
+.customer-details .btns{
     width: 100%;
     margin: 5px;
     color: white;
     background-color: #236477;
+}
+
+.modal-footer a{
+    background-color: #236477;
+    color: white;
+    padding: 12px 10px;
+    width: 200px;
 }
 
 /* help button */
@@ -93,6 +112,11 @@
     height: 204px;
     margin: 5px 0;
     width: 100%;
+}
+
+.equipment-details {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;    
 }
 
 #no-repair-requests{

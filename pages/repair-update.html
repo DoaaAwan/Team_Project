@@ -21,94 +21,45 @@
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/repair-request-details.css">
     <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
+    <style>
+         /* Spacing between divs */
+         div {
+            margin-bottom: 20px;
+        }
+    
+        /*hide the guidline*/
+        .hide {
+            display: none;
+        }
+    
+        /*upon hover*/
+        .myDIV:hover+.hide {
+            display: inline-block;
+            color: red;
+        }
+    
+        label {
+            font-weight: bold;
+        }
+    
+        /*for the table*/
+        table {
+            width: 75%;
+            border-collapse: collapse;
+        }
+    
+        td {
+            padding: 5px;
+        }
+    
+        .cloneNewDay {
+            border: 1px solid black;
+            border-radius: 1cap;
+            border-collapse: collapse;
+            padding: 5px
+        }
+    </style>
 </head>
-<style>
-     /* Spacing between divs */
-     div {
-        margin-bottom: 20px;
-    }
-
-    /*hide the guidline*/
-    .hide {
-        display: none;
-    }
-
-    /*upon hover*/
-    .myDIV:hover+.hide {
-        display: inline-block;
-        color: red;
-    }
-
-    label {
-        font-weight: bold;
-    }
-
-    /*for the table*/
-    table {
-        width: 30%;
-        border-collapse: collapse;
-    }
-
-    td {
-        padding: 5px;
-    }
-
-    .cloneNewDay {
-        border: 1px solid #236477;
-        border-radius: 1cap;
-        border-collapse: collapse;
-        padding: 15px
-    }
-
-    /* help button */
-
-.help-icon {
-    background: url('../images/help-btn.png') no-repeat center center / contain;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    width: 30px;
-    height: 30px;
-    padding: 12px;
-    color: transparent;
-    left: 8px;
-    bottom: 5px;    
-}
-
-.tooltip-text {
-    visibility: hidden;
-    width: 200px;
-    background-color: white;
-    color: #236477;
-    text-align: center;
-    border: 1px solid lightgray;
-    border-radius: 6px;
-    padding: 10px 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 70%;
-    margin-left: -100px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.help-icon:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-
-.help-icon:focus .tooltip-text,
-.help-icon:hover .tooltip-text {
-    visibility: visible;
-    opacity: 1;
-}
-
-.primary-btns {
-    padding: 10px 25px;
-}
-</style>
-
 <body>
     <div class="app-container">
         <nav>
@@ -124,7 +75,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -233,7 +184,6 @@
                                 <label>Start Time:</label>
                                 
                                 <input type="datetime-local" id="startTime" name="startTime" required
-                                    placeholder="Not yet started"
                                     aria-label="Current date and time is selected as default as Start Time">
                                 <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
                                     <span class="tooltip-text">To select a Start Time, either type the date as shown in the format, or select a date and time from the list when the calander icon is clicked.</span>
@@ -246,7 +196,6 @@
                                     <label>Parts Used:</label>
                                     <table id="partsUsed" class="parts-used" style="margin: 0 auto;"
                                         aria-label="Pick used details">
-                                        <tb>
                                             <tr>
                                                 <th>Parts</th>
                                                 <th>Unit Cost (CAD)</th>
@@ -255,8 +204,6 @@
                                                 <!--not needed-->
                                                 <!-- <th>Dated</th> -->
                                             </tr>
-                                        </tb>
-                                        <tb>
                                             <tr>
                                                 <td>
                                                     <select name="parts[]"
@@ -286,7 +233,6 @@
                                                     <p id="invoice-date" style="display: inline;" oninput="part"></p>
                                                 </td> -->
                                             </tr>
-                                        </tb>
                                     </table>
                                     <button type="button" class="primary-btn" style="background-color:brown;"
                                         id="addNewRow" aria-label="press enter to submit">Add New Row</button>
@@ -299,7 +245,7 @@
                             <div>
                                 <label>Stop Time:</label>
                                 <input type="datetime-local" id="stopTime" onchange="calculateHoursDifference(this)"
-                                    name="stopTime" required placeholder="Not applicable"
+                                    name="stopTime" required
                                     aria-label="Current date and time is selected as default as Stop Time">
                                 <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
                                     <span class="tooltip-text">To select an End Time, either type the date as shown in the format, or select a date and time from the list when the calander icon is clicked.</span>
