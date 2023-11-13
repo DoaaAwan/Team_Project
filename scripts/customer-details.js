@@ -24,7 +24,9 @@ if (customerId.length > 0) {
     let customer = customerDatabase.find(c => c.id == customerId);
 
     $("#customer-name").html(`<b>${customer.firstName} ${customer.lastName}</b>`);
+    $("#customer-name").show();
     $("#customer-name-equip").html(`${customer.firstName}'s Equipment`);
+    $("#customer-name-equip").show();
 
     $("#customer-email").html(`${customer.email}`);
     $("#customer-phone").html(`${customer.phone}`);
