@@ -115,13 +115,13 @@
                         </div>
                         <div class="customer-lists-grid">
                             <div>
-                                <div id="customer-name-equip"></div>
+                                <div id="customer-name-equip" style="margin-top: 8px;"></div>
                                 <select name="Orders" class="form-select" id="equipment-list" size="5">   
                                 </select>
                                 <div class="d-flex">
                                     <!-- <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a> -->
                                     <a href="../pages/equipment-create.html" class="button btns">Add Equipment</a>
-                                    <button id="details-equipment-btn" style="background-color: grey;" class="button btns" data-bs-toggle="modal" data-bs-target="#customerDetailsModal">Equipment Details</button>
+                                    <button id="details-equipment-btn" style="background-color: grey;" class="button btns" data-bs-toggle="modal" data-bs-target="#equipmentDetailsModal">Equipment Details</button>
                                 </div>
 
                             </div>
@@ -131,7 +131,7 @@
                                 </select>
                                 <div class="d-flex">
                                     <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair Request</a>
-                                    <a id="details-repair-request" class="button btns">Repair Request Details</a>
+                                    <button id="details-repair-request" class="button btns" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Repair Request Details</button>
                                 </div>
                             </div>
                             <h2 id="no-repair-requests">Select an equipment to view repair requests.</h2>
@@ -141,50 +141,90 @@
             </div>
         </section>
     </div>
-    <div class="modal fade" id="customerDetailsModal" tabindex="-1" aria-labelledby="equipmentModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title fs-5" id="equipmentModalLabel">Selected Equipment Details</h2>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="equipment-details">
-            <div>
-                <p>Name:</p>
-                <hr>
-                <p>Manufacturer:</p>
-                <hr>
-                <p>Equipment Type:</p>
-                <hr>
-                <p>Colour:</p>
-                <hr>
-                <p>M/N(Model Number):</p>
-                <hr>
-                <p>S/N(Serial Number):</p>
-            </div>
-            <div>
-                <p id="equipment-name"></p>
-                <hr>
-                <p id="equipment-manufacturer"></p>
-                <hr>
-                <p id="equipment-type"></p>
-                <hr>
-                <p id="equipment-colour"></p>
-                <hr>
-                <p id="equipment-model"></p>
-                <hr>
-                <p id="equipment-serial"></p>
+    <div class="modal fade" id="equipmentDetailsModal" tabindex="-1" aria-labelledby="equipmentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="equipmentModalLabel">Selected Equipment Details</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="equipment-details">
+                        <div>
+                            <p>Name:</p>
+                            <hr>
+                            <p>Manufacturer:</p>
+                            <hr>
+                            <p>Equipment Type:</p>
+                            <hr>
+                            <p>Colour:</p>
+                            <hr>
+                            <p>M/N(Model Number):</p>
+                            <hr>
+                            <p>S/N(Serial Number):</p>
+                        </div>
+                        <div>
+                            <p id="equipment-name"></p>
+                            <hr>
+                            <p id="equipment-manufacturer"></p>
+                            <hr>
+                            <p id="equipment-type"></p>
+                            <hr>
+                            <p id="equipment-colour"></p>
+                            <hr>
+                            <p id="equipment-model"></p>
+                            <hr>
+                            <p id="equipment-serial"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a type="button" class="button" id="update-equipment-btn" href="../pages/equipment-update.html">Update Equipment</a>
+                </div>
             </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a type="button" class="button" id="update-equipment-btn">Update Equipment</a>
-      </div>
     </div>
-  </div>
-</div>
+    <div class="modal fade" id="repairRequestDetailsModal" tabindex="-1" aria-labelledby="repairRequestModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="repairRequestModalLabel">Selected Repair Request Details</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="repair-request-details">
+                        <div>
+                            <p>Invoice Date:</p>
+                            <hr>
+                            <p>Invoice Number:</p>
+                            <hr>
+                            <p>Issue Description:</p>
+                            <hr>
+                            <p>Valid Warranty?:</p>
+                        </div>
+                        <div>
+                            <p id="invoice-date"></p>
+                            <hr>
+                            <p id="invoice-number"></p>
+                            <hr>
+                            <p id="issue-description"></p>
+                            <hr>
+                            <p id="valid-warranty"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a type="button" class="button" id="update-repair-request-btn" href="../pages/repair-update.html">Update Repair Request</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/customer-details.js"></script>
     <script src="../scripts/help-tooltip.js"></script>

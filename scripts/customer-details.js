@@ -166,6 +166,13 @@ if (customerId.length > 0) {
         $("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
                                                                     `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
         }
+
+        let repairRequest = repairRequestDatabase.find(r => r.id == selectedRepairRequest);
+
+        $("#invoice-date").html(`<b>${repairRequest.invoiceDate}</b>`);
+        $("#invoice-number").html(`<b>${repairRequest.invoiceNumber}</b>`);
+        $("#issue-description").html(`<b>${repairRequest.issueDescription}</b>`);
+        $("#valid-warranty").html(`<b>${repairRequest.hasWarranty == true ? "Yes" : "No"}</b>`);
     });
 
     $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
