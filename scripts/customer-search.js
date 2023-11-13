@@ -49,8 +49,7 @@ function handleCustomerSearch() {
   let results = [];
 
   customerDatabase.forEach(customer => { 
-    if (customer.firstName.toLowerCase().includes(custSearch) || 
-        customer.lastName.toLowerCase().includes(custSearch)) {
+    if (customer.fullName.toLowerCase().includes(custSearch)) {
 
           results.push(customer);
 
