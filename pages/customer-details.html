@@ -99,7 +99,7 @@
 
             <div class="page">
                 <div class="customer-details" id="customer-details">
-                    <div id="customer-name"></div>
+                    <h2 id="customer-name"></h2>
                     <hr>
                     <div class="customer-details-grid">
                         <div class="column">
@@ -115,13 +115,13 @@
                         </div>
                         <div class="customer-lists-grid">
                             <div>
-                                <div id="customer-name-equip" style="margin-top: 8px;"></div>
+                                <h2 id="customer-name-equip"></h2>
                                 <select name="Orders" class="form-select" id="equipment-list" size="5">   
                                 </select>
                                 <div class="d-flex">
                                     <!-- <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a> -->
-                                    <a href="../pages/equipment-create.html" class="button btns">Add Equipment</a>
-                                    <button id="details-equipment-btn" style="background-color: grey;" class="button btns" data-bs-toggle="modal" data-bs-target="#equipmentDetailsModal">Equipment Details</button>
+                                    <a href="../pages/equipment-create.html" class="button btns" id="add-equipment-btn">Add Equipment</a>
+                                    <button disabled id="details-equipment-btn" style="background-color: grey;" class="button btns" data-bs-toggle="modal" data-bs-target="#equipmentDetailsModal">Equipment Details</button>
                                 </div>
 
                             </div>
@@ -131,7 +131,7 @@
                                 </select>
                                 <div class="d-flex">
                                     <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair Request</a>
-                                    <button id="details-repair-request" class="button btns" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Repair Request Details</button>
+                                    <button disabled id="details-repair-request" class="button btns" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Repair Request Details</button>
                                 </div>
                             </div>
                             <h2 id="no-repair-requests">Select an equipment to view repair requests.</h2>

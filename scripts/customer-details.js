@@ -34,7 +34,7 @@ if (customerId.length > 0) {
     $("#customer-postal").html(`${customer.postalCode}`);
 
     //gives buttons a url with customer id as parameter.
-    $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
+    $("#add-equipment-btn").attr("href", `../pages/equipment-create.html?cid=${customerId}`);
     $("#update-customer-btn").attr("href", `../pages/customer-update.html?cid=${customerId}`);
     
 
@@ -89,6 +89,7 @@ if (customerId.length > 0) {
         //hides user feedback message and empties repair list
         $("#repair-requests-list").empty();
         $("#no-repair-requests").hide();
+        $('#details-repair-request').prop('disabled', true);
         //$("#details-repair-request").hide();
 
         //"disables" repair details button
@@ -106,27 +107,41 @@ if (customerId.length > 0) {
         let ownership = ownershipDatabase.find(o => o.customerId == customerId && o.equipmentId == selectedEquipment)
 
         $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
+        $('#details-equipment-btn').prop('disabled', false);
 
-        let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
+        if(selectedEquipment != 0){
+          let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
 
-        $("#equipment-name").html(`<b>${equipment.equipmentName}</b>`);
-        $("#equipment-manufacturer").html(`<b>${equipment.manufacturer}</b>`);
-        $("#equipment-type").html(`<b>${equipment.equipmentType}</b>`);
-        $("#equipment-colour").html(`<b>${equipment.colour}</b>`);
-        $("#equipment-model").html(`<b>${equipment.modelNumber}</b>`);
-        $("#equipment-serial").html(`<b>${equipment.serialNumber}</b>`);
+          $("#equipment-name").html(`<b>${equipment.equipmentName}</b>`);
+          $("#equipment-manufacturer").html(`<b>${equipment.manufacturer}</b>`);
+          $("#equipment-type").html(`<b>${equipment.equipmentType}</b>`);
+          $("#equipment-colour").html(`<b>${equipment.colour}</b>`);
+          $("#equipment-model").html(`<b>${equipment.modelNumber}</b>`);
+          $("#equipment-serial").html(`<b>${equipment.serialNumber}</b>`);
+  
+          $("#update-equipment-btn").attr("href", `../pages/equipment-update.html?cid=${customerId}&oid=${ownership.id}&eid=${equipment.id}`);
+        }
+        else if(selectedEquipment == 0){
+          $("#equipment-name").html(`<b>${newEquipmentName}</b>`);
+          $("#equipment-manufacturer").html(`<b>${newEquipmentManufacturer}</b>`);
+          $("#equipment-type").html(`<b>${newEquipmentType}</b>`);
+          $("#equipment-colour").html(`<b>${newEquipmentColour}</b>`);
+          $("#equipment-model").html(`<b>${newEquipmentModelNumber}</b>`);
+          $("#equipment-serial").html(`<b>${serialNumber}</b>`);
 
-        $("#update-equipment-btn").attr("href", `../pages/equipment-update.html?cid=${customerId}&oid=${ownership.id}&eid=${equipment.id}`);
+          document.getElementById("update-equipment-btn").href = `../pages/equipment-update.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
+                                                        `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`;
+        }
 
         if (ownership != undefined){
-            $("#details-equipment-btn").attr("href", `../pages/equipment-details.html?oid=${ownership.id}&cid=${customerId}`)
+            //$("#details-equipment-btn").attr("href", `../pages/equipment-details.html?oid=${ownership.id}&cid=${customerId}`)
             //if record exists, gets all repair records for selected equipment
             repairRequests = repairRequestDatabase.filter(r => r.ownershipId == ownership.id);
         }else if(selectedEquipment != 0){
-            $("#details-equipment-btn").attr("href", `../pages/equipment-details.html?eid=${selectedEquipment}&cid=${customerId}&serial-number=${serialNumber}`)
+            //$("#details-equipment-btn").attr("href", `../pages/equipment-details.html?eid=${selectedEquipment}&cid=${customerId}&serial-number=${serialNumber}`)
         }else{
-            $("#details-equipment-btn").attr("href",    `../pages/equipment-details.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
-                                                        `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`)
+            //$("#details-equipment-btn").attr("href",    `../pages/equipment-details.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
+            //                                            `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`)
         }
 
         if (repairRequests.length > 0){
@@ -163,8 +178,9 @@ if (customerId.length > 0) {
         const selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
         if (selectedRepairRequest != ""){
         $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
-        $("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
-                                                                    `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
+        //$("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
+        //                                                            `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
+        $('#details-repair-request').prop('disabled', false);
         }
 
         let repairRequest = repairRequestDatabase.find(r => r.id == selectedRepairRequest);
@@ -175,8 +191,6 @@ if (customerId.length > 0) {
         $("#valid-warranty").html(`<b>${repairRequest.hasWarranty == true ? "Yes" : "No"}</b>`);
     });
 
-    $("#add-equipment-btn").attr("href", `../pages/equipment-search.html?cid=${customerId}`);
-    
 } else {
     //if no customer id passed as parameter, page is blank with user message
     $(`#customer-details`).html("<h2>No customer details found.</h2>");
