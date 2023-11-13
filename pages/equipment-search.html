@@ -32,7 +32,7 @@
                 <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header pb-0 ps-0 pe-0">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -108,7 +108,8 @@
                             <div class="p-0">
                                 <div class="d-flex" id="search-form">
                                     <div style="width:100%">
-                                        <label for="search-equipment">Search by Equipment Details(model name, type, manufacturer, serial or model number):</label>
+                                        <label >Search by Equipment Details(model name, type, manufacturer, serial or model number):</label>
+                                        <!-- Removed: for="search-equipment" - The value of the for attribute of the label element must be the ID of a non-hidden form control. -->
                                         <input
                                             type="text"
                                             placeholder="Search by model name, type, manufacturer, serial or model number"
@@ -116,18 +117,17 @@
                                             autofocus
                                             name="search-equipment"
                                             id="search-value"
-                                            class="search-bar"
-                                        />
+                                            class="search-bar">
                                         <div class="collapse show" id="customer-collapse">
-                                            <label for="equipment-search">Search by Customer's Name:</label>
+                                            <label >Search by Customer's Name:</label>
+                                            <!-- Removed: for="equipment-search" -->
                                             <input
                                                 type="text"
                                                 placeholder="Search by customer's name"
                                                 autocomplete="off"
                                                 name="search-customer"
                                                 id="search-customer"
-                                                class="search-bar"
-                                            />
+                                                class="search-bar">
                                         </div>
                                     </div>
                                     <div class="ps-2 flex-search-button">
