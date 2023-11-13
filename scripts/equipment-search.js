@@ -96,15 +96,12 @@ class EquipmentSearchPage {
         return (customersFilter.includes(o.customerId)) && (equipmentFilter.includes(o.equipmentId))
       });
 
-    }
-    else{
+    }else{
       results = this.equipmentDatabase.filter(equipment => {
         return (equipment.equipmentName.toLowerCase().includes(searchQuery) ||
                 equipment.equipmentType.toLowerCase().includes(searchQuery) ||
                 equipment.manufacturer.toLowerCase().includes(searchQuery) ||
-                equipment.modelNumber.toLowerCase().includes(searchQuery) ||
-                equipment.customerName.toLowerCase().includes(searchQuery) ||
-                equipment.serialNumber.toLowerCase().includes(searchQuery)) &&
+                equipment.modelNumber.toLowerCase().includes(searchQuery)) &&
                 this.equipmentsOwned.every(e => e != equipment.id);
       });
     }
