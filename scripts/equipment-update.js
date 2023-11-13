@@ -92,22 +92,22 @@ if ((equipmentId.length > 0 && ownershipId.length == 0 && customerId.length == 0
     document.getElementById("serial-number").value = serialNumber;
     $("#serial-number").focus()
 
-    document.getElementById("back-to-equipment").href = `../pages/equipment-details.html?equipment-name=${equipmentName}&manufacturer=${equipmentManufacturer}&equipment-type=${equipmentType}` + 
+    document.getElementById("back-to-equipment").href = `../pages/customer-details.html?equipment-name=${equipmentName}&manufacturer=${equipmentManufacturer}&equipment-type=${equipmentType}` + 
                                                         `&colour=${equipmentColour}&model-number=${equipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`;
-    document.getElementById("cancel-to-details").href = `../pages/equipment-details.html?equipment-name=${equipmentName}&manufacturer=${equipmentManufacturer}&equipment-type=${equipmentType}` + 
+    document.getElementById("cancel-to-details").href = `../pages/customer-details.html?equipment-name=${equipmentName}&manufacturer=${equipmentManufacturer}&equipment-type=${equipmentType}` + 
                                                         `&colour=${equipmentColour}&model-number=${equipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`;
-    $("#update-equipment-heading").html("Update Equipment Serial Number");
+    //$("#update-equipment-heading").html("Update Equipment Serial Number");
 
     document.getElementById("equipment-name").value = equipmentName;
-    $("#equipment-name").prop("disabled", true);
+    //$("#equipment-name").prop("disabled", false);
     document.getElementById("manufacturer").value = equipmentManufacturer;
-    $("#manufacturer").prop("disabled", true);
+    //$("#manufacturer").prop("disabled", false);
     document.getElementById("equipment-type").value = equipmentType;
-    $("#equipment-type").prop("disabled", true);
+    //$("#equipment-type").prop("disabled", false);
     document.getElementById("colour").value = equipmentColour;
-    $("#colour").prop("disabled", true);
+    //$("#colour").prop("disabled", false);
     document.getElementById("model-number").value = equipmentModelNumber;
-    $("#model-number").prop("disabled", true);
+    //$("#model-number").prop("disabled", false);
 
     document.getElementById("equipment-form").method = "get";
     document.getElementById("equipment-form").action = `../pages/customer-details.html`;
