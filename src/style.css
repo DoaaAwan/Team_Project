@@ -293,21 +293,21 @@ h3 {
     text-align: center;
 }
 
-/* .button:hover{
+.button:hover{
     background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
 .button:active{
     background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
-} */
+}
 
-.button:hover {
+/* .button:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), 0 0);
 }
 
 .button:active {
     background-image: linear-gradient(rgba(0, 0, 0, 0.15), 0 0);
-}
+} */
 
 .btn-cancel{
     background: rgb(146, 34, 34);
@@ -384,21 +384,21 @@ h3 {
     background: #57AD71;
 }
 
-/* .nav-btn:hover{
+.nav-btn:hover{
     background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
 .nav-btn:active{
     background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
-} */
+}
 
-.nav-btn:hover {
+/* .nav-btn:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), 0 0);
 }
 
 .nav-btn:active {
     background-image: linear-gradient(rgba(0, 0, 0, 0.15), 0 0);
-}
+} */
 
 
 /*** Revert to Default ***/
