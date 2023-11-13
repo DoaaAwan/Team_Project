@@ -219,8 +219,8 @@
                         <div>
                             <label>Issue Description:</label>
                             <br>
-                            <p id="c-issueDescription" name="issueDescription" rows="4" required
-                                style="width: 800px;" aria-label="Describe the issue"></p>
+                            <p id="c-issueDescription" name="issueDescription" rows="4" required style="width: 800px;"
+                                aria-label="Describe the issue"></p>
                         </div>
                         <!-- Warranty -->
                         <div>
@@ -238,10 +238,6 @@
 
                                 <input type="datetime-local" id="startTime" name="startTime" required
                                     aria-label="Current date and time is selected as default as Start Time">
-                                <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
-                                    <span class="tooltip-text">To select a start time, click the calendar icon or type
-                                        in a date and time.</span>
-                                </button>
 
                             </div>
                             <!-- Parts used -->
@@ -314,38 +310,43 @@
                         <br>
                         <br>
                         <!-- Balance -->
-                        <div>
+                        <!-- <div>
                             <label>Balance:</label>
                             <p id="balance" style="display: inline;"></p>
 
-                        </div>
+                        </div> -->
 
                         <!-- Save -->
-                        <div>
-                            <!--Should save and take back to the assign page-->
-                            <!-- <button id="save" type="button" class="primary-btn"  
+                        <!-- <div> -->
+                        <!--Should save and take back to the assign page-->
+                        <!-- <button id="save" type="button" class="primary-btn"  
                                 aria-label="press enter to submit">Save and go back to assign</button> -->
 
-                            <!-- Submit Button -->
+                        <!-- Submit Button -->
 
-                            <!--Should transfer the data to the next page-->
-                            <!-- <button id="invoice" type="submit" class="primary-btn" 
+                        <!--Should transfer the data to the next page-->
+                        <!-- <button id="invoice" type="submit" class="primary-btn" 
                                 aria-label="press enter to submit">Submit Invoice</button> -->
-                        </div>
+                        <!-- </div> -->
 
                         <div>
-                            <button id="calculateBalanceBtn" type="button" class="repair-update-btn"
-                                aria-label="press enter to submit">Calculate Balance</button>
+                            <!-- <button id="calculateBalanceBtn" type="button" class="repair-update-btn"
+                                aria-label="press enter to submit">Calculate Balance</button> -->
 
                             <button id="save" type="button" class="repair-update-btn"
                                 aria-label="press enter to submit">Save</button>
 
+                            <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                <span class="tooltip-text">If this repair is incomplete,
+                                    click the save button and come back later.</span>
+                            </button>
+
                             <button id="invoice" type="submit" class="repair-update-btn"
-                                aria-label="press enter to submit">Submit Invoice</button>
+                                aria-label="press enter to submit">Complete Repair</button>
 
                             <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
-                                <span class="tooltip-text">Once you are finished inputting the repair,
-                                    click one of these three buttons.</span>
+                                <span class="tooltip-text">If this repair is complete,
+                                    click the complete repair button.</span>
                             </button>
                         </div>
                         <!--                             <div>
