@@ -114,13 +114,17 @@
     width: 100%;
 }
 
-.equipment-details {
+.equipment-details, .repair-request-details {
     display: grid;
     grid-template-columns: 1fr 1.8fr;    
 }
 
 #no-repair-requests{
     margin-top: 100px;
+}
+
+#customer-name-equip{
+    margin-top: 9px;
 }
 
 /*.customer-details .column {
