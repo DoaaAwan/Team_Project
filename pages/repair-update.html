@@ -45,7 +45,7 @@
 
     /*for the table*/
     table {
-        width: 75%;
+        width: 30%;
         border-collapse: collapse;
     }
 
@@ -54,11 +54,59 @@
     }
 
     .cloneNewDay {
-        border: 1px solid black;
+        border: 1px solid #236477;
         border-radius: 1cap;
         border-collapse: collapse;
-        padding: 5px
+        padding: 15px
     }
+
+    /* help button */
+
+.help-icon {
+    background: url('../images/help-btn.png') no-repeat center center / contain;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding: 12px;
+    color: transparent;
+    left: 8px;
+    bottom: 5px;    
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: white;
+    color: #236477;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    padding: 10px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 70%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.help-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.help-icon:focus .tooltip-text,
+.help-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.primary-btns {
+    padding: 10px 25px;
+}
 </style>
 
 <body>
@@ -128,7 +176,7 @@
 
         <section class="page-container">
             <header>
-                <h1>Technician Repair </h1>
+                <h1>Technician Repair Form</h1>
             </header>
 
             <div class="page">
