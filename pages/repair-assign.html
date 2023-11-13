@@ -25,36 +25,47 @@
         div {
             margin-bottom: 20px;
         }
-    
+
         /*hide the guidline*/
         .hide {
             display: none;
         }
-    
+
         /*upon hover*/
         .myDIV:hover+.hide {
             display: inline-block;
             color: red;
         }
-    
+
         /*for the table*/
         table {
             width: 100%;
             border-collapse: collapse;
         }
-    
+
         td {
             border: 1px solid black;
             padding: 5px;
         }
-    
+
         label {
             font-weight: bold;
         }
-    
+
         .clicked {
             color: white;
             cursor: not-allowed;
+        }
+
+        .assign-btn {
+            background: #236477;
+            border: 1px solid none;
+            border-radius: 30px;
+            color: white;
+            padding: 8px 10px;
+            text-align: center;
+            text-decoration: none;
+            margin-left: -40px;
         }
     </style>
 </head>
@@ -101,7 +112,7 @@
                                     </div>
                                 </a>
                                 <a href="../index.html" data-roles="salesRep default">
-                                    <div class="nav-btn bg-grp2" >
+                                    <div class="nav-btn bg-grp2">
                                         <span class="nav-btn-txt">Search Customer
                                         </span>
                                         <span class="nav-btn-icon">
@@ -173,8 +184,9 @@
                                         aria-label="press enter to submit">Pick this task</button>
                                 </td>
                                 <td style="border: none;">
-                                    <button id="continue" type="button" class="primary-btn"
-                                        aria-label="press enter to submit" style="display: none;">Continue Repair</button>
+                                    <button id="continue" type="button" class="assign-btn"
+                                        aria-label="press enter to submit" style="display: none;">Continue
+                                        Repair</button>
                                 </td>
                                 <!-- Error: A table row was 8 columns wide and exceeded the column count established by thae first row (6). -->
                             </tr>
@@ -184,7 +196,7 @@
             </div>
         </section>
     </div>
-    
+
     <script src="repair.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
     <!--this script wont work in js but works fine here-->
@@ -264,10 +276,10 @@
             pickButton.disabled = true;
             pickButton.style.cursor = "not-allowed";
             pickButton.innerHTML = "Assigned";
-            pickButton.style.backgroundColor= 'grey';
+            pickButton.style.backgroundColor = 'grey';
 
             var continueButton = document.getElementById("continue");
-            continueButton.style.display='inline-block';
+            continueButton.style.display = 'inline-block';
         }
     </script>
     <script>

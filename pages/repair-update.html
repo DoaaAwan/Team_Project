@@ -22,41 +22,95 @@
     <link rel="stylesheet" href="../styles/repair-request-details.css">
     <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
     <style>
-         /* Spacing between divs */
-         div {
+        /* Spacing between divs */
+        div {
             margin-bottom: 20px;
         }
-    
+
         /*hide the guidline*/
         .hide {
             display: none;
         }
-    
+
         /*upon hover*/
         .myDIV:hover+.hide {
             display: inline-block;
             color: red;
         }
-    
+
         label {
             font-weight: bold;
         }
-    
+
         /*for the table*/
         table {
             width: 75%;
             border-collapse: collapse;
         }
-    
+
         td {
             padding: 5px;
         }
-    
+
         .cloneNewDay {
             border: 1px solid #236477;
             border-radius: 1cap;
             border-collapse: collapse;
             padding: 15px
+        }
+
+        .repair-update-btn {
+            background: #236477;
+            border: 1px solid none;
+            border-radius: 30px;
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .help-icon {
+            background: url('../images/help-btn.png') no-repeat center center / contain;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            padding: 15px;
+            color: transparent;
+            margin-left: 4px;
+            bottom: 5px;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: white;
+            color: #236477;
+            text-align: center;
+            border: 1px solid lightgray;
+            border-radius: 6px;
+            padding: 10px 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 70%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+
+        }
+
+        .help-icon:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .help-icon:focus .tooltip-text,
+        .help-icon:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
@@ -103,7 +157,7 @@
                                     </div>
                                 </a>
                                 <a href="../index.html" data-roles="salesRep default">
-                                    <div class="nav-btn bg-grp2" >
+                                    <div class="nav-btn bg-grp2">
                                         <span class="nav-btn-txt">Search Customer
                                         </span>
                                         <span class="nav-btn-icon">
@@ -175,21 +229,20 @@
                         </div>
 
                         <!--from here the repairing details begin, or to be used in update form-->
-                        <div>
-                            <label style="font-weight: bold;">Repair details below:</label>
-                        </div>
+                        <h2>Repair Details</h2>
                         <br>
                         <div class="cloneNewDay" id="cloneNewDay">
                             <!-- Start Time -->
                             <div>
                                 <label>Start Time:</label>
-                                
+
                                 <input type="datetime-local" id="startTime" name="startTime" required
                                     aria-label="Current date and time is selected as default as Start Time">
                                 <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
-                                    <span class="tooltip-text">To select a Start Time, either type the date as shown in the format, or select a date and time from the list when the calander icon is clicked.</span>
-                                </button>   
-                                    
+                                    <span class="tooltip-text">To select a start time, click the calendar icon or type
+                                        in a date and time.</span>
+                                </button>
+
                             </div>
                             <!-- Parts used -->
                             <div class="cloneParts">
@@ -197,48 +250,49 @@
                                     <label>Parts Used:</label>
                                     <table id="partsUsed" class="parts-used" style="margin: 0 auto;"
                                         aria-label="Pick used details">
-                                            <tr>
-                                                <th>Parts</th>
-                                                <th>Unit Cost (CAD)</th>
-                                                <th>Quantity</th>
-                                                <th>Amount (CAD)</th>
-                                                <!--not needed-->
-                                                <!-- <th>Dated</th> -->
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <select name="parts[]"
-                                                        onchange="updateAmount(this); onChangePart(this);"
-                                                        aria-label="Select a part">
-                                                        <option value="none">None</option>
-                                                        <option value="part1">Part 1</option>
-                                                        <option value="part2">Part 2</option>
-                                                        <option value="part3">Part 3</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input type="number" step="0.01" name="unitCost[]" min="0.01"
-                                                        oninput="updateAmount(this, 'amount')"
-                                                        aria-label="Unit cost (minimum 0.01)">
-                                                </td>
-                                                <td>
-                                                    <input type="number" step="1" name="quantity[]" min="1"
-                                                        oninput="updateAmount(this)" aria-label="Quantity (minimum 0)">
-                                                </td>
-                                                <td>
-                                                    <input type="number" id="amount" name="amount[]" readonly
-                                                        aria-label="Amount (auto-calculated)">
-                                                </td>
-                                                <!--not needed-->
-                                                <!-- <td>
+                                        <tr>
+                                            <th>Parts</th>
+                                            <th>Unit Cost (CAD)</th>
+                                            <th>Quantity</th>
+                                            <th>Amount (CAD)</th>
+                                            <!--not needed-->
+                                            <!-- <th>Dated</th> -->
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select name="parts[]"
+                                                    onchange="updateAmount(this); onChangePart(this);"
+                                                    aria-label="Select a part">
+                                                    <option value="none">None</option>
+                                                    <option value="part1">Part 1</option>
+                                                    <option value="part2">Part 2</option>
+                                                    <option value="part3">Part 3</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="number" step="0.01" name="unitCost[]" min="0.01"
+                                                    oninput="updateAmount(this, 'amount')"
+                                                    aria-label="Unit cost (minimum 0.01)">
+                                            </td>
+                                            <td>
+                                                <input type="number" step="1" name="quantity[]" min="1"
+                                                    oninput="updateAmount(this)" aria-label="Quantity (minimum 0)">
+                                            </td>
+                                            <td>
+                                                <input type="number" id="amount" name="amount[]" readonly
+                                                    aria-label="Amount (auto-calculated)">
+                                            </td>
+                                            <!--not needed-->
+                                            <!-- <td>
                                                     <p id="invoice-date" style="display: inline;" oninput="part"></p>
                                                 </td> -->
-                                            </tr>
+                                        </tr>
                                     </table>
-                                    <button type="button" class="primary-btn" style="background-color:brown;"
+                                    <button type="button" class="repair-update-btn" style="background-color:#3D8974;"
                                         id="addNewRow" aria-label="press enter to submit">Add New Row</button>
                                     <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
-                                            <span class="tooltip-text">To add a new row to the parts list, click the Add New Row button</span>
+                                        <span class="tooltip-text">To add a new row, click the add new
+                                            row button</span>
                                     </button>
                                 </div>
                             </div>
@@ -249,18 +303,19 @@
                                     name="stopTime" required
                                     aria-label="Current date and time is selected as default as Stop Time">
                                 <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
-                                    <span class="tooltip-text">To select an End Time, either type the date as shown in the format, or select a date and time from the list when the calander icon is clicked.</span>
+                                    <span class="tooltip-text">To select an end time, click the calendar icon or type in
+                                        a date and time.</span>
                                 </button>
                             </div>
                         </div>
                         <!--Add a new day-->
-                        <button type="button" class="primary-btn" style="background-color:black; padding:5px"
-                            id="addNewDay" aria-label="press enter to submit">Add New Session</button>
+                        <button type="button" class="repair-update-btn" style="background-color:#4A9B73;" id="addNewDay"
+                            aria-label="press enter to submit">Add New Session</button>
                         <br>
                         <br>
                         <!-- Balance -->
                         <div>
-                            <label>BALANCE:</label>
+                            <label>Balance:</label>
                             <p id="balance" style="display: inline;"></p>
 
                         </div>
@@ -270,40 +325,33 @@
                             <!--Should save and take back to the assign page-->
                             <!-- <button id="save" type="button" class="primary-btn"  
                                 aria-label="press enter to submit">Save and go back to assign</button> -->
-                        
-                        <!-- Submit Button -->
-                        
+
+                            <!-- Submit Button -->
+
                             <!--Should transfer the data to the next page-->
                             <!-- <button id="invoice" type="submit" class="primary-btn" 
                                 aria-label="press enter to submit">Submit Invoice</button> -->
                         </div>
-                        <table>
-                            <tr>
-                                <td class="button-container">
-                                    <button id="calculateBalanceBtn" type="button" class="primary-btn"
-                                        aria-label="press enter to submit">Calculate Balance</button>
 
-                                </td>
-                                <td class="button-container">
-                                    <button id="save" type="button" class="primary-btn"
-                                        aria-label="press enter to submit">Save and go back to assign</button>
-                                </td>
-
-                                <td class="button-container">
-                                    <button id="invoice" type="submit" class="primary-btn"
-                                        aria-label="press enter to submit">Submit Invoice</button>
-                                </td>
-
-                                <td><button class="help-icon" aria-label="Help" style="margin-left: -2px;">
-                                    <span class="tooltip-text">Once you are finished with inputting data, please click one of the three options beside.</span>
-                                </button>
-                                </td>
-                            </tr>
-                        </table>
                         <div>
-                            <!-- <label>Balance:</label>
-                            <p id="balance" style="display: inline;"></p> -->
+                            <button id="calculateBalanceBtn" type="button" class="repair-update-btn"
+                                aria-label="press enter to submit">Calculate Balance</button>
+
+                            <button id="save" type="button" class="repair-update-btn"
+                                aria-label="press enter to submit">Save</button>
+
+                            <button id="invoice" type="submit" class="repair-update-btn"
+                                aria-label="press enter to submit">Submit Invoice</button>
+
+                            <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                <span class="tooltip-text">Once you are finished inputting the repair,
+                                    click one of these three buttons.</span>
+                            </button>
                         </div>
+                        <!--                             <div>
+                                 <label>Balance:</label>
+                            <p id="balance" style="display: inline;"></p>
+                            </div> -->
                     </form>
                 </div>
             </div>
@@ -542,6 +590,6 @@
     <script src="../scripts/help-tooltip.js"></script>
 
 </body>
-    
+
 
 </html>
