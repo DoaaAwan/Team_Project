@@ -15,7 +15,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/repair-request-details.css">
+    <link rel="stylesheet" href="../styles/equipment-search.css">
 </head>
 <body>
     <div class="app-container">
@@ -45,7 +45,7 @@
                                     <div class="nav-user-info">
                                         <p class="nm">Amy Johnson</p>
                                         <p class="dpt"><small>Sales Department</small></p>
-                                        <a href="../pages/login.html" class="primary-btn">Sign Out</a>
+                                        <a href="" class="primary-btn">Sign Out</a>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="../index.html" data-roles="salesRep default technician">
+                                <a href="../index.html" data-roles="salesRep default">
                                     <div class="nav-btn bg-grp2" >
                                         <span class="nav-btn-txt">Search Customer
                                         </span>
@@ -75,6 +75,9 @@
                                         </span>
                                     </div>
                                 </a>
+
+                                
+
                             </div>
                         </div>
                     </div>
@@ -85,49 +88,66 @@
             <header>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h1>Repair Request Details</h1>
-                    </div>
-                    <div>
-                        <a href="../pages/customer-details.html" id="back-to-customer" class="button secondary-btn">
-                            Back to Customer
-                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
-                        </a>
+                        <h1>Login</h1>
                     </div>
                 </div>
             </header>
 
             <div class="page">
-                <div class="repair-request-details" id="repair-request-details">
-                    <div id="repair-request-info"></div>
-                    <hr>
-                    <div class="repair-request-grid">
-                        <div class="column">
-                            <p id="repair-customer"></p>
-                            <p id="repair-date"></p>
-                            <p id="repair-number"></p>
-                            <p id="repair-issue"></p>
-                            <p id="repair-warranty"></p>
-                            <p id="repair-balance"></p>
-                            <div class="update-repair-request-btn">
-                                <a href="../pages/repair-update.html" class="button btns">Update Repair Request</a>
-                            </div>
-                        </div>
-                        <div id="repair-requests" style="display: none;">
-                            <h2>Repair Requests</h2>
-                            <select name="Orders" id="repair-requests-list" size="5">   
-                            </select>
-                            <div class="d-flex">
-                                <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair</a>
-                                <a href="../pages/repair-request-details.html" style="display: none;" id="details-repair-request" class="button btns">Repair Details</a>
+                <div class="equipment-search">
+                    <h2 id="search-heading">Enter your Login Information Below</h2>
+                    <div class="container">
+                        <div class="row mt-3">
+                            <div class="p-0">
+                                <form class="d-flex" id="login-form">
+                                    <input id="email-value" type="text" placeholder="Enter account Email" autofocus class=""<!--I wasn't sure what css class to use, so if you can help here that would be amazing-->
+                                    <input class="" id="password-value" type="password" placeholder="Enter account Password" autofocus class=""<!--I wasn't sure what css class to use, so if you can help here that would be amazing -->
+                                    <button type="submit" class="button ">Login</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
     </div>
-    <script src="../scripts/repair-request-details.js"></script>
+    <script src="../scripts/role-based-nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const loginForm = document.getElementById('login-form'); // Replace 'login-form' with the actual ID of your form
+
+        loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting (we'll handle it with JavaScript)
+
+        const email = document.getElementById('email-value').value;
+        const password = document.getElementById('password-value').value;
+
+        // Check the simulated database for the user's credentials
+        const user = simulatedDatabase.find(user => user.email === email && user.password === password);
+
+        if (user) {
+            localStorage.setItem('selectedRole', user.role);
+            window.location.href='../index.html'
+        } else {
+            // User not found or incorrect credentials, display an error message
+            alert('Invalid email or password. Please try again.');
+        }
+        });
+        });
+
+        const simulatedDatabase = [
+            { 
+                email: 'Sales@gmail.com', 
+                password: 'password1', 
+                role: 'salesRep' 
+            },
+            { 
+                email: 'Technician@gmail.com', 
+                password: 'password2', 
+                role: 'technician' 
+            },
+        ];
+    </script>
     <script src="../scripts/role-based-nav.js"></script>
 </body>
 </html>
