@@ -149,7 +149,7 @@ nav .nav-btn-grp-title{
 
 nav .nav-btn{
     display: grid;
-    grid-template-columns: 2fr 0.8fr;
+    grid-template-columns: 2fr 0.7fr;
     /* display: inline-flex; */
     width: 90%;
     height: 50px;
