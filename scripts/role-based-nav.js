@@ -1,42 +1,55 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const selectedRole = localStorage.getItem('selectedRole') || 'default';
 
-    //updates nav item based on role
-    function updateNavItemsBasedOnRole() {
-        const selectedRole = localStorage.getItem('selectedRole') || 'default'; // Default assignment of the select list
 
-        //loops through the nav bar btns and gets their attributes to use in the conditional statement 
-        const navItems = document.querySelectorAll('.nav-btn');
-        navItems.forEach((item) => {
+    function updateVisibilityBasedOnRole(element, rolesData) {
+        const allowedRoles = rolesData.split(' ');
+        if (!allowedRoles.includes(selectedRole) && !allowedRoles.includes('all')) {
+            element.style.display = 'none';
+            if (element.tagName === 'A') { 
+                element.removeAttribute('href');
+            }
+        } else {
+            element.style.display = ''; // 
+        }
+    }
 
-            const rolesData = item.parentElement.getAttribute('data-roles');
-            
-            if (rolesData) {
-                const allowedRoles = rolesData.split(' ');
+    function removeElementForRole(elementId, role) {
+        if (selectedRole === role) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.parentNode.removeChild(element);
+            }
+        }
+    }
 
-                if (!allowedRoles.includes(selectedRole) && !allowedRoles.includes('all')) {
-                    item.parentElement.style.display = 'none';//hides btns
-                } else {
-                    item.parentElement.style.display = 'flex';//shows btns 
-                }
+    const navItems = document.querySelectorAll('.nav-btn');
+    navItems.forEach((item) => {
+        const rolesData = item.parentElement.getAttribute('data-roles');
+        if (rolesData) {
+            updateVisibilityBasedOnRole(item.parentElement, rolesData);
+        }
+    });
+
+    const linkItems = document.querySelectorAll('[data-roles]');
+    linkItems.forEach((link) => {
+        const rolesData = link.getAttribute('data-roles');
+        if (rolesData) {
+            updateVisibilityBasedOnRole(link, rolesData);
+        }
+    });
+
+    const signOutButton = document.getElementById('sign-out-btn');
+    if (signOutButton) {
+        signOutButton.addEventListener('click', function(event) {
+            const confirmed = confirm('Are you sure you want to sign out?');
+            if (!confirmed) {
+                event.preventDefault(); 
             }
         });
-
-        const roleSelect = document.getElementById('userRoleList');
-        if (roleSelect) {
-            roleSelect.value = selectedRole;
-        }//parses roleselect list for the selected value
     }
 
-    function changeRole(event) {
-        localStorage.setItem('selectedRole', event.target.value);
-        // Update the navigation items
-        updateNavItemsBasedOnRole();
-    }
 
-    const roleSelect = document.getElementById('userRoleList');
-    if (roleSelect) {
-        roleSelect.addEventListener('change', changeRole);
-    }
+    removeElementForRole('update-customer-btn', 'technician');
 
-    updateNavItemsBasedOnRole();//calls function initally on page load
 });
