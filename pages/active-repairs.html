@@ -14,6 +14,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../styles/repairs-tables.css">
     <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
 </head>
 <body>
@@ -107,12 +108,67 @@
                             Back
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
+                        <!-- <a href="" class="button secondary-btn ms-3">
+                            Continue Repairs
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a> -->
                     </div>
                 </div>
             </header>
             <div class="page">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Order Date</th>
+                            <th>Location</th>
+                            <th>Equipment</th>
+                            <th>Issue</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerTableBody">
+                        <!-- <tr>
+                            <td>Andrew Blackwell</td>
+                            <td>2023-11-28</td>
+                            <td>Welland</td>
+                            <td>Chainsaw</td>
+                            <td>Chainsaw</td>
+                            <td>
+                                <a href="" class="repair-btn ">Start Repair <ion-icon name="build-outline"></ion-icon></a>
+                            </td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Emily Johnson</td>
+                            <td>2023-11-28</td>
+                            <td>Mississauga, ON</td>
+                            <td>ChainSaw Master</td>
+                            <td>Chain needs tightening</td>
+                            <td><a href="" class="repair-btn continue">Continue Repair</a></td>
+                        </tr>
+                        <tr>
+                            <td>Ethan Miller</td>
+                            <td>2023-11-28</td>
+                            <td>Welland</td>
+                            <td>Chainsaw</td>
+                            <td>Chainsaw</td>
+                            <td><a href="" class="repair-btn ">Start Repair <ion-icon name="build-outline"></ion-icon></a></td>
+                        </tr>
+                        <tr>
+                            <td>James Perez</td>
+                            <td>2023-11-28</td>
+                            <td>Welland</td>
+                            <td>Chainsaw</td>
+                            <td>Chainsaw</td>
+                            <td><a href="" class="repair-btn ">Start Repair <ion-icon name="build-outline"></ion-icon></a></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+
             </div>
         </section>
     </div>
+    <!-- <a href="" class="start-repair-btn ">Customer <ion-icon name="person-outline"></ion-icon></a> -->
+    <script src="../scripts/repair-tables.js"></script>
 </body>
 </html>
