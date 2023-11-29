@@ -22,7 +22,7 @@
     <div class="app-container">
         <nav>
             <div class="main-nav">
-                <a href="../index.html">
+                <a class="homeLink" href="../index.html">
                     <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
                 </a>
             </div>
@@ -59,7 +59,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             function handleLogin(role) {
                 localStorage.setItem('selectedRole', role);
-                window.location.href = '../index.html'; // Redirect to the homepage or dashboard
+
+                if(role == 'technician') {
+                    window.location.href = '../pages/active-repairs.html'
+                }
+                else {
+                    window.location.href = '../index.html'; // Redirect to the homepage or dashboard 
+                }
             }
 
             document.getElementById('login-admin').addEventListener('click', function() {

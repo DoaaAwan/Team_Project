@@ -136,19 +136,19 @@
                     <div class="offcanvas-body">
                         <div class="container">
                             <div class="d-flex justify-content-center">
-                                <div class="nav-user-img">
-                                    <div><img src="../images/user-profile.png" class="" alt=""></div>
+                                <div class="nav-user-img" >
+                                    <div><img src="../images/user-profile.png" id="navUserImg" class="" alt=""></div>
                                 </div>
                                 <div class="ms-3">
                                     <div class="nav-user-info">
-                                        <p class="nm">Amy Johnson</p>
-                                        <p class="dpt"><small>Sales Department</small></p>
-                                        <a href="../pages/login.html" class="primary-btn">Sign Out</a>
+                                        <p class="nm" id="navUserName">Amy Johnson</p>
+                                        <p class="dpt" id="navUserRole"><small>Sales Department</small></p>
+                                        <a href="../pages/login.html" class="primary-btn" id="sign-out-btn">Sign Out</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="nav-buttons">
-                                <a href="../index.html" data-roles="all">
+                                <a href="../index.html" data-roles="all" id="backToHome">
                                     <div class="nav-btn bg-grp1">
                                         <span class="nav-btn-txt">Back to Home</span>
                                         <span class="nav-btn-icon">
@@ -615,7 +615,21 @@
     </script>
 
     <script src="../scripts/help-tooltip.js"></script>
-
+    <script src="../scripts/update-nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const backToHomeLink = document.getElementById('backToHome');
+        if (backToHomeLink) {
+            backToHomeLink.addEventListener('click', function(event) {
+            const selectedRole = localStorage.getItem('selectedRole') || 'default';
+                if (selectedRole === 'technician') {
+                    event.preventDefault();
+                    window.location.href = '../pages/active-repairs.html'; 
+                }
+            });
+        }
+        });
+    </script>
 </body>
 
 
