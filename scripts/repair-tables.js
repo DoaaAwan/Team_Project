@@ -658,44 +658,7 @@ function getAllData() {
   }
 
 
-//   document.addEventListener("DOMContentLoaded", function () { //ALL CUSTOMERS (EVEN REPEATS)
-//     // Get all data
-//     const allData = getAllData();
-//     const ownershipData = allData.ownership;
-
-//     // Get the table body element
-//     const tableBody = document.getElementById("customerTableBody");
-
-//     // Loop through the ownership data and populate the table
-//     ownershipData.forEach(ownership => {
-//         const customerId = ownership.customerId;
-//         const equipmentId = ownership.equipmentId;
-
-//         // Find customer and equipment data based on IDs
-//         const customer = allData.customers.find(cust => cust.id === customerId);
-//         const equipment = allData.equipment.find(equip => equip.id === equipmentId);
-
-//         // Find repair request based on ownership ID
-//         const repairRequest = allData.repairRequests.find(request => request.ownershipId === ownership.id);
-
-//         // Check if customer, equipment, and repair request exist
-//         if (customer && equipment && repairRequest) {
-//             const row = document.createElement("tr");
-//             row.innerHTML = `
-//                 <td>${customer.fullName}</td>
-//                 <td>${repairRequest.invoiceDate}</td>
-//                 <td>${customer.city}, ${customer.province}</td>
-//                 <td><b>${equipment.equipmentType}</b> <br>${equipment.equipmentName}</td>
-//                 <td>${repairRequest.issueDescription}</td>
-//                 <td><a href="" class="repair-btn">Start Repair <ion-icon name="build-outline"></ion-icon></a></td>
-//             `;
-//             tableBody.appendChild(row);
-//         }
-//     });
-// });
-
-
-  document.addEventListener("DOMContentLoaded", function () { //ONLY MOST RECENT REPAIRS (NO REPEATS)
+  document.addEventListener("DOMContentLoaded", function () { //ALL CUSTOMERS (EVEN REPEATS)
     // Get all data
     const allData = getAllData();
     const ownershipData = allData.ownership;
@@ -703,21 +666,7 @@ function getAllData() {
     // Get the table body element
     const tableBody = document.getElementById("customerTableBody");
 
-    // Create a Map to track the most recent repair request for each customer
-    const latestRepairRequestMap = new Map();
-
-    // Loop through the ownership data to find the most recent repair request for each customer
-    ownershipData.forEach(ownership => {
-        const customerId = ownership.customerId;
-        const repairRequest = allData.repairRequests.find(request => request.ownershipId === ownership.id);
-
-        // Check if repair request exists and is more recent than the one stored in the map
-        if (repairRequest && (!latestRepairRequestMap.has(customerId) || repairRequest.invoiceDate > latestRepairRequestMap.get(customerId).invoiceDate)) {
-            latestRepairRequestMap.set(customerId, repairRequest);
-        }
-    });
-
-    // Loop through the ownership data again to populate the table
+    // Loop through the ownership data and populate the table
     ownershipData.forEach(ownership => {
         const customerId = ownership.customerId;
         const equipmentId = ownership.equipmentId;
@@ -731,22 +680,73 @@ function getAllData() {
 
         // Check if customer, equipment, and repair request exist
         if (customer && equipment && repairRequest) {
-            // Check if this repair request is the most recent for the customer
-            if (repairRequest.invoiceDate === latestRepairRequestMap.get(customerId).invoiceDate) {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${customer.fullName}</td>
-                    <td>${repairRequest.invoiceDate}</td>
-                    <td>${customer.city}, ${customer.province}</td>
-                    <td><b>${equipment.equipmentType}</b> <br>${equipment.equipmentName}</td>
-                    <td>${repairRequest.issueDescription}</td>
-                    <td><a href="../pages/repair-update.html" class="repair-btn">Start Repair <ion-icon name="build-outline"></ion-icon></a></td>
-                `;
-                tableBody.appendChild(row);
-            }
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${customer.fullName}</td>
+                <td>${repairRequest.invoiceDate}</td>
+                <td>${customer.city}, ${customer.province}</td>
+                <td><b>${equipment.equipmentType}</b> <br>${equipment.equipmentName}</td>
+                <td>${repairRequest.issueDescription}</td>
+                <td><a href="" class="repair-btn">Start Repair <ion-icon name="build-outline"></ion-icon></a></td>
+            `;
+            tableBody.appendChild(row);
         }
     });
 });
+
+
+//   document.addEventListener("DOMContentLoaded", function () { //ONLY MOST RECENT REPAIRS (NO REPEATS)
+//     // Get all data
+//     const allData = getAllData();
+//     const ownershipData = allData.ownership;
+
+//     // Get the table body element
+//     const tableBody = document.getElementById("customerTableBody");
+
+//     // Create a Map to track the most recent repair request for each customer
+//     const latestRepairRequestMap = new Map();
+
+//     // Loop through the ownership data to find the most recent repair request for each customer
+//     ownershipData.forEach(ownership => {
+//         const customerId = ownership.customerId;
+//         const repairRequest = allData.repairRequests.find(request => request.ownershipId === ownership.id);
+
+//         // Check if repair request exists and is more recent than the one stored in the map
+//         if (repairRequest && (!latestRepairRequestMap.has(customerId) || repairRequest.invoiceDate > latestRepairRequestMap.get(customerId).invoiceDate)) {
+//             latestRepairRequestMap.set(customerId, repairRequest);
+//         }
+//     });
+
+//     // Loop through the ownership data again to populate the table
+//     ownershipData.forEach(ownership => {
+//         const customerId = ownership.customerId;
+//         const equipmentId = ownership.equipmentId;
+
+//         // Find customer and equipment data based on IDs
+//         const customer = allData.customers.find(cust => cust.id === customerId);
+//         const equipment = allData.equipment.find(equip => equip.id === equipmentId);
+
+//         // Find repair request based on ownership ID
+//         const repairRequest = allData.repairRequests.find(request => request.ownershipId === ownership.id);
+
+//         // Check if customer, equipment, and repair request exist
+//         if (customer && equipment && repairRequest) {
+//             // Check if this repair request is the most recent for the customer
+//             if (repairRequest.invoiceDate === latestRepairRequestMap.get(customerId).invoiceDate) {
+//                 const row = document.createElement("tr");
+//                 row.innerHTML = `
+//                     <td>${customer.fullName}</td>
+//                     <td>${repairRequest.invoiceDate}</td>
+//                     <td>${customer.city}, ${customer.province}</td>
+//                     <td><b>${equipment.equipmentType}</b> <br>${equipment.equipmentName}</td>
+//                     <td>${repairRequest.issueDescription}</td>
+//                     <td><a href="../pages/repair-update.html" class="repair-btn">Start Repair <ion-icon name="build-outline"></ion-icon></a></td>
+//                 `;
+//                 tableBody.appendChild(row);
+//             }
+//         }
+//     });
+// });
 
 
 
