@@ -91,19 +91,19 @@
                     <div class="offcanvas-body">
                         <div class="container">
                             <div class="d-flex justify-content-center">
-                                <div class="nav-user-img" >
-                                    <div><img src="../images/user-profile.png" id="navUserImg" class="" alt=""></div>
+                                <div class="nav-user-img">
+                                    <div><img src="../images/user-profile.png" class="" alt=""></div>
                                 </div>
                                 <div class="ms-3">
                                     <div class="nav-user-info">
-                                        <p class="nm" id="navUserName">Amy Johnson</p>
-                                        <p class="dpt" id="navUserRole"><small>Sales Department</small></p>
-                                        <a href="../pages/login.html" class="primary-btn" id="sign-out-btn">Sign Out</a>
+                                        <p class="nm">Amy Johnson</p>
+                                        <p class="dpt"><small>Sales Department</small></p>
+                                        <a href="../pages/login.html" class="primary-btn">Sign Out</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="nav-buttons">
-                                <a href="../index.html" data-roles="all" id="backToHome">
+                                <a href="../index.html" data-roles="all">
                                     <div class="nav-btn bg-grp1">
                                         <span class="nav-btn-txt">Back to Home</span>
                                         <span class="nav-btn-icon">
@@ -153,6 +153,7 @@
 
         <section class="page-container">
             <header>
+
                 <h1>Active Repairs</h1>
             </header>
 
@@ -196,49 +197,128 @@
                                     <p id="a-has-warranty" style="display: inline;"></p>
                                 </td>
                                 <td style="border: none;" class="clicked">
-                                    <button id="pick" type="submit" class="primary-btn"
-                                        aria-label="press enter to submit">Pick this task</button>
+                                    <button id="pick" type="submit" class="primary-btn" style="background-color: gray;"
+                                        aria-label="press enter to submit" disabled>Assigned</button>
                                 </td>
                                 <td style="border: none;">
                                     <button id="continue" type="button" class="primary-btn"
-                                        aria-label="press enter to submit" style="display: none;">Continue
+                                        aria-label="press enter to submit">Continue
                                         Repair</button>
                                 </td>
                                 <!-- Error: A table row was 8 columns wide and exceeded the column count established by thae first row (6). -->
                             </tr>
                         </table>
+                        <!--//     document.getElementById("Start").textContent = selectedStart;
+        // document.getElementById("Stop").textContent = selectedStop;
+        // document.getElementById("Details").textContent = selectedDetails;
+        // document.getElementById("Parts").textContent = selectedParts;
+        // document.getElementById("Quantities").textContent = selectedQuantities;
+        // document.getElementById("LabeL").textContent = selectedLabeL;// hidden-->
+                        <p id="Start" hidden>start</p>
+                        <p id="Stop" hidden >stop</p>
+                        <p id="Details" hidden >Details</p>
+                        <p id="Parts" hidden>Parts</p>
+                        <p id="Quantities" hidden>Quantities</p>
+                        <p id="Label" hidden>label</p>
                     </form>
                 </div>
             </div>
+            
         </section>
     </div>
 
     <script src="repair.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
-    <script src="../scripts/update-nav.js"></script>
     <!--this script wont work in js but works fine here-->
     <script>
-        //all data recieved from the create page
+        //all data recieved from the PICK page
         const urlParams = new URLSearchParams(window.location.search);
         const selectedDate = urlParams.get("invoice_date");
         const selectedInvoiceNumber = urlParams.get("invoice_number");
         const selectedIssueDescription = urlParams.get("issueDescription");
-
         const selectedBillTo = urlParams.get("bill_to");
         const selectedEquipment = urlParams.get("equipment");
         const selectedHasWarranty = urlParams.get("hasWarranty");
+        const selectedStart = urlParams.get("hasStartT");
+        const selectedStop = urlParams.get("hasStopT");
+        const selectedDetails = urlParams.get("hasDetails");
+        const selectedLabel = urlParams.get("hasLabel");
+        const selectedParts = urlParams.get("hasParts");
+        const selectedQuantities = urlParams.get("hasQuantity");
 
-        //console.log("selectedBillTo:", selectedBillTo);
-        //console.log("selectedEquipment:", selectedEquipment);
+        //const selectedParts = urlParams.get("dynamicDataParam");&hasLabel${hasLabel}
+        //const selectedRepair = urlParams.get("dynamicDataParam");
+        // const selectedParts = [];
+        // const selectedQuantities = [];
+        // let count = 0;
 
-        // Populate elements on create page from the assign page
+        // urlParams.forEach((value, key) => {
+        //     if (key === "parts[]") {
+        //         selectedParts.push(value);
+        //     } else if (key === "quantity[]") {
+        //         selectedQuantities.push(value);
+        //     } 
+            
+        //     // if (count === selectedQuantities.length){
+        //     //     break;
+        //     // }
+        // });
+
+        // Populate elements on this page from the previous page
         document.getElementById("a-invoice-date").textContent = selectedDate;
         document.getElementById("a-invoice-number").textContent = selectedInvoiceNumber;
-        document.getElementById("a-bill-to").textContent = selectedBillTo;//getting value rather than text
-        document.getElementById("a-equipment").textContent = selectedEquipment;//getting value rather than text
+        document.getElementById("a-bill-to").textContent = selectedBillTo;
+        document.getElementById("a-equipment").textContent = selectedEquipment;
         document.getElementById("a-issueDescription").textContent = selectedIssueDescription;
         document.getElementById("a-has-warranty").textContent = selectedHasWarranty;
+        document.getElementById("Start").textContent = selectedStart;
+        document.getElementById("Stop").textContent = selectedStop;
+        document.getElementById("Details").textContent = selectedDetails;
+        document.getElementById("Parts").textContent = selectedParts;//"myParts";//
+        document.getElementById("Quantities").textContent =selectedQuantities;// "myQuantity";//
+        document.getElementById("Label").textContent = selectedLabel;//"myLabel";//
+
     </script>
+    <script>
+        //document.getElementById("continue").addEventListener("click", function () {
+        document.getElementById("continue").addEventListener("click", function (e) {
+        //transfer to save=researched
+         //document.getElementById("save").addEventListener("click", function (e) {
+            const invoiceDate = document.getElementById("a-invoice-date").textContent;
+            const invoiceNumber = "2023OCT345";
+            const billTo = document.getElementById("a-bill-to").textContent;
+            const equipment = document.getElementById("a-equipment").textContent;
+            const issueDescription = document.getElementById("a-issueDescription").textContent;
+            const hasWarranty = document.getElementById("a-has-warranty").textContent;
+        
+            const hasStartT = document.getElementById("Start").textContent;
+            const hasStopT = document.getElementById("Stop").textContent;
+            const hasDetails = document.getElementById("Details").textContent;
+            const hasParts = document.getElementById("Parts").textContent;
+            const hasQuantity = document.getElementById("Quantities").textContent;
+            const hasLabel = document.getElementById("Label").textContent;
+        const url = `repair-continue.html?invoice_date=${invoiceDate}&invoice_number=${invoiceNumber}
+            &bill_to=${billTo}&equipment=${equipment}&issueDescription=${issueDescription}
+            &hasWarranty=${hasWarranty}&hasStartT=${hasStartT}&hasStopT=${hasStopT}
+            &hasDetails=${hasDetails}&hasParts=${hasParts}&hasQuantity=${hasQuantity}&hasLabel=${hasLabel}`;
+            console.log(
+                "Invoice Date:", invoiceDate,
+                "Invoice Number:", invoiceNumber,
+                "Bill To:", billTo,
+                "Equipment:", equipment,
+                "Issue Description:", issueDescription,
+                "Has Warranty:", hasWarranty,
+                "Start Time:", hasStartT,
+                "Stop Time:", hasStopT,
+                "Details:", hasDetails,
+                "Parts", hasParts,
+                "Quantity:", hasQuantity,
+                "Label:", hasLabel
+            );
+            window.location.href = url;
+        });
+    </script>
+    
     <script>
         function DynamicIndex() {
             // Get all focusable elements in the document
@@ -256,68 +336,9 @@
         // Call the function
         DynamicIndex();
     </script>
-    <script>
-        // Check if the button was previously clicked=research and chatgpt
-        var isButtonClicked = sessionStorage.getItem('isButtonClicked');
-
-        if (isButtonClicked) {
-            disableButton();
-        }
-        //passing the data forward to update page
-        document.getElementById("pick").addEventListener("click", function (e) {
-            e.preventDefault();
-            // Change button color
-            this.classList.add('clicked');
-
-            // Set a flag in sessionStorage to indicate the button was clicked
-            sessionStorage.setItem('isButtonClicked', true);
-
-            // Disable the button
-            disableButton();
-            // Collect the values
-            const invoiceDate = document.getElementById("a-invoice-date").textContent;
-            const invoiceNumber = "2023OCT345";
-            const billTo = document.getElementById("a-bill-to").textContent;
-            const equipment = document.getElementById("a-equipment").textContent;
-            const issueDescription = document.getElementById("a-issueDescription").textContent;
-            const hasWarranty = document.getElementById("a-has-warranty").textContent;
-
-            //transfer to pick page=researched
-            const url = `repair-pick.html?invoice_date=${invoiceDate}&invoice_number=${invoiceNumber}&bill_to=${billTo}&equipment=${equipment}&issueDescription=${issueDescription}&hasWarranty=${hasWarranty}`;
-            window.location.href = url;
-        });
-
-        //chatGpt
-        function disableButton() {
-            var pickButton = document.getElementById("pick");
-            pickButton.disabled = true;
-            pickButton.style.cursor = "not-allowed";
-            pickButton.innerHTML = "Assigned";
-            pickButton.style.backgroundColor = 'grey';
-
-            var continueButton = document.getElementById("continue");
-            continueButton.style.display = 'inline-block';
-        }
-    </script>
-    <script>
-        document.getElementById("continue").addEventListener("click", function () {
-            window.history.forward();
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const backToHomeLink = document.getElementById('backToHome');
-        if (backToHomeLink) {
-            backToHomeLink.addEventListener('click', function(event) {
-            const selectedRole = localStorage.getItem('selectedRole') || 'default';
-                if (selectedRole === 'technician') {
-                    event.preventDefault();
-                    window.location.href = '../pages/active-repairs.html'; 
-                }
-            });
-        }
-        });
-    </script>
+    
+    
+   
 </body>
 
 </html>
