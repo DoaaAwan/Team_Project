@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../styles/repair-request-details.css">
     <style>
         /* Spacing between divs */
-        div {
+        #repair-form div {
             margin-bottom: 20px;
         }
 
@@ -197,7 +197,17 @@
 
         <section class="page-container">
             <header>
-                <h1>Technician Repair Form</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>Technician Repair Form</h1>
+                    </div>
+                    <div>
+                        <a href="javascript:history.back()" class="button secondary-btn" >
+                            Back
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
             </header>
 
             <div class="page">

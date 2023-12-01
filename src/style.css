@@ -133,7 +133,7 @@ nav .nav-user-info a {
 }
 
 nav .nav-buttons{
-    margin-top: 20px;
+    margin-top: 40px;
     text-align: center;
     /* display: block; */
     /* width: auto; */
@@ -367,7 +367,9 @@ h3 {
 .bg-grp2{
     /* background: #418973; */
     /* background: #327775; */
-    background: #3D8974;
+    /* background: #3D8974; */
+    background: #307676;
+
 }
 
 /* Equipment Buttons */
@@ -375,14 +377,18 @@ h3 {
     /* background: #51A47A; */
     /* background: #57ad71; */
     /* background: #3A8074; */
-    background: #4A9B73;
+    /* background: #4A9B73; */
+    background: #307676;
+
 }
 
 .bg-grp4{
     /* background: #61C07E; */
     /* background: #418973; */
-    background: #57AD71;
     /* background: #009879; */
+    /* background: #57AD71; */
+    background: #307676;
+
 }
 
 .nav-btn:hover{
