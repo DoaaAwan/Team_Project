@@ -15,7 +15,8 @@
 }
 
 .content-table thead tr{
-    background-color: #009879;
+    /* background-color: #009879; */
+    background-color: #307676;
     color: #fff;
     text-align: left;
     font-weight: 100;
@@ -38,7 +39,8 @@
 }
 
 .content-table tbody tr:last-of-type{
-    border-bottom: 2px solid #009879;
+    /* border-bottom: 2px solid #009879; */
+    border-bottom: 2px solid #307676;
 }
 
 .content-table tbody tr.active-row{
@@ -54,6 +56,8 @@
     text-decoration: none;
     padding: 10px 15px;
     font-weight: 400;
+    position: relative;
+    top: 6px;
 }
 
 .repair-btn ion-icon{
