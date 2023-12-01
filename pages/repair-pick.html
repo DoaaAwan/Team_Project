@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emma's Small Engines</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/44b9581dbb.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../src/jquery-3.7.1.min.js"></script>
+    <!--<script async src="../scripts/import-nav.js"></script>-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../styles/repair-request-details.css">
+    <style>
+        /* Spacing between divs */
+        div {
+            margin-bottom: 20px;
+        }
+
+        /*hide the guidline*/
+        .hide {
+            display: none;
+        }
+
+        /*upon hover*/
+        .myDIV:hover+.hide {
+            display: inline-block;
+            color: red;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        /*for the table*/
+        table {
+            width: 75%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        .cloneNewDay {
+            border: 1px solid #236477;
+            border-radius: 1cap;
+            border-collapse: collapse;
+            padding: 15px
+        }
+
+        .repair-update-btn {
+            background: #236477;
+            border: 1px solid none;
+            border-radius: 30px;
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .help-icon {
+            background: url('../images/help-btn.png') no-repeat center center / contain;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            padding: 15px;
+            color: transparent;
+            margin-left: 4px;
+            bottom: 5px;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: white;
+            color: #236477;
+            text-align: center;
+            border: 1px solid lightgray;
+            border-radius: 6px;
+            padding: 10px 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 70%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+
+        }
+
+        .help-icon:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .help-icon:focus .tooltip-text,
+        .help-icon:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <nav>
+            <div class="main-nav">
+                <a href="../index.html">
+                    <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
+                </a>
+                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
+                </a>
+            </div>
+            <div>
+                <div class="offcanvas offcanvas-end sidebar" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header pb-0 ps-0 pe-0">
+                        <div class="offcanvas-title" id="offcanvasExampleLabel"></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="container">
+                            <div class="d-flex justify-content-center">
+                                <div class="nav-user-img">
+                                    <div><img src="../images/user-profile.png" class="" alt=""></div>
+                                </div>
+                                <div class="ms-3">
+                                    <div class="nav-user-info">
+                                        <p class="nm">Amy Johnson</p>
+                                        <p class="dpt"><small>Sales Department</small></p>
+                                        <a href="../pages/login.html" class="primary-btn">Sign Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nav-buttons">
+                                <a href="../index.html" data-roles="all">
+                                    <div class="nav-btn bg-grp1">
+                                        <span class="nav-btn-txt">Back to Home</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="home-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../index.html" data-roles="salesRep admin technician">
+                                    <div class="nav-btn bg-grp2">
+                                        <span class="nav-btn-txt">Search Customer
+                                        </span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="search-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../pages/customer-create.html" data-roles="salesRep admin">
+                                    <div class="nav-btn bg-grp3">
+                                        <span class="nav-btn-txt">Create Customer</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="person-add-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../pages/active-repairs.html" data-roles="technician admin">
+                                    <div class="nav-btn bg-grp4">
+                                        <span class="nav-btn-txt">Active Repairs</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="clipboard-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../pages/completed-repairs.html" data-roles="salesRep admin">
+                                    <div class="nav-btn bg-grp4">
+                                        <span class="nav-btn-txt">Completed Repairs</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="page-container">
+            <header>
+                <h1>Technician Repair Form</h1>
+            </header>
+
+            <div class="page">
+                <div class="repair-details">
+
+                    <!-- ADD CODE HERE,updated on 20231105 -->
+                    <form id="repair-form">
+                        <!--the 'c' in ids represent that they have been imported form the create page-->
+                        <!-- Invoice Date -->
+                        <div>
+                            <div class="myDIV">
+                                <label style="display: inline;">Invoice Date:</label>
+                                <p id="c-invoice-date" style="display: inline;"></p>
+                            </div>
+                            <!--not able to place it besides the date, not needed anyway as the date is auto-->
+                            <!--div class="hide" style="position: absolute;">The date is in mm/dd/yyy format.</div-->
+                        </div>
+                        <!-- Invoice Number -->
+                        <div>
+                            <label style="display: inline;">Invoice Number:</label>
+                            <p id="c-invoice-number" style="display: inline;"></p>
+                        </div>
+                        <!--Customer dropdown list-->
+                        <div>
+                            <label>Bill To:</label>
+                            <p id="c-bill-to" style="display: inline;"></p>
+                        </div>
+                        <!--Equipment dropdown list-->
+                        <div>
+                            <label>Equipment:</label>
+                            <p id="c-equipment" style="display: inline;"></p>
+                        </div>
+                        <!-- Issue Description -->
+                        <div>
+                            <label>Issue Description:</label>
+                            <br>
+                            <p id="c-issueDescription" name="issueDescription" rows="4" required style="width: 800px; height:100px; border: 1px solid black;"
+                                aria-label="Describe the issue" ></p>
+                        </div>
+                        <!-- Warranty -->
+                        <div>
+                            <label>Has Warranty:</label>
+                            <p id="c-has-warranty" style="display: inline;"></p>
+                        </div>
+
+                        <!--from here the repairing details begin, or to be used in update form-->
+                        <h2>Sessions</h2>
+                        <br>
+                        <div class="cloneNewDay" id="cloneNewDay">
+                            <!-- Start Time -->
+                            <div>
+                                <label>Start Time:</label>
+                                <p type="datetime-local" id="startTimeN" name="startTimeN" style="display: inline-block; border: 1px solid black; padding: 5px; "
+                                    aria-label="Current date and time is selected as default as Start Time"></p>
+
+                                <input type="datetime-local" id="startTime" name="startTime" required
+                                    aria-label="Current date and time is selected as default as Start Time" hidden>
+                            </div>
+                            <!-- Parts used -->
+                            <div class="cloneParts">
+                                <div>
+                                    <label>Parts Used:</label>
+                                    <table id="partsUsed" class="parts-used" style="margin: 0 auto;"
+                                        aria-label="Pick used details">
+                                        <tr>
+                                            <th>Parts</th>
+                                            <!--th>Unit Cost (CAD)</th-->
+                                            <th>Quantity</th>
+                                            <!--th>Amount (CAD)</th-->
+                                            <!--not needed-->
+                                            <!-- <th>Dated</th> -->
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select name="parts[]" id="parts"
+                                                    
+                                                    aria-label="Select a part">
+                                                    <option value="none">None</option>
+                                                    <option value="part1">Part 1</option>
+                                                    <option value="part2">Part 2</option>
+                                                    <option value="part3">Part 3</option>
+                                                </select>
+                                            </td>
+                                            <!--td>
+                                                #REMOVED THIS LINE WHICH WAS UNDER <select name="parts[]" id="parts"
+                                                onchange="updateAmount(this); onChangePart(this);"
+                                                <input type="number" step="0.01" name="unitCost[]" min="0.01"
+                                                    oninput="updateAmount(this, 'amount')"
+                                                    aria-label="Unit cost (minimum 0.01)">
+                                            </td-->
+                                            <td>
+                                                <input type="number" step="1" id="quantity" name="quantity[]" min="1"
+                                                     aria-label="Quantity (minimum 0)"><!--oninput="updateAmount(this)"-->
+                                            </td>
+                                            <!--td>
+                                                <input type="number" id="amount" name="amount[]" readonly
+                                                    aria-label="Amount (auto-calculated)">
+                                            </td-->
+                                            <!--not needed-->
+                                            <!-- <td>
+                                                    <p id="invoice-date" style="display: inline;" oninput="part"></p>
+                                                </td> -->
+                                        </tr>
+                                    </table>
+                                    <button type="button" class="repair-update-btn" style="background-color:#3D8974;"
+                                        id="addNewRow" aria-label="press enter to submit">Add New Row</button>
+                                    <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                        <span class="tooltip-text">To add a new row, click the add new
+                                            row button</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label id="sessionLabel" for="repairDescription"><b>Details of repair session commenced on :</b><p id="repairDate" style="display: inline; font-weight:bold;"></p></label>
+                                <br>
+                                <textarea id="repairDescription" name="repairDescription" rows="4" required
+                                    style="width: 800px; height: 100px;" aria-label="Describe the repair"></textarea>
+                            </div>
+                            <!-- Stop Time -->
+                            <div>
+                                <label>Stop Time:</label>
+                                <input type="datetime-local" id="stopTime" onchange="calculateHoursDifference(this)"
+                                    name="stopTime" required
+                                    aria-label="Current date and time is selected as default as Stop Time">
+                                <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                    <span class="tooltip-text">To select an end time, click the calendar icon or type in
+                                        a date and time.</span>
+                                </button>
+                            </div>
+                             <!-- Repair Description -->
+                        
+                        </div>
+                       
+                        <!--Add a new day>
+                        <button type="button" class="repair-update-btn" style="background-color:#4A9B73;" id="addNewDay"
+                            aria-label="press enter to submit">Add New Session</button>
+                        <br-->
+                        <br>
+
+                        <div>
+                            <!-- <button id="calculateBalanceBtn" type="button" class="repair-update-btn"
+                                aria-label="press enter to submit">Calculate Balance</button> -->
+
+                            <button id="save" type="button" class="repair-update-btn"
+                                aria-label="press enter to submit">Save</button>
+
+                            <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                <span class="tooltip-text">If this repair is incomplete,
+                                    click the save button and come back later.</span>
+                            </button>
+
+                            <button id="invoice" type="submit" class="repair-update-btn"
+                                aria-label="press enter to submit">Complete Repair</button>
+
+                            <button class="help-icon" aria-label="Help" style="margin-left: -2px;">
+                                <span class="tooltip-text">If this repair is complete,
+                                    click the complete repair button.</span>
+                            </button>
+                        </div>
+                        <!--                             <div>
+                                 <label>Balance:</label>
+                            <p id="balance" style="display: inline;"></p>
+                            </div> -->
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="repair.js"></script>
+        
+    <!--ALL THE SCRIPS BELOW AS IT DID NOT WORK IN SEPERATE JS FILE-->
+    <script>
+        //all data recieved from the create page==chatgpt
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedDate = urlParams.get("invoice_date");
+        const selectedInvoiceNumber = urlParams.get("invoice_number");
+        const selectedIssueDescription = urlParams.get("issueDescription");
+        const selectedHasWarranty = urlParams.get("hasWarranty");
+        const selectedBillTo = urlParams.get("bill_to");
+        const selectedEquipment = urlParams.get("equipment");
+
+        // Populate elements on this pick page from the create page
+        document.getElementById("c-invoice-date").textContent = selectedDate;
+        document.getElementById("c-invoice-number").textContent = selectedInvoiceNumber;
+        document.getElementById("c-bill-to").textContent = selectedBillTo;//getting value rather than text
+        document.getElementById("c-equipment").textContent = selectedEquipment;//getting value rather than text
+        document.getElementById("c-issueDescription").textContent = selectedIssueDescription;
+        document.getElementById("c-has-warranty").textContent = selectedHasWarranty;
+    </script>
+  
+<script>
+    // Collect the values to send
+        document.getElementById("save").addEventListener("click", function (e) {
+            const invoiceDate = document.getElementById("c-invoice-date").textContent;
+            const invoiceNumber = "2023OCT345";
+            const billTo = document.getElementById("c-bill-to").textContent;
+            const equipment = document.getElementById("c-equipment").textContent;
+            const issueDescription = document.getElementById("c-issueDescription").textContent;
+            const hasWarranty = document.getElementById("c-has-warranty").textContent;
+            const hasStartT = document.getElementById("startTime").value;
+            const hasStopT = document.getElementById("stopTime").value;
+            const hasDetails = document.getElementById("repairDescription").value;
+            const hasLabel = document.getElementById("sessionLabel").textContent;
+            
+            // Use FormData to collect form data = chat gpt as my dynamic code was only getting the parameters from original row
+            const formData = new FormData(document.getElementById('repair-form'));
+
+           // Get the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const hasParts = formData.getAll('parts[]');
+            const hasQuantity = formData.getAll('quantity[]');
+
+        // Append dynamic data to FormData
+        window.dynamicData.forEach(data => {
+            if (data.part !== null && data.quantity !== null) {
+                formData.append('parts[]', data.part);
+                formData.append('quantity[]', data.quantity);
+            }
+        });
+
+        // Convert FormData to URL parameters
+        const dynamicDataParam = new URLSearchParams(formData).toString();
+
+        // Transfer to save page
+        const url = `repair-save.html?invoice_date=${invoiceDate}&invoice_number=${invoiceNumber}
+        &bill_to=${billTo}&equipment=${equipment}&issueDescription=${issueDescription}
+        &hasWarranty=${hasWarranty}&hasStartT=${hasStartT}&hasStopT=${hasStopT}
+        &hasDetails=${hasDetails}&hasLabel=${hasLabel}&hasParts=${hasParts}&hasQuantity=${hasQuantity}&${dynamicDataParam}`;
+
+
+        window.location.href = url;
+            console.log(invoiceDate);
+            console.log(invoiceNumber);
+            console.log(billTo);
+            console.log(equipment);
+            console.log(issueDescription);
+            console.log(hasWarranty);
+            console.log(hasStartT);
+            console.log(hasStopT);
+            console.log(hasDetails);
+            console.log(hasLabel);
+            console.log(dynamicDataParam);
+            console.log(hasParts);
+            console.log(hasQuantity);
+        });
+</script>
+    <script>
+        //add new row
+        window.dynamicData = [];
+
+        document.getElementById('addNewRow').addEventListener('click', function () {
+            //dynamic row logic by chatgpt
+            const selectedPart = document.getElementById("parts").value;
+            const selectedQuantity = document.getElementById("quantity").value;
+
+            if (!window.dynamicData) {
+                window.dynamicData = [];
+            }
+
+            window.dynamicData.push({ part: selectedPart, quantity: selectedQuantity });
+
+            // Update the dynamic data in the URL
+            const dynamicDataParam = window.dynamicData.map(data => `parts[]=${encodeURIComponent(data.part)}&quantity[]=${encodeURIComponent(data.quantity)}`).join('&');
+
+            //adding new row with the same entities as in the original
+            var tableBody = document.querySelector('#partsUsed tbody');
+            var newRow = tableBody.insertRow(-1);
+
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+
+            cell1.innerHTML = '<select name="parts[]" aria-label="Select a part"><option value="none">None</option><option value="part1">Part 1</option><option value="part2">Part 2</option><option value="part3">Part 3</option></select>';
+            //cell2.innerHTML = '<input type="number" step="0.01" name="unitCost[]" min="0.01" oninput="updateAmount(this, \'amount\')" aria-label="Unit cost (minimum 0.01)">';
+            cell2.innerHTML = '<input type="number" step="1" name="quantity[]" min="1" aria-label="Quantity (minimum 0)">';
+            //cell4.innerHTML = '<input type="number" name="amount[]" readonly aria-label="Amount (auto-calculated)">';
+            cell5.innerHTML = '<p class="invoice-date" style="display: inline;"></p>';
+        });
+    </script>
+    <script>
+        //for todays date n time
+        var d = new Date();
+        var day = String(d.getDate()).padStart(2, '0');
+        var month = String(d.getMonth() + 1).padStart(2, '0');
+        var year = String(d.getFullYear()).padStart(2, '0');
+        var hour = String(d.getHours()).padStart(2, '0');
+        var min = String(d.getMinutes()).padStart(2, '0');
+        var ap;
+        if (hour >= 12){
+            var ap = "PM";
+            if(hour>12){
+            hour = hour - 12;
+            }
+            else if (hour ===0) {
+                hour=12;
+            } 
+        }
+        else {var ap = "PM"
+            if (hour ===0) {
+                    hour=12;
+                } 
+        }
+        
+       
+        
+        var formattedDate = `${month}/${day}/${year} ${hour}:${min} ${ap}`;
+        
+        document.getElementById('startTimeN').textContent= formattedDate;
+        //repairDate
+        var sessionDate = `${month}/${day}/${year} @ ${hour}:${min} ${ap}`;
+        document.getElementById('repairDate').textContent= sessionDate;
+        //setting start and stop time
+        var startTimeInput = document.getElementById('startTime');
+        var stopTimeInput = document.getElementById('stopTime');
+        var cost = "";
+
+        //set the default stop time at least 1 minute ahead of start time = CHAT GPT
+        startTimeInput.addEventListener('', () => {
+            var startTime = new Date(startTimeInput.value);
+            var minStopTime = new Date(startTime);
+            minStopTime.setMinutes(startTime.getMinutes() + 1);
+
+            var year = minStopTime.getFullYear();
+            var month = String(minStopTime.getMonth() + 1).padStart(2, '0');
+            var day = String(minStopTime.getDate()).padStart(2, '0');
+            var hours = String(minStopTime.getHours()).padStart(2, '0');
+            var minutes = String(minStopTime.getMinutes()).padStart(2, '0');
+
+            var minStopTimeFormatted = `${year}-${month}-${day}T${hours}:${minutes}`;
+            stopTimeInput.setAttribute('min', minStopTimeFormatted);
+            document.getElementById("stopTime").value = minStopTimeFormatted;
+        });
+
+        //calculate the time difference in hours
+
+        function calculateHoursDifference() {
+
+            var startTime = new Date(startTimeInput.value);
+            var stopTime = new Date(stopTimeInput.value);
+
+            //this is to confirm that technician has not missed on adding parts
+            var confirmParts = confirm("Have you added parts used and the details of the repair?");
+            //
+            if (stopTime > startTime && confirmParts) {
+            }
+            else {
+                //nesting for two different errors
+                if (stopTime < startTime) {
+                    stopTimeInput.value = ""
+                    alert("Stop Time has to be after Start Time.");
+                }
+                else {
+                    stopTimeInput.value = ""
+                    alert("Please add the parts used and set the Stop Time again");
+                }
+            }
+        }
+    </script>
+   
+    <script>
+        function DynamicIndex() {
+            // Get all focusable elements in the document
+            var focusableElements = document.querySelectorAll('input, select, textarea, label, p');
+
+            // Start tabindex from 1
+            var index = 1;
+
+            // Loop through focusable elements
+            focusableElements.forEach(function (element) {
+                element.tabIndex = index++;
+            });
+        }
+
+        // Call the function
+        DynamicIndex();
+    </script>
+     
+    
+    <script>
+    //trigger starttime on page reload by chat Gpt
+    document.addEventListener("DOMContentLoaded", function () {
+        // Set the default start time and stop time when the page loads
+        setDefaultTimes();
+
+        function setDefaultTimes() {
+            // Get the current date and time
+            var now = new Date();
+
+            // Format the date and time as required (adjust as needed)
+            var year = now.getFullYear();
+            var month = String(now.getMonth() + 1).padStart(2, '0');
+            var day = String(now.getDate()).padStart(2, '0');
+            var hours = String(now.getHours()).padStart(2, '0');
+            var minutes = String(now.getMinutes()).padStart(2, '0');
+
+            // Set the default start time in the 'startTime' input
+            var defaultStartTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+            document.getElementById('startTime').value = defaultStartTime;
+
+            // Set the default stop time to be a minute ahead of start time
+            var minStopTime = new Date(now);
+            minStopTime.setMinutes(now.getMinutes() + 1);
+            var defaultStopTime = `${year}-${month}-${day}T${String(minStopTime.getHours()).padStart(2, '0')}:${String(minStopTime.getMinutes()).padStart(2, '0')}`;
+            document.getElementById('stopTime').value = defaultStopTime;
+
+            // Trigger the change event manually if needed
+            // document.getElementById('startTime').dispatchEvent(new Event('change'));
+            // document.getElementById('stopTime').dispatchEvent(new Event('change'));
+        }
+    });
+</script>
+    
+<!--code added by team mates-->
+    <script src="../scripts/role-based-nav.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
+</body>
+
+</html>
