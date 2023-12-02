@@ -91,7 +91,7 @@ if (customerId.length > 0) {
         //hides user feedback message and empties repair list
         $("#repair-requests-list").empty();
         $("#no-repair-requests").hide();
-        $('#details-repair-request').prop('disabled', true);
+        //$('#details-repair-request').prop('disabled', true);
         //$("#details-repair-request").hide();
 
         //"disables" repair details button
@@ -148,17 +148,17 @@ if (customerId.length > 0) {
 
         if (repairRequests.length > 0){
             //if repair request records exist, shows list and displays all records in list
-            $("#repair-requests").fadeIn();
-            repairRequests.forEach(r => {
+            /*repairRequests.forEach(r => {
                 var option = document.createElement('option')
                 option.value = r.id;
                 option.text = `${r.invoiceDate}#${r.invoiceNumber}: ${r.issueDescription}`;
                 repairRequestList.add(option);
             });
+            */
         }else{
             //if no records exist, ask user if they want to create a repair record for the selected equipment
             /*
-            var confirmCancel = window.confirm("No Repair Requests for the selected equipment. Would you like to create one?");
+            //var confirmCancel = window.confirm("No Repair Requests for the selected equipment. Would you like to create one?");
 
             if (confirmCancel) {
                 window.location.href = document.getElementById("create-repair-request").href;
@@ -166,12 +166,14 @@ if (customerId.length > 0) {
             */
             var option = document.createElement('option')
             option.value = "";
-            option.text = `No Repair Requests. Click the button below to create one.`;
+            //option.text = `No Repair Requests. Click the button below to create one.`;
             repairRequestList.add(option);
             $("#repair-requests").fadeIn();
             //$("#no-repair-requests").html("No Repair Requests for the selected equipment. Would you like to create one?");
         }
+        
     });
+    
 
     //event handler for if a repair record was selected from the list
     document.getElementById("repair-requests-list").addEventListener("change", function() {
@@ -198,9 +200,188 @@ if (customerId.length > 0) {
     $(`#customer-details`).html("<h2>No customer details found.</h2>");
 }
 
+// I found removing any of the jquery broke the page, so I opted to keep it, but just removed its functionality in the site where needed, which was only a few spots. 
+document.addEventListener('DOMContentLoaded', function() {
+  const activeRepairsBtn = document.getElementById('active-repairs-btn');
+  const completedRepairsBtn = document.getElementById('completed-repairs-btn');
+  const repairsList = document.getElementById('repair-requests-list');
+  const urlParams = new URLSearchParams(window.location.search);
+  const customerId = urlParams.get('cid');
+
+  activeRepairsBtn.addEventListener('click', function() {
+      populateRepairsList('active');
+  });
+
+  completedRepairsBtn.addEventListener('click', function() {
+      populateRepairsList('completed');
+  });
+
+  function populateRepairsList(type) {
+      repairsList.innerHTML = '';
+      let repairsData = type === 'active' ? getActiveRepairs() : getCompletedRepairs();
+      console.log(repairsData);
+
+      let filteredRepairs = repairsData.filter(repair => repair.id == customerId);
+      console.log("Filtered Repairs:", filteredRepairs);
+      if (filteredRepairs.length === 0) {
+          repairsList.appendChild(new Option("No repair requests found", ""));
+      }
+
+      filteredRepairs.forEach(repair => {
+          let optionText = `${repair.equipmentModel} - ${repair.equipmentType} - ${repair.issue} - ${repair.orderDate}`;
+          let option = new Option(optionText, repair.id);
+          repairsList.appendChild(option);
+      });
+  }
+
+  function getActiveRepairs() {
+    return [
+      {
+        id: 1,
+        name: "John Doe",
+        orderDate: "2023-10-08",
+        city: "St.Catharines",
+        equipmentType: "Lawn Mower",
+        equipmentModel: "GlassGlider Pro",
+        issue: "Engine won't start"
+      },
+      {
+        id: 2,
+        name: "Jane Smith",
+        orderDate: "2023-06-10",
+        city: "Hamilton",//doubt we need city here, just included it anyways, wont be displayed in select list
+        equipmentType: "Lawn Mower",
+        equipmentModel: "LeafBlaster 5000",
+        issue: "Drive belt snapped"
+      },
+      {
+        id: 3,
+        name: "Emily Johnson",
+        orderDate: "2023-04-18",
+        city: "Mississauga",
+        equipmentType: "Snow Blower",
+        equipmentModel: "SnowBuster Deluxe",
+        issue: "Spark plug malfunction"
+      },
+      {
+        id: 4,
+        name: "William Brown",
+        orderDate: "2023-02-10",
+        city: "Toronto",
+        equipmentType: "Pressure Washer",
+        equipmentModel: "PressureWasher Pro",
+        issue: "Hose connector leak"
+      },
+      {
+        id: 5,
+        name: "Olivia White",
+        orderDate: "2023--09-25",
+        city: "Brampton",
+        equipmentType: "Snow Blower",
+        equipmentModel: "ProSnow 3000",
+        issue: "Fan malfunction"
+      },
+      {
+        id: 6,
+        name: "Michael Wilson",
+        orderDate: "2023-10-08",
+        city: "Waterloo",
+        equipmentType: "Chainsaw",
+        equipmentModel: "PowerChain x",
+        issue: "Chain came off"
+      },
+      {
+        id: 7,
+        name: "Sophia Taylor",
+        orderDate: "2023-10-12",
+        city: "London",
+        equipmentType: "Hedge Trimmer",
+        equipmentModel: "PowerHedge 300",
+        issue: "Blades need sharpening"
+      },
+      {
+        id: 8,
+        name: "James Thomas",
+        orderDate: "2023-10-29",
+        city: "Oshawa",
+        equipmentType: "Snow Blower",
+        equipmentModel: "SnowBuster Deluxe",
+        issue: "Oil leak"
+      }
+    ];
+  }
+
+  function getCompletedRepairs() {
+    return [
+      {
+        id: 1,
+        name: "John Doe",
+        orderDate: "2023-07-14",
+        city: "St.Catharines",
+        equipmentType: "Lawn Mower",
+        equipmentModel: "GlassGlider Pro",
+        issue: "Battery replacement needed"
+      },
+      {
+        id: 2,
+        name: "Jane Smith",
+        orderDate: "2023-05-22",
+        city: "Hamilton, ON",
+        equipmentType: "Lawn Mower",
+        equipmentModel: "LeafBlaster 5000",
+        issue: "Engine won't start"
+      },
+      {
+        id: 3,
+        name: "Emily Johnson",
+        orderDate: "2023-03-15",
+        city: "Mississauga",
+        equipmentType: "Chainsaw",
+        equipmentModel: "ChainSaw Master",
+        issue: "Chain needs tightening"
+      },
+      {
+        id: 4,
+        name: "William Brown",
+        orderDate: "2023-01-05",
+        city: "Toronto",
+        equipmentType: "Lawn Mower",
+        equipmentModel: "Turfmaster 1500",
+        issue: "Blades not spinning"
+      },
+      {
+        id: 5,
+        name: "Olivia White",
+        orderDate: "2023-08-20",
+        city: "Brampton",
+        equipmentType: "Leaf Blower",
+        equipmentModel: "LeafSweeper Pro",
+        issue: "Fan malfunction"
+      },
+      {
+        id: 6,
+        name: "Michael Wilson",
+        orderDate: "2023-10-01",
+        city: "Waterloo",
+        equipmentType: "Hedge Trimmer",
+        equipmentModel: "Edge Trimmer",
+        issue: "Auger not turning"
+      },
+      {
+        id: 7,
+        name: "Sophia Taylor",
+        orderDate: "2023-10-15",
+        city: "London",
+        equipmentType: "Lawn Mower",
+        equipmentModel: "GlassGlider Pro",
+        issue: "Handle broken"
+      },
+      
+    ];
+  }
 
 
-
+});
 
 
 
