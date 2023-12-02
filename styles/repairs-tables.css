@@ -54,17 +54,19 @@
     color: white;
     border-radius: 10px;
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 12px 15px;
     font-weight: 400;
-    position: relative;
-    top: 6px;
+    /* position: relative; */
+    /* top: 6px; */
+    display: block;
+    width: 150px;
 }
 
 .repair-btn ion-icon{
-    font-size: 20px;
-    margin-left: 5px;
+    font-size: 15px;
+    margin-left: 3px;
     position: relative;
-    top: 4px;
+    top: 2px;
 }
 
 .repair-btn:hover{
@@ -73,4 +75,28 @@
 
 .continue{
     background: #009879;
+}
+
+.complete{
+    background: grey;
+}
+
+.contacted{
+    background: teal;
+}
+
+.report{
+    /* background: rgb(230, 197, 34); */
+    background: teal;
+}
+
+.report:hover{
+    background: #307676;
+}
+
+.report ion-icon{
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+    color: white;
 }
