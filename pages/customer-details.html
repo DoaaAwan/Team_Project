@@ -141,8 +141,11 @@
                                 </div>
 
                             </div>
-                            <div id="repair-requests" style="display: none;">
-                                <h2>Repair Requests</h2>
+                            <div id="repair-requests">
+                                <div class="d-flex">
+                                    <button id="active-repairs-btn" class="button btns">Active Repairs</button>
+                                    <button id="completed-repairs-btn" class="button btns">Completed Repairs</button>
+                                </div>
                                 <select name="Orders" class="form-select" id="repair-requests-list" size="5">   
                                 </select>
                                 <div class="d-flex">
@@ -150,7 +153,7 @@
                                     <button disabled id="details-repair-request" class="button btns" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Repair Request Details</button>
                                 </div>
                             </div>
-                            <h2 id="no-repair-requests">Select an equipment to view repair requests.</h2>
+                            //<h2 id="no-repair-requests">Select an equipment to view repair requests.</h2>
                         </div>
                     </div>
                 </div>
