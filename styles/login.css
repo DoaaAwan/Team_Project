@@ -1,3 +1,17 @@
 .login-buttons {
-    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    padding: 5px;
+    margin: 10px;
+    width: 25%;
+    border-radius: 20px;
+}
+
+.login-imgs {
+    width: 100%;
 }
