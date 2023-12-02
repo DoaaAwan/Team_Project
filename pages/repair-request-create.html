@@ -239,7 +239,10 @@
             const hasWarranty = document.getElementById("hasWarranty").checked ? "yes" : "no";
 
             //transfer to another page=researched
-            const url = `repair-assign.html?invoice_date=${invoiceDate}&invoice_number=${invoiceNumber}&bill_to=${billTo}&equipment=${equipment}&issueDescription=${issueDescription}&hasWarranty=${hasWarranty}`;
+            // const url = `repair-assign.html?invoice_date=${invoiceDate}&invoice_number=${invoiceNumber}&bill_to=${billTo}&equipment=${equipment}&issueDescription=${issueDescription}&hasWarranty=${hasWarranty}`;
+
+            const url = `order-confirmation.html?invoice_date=${invoiceDate}&invoice_number=${invoiceNumber}&bill_to=${billTo}&equipment=${equipment}&issueDescription=${issueDescription}&hasWarranty=${hasWarranty}`; //transfer data to/ navigiate to order confirmation page
+
             window.location.href = url;
         });
     </script>
