@@ -79,7 +79,7 @@
                                     <div class="nav-btn bg-grp4">
                                         <span class="nav-btn-txt">Active Repairs</span>
                                         <span class="nav-btn-icon">
-                                            <ion-icon name="clipboard-outline"></ion-icon>
+                                            <ion-icon name="alert-circle-outline"></ion-icon>
                                         </span>
                                     </div>
                                 </a>
@@ -88,6 +88,14 @@
                                         <span class="nav-btn-txt">Completed Repairs</span>
                                         <span class="nav-btn-icon">
                                             <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="../pages/reports-home.html" data-roles="technician salesRep admin">
+                                    <div class="nav-btn bg-grp4">
+                                        <span class="nav-btn-txt">Reports</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="reader-outline"></ion-icon>
                                         </span>
                                     </div>
                                 </a>
@@ -119,8 +127,9 @@
                             <th>Order Date</th>
                             <th>Location</th>
                             <th>Equipment</th>
-                            <th>Issue</th>
+                            <th>Notes</th>
                             <th>Status</th>
+                            <th>Report</th>
                         </tr>
                     </thead>
                     <tbody id="customerTableBody">
@@ -129,56 +138,85 @@
                             <td>2023-07-14</td>
                             <td>St.Catharines, ON</td>
                             <td><b>Hedge Trimmer</b><br>PowerHedge 200</td>
-                            <td>Battery replacement needed</td>
-                            <td><a href="" class="repair-btn continue">Complete</a></td>
+                            <td>Battery replaced</td>
+                            <td><a href="" class="repair-btn button">Contact 
+                                <ion-icon name="person-outline"></ion-icon></a></a>
+                            </td>
+                            <td><a href="" class="btn rounded-circle report">
+                                <ion-icon name="reader-outline"></ion-icon></a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Jane Smith</td>
                             <td>2023-05-22</td>
                             <td>Hamilton, ON</td>
                             <td><b>Leaf Blower</b><br>LeafBlaster 5000</td>
-                            <td>Engine won't start</td>
-                            <td><a href="" class="repair-btn continue">Complete</a></td>
+                            <td>Engine fixed</td>
+                            <td><a href="" class="repair-btn button continue">Awaiting Pickup</a></td>
+                            <td><a href="" class="btn rounded-circle report">
+                                <ion-icon name="reader-outline"></ion-icon></a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Emily Johnson</td>
                             <td>2023-03-15</td>
                             <td>Mississauga, ON</td>
                             <td><b>Chainsaw</b><br>ChainSaw Master</td>
-                            <td>Chain needs tightening</td>
-                            <td><a href="" class="repair-btn continue">Complete</a></td>
+                            <td>Chain tightened</td>
+                            <td><a href="" class="repair-btn button">Contact 
+                                <ion-icon name="person-outline"></ion-icon></a></a>
+                            </td>
+                            <td><a href="" class="btn rounded-circle report">
+                                <ion-icon name="reader-outline"></ion-icon></a>
+                            </td>
                         </tr>
                         <tr>
                             <td>William Brown</td>
                             <td>2023-01-05</td>
                             <td>Toronto, ON</td>
                             <td><b>Lawn Mower</b><br>TurfMaster 1500</td>
-                            <td>Blades not spinning</td>
-                            <td><a href="" class="repair-btn continue">Complete</a></td>
+                            <td>Blades working</td>
+                            <td><a href="" class="repair-btn button complete">Order Complete</a></td>
+                            <td><a href="" class="btn rounded-circle report">
+                                <ion-icon name="reader-outline"></ion-icon></a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Olivia White</td>
                             <td>2023-08-20</td>
                             <td>Brampton, ON</td>
                             <td><b>Leaf Blower</b><br>LeafSweeper Pro</td>
-                            <td>Fan malfunction</td>
-                            <td><a href="" class="repair-btn continue">Complete</a></td>
+                            <td>Fan fixed</td>
+                            <td><a href="" class="repair-btn button continue">Contacted</a></td>
+                            <td><a href="" class="btn rounded-circle report">
+                                <ion-icon name="reader-outline"></ion-icon></a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Michael Wilson</td>
                             <td>2023-10-01</td>
                             <td>Waterloo, ON</td>
                             <td><b>Hedge Trimmer</b><br>EdgeTrimmer X</td>
-                            <td>Auger not turning</td>
-                            <td><a href="" class="repair-btn continue">Complete</a></td>
+                            <td>Auger working</td>
+                            <td><a href="" class="repair-btn button">Contact 
+                                <ion-icon name="person-outline"></ion-icon></a></a>
+                            </td>
+                            <td><a href="" class="btn rounded-circle report">
+                                <ion-icon name="reader-outline"></ion-icon></a>
+                            </td>
                         </tr>
                         <tr>
                             <td>Sophia Taylor</td>
                             <td>2023-10-15</td>
                             <td>London, ON</td>
                             <td><b>Lawn Mower</b><br>GrassGlider Pro</td>
-                            <td>Handle broken</td>
-                            <td><a href="" class="repair-btn continue">Complete</a></td>
+                            <td>Handle fixed</td>
+                            <td><a href="" class="repair-btn button">Contact 
+                                <ion-icon name="person-outline"></ion-icon></a></a>
+                            </td>
+                            <td><a href="" class="btn rounded-circle report">
+                                <ion-icon name="reader-outline"></ion-icon></a>
+                            </td>
                         </tr>
             
                     </tbody>
