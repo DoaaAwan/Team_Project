@@ -114,25 +114,45 @@ if (customerId.length > 0) {
         if(selectedEquipment != 0){
           let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
 
+          /*
           $("#equipment-name").html(`<b>${equipment.equipmentName}</b>`);
           $("#equipment-manufacturer").html(`<b>${equipment.manufacturer}</b>`);
           $("#equipment-type").html(`<b>${equipment.equipmentType}</b>`);
           $("#equipment-colour").html(`<b>${equipment.colour}</b>`);
           $("#equipment-model").html(`<b>${equipment.modelNumber}</b>`);
           $("#equipment-serial").html(`<b>${equipment.serialNumber}</b>`);
+          */
+
+          document.getElementById("equipment-name").value = equipment.equipmentName;
+          document.getElementById("equipment-manufacturer").value = equipment.manufacturer;
+          document.getElementById("equipment-type").value = equipment.equipmentType;
+          document.getElementById("equipment-colour").value = equipment.colour;
+          document.getElementById("equipment-model").value = equipment.modelNumber;
+          document.getElementById("equipment-serial").value = equipment.serialNumber;
   
-          $("#update-equipment-btn").attr("href", `../pages/equipment-update.html?cid=${customerId}&oid=${ownership.id}&eid=${equipment.id}`);
+          //$("#update-equipment-btn").attr("href", `../pages/equipment-update.html?cid=${customerId}&oid=${ownership.id}&eid=${equipment.id}`);
         }
         else if(selectedEquipment == 0){
+          /*
           $("#equipment-name").html(`<b>${newEquipmentName}</b>`);
           $("#equipment-manufacturer").html(`<b>${newEquipmentManufacturer}</b>`);
           $("#equipment-type").html(`<b>${newEquipmentType}</b>`);
           $("#equipment-colour").html(`<b>${newEquipmentColour}</b>`);
           $("#equipment-model").html(`<b>${newEquipmentModelNumber}</b>`);
           $("#equipment-serial").html(`<b>${serialNumber}</b>`);
+          */
 
+          document.getElementById("equipment-name").value = newEquipmentName;
+          document.getElementById("equipment-manufacturer").value = newEquipmentManufacturer;
+          document.getElementById("equipment-type").value = newEquipmentType;
+          document.getElementById("equipment-colour").value = newEquipmentColour;
+          document.getElementById("equipment-model").value = newEquipmentModelNumber;
+          document.getElementById("equipment-serial").value = serialNumber;
+
+          /*
           document.getElementById("update-equipment-btn").href = `../pages/equipment-update.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
                                                         `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`;
+          */
         }
 
         if (ownership != undefined){
@@ -173,6 +193,7 @@ if (customerId.length > 0) {
         }
         
     });
+
     
 
     //event handler for if a repair record was selected from the list
@@ -195,9 +216,41 @@ if (customerId.length > 0) {
         $("#valid-warranty").html(`<b>${repairRequest.hasWarranty == true ? "Yes" : "No"}</b>`);
     });
 
+    document.getElementById("update-equipment-btn").addEventListener("click", function(e) {
+      e.preventDefault;
+      let updateEquipmentButton = document.getElementById("update-equipment-btn");
+      let updateEquipmentForm = document.getElementById("equipment-form");
+      let updateEquipmentButtonContent = updateEquipmentButton.innerHTML;
+
+      if (updateEquipmentButtonContent == "Update Equipment"){
+        toggleDisabledEquipmentForm(false)
+        updateEquipmentButton.innerHTML = "Save"
+      }
+      else if(updateEquipmentButtonContent == "Save" && updateEquipmentForm.checkValidity()){
+        updateEquipmentForm.submit();
+      }
+      else{
+        updateEquipmentForm.reportValidity();
+      }
+    });
+
+    document.getElementById("close-equipment-modal").addEventListener("click", function(e) {
+      toggleDisabledEquipmentForm(true);
+      document.getElementById("update-equipment-btn").innerHTML = "Update Equipment";
+    });
+
 } else {
     //if no customer id passed as parameter, page is blank with user message
     $(`#customer-details`).html("<h2>No customer details found.</h2>");
+}
+
+function toggleDisabledEquipmentForm(disabled){
+  $("#equipment-name").prop("disabled", disabled);
+  $("#equipment-manufacturer").prop("disabled", disabled);
+  $("#equipment-type").prop("disabled", disabled);
+  $("#equipment-colour").prop("disabled", disabled);
+  $("#equipment-model").prop("disabled", disabled);
+  $("#equipment-serial").prop("disabled", disabled);
 }
 
 // I found removing any of the jquery broke the page, so I opted to keep it, but just removed its functionality in the site where needed, which was only a few spots. 
