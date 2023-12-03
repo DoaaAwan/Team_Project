@@ -154,6 +154,16 @@
     clear: both;
 } */
 
+
+.small-button {
+    font-size: 12px; 
+    padding: 5px 10px; 
+    border: none; 
+    border-radius: 5px; 
+    margin-top: -5px !important;
+}
+
+
 @media screen and (min-width: 1550px) {
     .customer-details-grid {
         grid-template-columns: 0.7fr 2fr;
