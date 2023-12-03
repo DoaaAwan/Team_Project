@@ -168,28 +168,28 @@ if (customerId.length > 0) {
 
         if (repairRequests.length > 0){
             //if repair request records exist, shows list and displays all records in list
-            /*repairRequests.forEach(r => {
+            repairRequests.forEach(r => {
                 var option = document.createElement('option')
                 option.value = r.id;
                 option.text = `${r.invoiceDate}#${r.invoiceNumber}: ${r.issueDescription}`;
                 repairRequestList.add(option);
             });
-            */
+            
         }else{
             //if no records exist, ask user if they want to create a repair record for the selected equipment
-            /*
+            
             //var confirmCancel = window.confirm("No Repair Requests for the selected equipment. Would you like to create one?");
 
             if (confirmCancel) {
                 window.location.href = document.getElementById("create-repair-request").href;
             }
-            */
+            
             var option = document.createElement('option')
             option.value = "";
-            //option.text = `No Repair Requests. Click the button below to create one.`;
+            option.text = `No Repair Requests. Click the button below to create one.`;
             repairRequestList.add(option);
             $("#repair-requests").fadeIn();
-            //$("#no-repair-requests").html("No Repair Requests for the selected equipment. Would you like to create one?");
+            $("#no-repair-requests").html("No Repair Requests for the selected equipment. Would you like to create one?");
         }
         
     });
@@ -198,7 +198,7 @@ if (customerId.length > 0) {
 
     //event handler for if a repair record was selected from the list
     document.getElementById("repair-requests-list").addEventListener("change", function() {
-        //$("#details-repair-request").show();
+        $("#details-repair-request").show();
         //gets selected id for repair record and "activates" the button by adding the url with parameter to button
         const selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
         if (selectedRepairRequest != ""){
