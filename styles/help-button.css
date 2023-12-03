@@ -36,10 +36,27 @@
     opacity: 1;
 }
 
-
-
 .help-icon:focus .tooltip-text,
 .help-icon:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+}
+
+/* FOR ACTIVE REPAIRS/ COMPLETED REPAIRS PAGES */
+
+.active-repair-pg .help-icon{
+    height: 5px;
+    margin-left: 0;
+    margin-right: 14px;
+    bottom: 10px;
+    padding: 18px;
+}
+
+.active-repair-pg .tooltip-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: -100px;
+    margin-bottom: -100px;
+
 }
