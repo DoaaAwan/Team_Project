@@ -91,7 +91,7 @@ if (customerId.length > 0) {
         //hides user feedback message and empties repair list
         $("#repair-requests-list").empty();
         $("#no-repair-requests").hide();
-        //$('#details-repair-request').prop('disabled', true);
+        $("#details-repair-request").prop('disabled', true); 
         //$("#details-repair-request").hide();
 
         //"disables" repair details button
@@ -443,7 +443,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('equipment-list').addEventListener('click', function() {
   $("#repair-requests-list").prop('disabled', false);
-  $("#details-repair-request").css("background-color", "#236477");
 });
 
 
