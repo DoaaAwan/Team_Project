@@ -15,7 +15,7 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/repairs-tables.css">
-    <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -105,13 +105,16 @@
                 </div>
             </div>
         </nav>
-        <section class="page-container">
+        <section class="page-container active-repair-pg">
             <header>
                 <div class="d-flex justify-content-between">
                     <div>
                         <h1>Completed Repairs</h1>
                     </div>
                     <div>
+                        <button class="help-icon bg-white rounded-circle" aria-label="Help">
+                            <span class="tooltip-text">To sort the table, press the header of the column you would like to sort by in order to change the direction of the sorting.</span>
+                          </button>
                         <a href="javascript:history.back()" class="button secondary-btn" >
                             Back
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
@@ -120,7 +123,7 @@
                 </div>
             </header>
             <div class="page">
-                <table class="content-table">
+                <table class="content-table table-sortable">
                     <thead>
                         <tr>
                             <th>Customer</th>
@@ -134,7 +137,7 @@
                     </thead>
                     <tbody id="customerTableBody">
                         <tr>
-                            <td>John Doe</td>
+                            <td class="cust-name">Doe, John</td>
                             <td>2023-07-14</td>
                             <td>St.Catharines, ON</td>
                             <td><b>Hedge Trimmer</b><br>PowerHedge 200</td>
@@ -147,7 +150,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Jane Smith</td>
+                            <td class="cust-name">Smith, Jane</td>
                             <td>2023-05-22</td>
                             <td>Hamilton, ON</td>
                             <td><b>Leaf Blower</b><br>LeafBlaster 5000</td>
@@ -158,7 +161,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Emily Johnson</td>
+                            <td class="cust-name">Johnson, Emily</td>
                             <td>2023-03-15</td>
                             <td>Mississauga, ON</td>
                             <td><b>Chainsaw</b><br>ChainSaw Master</td>
@@ -171,7 +174,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>William Brown</td>
+                            <td class="cust-name">Brown, William</td>
                             <td>2023-01-05</td>
                             <td>Toronto, ON</td>
                             <td><b>Lawn Mower</b><br>TurfMaster 1500</td>
@@ -182,7 +185,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Olivia White</td>
+                            <td class="cust-name">White, Olivia</td>
                             <td>2023-08-20</td>
                             <td>Brampton, ON</td>
                             <td><b>Leaf Blower</b><br>LeafSweeper Pro</td>
@@ -193,7 +196,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Michael Wilson</td>
+                            <td class="cust-name">Wilson, Michael</td>
                             <td>2023-10-01</td>
                             <td>Waterloo, ON</td>
                             <td><b>Hedge Trimmer</b><br>EdgeTrimmer X</td>
@@ -206,7 +209,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Sophia Taylor</td>
+                            <td class="cust-name">Taylor, Sophia</td>
                             <td>2023-10-15</td>
                             <td>London, ON</td>
                             <td><b>Lawn Mower</b><br>GrassGlider Pro</td>
@@ -228,6 +231,9 @@
     <!-- <script src="../scripts/repair-tables.js"></script> -->
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/update-nav.js"></script>
+    <script src="../scripts/tablesort.js"></script>
+    <script src="./scripts/help-tooltip.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
         const backToHomeLink = document.getElementById('backToHome');
