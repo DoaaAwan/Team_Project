@@ -261,12 +261,19 @@ document.addEventListener('DOMContentLoaded', function() {
   const urlParams = new URLSearchParams(window.location.search);
   const customerId = urlParams.get('cid');
 
+
   activeRepairsBtn.addEventListener('click', function() {
       populateRepairsList('active');
+      $("#details-repair-request").css("background-color", "grey");
+      $("#repair-requests-list").prop('disabled', true); 
+      $("#details-repair-request").prop('disabled', true); 
   });
 
   completedRepairsBtn.addEventListener('click', function() {
       populateRepairsList('completed');
+      $("#details-repair-request").css("background-color", "grey");
+      $("#repair-requests-list").prop('disabled', true); 
+      $("#details-repair-request").prop('disabled', true); 
   });
 
   function populateRepairsList(type) {
@@ -432,8 +439,11 @@ document.addEventListener('DOMContentLoaded', function() {
       
     ];
   }
+});
 
-
+document.getElementById('equipment-list').addEventListener('click', function() {
+  $("#repair-requests-list").prop('disabled', false);
+  $("#details-repair-request").css("background-color", "#236477");
 });
 
 
