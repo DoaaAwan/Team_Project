@@ -176,39 +176,105 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="equipment-details">
-                        <div>
-                            <p>Name:</p>
-                            <hr>
-                            <p>Manufacturer:</p>
-                            <hr>
-                            <p>Equipment Type:</p>
-                            <hr>
-                            <p>Colour:</p>
-                            <hr>
-                            <p>M/N(Model Number):</p>
-                            <hr>
-                            <p>S/N(Serial Number):</p>
+                <form method="post" action="https://webdevbasics.net/scripts/demo.php" id="equipment-form">
+                    <fieldset class="modal-body">
+                        <div class="equipment-field">
+                            <label for="equipment-name">Name:</label>
+                            <input type="text" placeholder="E.g. TurfTamer Supreme" id="equipment-name" name="equipment-name" required disabled>
                         </div>
-                        <div>
-                            <p id="equipment-name"></p>
-                            <hr>
-                            <p id="equipment-manufacturer"></p>
-                            <hr>
-                            <p id="equipment-type"></p>
-                            <hr>
-                            <p id="equipment-colour"></p>
-                            <hr>
-                            <p id="equipment-model"></p>
-                            <hr>
-                            <p id="equipment-serial"></p>
+                        <hr>
+                        <div class="equipment-field">
+                            <label for="equipment-manufacturer">Manufacturer:</label>
+                            <select name="equipment-manufacturer" id="equipment-manufacturer" required disabled>
+                                <option value="" selected disabled>Select Manufacturer</option>
+                                <option value="Craftsman">
+                                    Craftsman
+                                </option>
+                                <option value="Pro-Power Canada">
+                                    Pro-Power Canada
+                                </option>
+                                <option value="Troy-Bilt">
+                                    Troy-Bilt
+                                </option>
+                                <option value="Toro">
+                                    Toro
+                                </option>
+                                <option value="SnowMaster">
+                                    SnowMaster
+                                </option>
+                                <option value="HedgeMaster">
+                                    HedgeMaster
+                                </option>
+                            </select>
                         </div>
-                    </div>
-                </div>
+                        <hr>
+                        <div class="equipment-field">
+                            <label for="equipment-type">Equipment Type:</label>
+                            <select id="equipment-type" name="equipment-type" required disabled>
+                                <option value="" disabled selected>Select Equipment Type</option>
+                                <option value="Lawn Mower">
+                                    Lawn Mower
+                                </option>
+                                <option value="Leaf Blower">
+                                    Leaf Blower
+                                </option>
+                                <option value="Chainsaw">
+                                    Chainsaw
+                                </option>
+                                <option value="Hedge Trimmer">
+                                    Hedge Trimmer
+                                </option>
+                                <option value="Snow Blower">
+                                    Snow Blower
+                                </option>
+                                <option value="Pressure Washer">
+                                    Pressure Washer
+                                </option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="equipment-field">
+                            <label for="equipment-colour">Name:</label>
+                            <select id="equipment-colour" name="equipment-colour" required disabled>
+                                <option value="" disabled selected>Select Colour</option>
+                                <option value="Red">
+                                    Red
+                                </option>
+                                <option value="Green">
+                                    Green
+                                </option>
+                                <option value="Blue">
+                                    Blue
+                                </option>
+                                <option value="Yellow">
+                                    Yellow
+                                </option>
+                                <option value="White">
+                                    White
+                                </option>
+                                <option value="Silver">
+                                    Silver
+                                </option>
+                                <option value="Black">
+                                    Black
+                                </option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="equipment-field">
+                            <label for="equipment-model">M/N(Model Number):</label>
+                            <input type="text" placeholder="E.g. C03S" id="equipment-model" name="equipment-model" required disabled>
+                        </div>
+                        <hr>
+                        <div class="equipment-field">
+                            <label for="equipment-serial">S/N(Serial Number):</label>
+                            <input type="text" placeholder="E.g. 12345678" id="equipment-serial" name="equipment-serial" required disabled>
+                        </div>
+                    </fieldset>
+                </form>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a class="button" id="update-equipment-btn" href="../pages/equipment-update.html">Update Equipment</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-equipment-modal">Close</button>
+                    <button id="update-equipment-btn" class="button btns">Update Equipment</button>
                 </div>
             </div>
         </div>

@@ -26,6 +26,16 @@
     background-color: #236477;
 }
 
+#update-equipment-btn{
+    width: auto;
+    color: white;
+    background-color: #236477;   
+}
+
+#close-equipment-modal{
+    padding: 9px 15px;
+}
+
 .customer-details .btns{
     width: 100%;
     margin: 5px;
@@ -117,6 +127,15 @@
 .equipment-details, .repair-request-details {
     display: grid;
     grid-template-columns: 1fr 1.8fr;    
+}
+
+.equipment-field {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+}
+
+.modal-body label{
+    margin-top: 5px;
 }
 
 #no-repair-requests{
