@@ -49,6 +49,12 @@
             font-weight: bold;
             color: #28a745;
         }
+
+        @media print {
+            .noPrint {
+                display: none;
+            }
+        }
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/form-style.css">
@@ -63,7 +69,7 @@
                     <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
                 </a>
                 <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
+                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon noPrint">
                 </a>
             </div>
             <div>
@@ -145,7 +151,7 @@
         </nav>
         <section class="page-container">
             <header>
-                <h1>Warranty Report</h1>
+                <h1>SnowBuster Warranty Report</h1>
             </header>
             <div class="page">
 
@@ -168,12 +174,12 @@
 
                     <div class="report-section">
                         <label for="equipmentName">Equipment:</label>
-                        <p id="equipmentName">(M/N: C10R) ChainSaw Master - Chainsaw</p>
+                        <p id="equipmentName">(M/N: S08M) SnowBuster Deluxe - Snow Blower</p>
                     </div>
 
                     <div class="report-section">
                         <label for="summaryOfWork">Summary of Work:</label>
-                        <p id="summaryOfWork">Chain tightened.</p>
+                        <p id="summaryOfWork">Spark plug malfunction</p>
                     </div>
 
                     <div class="report-section">
