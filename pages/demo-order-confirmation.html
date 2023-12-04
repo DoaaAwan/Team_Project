@@ -15,7 +15,52 @@
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/repairs-tables.css">
-    <link rel="stylesheet" href="../styles/help-button.css">
+    <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
+    <style>
+        .order-confirmed-page{
+            margin-bottom: 40px;
+        }
+        .order-confirmed-page h2{
+            margin-top: 40px;
+            text-align: center;
+            font-size: 30px;
+            color: #307676;
+            font-weight: bold;
+        }
+        .order-confirmed-page h3{
+            margin-top: 10px;
+            text-align: center;
+            font-size: 20px;
+            color: #307676;
+            text-transform: none;
+        }
+        .order-confirmed-page .info{
+            margin: 20px;
+            /* text-align: center; */
+            font-size: 20px;
+            color: #307676;
+            text-transform: none;
+        }
+        .order-confirmed-page .info p{
+            margin-top: 10px;
+        }
+        .order-confirmed-page .info-border{
+            display: flex;
+            justify-content: center;
+            border: 1px solid #307676;
+            width: 50%;
+            margin: 20px auto;
+        }
+        .order-confirmed-page .print-btn{
+            display: block;
+            margin: 0 auto;
+            width: 50%;
+            padding: 15px;
+            background: #307676;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -105,127 +150,96 @@
                 </div>
             </div>
         </nav>
-        <section class="page-container active-repair-pg">
+        <section class="page-container">
             <header>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h1>Active Repairs</h1>
+                        <h1>Repair Complete</h1>
                     </div>
                     <div>
-                        <button class="help-icon bg-white rounded-circle" aria-label="Help">
-                            <span class="tooltip-text">To sort the table, press the header of the column you would like to sort by. This will change the direction of the sorting.</span>
-                          </button>
-                        <a href="javascript:history.back()" class="button secondary-btn" >
-                            Back
+                        <a href="demo-active-repairs-complete.html" class="button secondary-btn" id="btnBackToCustomer">
+                            Back to Repairs
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
-                        <!-- <a href="" class="button secondary-btn ms-3">
-                            Continue Repairs
-                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        <!-- <a href="" class="button secondary-btn ms-3" id="btnBackToCustomer">
+                            Print Invoice
                         </a> -->
                     </div>
                 </div>
             </header>
             <div class="page">
-
-                <table class="content-table table-sortable">
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Order Date</th>
-                            <th>Location</th>
-                            <th>Equipment</th>
-                            <th>Issue</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="customerTableBody">
-                        <tr>
-                            <td class="cust-name">Brown, William</td>
-                            <td>2023-02-10</td>
-                            <td>Toronto, ON</td>
-                            <td><b>Pressure Washer</b><br>PressureWasher Pro</td>
-                            <td>Hose connector leak</td>
-                            <td>
-                                <a href="../pages/repair-pick.html?invoice_date=12/1/2023&invoice_number=2023OCT345&bill_to=William%20Brown&equipment=(M/N:%20P15T)PressureWasher%20Pro%20-%20Pressure%20Washer&issueDescription=&hasWarranty=no" class="repair-btn button continue">Continue Repair</a></td>
-                        </tr>
-                        <tr>
-                            <td class="cust-name">Smith, Jane</td>
-                            <td>2023-06-10</td>
-                            <td>Hamilton, ON</td>
-                            <td><b>Lawn Mower</b><br>LawnMaster 2000</td>
-                            <td>Drive belt snapped</td>
-                            <td><a href="../pages/repair-continue.html?invoice_date=12/1/2023&invoice_number=2023OCT345&bill_to=Jane%20Smith&equipment=(M/N:%20B05C)LawnMaster%202000%20-%20Lawn%20Mower&issueDescription=&hasWarranty=no" class="repair-btn button continue">Continue Repair</a></td>
-                        </tr>
-                        <tr>
-                            <td class="cust-name">White, Olivia</td>
-                            <td>2023-09-25</td>
-                            <td>Brampton, ON</td>
-                            <td><b>Snow Blower</b><br>ProSnow 3000</td>
-                            <td>Fuel line clog</td>
-                            <td>
-                                <a href="../pages/repair-continue.html?invoice_date=12/1/2023&invoice_number=2023OCT345&bill_to=Olivia%20White&equipment=(M/N:%20PS30Q)ProSnow%203000%20-%20Snow%20Blower&issueDescription=&hasWarranty=no" class="repair-btn button continue">Continue Repair</a></td>
-                        </tr>
-                        <tr>
-                            <td class="cust-name">Doe, John</td>
-                            <td>2023-10-08</td>
-                            <td>St.Catharines, ON</td>
-                            <td><b>Lawn Mower</b><br>GrassGlider Pro</td>
-                            <td>Engine won't start</td>
-                            <td>
-                                <a href="../pages/repair-pick.html?invoice_date=12/1/2023&invoice_number=2023OCT345&bill_to=John%20Doe&equipment=(M/N:%20A02B)GrassGlider%20Pro%20-%20Lawn%20Mower&issueDescription=&hasWarranty=no" class="repair-btn button ">Start Repair <ion-icon name="build-outline"></ion-icon></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="cust-name">Wilson, Michael</td>
-                            <td>2023-10-09</td>
-                            <td>Waterloo, ON</td>
-                            <td><b>Chainsaw</b><br>PowerChain X</td>
-                            <td>Chain came off</td>
-                            <td>
-                                <a href="../pages/repair-pick.html?invoice_date=12/1/2023&invoice_number=2023OCT345&bill_to=Michael%20Wilson&equipment=(M/N:%20PC12K)PowerChain%20X%20-%20Chainsaw&issueDescription=&hasWarranty=no" class="repair-btn button ">Start Repair <ion-icon name="build-outline"></ion-icon></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="cust-name">Taylor, Sophia</td>
-                            <td>2023-10-22</td>
-                            <td>London, ON</td>
-                            <td><b>Hedge Trimmer</b><br>PowerHedge 300</td>
-                            <td>Blades need sharpening</td>
-                            <td>
-                                <a href="../pages/repair-pick.html?invoice_date=12/1/2023&invoice_number=2023OCT345&bill_to=Sophia%20Taylor&equipment=(M/N:%20H12D)PowerHedge%20300%20-%20Hedge%20Trimmer&issueDescription=&hasWarranty=no" class="repair-btn button">Start Repair <ion-icon name="build-outline"></ion-icon></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="cust-name">Thomas, James</td>
-                            <td>2023-10-29</td>
-                            <td>Oshawa, ON</td>
-                            <td><b>Snow Blower</b><br>SnowBuster Deluxe</td>
-                            <td>Oil leak</td>
-                            <td>
-                                <a href="../pages/repair-pick.html?invoice_date=12/1/2023&invoice_number=2023OCT345&bill_to=James%20Thomas&equipment=(M/N:%20S08M)SnowBuster%20Deluxe%20-%20Snow%20Blower&issueDescription=&hasWarranty=no" class="repair-btn button">Start Repair <ion-icon name="build-outline"></ion-icon></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="cust-name">Johnson, Emily</td>
-                            <td>2023-12-04</td>
-                            <td>Mississauga, ON</td>
-                            <td><b>Snow Blower</b><br>SnowBuster Deluxe</td>
-                            <td>Spark plug malfunction</td>
-                            <td><a href="../pages/demo-repair-pick.html" class="repair-btn button">Start Repair <ion-icon name="build-outline"></ion-icon></a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="order-confirmed-page">
+                    <h2>Thankyou for your work!</h2>
+                    <h3>You have successfully completed a repair request</h3>
+                    <div class="info-border">
+                        <div class="info">
+                            <p><b>Customer:</b> Emily Johnson</p>
+                            <p><b>Date:</b> <span id="a-invoice-date"></span></p>
+                            <p><b>Invoice:</b> 2023OCT345</p>
+                            <p><b>Equipment:</b> (M/N: S08M)SnowBuster Deluxe - Snow Blower</span></p>
+                            <p><b>Issue:</b> Spark plug malfunction</span></p>
+                            <!-- <p>test: <span id="test"></span></p> -->
+                            <!-- <p>Warranty: <span iid="a-has-warranty"></span></p> -->
+                        </div>
+                    </div>
+                    <!-- <a href="" class="btn print-btn">Print Invoice</a> -->
+    
+                </div>
             </div>
         </section>
     </div>
-    <!-- <a href="" class="start-repair-btn ">Customer <ion-icon name="person-outline"></ion-icon></a> -->
     <!-- <script src="../scripts/repair-tables.js"></script> -->
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/update-nav.js"></script>
-    <script src="../scripts/tablesort.js"></script>
-    <script src="./scripts/help-tooltip.js"></script>
+    <script>
+        // Get today's date
+            const today = new Date();
 
+        // Format the date as YYYY-MM-DD
+        const formattedDate = today.toISOString().split('T')[0];
+
+        // Replace the content of the span element
+        const spanElement = document.getElementById('a-invoice-date');
+        if (spanElement) {
+            spanElement.textContent = formattedDate;
+        }
+
+        //all data recieved from the create page
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedDate = urlParams.get("invoice_date");
+        const selectedInvoiceNumber = urlParams.get("invoice_number");
+        const selectedIssueDescription = urlParams.get("issueDescription");
+
+        const selectedBillTo = urlParams.get("bill_to");
+        const selectedEquipment = urlParams.get("equipment");
+        const selectedHasWarranty = urlParams.get("hasWarranty");
+
+        
+
+        //console.log("selectedBillTo:", selectedBillTo);
+        //console.log("selectedEquipment:", selectedEquipment);
+
+        // Populate elements on create page from the assign page
+        // document.getElementById("a-invoice-date").textContent = selectedDate;
+        document.getElementById("a-invoice-number").textContent = selectedInvoiceNumber;
+        document.getElementById("a-bill-to").textContent = selectedBillTo;//getting value rather than text
+        document.getElementById("a-equipment").textContent = selectedEquipment;//getting value rather than text
+
+        selectedIssueDescription == ''? document.getElementById("a-issueDescription").textContent = 'No issue listed': document.getElementById("a-issueDescription").textContent = selectedIssueDescription;
+        
+        document.getElementById("a-has-warranty").textContent = selectedHasWarranty;
+
+        //GET CUSTOMER ID TO NAVIGATE BACK TO SPECIFIC CUSTOMER DETAILS PAGE USING BACK TO CUSTOMER BUTTON
+
+        // document.getElementById("test").textContent = selectedBillTo;
+
+        // document.getElementById("btnBackToCustomer").addEventListener("click", function (event) {
+        //     event.preventDefault();
+        //     const url = `../pages/customer-details.html?cid=${selectedBillTo}`;
+        //     window.location.href = url;
+        // });
+
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
         const backToHomeLink = document.getElementById('backToHome');
