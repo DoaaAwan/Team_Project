@@ -16,66 +16,43 @@
     <script src="./src/jquery-3.7.1.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-    </style>
-    <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/repairs-tables.css">
-    <!-- <link rel="stylesheet" href="../styles/help-button.css"> -->
-    <style>
-        .order-confirmed-page {
-            margin-bottom: 40px;
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
         }
 
-        .order-confirmed-page h2 {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 30px;
-            color: #307676;
+        .report-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .report-section {
+            margin-bottom: 20px;
+        }
+
+        label {
             font-weight: bold;
         }
 
-        .order-confirmed-page h3 {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 20px;
-            color: #307676;
-            text-transform: none;
-        }
-
-        .order-confirmed-page .info {
-            margin: 20px;
-            /* text-align: center; */
-            font-size: 20px;
-            color: #307676;
-            text-transform: none;
-        }
-
-        .order-confirmed-page .info p {
-            margin-top: 10px;
-        }
-
-        .order-confirmed-page .info-border {
-            display: flex;
-            justify-content: center;
-            border: 1px solid #307676;
-            width: 50%;
-            margin: 20px auto;
-        }
-
-        .order-confirmed-page .print-btn {
-            display: block;
-            margin: 0 auto;
-            width: 50%;
-            padding: 15px;
-            background: #307676;
-            color: white;
-        }
-
-        @media print {
-            .noPrint {
-                display: none;
-            }
+        .total-cost {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #28a745;
         }
     </style>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../styles/form-style.css">
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 
 <body>
@@ -86,7 +63,7 @@
                     <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
                 </a>
                 <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon noPrint">
+                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
                 </a>
             </div>
             <div>
@@ -100,7 +77,7 @@
                         <div class="container">
                             <div class="d-flex justify-content-center">
                                 <div class="nav-user-img">
-                                    <div><img src="../images/user-profile.png" class="" alt="" id="navUserImg"></div>
+                                    <div><img src="../images/user-profile.png" id="navUserImg" class="" alt=""></div>
                                 </div>
                                 <div class="ms-3">
                                     <div class="nav-user-info">
@@ -119,7 +96,7 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="../index.html" data-roles="salesRep admin technician">
+                                <a href="../index.html" data-roles="salesRep technician admin">
                                     <div class="nav-btn bg-grp2">
                                         <span class="nav-btn-txt">Search Customer
                                         </span>
@@ -128,7 +105,7 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="../pages/customer-create.html" data-roles="salesRep admin">
+                                <a href="../pages/customer-create.html" data-roles="salesRep default admin">
                                     <div class="nav-btn bg-grp3">
                                         <span class="nav-btn-txt">Create Customer</span>
                                         <span class="nav-btn-icon">
@@ -168,82 +145,54 @@
         </nav>
         <section class="page-container">
             <header>
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h1 class="noPrint">Order Confirmed</h1>
-                    </div>
-                    <div>
-                        <a href="javascript:history.go(-2)" class="button secondary-btn noPrint" id="btnBackToCustomer">
-                            Back to Customer
-                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
-                        </a>
-                        <a href="" onclick="window.print();" class="button secondary-btn ms-3 noPrint" id="btnBackToCustomer">
-                            Print Invoice
-                        </a>
-                    </div>
-                </div>
+                <h1>Warranty Report</h1>
             </header>
             <div class="page">
-                <div class="order-confirmed-page">
-                    <h2>Thankyou for your submission!</h2>
-                    <h3>You have successfully created a repair request</h3>
-                    <div class="info-border">
-                        <div class="info">
-                            <p><b>Customer:</b> <span id="a-bill-to"></span></p>
-                            <p><b>Date:</b> <span id="a-invoice-date"></span></p>
-                            <p><b>Invoice:</b> <span id="a-invoice-number"></span></p>
-                            <p><b>Equipment:</b> <span id="a-equipment"></span></p>
-                            <p><b>Issue:</b> <span id="a-issueDescription"></span></p>
-                            <!-- <p>test: <span id="test"></span></p> -->
-                            <!-- <p>Warranty: <span iid="a-has-warranty"></span></p> -->
-                        </div>
+
+                <div class="report-container">
+
+                    <div class="report-section">
+                        <label for="customerName">Customer Name:</label>
+                        <p id="customerName">Emily Johnson</p>
                     </div>
-                    <!-- <a href="" class="btn print-btn">Print Invoice</a> -->
 
+                    <div class="report-section">
+                        <label for="customerEmail">Customer Email:</label>
+                        <p id="customerEmail">emilyj@gmail.com</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="customerPhone">Customer Phone:</label>
+                        <p id="customerPhone">905-789-0123</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="equipmentName">Equipment:</label>
+                        <p id="equipmentName">(M/N: C10R) ChainSaw Master - Chainsaw</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="summaryOfWork">Summary of Work:</label>
+                        <p id="summaryOfWork">Chain tightened.</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="totalCost">Total Cost:</label>
+                        <p id="totalCost" class="total-cost">$100.00</p>
+                    </div>
                 </div>
+
+                <a href="" onclick="window.print();" class="button secondary-btn ms-3 noPrint" id="btnBackToCustomer">
+                    Print Report
+                </a>
             </div>
-        </section>
+
     </div>
-    <!-- <script src="../scripts/repair-tables.js"></script> -->
-    <script src="../scripts/role-based-nav.js"></script>
-    <script src="../scripts/update-nav.js"></script>
-    <script>
-        //all data recieved from the create page
-        const urlParams = new URLSearchParams(window.location.search);
-        const selectedDate = urlParams.get("invoice_date");
-        const selectedInvoiceNumber = urlParams.get("invoice_number");
-        const selectedIssueDescription = urlParams.get("issueDescription");
-
-        const selectedBillTo = urlParams.get("bill_to");
-        const selectedEquipment = urlParams.get("equipment");
-        const selectedHasWarranty = urlParams.get("hasWarranty");
-
-
-
-        //console.log("selectedBillTo:", selectedBillTo);
-        //console.log("selectedEquipment:", selectedEquipment);
-
-        // Populate elements on create page from the assign page
-        document.getElementById("a-invoice-date").textContent = selectedDate;
-        document.getElementById("a-invoice-number").textContent = selectedInvoiceNumber;
-        document.getElementById("a-bill-to").textContent = selectedBillTo;//getting value rather than text
-        document.getElementById("a-equipment").textContent = selectedEquipment;//getting value rather than text
-
-        selectedIssueDescription == '' ? document.getElementById("a-issueDescription").textContent = 'No issue listed' : document.getElementById("a-issueDescription").textContent = selectedIssueDescription;
-
-        document.getElementById("a-has-warranty").textContent = selectedHasWarranty;
-
-        //GET CUSTOMER ID TO NAVIGATE BACK TO SPECIFIC CUSTOMER DETAILS PAGE USING BACK TO CUSTOMER BUTTON
-
-        // document.getElementById("test").textContent = selectedBillTo;
-
-        // document.getElementById("btnBackToCustomer").addEventListener("click", function (event) {
-        //     event.preventDefault();
-        //     const url = `../pages/customer-details.html?cid=${selectedBillTo}`;
-        //     window.location.href = url;
-        // });
-
-    </script>
+    </section>
+    </div>
+    <script src="./scripts/help-tooltip.js"></script>
+    <script src="./scripts/role-based-nav.js"></script>
+    <script src="./scripts/update-nav.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const backToHomeLink = document.getElementById('backToHome');
@@ -252,7 +201,7 @@
                     const selectedRole = localStorage.getItem('selectedRole') || 'default';
                     if (selectedRole === 'technician') {
                         event.preventDefault();
-                        window.location.href = '../pages/active-repairs.html';
+                        window.location.href = './pages/active-repairs.html';
                     }
                 });
             }
