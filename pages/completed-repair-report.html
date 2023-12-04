@@ -16,11 +16,49 @@
     <script src="./src/jquery-3.7.1.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .report-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f8f8f8;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .report-section {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .total-cost {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        @media print {
+            .noPrint {
+                display: none;
+            }
+        }
     </style>
     <link rel="stylesheet" href="../src/style.css">
     <link rel="stylesheet" href="../styles/form-style.css">
     <link rel="stylesheet" href="../styles/help-button.css">
-    <link rel="stylesheet" href="../styles/reports-home.css">
 </head>
 
 <body>
@@ -31,7 +69,7 @@
                     <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
                 </a>
                 <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon">
+                    <img src="../images/hamburger-menu.png" alt="" class="nav-icon noPrint">
                 </a>
             </div>
             <div>
@@ -113,27 +151,54 @@
         </nav>
         <section class="page-container">
             <header>
-                <h1>Reports</h1>
+                <h1>Repair Report</h1>
             </header>
             <div class="page">
-                <h2>What kind of report would you like to generate?</h2>
-                <form id="navigationForm">
-                    <label for="reportType"></label>
-                    <select id="reportType">
-                        <option value="">Choose a report type</option>
-                        <option value="warranty">Warranty Report</option>
-                        <option value="repair">Repair Report</option>
-                        <option value="weekly">Weekly Report</option>
-                    </select>
-                    <br>
-                    <button type="button" class="button" onclick="navigate()">Submit</button>
-                </form>
+
+                <div class="report-container">
+
+                    <div class="report-section">
+                        <label for="customerName">Customer Name:</label>
+                        <p id="customerName">Emily Johnson</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="customerEmail">Customer Email:</label>
+                        <p id="customerEmail">emilyj@gmail.com</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="customerPhone">Customer Phone:</label>
+                        <p id="customerPhone">905-789-0123</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="equipmentName">Equipment:</label>
+                        <p id="equipmentName">(M/N: S08M) SnowBuster Deluxe - Snow Blower</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="summaryOfWork">Summary of Work:</label>
+                        <p id="summaryOfWork">Spark plug malfunction</p>
+                    </div>
+
+                    <div class="report-section">
+                        <label for="totalCost">Total Cost:</label>
+                        <p id="totalCost" class="total-cost">$100.00</p>
+                    </div>
+                </div>
+
+                <a href="" onclick="window.print();" class="button secondary-btn ms-3 noPrint" id="btnBackToCustomer">
+                    Print Report
+                </a>
             </div>
-        </section>
+
     </div>
-    <script src="../scripts/help-tooltip.js"></script>
-    <script src="../scripts/role-based-nav.js"></script>
-    <script src="../scripts/update-nav.js"></script>
+    </section>
+    </div>
+    <script src="./scripts/help-tooltip.js"></script>
+    <script src="./scripts/role-based-nav.js"></script>
+    <script src="./scripts/update-nav.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const backToHomeLink = document.getElementById('backToHome');
@@ -147,25 +212,6 @@
                 });
             }
         });
-
-        function navigate() {
-            var selectedReport = document.getElementById("reportType").value;
-
-            switch (selectedReport) {
-                case "warranty":
-                    window.location.href = "warranty-report.html";
-                    break;
-                case "repair":
-                    window.location.href = "repair-report.html";
-                    break;
-                case "weekly":
-                    window.location.href = "weekly-report.html";
-                    break;
-                default:
-                    alert("Please choose a report type before submitting.");
-                    break;
-            }
-        }
     </script>
 </body>
 
