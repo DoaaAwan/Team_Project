@@ -48,6 +48,13 @@
     color: #009879;
 }
 
+.cust-name{
+    font-weight: bold;
+    /* color: #307676; */
+}
+
+/* BUTTONS */
+
 .repair-btn{
     background: #1f78d1;
     /* background: #009879; */
@@ -114,11 +121,6 @@
     color: white;
 }
 
-.cust-name{
-    font-weight: bold;
-    /* color: #307676; */
-}
-
 /* SORTING TABLES STYLES */
 
 .table-sortable th {
@@ -142,3 +144,56 @@
 .table-sortable .th-sort-desc {
 	background: rgba(0, 0, 0, 0.1);
 }
+
+/* MODAL CUSTOMER DETAILS (CONTACT BUTTON) STYLES */
+
+.icon-modal{
+    margin-right: 5px;
+    position: relative;
+    top: 4px;
+    color: teal;
+}
+
+.address-lines-modal {
+    margin-left: 30px;
+}
+
+.cust-details-modal-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cust-details-modal{
+    font-size: 18px;
+}
+
+.form-label{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: teal;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.form-label, .form-radio {
+    margin-bottom: 10px;
+}
+
+.form-radio-group {
+    display: none;
+}
+
+.bg-grn{
+    background: teal;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+}
+
+.btn-save-modal{
+    /* display: flex; */
+    float: right;
+    display: inline;
+}
+
+
