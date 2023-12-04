@@ -113,7 +113,7 @@
                     </div>
                     <div>
                         <button class="help-icon bg-white rounded-circle" aria-label="Help">
-                            <span class="tooltip-text">To sort the table, press the header of the column you would like to sort by in order to change the direction of the sorting.</span>
+                            <span class="tooltip-text">To sort the table, press the header of the column you would like to sort by. This will change the direction of the sorting.</span>
                           </button>
                         <a href="javascript:history.back()" class="button secondary-btn" >
                             Back
@@ -142,8 +142,60 @@
                             <td>St.Catharines, ON</td>
                             <td><b>Hedge Trimmer</b><br>PowerHedge 200</td>
                             <td>Battery replaced</td>
-                            <td><a href="" class="repair-btn button">Contact 
-                                <ion-icon name="person-outline"></ion-icon></a></a>
+                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-1" id="btn1">Contact 
+                                <ion-icon name="person-outline"></ion-icon>
+                            </a>
+                                <!-- modal content -->
+                                <div class="modal fade" id="reg-modal-1" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-light">
+                                        <div class="modal-header bg-grn">
+                                        <h5 class="modal-title" id="modal-title">John Doe</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cust-details-modal-container">
+                                                <div class="mb-3 cust-details-modal">
+                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 456-7890</p>
+                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>johndoe@gmail.com</p>
+                                                    <p class="mt-2">
+                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
+                                                        123 Main St. 
+                                                        <div class="address-lines-modal">St. Catharines, Ontario</div>
+                                                        <div class="address-lines-modal">L4K 8F9</div>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label for="modal-contacted" class="form-label">Contacted</label>
+                                                        <input type="checkbox" id="modal-contacted-1" onchange="toggleRadioGroup(1,1)">
+                                                    </div>
+                                                    <div class="form-radio-group" id="radio-group-1">
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="order-complete"> Order Complete
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer ">
+                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(1,'btn1')" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                             </td>
                             <td><a href="" class="btn rounded-circle report">
                                 <ion-icon name="reader-outline"></ion-icon></a>
@@ -155,7 +207,62 @@
                             <td>Hamilton, ON</td>
                             <td><b>Leaf Blower</b><br>LeafBlaster 5000</td>
                             <td>Engine fixed</td>
-                            <td><a href="" class="repair-btn button continue">Contacted</a></td>
+                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-2" id="btn2">Contact 
+                                <ion-icon name="person-outline"></ion-icon>
+                            </a>
+                                <!-- modal content -->
+                                <div class="modal fade" id="reg-modal-2" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-light">
+                                        <div class="modal-header bg-grn">
+                                        <h5 class="modal-title" id="modal-title">Jane Smith</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cust-details-modal-container">
+                                                <div class="mb-3 cust-details-modal">
+                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 123-4567</p>
+                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>janesmith@gmail.com</p>
+                                                    <p class="mt-2">
+                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
+                                                        456 Elm St. 
+                                                        <div class="address-lines-modal">Hamilton, Ontario</div>
+                                                        <div class="address-lines-modal">L5T 9K3</div>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label for="modal-contacted" class="form-label">Contacted</label>
+                                                        <input type="checkbox" id="modal-contacted-2" onchange="toggleRadioGroup(2,2)">
+                                                    </div>
+                                                
+                                                    <div class="form-radio-group" id="radio-group-2">
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="order-complete"> Order Complete
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(2,'btn2')" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><a href="" class="btn rounded-circle report">
                                 <ion-icon name="reader-outline"></ion-icon></a>
                             </td>
@@ -166,9 +273,61 @@
                             <td>Mississauga, ON</td>
                             <td><b>Chainsaw</b><br>ChainSaw Master</td>
                             <td>Chain tightened</td>
-                            <td><a href="" class="repair-btn button">Contact 
-                                <ion-icon name="person-outline"></ion-icon></a></a>
-                            </td>
+                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-3" id="btn3">Contact 
+                                <ion-icon name="person-outline"></ion-icon>
+                            </a>
+                                <!-- modal content -->
+                                <div class="modal fade" id="reg-modal-3" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-light">
+                                        <div class="modal-header bg-grn">
+                                        <h5 class="modal-title" id="modal-title">Emily Johnson</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cust-details-modal-container">
+                                                <div class="mb-3 cust-details-modal">
+                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 789-0123</p>
+                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>emilyj@gmail.com</p>
+                                                    <p class="mt-2">
+                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
+                                                        789 Maple Ave. 
+                                                        <div class="address-lines-modal">Mississauga, Ontario</div>
+                                                        <div class="address-lines-modal">L6P 5G7</div>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label for="modal-contacted" class="form-label">Contacted</label>
+                                                        <input type="checkbox" id="modal-contacted-3" onchange="toggleRadioGroup(3,3)">
+                                                    </div>
+                                                
+                                                    <div class="form-radio-group" id="radio-group-3">
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="order-complete"> Order Complete
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(3,'btn3')" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                             <td><a href="" class="btn rounded-circle report">
                                 <ion-icon name="reader-outline"></ion-icon></a>
                             </td>
@@ -179,7 +338,61 @@
                             <td>Toronto, ON</td>
                             <td><b>Lawn Mower</b><br>TurfMaster 1500</td>
                             <td>Blades working</td>
-                            <td><a href="" class="repair-btn button complete">Order Complete</a></td>
+                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-4" id="btn4">Contact 
+                                <ion-icon name="person-outline"></ion-icon>
+                            </a>
+                                <!-- modal content -->
+                                <div class="modal fade" id="reg-modal-4" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-light">
+                                        <div class="modal-header bg-grn">
+                                        <h5 class="modal-title" id="modal-title">William Brown</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cust-details-modal-container">
+                                                <div class="mb-3 cust-details-modal">
+                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 654-3210</p>
+                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>williambrown@gmail.com</p>
+                                                    <p class="mt-2">
+                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
+                                                        101 Oak Dr. 
+                                                        <div class="address-lines-modal">Toronto, Ontario</div>
+                                                        <div class="address-lines-modal">L7R 2W4</div>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label for="modal-contacted" class="form-label">Contacted</label>
+                                                        <input type="checkbox" id="modal-contacted-4" onchange="toggleRadioGroup(4,4)">
+                                                    </div>
+                                                
+                                                    <div class="form-radio-group" id="radio-group-4">
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="order-complete"> Order Complete
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(4,'btn4')" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                             <td><a href="" class="btn rounded-circle report">
                                 <ion-icon name="reader-outline"></ion-icon></a>
                             </td>
@@ -190,7 +403,60 @@
                             <td>Brampton, ON</td>
                             <td><b>Leaf Blower</b><br>LeafSweeper Pro</td>
                             <td>Fan fixed</td>
-                            <td><a href="" class="repair-btn button continue">Contacted</a></td>
+                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-5" id="btn5">Contact 
+                                <ion-icon name="person-outline"></ion-icon>
+                            </a>
+                                <!-- modal content -->
+                                <div class="modal fade" id="reg-modal-5" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-light">
+                                        <div class="modal-header bg-grn">
+                                        <h5 class="modal-title" id="modal-title">Olivia White</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cust-details-modal-container">
+                                                <div class="mb-3 cust-details-modal">
+                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 876-5432</p>
+                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>oliviawhite@gmail.com</p>
+                                                    <p class="mt-2">
+                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
+                                                        234 Pine St. 
+                                                        <div class="address-lines-modal">Brampton, Ontario</div>
+                                                        <div class="address-lines-modal">L8S 3T9</div>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label for="modal-contacted" class="form-label">Contacted</label>
+                                                        <input type="checkbox" id="modal-contacted-5" onchange="toggleRadioGroup(5,5)">
+                                                    </div>
+                                                    <div class="form-radio-group" id="radio-group-5">
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="order-complete"> Order Complete
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(5,'btn5')" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                             <td><a href="" class="btn rounded-circle report">
                                 <ion-icon name="reader-outline"></ion-icon></a>
                             </td>
@@ -201,9 +467,60 @@
                             <td>Waterloo, ON</td>
                             <td><b>Hedge Trimmer</b><br>EdgeTrimmer X</td>
                             <td>Auger working</td>
-                            <td><a href="" class="repair-btn button">Contact 
-                                <ion-icon name="person-outline"></ion-icon></a></a>
-                            </td>
+                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-6" id="btn6">Contact 
+                                <ion-icon name="person-outline"></ion-icon>
+                            </a>
+                                <!-- modal content -->
+                                <div class="modal fade" id="reg-modal-6" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-light">
+                                        <div class="modal-header bg-grn">
+                                        <h5 class="modal-title" id="modal-title">Michael Wilson</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cust-details-modal-container">
+                                                <div class="mb-3 cust-details-modal">
+                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 678-9056</p>
+                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>michaelwilson@gmail.com</p>
+                                                    <p class="mt-2">
+                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
+                                                        567 Birch Blvd. 
+                                                        <div class="address-lines-modal">Waterloo, Ontario</div>
+                                                        <div class="address-lines-modal">L9Z 2X8</div>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label for="modal-contacted" class="form-label">Contacted</label>
+                                                        <input type="checkbox" id="modal-contacted-6" onchange="toggleRadioGroup(6,6)">
+                                                    </div>
+                                                    <div class="form-radio-group" id="radio-group-6">
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="order-complete"> Order Complete
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(6,'btn6')" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                             <td><a href="" class="btn rounded-circle report">
                                 <ion-icon name="reader-outline"></ion-icon></a>
                             </td>
@@ -214,9 +531,60 @@
                             <td>London, ON</td>
                             <td><b>Lawn Mower</b><br>GrassGlider Pro</td>
                             <td>Handle fixed</td>
-                            <td><a href="" class="repair-btn button">Contact 
-                                <ion-icon name="person-outline"></ion-icon></a></a>
-                            </td>
+                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-7" id="btn7">Contact 
+                                <ion-icon name="person-outline"></ion-icon>
+                            </a>
+                                <!-- modal content -->
+                                <div class="modal fade" id="reg-modal-7" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-light">
+                                        <div class="modal-header bg-grn">
+                                        <h5 class="modal-title" id="modal-title">Sophia Taylor</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cust-details-modal-container">
+                                                <div class="mb-3 cust-details-modal">
+                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 234-5678</p>
+                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>sophiataylor@gmail.com</p>
+                                                    <p class="mt-2">
+                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
+                                                        890 Cedar Ln. 
+                                                        <div class="address-lines-modal">London, Ontario</div>
+                                                        <div class="address-lines-modal">L0A 1B2</div>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label for="modal-contacted" class="form-label">Contacted</label>
+                                                        <input type="checkbox" id="modal-contacted-7" onchange="toggleRadioGroup(7,7)">
+                                                    </div>
+                                                    <div class="form-radio-group" id="radio-group-7">
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="order-complete"> Order Complete
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(7,'btn7')" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                             <td><a href="" class="btn rounded-circle report">
                                 <ion-icon name="reader-outline"></ion-icon></a>
                             </td>
@@ -224,7 +592,6 @@
             
                     </tbody>
                 </table>
-
             </div>
         </section>
     </div>
@@ -234,7 +601,35 @@
     <script src="../scripts/tablesort.js"></script>
     <script src="./scripts/help-tooltip.js"></script>
 
-    <script>
+    <!-- SCRIPT FOR MODAL WHEN PRESSING CONTACT BUTTON FOR EACH CUSTOMER-->
+      <script>
+        // RADIO BUTTONS APPEAR AFTER CONTACTED CHECKBOX IS TICKED
+        function toggleRadioGroup(modalId, buttonId) {
+            var checkbox = document.getElementById("modal-contacted-" + modalId);
+            var radioGroup = document.getElementById("radio-group-" + modalId);
+    
+            if (checkbox.checked) {
+                radioGroup.style.display = "block";
+            } else {
+                radioGroup.style.display = "none";
+            }
+        }
+        // WHEN CONTACTED CHECKBOX IS TICKED, BUTTON CHANGES FROM "CONTACT" TO "CONTACTED"
+        function saveModalChanges(modalId, buttonId) {
+            var checkbox = document.getElementById("modal-contacted-" + modalId);
+            var buttonToChange = document.getElementById(buttonId);
+    
+            if (checkbox.checked) {
+                buttonToChange.innerHTML = 'Contacted';
+                buttonToChange.classList.add("continue");
+            } else {
+                buttonToChange.innerHTML = 'Contact <ion-icon name="person-outline"></ion-icon>';
+                buttonToChange.classList.remove("continue");
+            }
+        }
+    </script>
+    <!-- SCRIPT FOR CHANGING NAV BAR BASED ON ROLE -->
+    <script> 
         document.addEventListener('DOMContentLoaded', function() {
         const backToHomeLink = document.getElementById('backToHome');
         if (backToHomeLink) {
