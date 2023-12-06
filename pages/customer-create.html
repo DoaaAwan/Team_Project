@@ -22,7 +22,7 @@
     <div class="app-container">
         <nav>
             <div class="main-nav">
-                <a href="../index.html">
+                <a href="../index.html" id="backToHomeNav">
                     <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
                 </a>
                 <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
@@ -238,21 +238,37 @@
     <script src="../scripts/help-tooltip.js"></script>
     <script src="../scripts/update-nav.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const backToHomeLink = document.getElementById('backToHome');
-        if (backToHomeLink) {
-            backToHomeLink.addEventListener('click', function(event) {
-            const selectedRole = localStorage.getItem('selectedRole') || 'default';
-                if (selectedRole === 'technician') {
-                    event.preventDefault();
-                    window.location.href = '../pages/active-repairs.html'; 
-                }
-                if (selectedRole === 'admin') {
+        document.addEventListener('DOMContentLoaded', function () {
+            const backToHomeLink = document.getElementById('backToHome');
+            if (backToHomeLink) {
+                backToHomeLink.addEventListener('click', function (event) {
+                    const selectedRole = localStorage.getItem('selectedRole') || 'default';
+                    if (selectedRole === 'technician') {
+                        event.preventDefault();
+                        window.location.href = '../pages/active-repairs.html';
+                    }
+                    if (selectedRole === 'admin') {
                         event.preventDefault();
                         window.location.href = '../pages/reports-home.html';
                 }
-            });
-        }
+
+                });
+            }
+
+            const backToHomeNav = document.getElementById('backToHomeNav');
+            if (backToHomeNav) {
+                backToHomeNav.addEventListener('click', function(event) {
+                    const selectedRole = localStorage.getItem('selectedRole') || 'default';
+                    if (selectedRole === 'technician') {
+                        event.preventDefault();
+                        window.location.href = '../pages/active-repairs.html'; 
+                    }
+                    if (selectedRole === 'admin') {
+                        event.preventDefault();
+                        window.location.href = '../pages/reports-home.html';
+                }
+                });
+            }
         });
     </script>
 </body>

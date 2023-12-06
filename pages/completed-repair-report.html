@@ -65,7 +65,7 @@
     <div class="app-container">
         <nav>
             <div class="main-nav">
-                <a href="../index.html">
+                <a href="../index.html" id="backToHomeNav">
                     <img src="../images/logo-text.png" alt="Emma's Small Engines Logo" class="img-fluid logo-text">
                 </a>
                 <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
@@ -227,11 +227,27 @@
                     const selectedRole = localStorage.getItem('selectedRole') || 'default';
                     if (selectedRole === 'technician') {
                         event.preventDefault();
-                        window.location.href = './pages/active-repairs.html';
+                        window.location.href = '../pages/active-repairs.html';
                     }
                     if (selectedRole === 'admin') {
-                    event.preventDefault();
-                    window.location.href = '../pages/reports-home.html';
+                        event.preventDefault();
+                        window.location.href = '../pages/reports-home.html';
+                }
+
+                });
+            }
+
+            const backToHomeNav = document.getElementById('backToHomeNav');
+            if (backToHomeNav) {
+                backToHomeNav.addEventListener('click', function(event) {
+                    const selectedRole = localStorage.getItem('selectedRole') || 'default';
+                    if (selectedRole === 'technician') {
+                        event.preventDefault();
+                        window.location.href = '../pages/active-repairs.html'; 
+                    }
+                    if (selectedRole === 'admin') {
+                        event.preventDefault();
+                        window.location.href = '../pages/reports-home.html';
                 }
                 });
             }
