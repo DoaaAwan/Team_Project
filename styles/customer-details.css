@@ -1,3 +1,7 @@
+textarea {
+    height: 200px;
+}
+
 .customer-details h2 {
     color: #000;
     font-size: 24px;
@@ -26,13 +30,13 @@
     background-color: #236477;
 }
 
-#update-equipment-btn{
+#update-equipment-btn, #update-repair-request-btn, #update-customer-modal-btn{
     width: auto;
     color: white;
     background-color: #236477;   
 }
 
-#close-equipment-modal{
+#close-equipment-modal, #close-repair-request-modal, #close-customer-modal {
     padding: 9px 15px;
 }
 
@@ -104,13 +108,13 @@
     display: grid;
     grid-column-gap: 20px;
     grid-row-gap: 50px;
-    grid-template-columns: 1fr;
+    grid-template-columns: 0.7fr 2fr;
 }
 
 .customer-lists-grid {
     display: grid;
     grid-column-gap: 30px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.3fr;
 }
 
 .customer-lists-grid div{
@@ -118,19 +122,29 @@
 }
 
 .customer-details-grid select {
-    
     height: 204px;
     margin: 5px 0;
     width: 100%;
 }
 
-.equipment-details, .repair-request-details {
+#repair-requests select {
+    margin-top: 0px;
+    height: 200px;
+}
+
+.equipment-field, .repair-field, .customer-field {
     display: grid;
-    grid-template-columns: 1fr 1.8fr;    
 }
 
 .equipment-field {
-    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+}
+
+.repair-field {
+    grid-template-columns: 1fr 2.2fr;
+}
+
+.customer-field {
     grid-template-columns: 1fr 1.8fr;
 }
 
@@ -154,18 +168,26 @@
     clear: both;
 } */
 
+.tabs{
+    position: relative;
+}
 
 .small-button {
+    width:auto;
     font-size: 12px; 
     padding: 5px 10px; 
     border: none; 
     border-radius: 5px; 
-    margin-top: -5px !important;
 }
 
+textarea, input, select{
+    border: 1.5px solid rgba(128, 128, 128, 0.596) !important;
+}
 
+/*
 @media screen and (min-width: 1550px) {
     .customer-details-grid {
         grid-template-columns: 0.7fr 2fr;
     }
 }
+*/

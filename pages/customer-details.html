@@ -134,7 +134,7 @@
                             <p id="customer-province"></p>
                             <p id="customer-postal"></p>
                             <div class="d-flex">
-                                <a href="../pages/customer-update.html" id="update-customer-btn" class="button btns">Update Customer</a>
+                                <button id="update-customer-btn" class="button btns" data-bs-toggle="modal" data-bs-target="#customerDetailsModal">Update Customer</button>
                             </div>
                         </div>
                         <div class="customer-lists-grid">
@@ -144,21 +144,31 @@
                                 </select>
                                 <div class="d-flex">
                                     <!-- <a href="../pages/equipment-search.html" id="add-equipment-btn" class="button btns">Add Equipment</a> -->
-                                    <a href="../pages/equipment-create.html" class="button btns" id="add-equipment-btn">Add Equipment</a>
+                                    <button class="button btns" id="add-equipment-btn" data-bs-toggle="modal" data-bs-target="#equipmentDetailsModal">Add Equipment</button>
                                     <button disabled id="details-equipment-btn" style="background-color: grey;" class="button btns" data-bs-toggle="modal" data-bs-target="#equipmentDetailsModal">Equipment Details</button>
                                 </div>
-
                             </div>
                             <div id="repair-requests">
-                                <div class="d-flex">
-                                    <button id="active-repairs-btn" class="button btns small-button">Active Repairs</button>
-                                    <button id="completed-repairs-btn" class="button btns small-button">Completed Repairs</button>
+                                <div class="what">
+                                    <div class="container">
+                                        <ul class="nav nav-tabs">
+                                          <li class="nav-item">
+                                            <button disabled class="nav-link active" id="all-repairs-btn">All Repairs</button>
+                                          </li>
+                                          <li class="nav-item">
+                                            <button disabled class="nav-link" id="active-repairs-btn">Active Repairs</button>
+                                          </li>
+                                          <li class="nav-item">
+                                            <button disabled class="nav-link" id="completed-repairs-btn">Completed Repairs</button>
+                                          </li>
+                                        </ul>
+                                    </div>
+                                    <select name="Orders" disabled class="form-select" id="repair-requests-list" size="5">   
+                                    </select>
                                 </div>
-                                <select name="Orders" class="form-select" id="repair-requests-list" size="5">   
-                                </select>
                                 <div class="d-flex">
-                                    <a href="../pages/repair-request-create.html" id="create-repair-request" class="button btns">Create Repair Request</a>
-                                    <button disabled id="details-repair-request" class="button btns" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Repair Request Details</button>
+                                    <button disabled id="create-repair-request" class="button btns" style="background-color: grey;" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Create Repair Request</button>
+                                    <button disabled id="details-repair-request" class="button btns" style="background-color: grey;" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Repair Request Details</button>
                                 </div>
                             </div>
                         </div>
@@ -167,12 +177,101 @@
             </div>
         </section>
     </div>
+    <div class="modal fade" id="customerDetailsModal" tabindex="-1" aria-labelledby="customerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="customerModalLabel">Update Customer</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form method="post" action="https://webdevbasics.net/scripts/demo.php" id="customer-form">
+                    <fieldset class="modal-body">
+                        <div class="customer-field">
+                            <label for="modal-first-name">First Name:</label>
+                            <input type="text" placeholder="E.g. John" id="modal-first-name" name="modal-first-name" required>
+                        </div>
+                        <hr>
+                        <div class="customer-field">
+                            <label for="modal-last-name">Last Name</label>
+                            <input type="text" placeholder="E.g. Smith" id="modal-last-name" name="modal-last-name" required>
+                        </div>
+                        <hr>
+                        <div class="customer-field">
+                            <label for="modal-email">Email</label>
+                            <input id="modal-email" name="modal-email" type="email" placeholder="E.g. johnsmith@gmail.com" required>
+                        </div>
+                        <hr>
+                        <div class="customer-field">
+                            <label for="modal-phone">Phone Number</label>
+                            <input type="tel" placeholder="E.g. (123) 456 - 7890" id="modal-phone" name="modal-phone" required>
+                        </div>
+                        <hr>
+                        <div class="customer-field">
+                            <label for="modal-address">Address</label>
+                            <input type="text" placeholder="E.g. 22 Full Moon Crescent" id="modal-address" name="modal-address" required>
+                        </div>
+                        <hr>
+                        <div class="customer-field">
+                            <label for="modal-city">City</label>
+                            <select name="modal-city" id="modal-city" required>
+                                <option value="">Select a City</option>
+                                <option value="Brampton">Brampton</option>
+                                <option value="Fonthill">Fonthill</option>
+                                <option value="Hamilton">Hamilton</option>
+                                <option value="Kitchener">Kitchener</option>
+                                <option value="London">London</option>
+                                <option value="Markham">Markham</option>
+                                <option value="Mississauga">Mississauga</option>
+                                <option value="Niagara Falls">Niagara Falls</option>
+                                <option value="Oshawa">Oshawa</option>
+                                <option value="St. Catharines">St.Catharines</option>
+                                <option value="Thorold">Thorold</option>
+                                <option value="Toronto">Toronto</option>
+                                <option value="Waterloo">Waterloo</option>
+                                <option value="Welland">Welland</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="customer-field">
+                            <label for="modal-province">Province</label>
+                            <select name="modal-province" id="modal-province" required>
+                                <option value="">Select a Province</option>
+                                <option value="Alberta">Alberta</option>
+                                <option value="British Columbia">British Columbia</option>
+                                <option value="Manitoba">Manitoba</option>
+                                <option value="New Brunswick">New Brunswick</option>
+                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                <option value="Northwest Territories">Northwest Territories</option>
+                                <option value="Nova Scotia">Nova Scotia</option>
+                                <option value="Nunavut">Nunavut</option>
+                                <option value="Ontario">Ontario</option>
+                                <option value="Prince Edward Island">Prince Edward Island</option>
+                                <option value="Quebec">Quebec</option>
+                                <option value="Saskatchewan">Saskatchewan</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="customer-field">
+                            <label for="modal-postal">Postal Code</label>
+                            <input id="modal-postal" name="modal-postal" type="text" placeholder="E.g. L3C 0A8" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" required>
+                        </div>
+                    </fieldset>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-customer-modal">Close</button>
+                    <button id="update-customer-modal-btn" class="button btns">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="equipmentDetailsModal" tabindex="-1" aria-labelledby="equipmentModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="equipmentModalLabel">Selected Equipment Details</h2>
+                    <h2 class="modal-title fs-5" id="equipmentModalLabel">Create Equipment</h2>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -284,35 +383,36 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="repairRequestModalLabel">Selected Repair Request Details</h2>
+                    <h2 class="modal-title fs-5" id="repairRequestModalLabel">Create Repair Request</h2>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="repair-request-details">
-                        <div>
+                <form method="post" action="https://webdevbasics.net/scripts/demo.php" id="repair-request-form">
+                    <fieldset class="modal-body">
+                        <div class="repair-field">
                             <p>Invoice Date:</p>
-                            <hr>
-                            <p>Invoice Number:</p>
-                            <hr>
-                            <p>Issue Description:</p>
-                            <hr>
-                            <p>Valid Warranty?:</p>
-                        </div>
-                        <div>
                             <p id="invoice-date"></p>
-                            <hr>
-                            <p id="invoice-number"></p>
-                            <hr>
-                            <p id="issue-description"></p>
-                            <hr>
-                            <p id="valid-warranty"></p>
                         </div>
-                    </div>
-                </div>
+                        <hr>
+                        <div class="repair-field">
+                            <p>Invoice Number:</p>
+                            <p id="invoice-number"></p>
+                        </div>
+                        <hr>
+                        <div class="repair-field">
+                            <label for="issue-description">Issue Description:</label>
+                            <textarea id="issue-description" name="issue-description"  class="form-control" required></textarea>
+                        </div>
+                        <hr>
+                        <div class="repair-field">
+                            <label for="valid-warranty">Valid Warranty?</label>
+                            <div><input id="valid-warranty" name="valid-warranty" type="checkbox" class="form-check-input" style="text-align: left;"></div>
+                        </div>
+                    </fieldset>
+                </form>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a class="button" id="update-repair-request-btn" href="../pages/repair-update.html">Update Repair Request</a>
+                    <button type="button" class="btn btn-secondary" id="close-repair-request-modal" data-bs-dismiss="modal">Close</button>
+                    <button class="button btns" id="update-repair-request-btn">Update Repair Request</button>
                 </div>
             </div>
         </div>
@@ -324,6 +424,7 @@
     <script src="../scripts/customer-details.js"></script>
     <script src="../scripts/help-tooltip.js"></script>
     <script src="../scripts/update-nav.js"></script>
+    <!--
     <script>
         //passing data to the repairs page
         document.getElementById("create-repair-request").addEventListener("click", function (e) {
@@ -343,6 +444,7 @@
 
         });
     </script>
+    -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
         const backToHomeLink = document.getElementById('backToHome');
@@ -357,7 +459,6 @@
         }
         });
     </script>
-
     
 </body>
 </html>
