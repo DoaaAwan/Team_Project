@@ -17,234 +17,428 @@ const serialNumber = urlParam.getAll("serial-number");
 const customerId = urlParam.getAll("cid");
 const equipmentId = urlParam.getAll("eid");
 
+//Starting invoice number.
+let startInvoiceNumber = 1234581;
+
 // only runs block if there was a customer passed
 if (customerId.length > 0) {
-    
-    //retrieves customer and displays details
-    let customer = customerDatabase.find(c => c.id == customerId);
 
-    $("#customer-name").html(`<b>${customer.firstName} ${customer.lastName}</b>`);
-    $("#customer-name").show();
-    $("#customer-name-equip").html(`${customer.firstName}'s Equipment`);
-    $("#customer-name-equip").show();
+  //retrieves customer and displays details
+  let customer = customerDatabase.find(c => c.id == customerId);
 
-    $("#customer-email").html(`${customer.email}`);
-    $("#customer-phone").html(`${customer.phone}`);
-    $("#customer-street").html(`${customer.street}`);
-    $("#customer-city").html(`${customer.city}`);
-    $("#customer-province").html(`${customer.province}`);
-    $("#customer-postal").html(`${customer.postalCode}`);
+  $("#customer-name").show();
+  $("#customer-name-equip").show();
 
-    //gives buttons a url with customer id as parameter.
-    $("#add-equipment-btn").attr("href", `../pages/equipment-create.html?cid=${customerId}`);
-    $("#update-customer-btn").attr("href", `../pages/customer-update.html?cid=${customerId}`);
-    
+  fillCustomer(customer);
 
-    //retrieves owned equipment data
-    let ownership = ownershipDatabase.filter(o => o.customerId == customerId)
-    let customerEquipments = []
+  //gives buttons a url with customer id as parameter.
+  //$("#add-equipment-btn").attr("href", `../pages/equipment-create.html?cid=${customerId}`);
+  $("#update-customer-btn").attr("href", `../pages/customer-update.html?cid=${customerId}`);
 
+
+  //retrieves owned equipment data
+  let ownership = ownershipDatabase.filter(o => o.customerId == customerId)
+
+  //gets select element from html page
+  let equipmentList = document.getElementById("equipment-list");
+  let repairRequestList = document.getElementById("repair-requests-list");
+
+  // displays equipment customer owns from seed data
+  if (ownership.length > 0) {
     ownership.forEach(o => {
-        let equipment = equipmentDatabase.find(e => e.id == o.equipmentId);
-        customerEquipments.push(equipment);
-    })
+      let equipment = equipmentDatabase.find(e => e.id == o.equipmentId);
+      addEquipment(equipment.equipmentName, equipment.equipmentType, equipment.modelNumber, o.equipmentId)
+    });
+  }
 
-    //gets select element from html page
-    let equipmentList = document.getElementById("equipment-list");
-    let repairRequestList = document.getElementById("repair-requests-list");
+  //displays equipment owned that was passed as a parameter from the adding equipment process
+  if (equipmentId.length > 0) {
+    let newEquipment = equipmentDatabase.find(e => e.id == equipmentId);
+    /*let newOwnedEquipment = ownershipDatabase.find(o => {
+        return (o.equipmentId == equipmentId && o.customerId == customerId);
+    });*/
 
-    // displays equipment customer owns from seed data
-    if (ownership.length > 0){
-        ownership.forEach(o => {
-            let equipment = equipmentDatabase.find(e => e.id == o.equipmentId);
-            var option = document.createElement('option');
-            option.value = o.equipmentId;
-            option.text = `(M/N: ${equipment.modelNumber})${equipment.equipmentName} - ${equipment.equipmentType}`;
-            equipmentList.add(option);
-        });
+    addEquipment(newEquipment.equipmentName, newEquipment.equipmentType, newEquipment.modelNumber, newEquipment.id)
+
+  } else if (newEquipmentName.length > 0) {
+    addEquipment(newEquipmentName, newEquipmentType, newEquipmentModelNumber)
+  }
+
+  //user feedback for if theres nothing in equipment list
+  if (equipmentList.options.length == 0) {
+    var option = document.createElement('option')
+    option.value = "";
+    option.text = `Customer has no equipment. Click the button below to add one.`;
+    equipmentList.add(option);
+    equipmentList.disabled = true;
+  }
+
+  //event handler for selecting an option in owned equipment list
+  document.getElementById("equipment-list").addEventListener("change", function () {
+    //hides user feedback message and empties repair list
+    $("#repair-requests-list").empty();
+    $("#repair-requests").fadeIn();
+    $("#all-repairs-btn").prop('disabled', false);
+    $("#active-repairs-btn").prop('disabled', false);
+    $("#completed-repairs-btn").prop('disabled', false);
+    $("#all-repairs-btn").addClass('active');
+    $("#active-repairs-btn").removeClass('active');
+    $("#completed-repairs-btn").removeClass('active');
+
+    $("#no-repair-requests").hide();
+    $("#details-repair-request").prop('disabled', true);
+    $("#create-repair-request").prop('disabled', false);
+    //$("#details-repair-request").hide();
+
+    //"disables" repair details button
+    $("#details-repair-request").css("background-color", "grey");
+    $("#create-repair-request").css("background-color", "#236477");
+
+    //gets selected equipment id
+    const selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
+
+    if (selectedEquipment != 0) {
+      $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
+      $('#details-equipment-btn').prop('disabled', false);
+
+      fillEquipmentInputs();
+    }
+    else{
+      $("#details-equipment-btn").css("background-color", "grey");
+      $('#details-equipment-btn').prop('disabled', true);
     }
 
-    //displays equipment owned that was passed as a parameter from the adding equipment process
-    if (equipmentId.length > 0){
-        let newEquipment = equipmentDatabase.find(e => e.id == equipmentId);
-        /*let newOwnedEquipment = ownershipDatabase.find(o => {
-            return (o.equipmentId == equipmentId && o.customerId == customerId);
-        });*/
-        var option = document.createElement('option')
-        option.value = newEquipment.id;
-        option.text = `(M/N: ${newEquipment.modelNumber})${newEquipment.equipmentName} - ${newEquipment.equipmentType}`;
-        equipmentList.add(option);
-    }else if(newEquipmentName.length > 0){
-        var option = document.createElement('option')
-        option.value = 0;
-        option.text = `(M/N: ${newEquipmentModelNumber})${newEquipmentName} - ${newEquipmentType}`;
-        equipmentList.add(option);
+    if(fillRepairRequestList()){
+      noRepairRequestMessage(`No Repair Requests. Click the button below to create one.`);
+      $("#all-repairs-btn").prop('disabled', true);
+      $("#active-repairs-btn").prop('disabled', true);
+      $("#completed-repairs-btn").prop('disabled', true);
+    }else{
+      $("#repair-requests-list").prop('disabled', false);
+    }
+  });
+
+  document.getElementById("all-repairs-btn").addEventListener("click", function () {
+    $("#all-repairs-btn").addClass('active');
+    $("#active-repairs-btn").removeClass('active');
+    $("#completed-repairs-btn").removeClass('active');
+    $("#details-repair-request").prop('disabled', true);
+    $("#details-repair-request").css("background-color", "grey");
+
+    if(fillRepairRequestList()){
+      noRepairRequestMessage(`No Repair Requests. Click the button below to create one.`);
+      $("#all-repairs-btn").prop('disabled', true);
+      $("#active-repairs-btn").prop('disabled', true);
+      $("#completed-repairs-btn").prop('disabled', true);
+    }else{
+      $("#repair-requests-list").prop('disabled', false);
+    }
+  });
+
+  document.getElementById("active-repairs-btn").addEventListener("click", function () {
+    $("#all-repairs-btn").removeClass('active');
+    $("#active-repairs-btn").addClass('active');
+    $("#completed-repairs-btn").removeClass('active');
+    $("#details-repair-request").prop('disabled', true);
+    $("#details-repair-request").css("background-color", "grey");
+
+    if(fillRepairRequestList(true)){
+      noRepairRequestMessage(`No Active Repair Requests.`);
+    }else{
+      $("#repair-requests-list").prop('disabled', false);
+    }
+  });
+
+  document.getElementById("completed-repairs-btn").addEventListener("click", function () {
+    $("#all-repairs-btn").removeClass('active');
+    $("#active-repairs-btn").removeClass('active');
+    $("#completed-repairs-btn").addClass('active');
+    $("#details-repair-request").prop('disabled', true);
+    $("#details-repair-request").css("background-color", "grey");
+
+    if(fillRepairRequestList(false)){
+      noRepairRequestMessage(`No Completed Repair Requests.`);
+    }else{
+      $("#repair-requests-list").prop('disabled', false);
+    }
+  });
+
+
+  //event handler for if a repair record was selected from the list
+  document.getElementById("repair-requests-list").addEventListener("change", function () {
+
+    //gets selected id for repair record and "activates" the button by adding the url with parameter to button
+    let selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
+
+    if (selectedRepairRequest != 0) {
+      $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
+      $('#details-repair-request').prop('disabled', false);
+    }else{
+      $("#details-repair-request").css("background-color", "grey");
+      $('#details-repair-request').prop('disabled', true);
     }
 
-    //user feedback for if theres nothing in equipment list
-    if (equipmentList.options.length == 0){
-        $("#no-repair-requests").html("Customer has no equipment.<br>Want to add an equipment?");
+  });
+
+  document.getElementById("update-customer-btn").addEventListener("click", function (e) {
+    document.getElementById("modal-first-name").value = customer.firstName;
+    document.getElementById("modal-last-name").value = customer.lastName;
+    document.getElementById("modal-email").value = customer.email;
+    document.getElementById("modal-phone").value = customer.phone;
+    document.getElementById("modal-address").value = customer.street;
+    document.getElementById("modal-city").value = customer.city;
+    document.getElementById("modal-province").value = customer.province;
+    document.getElementById("modal-postal").value = customer.postalCode;
+  });
+
+  document.getElementById("update-customer-modal-btn").addEventListener("click", function (e) {
+    let updateCustomerForm = document.getElementById("customer-form");
+
+    if (updateCustomerForm.checkValidity()){
+      customer.firstName = document.getElementById("modal-first-name").value;
+      customer.lastName = document.getElementById("modal-last-name").value;
+      customer.email = document.getElementById("modal-email").value;
+      customer.phone = document.getElementById("modal-phone").value;
+      customer.street = document.getElementById("modal-address").value;
+      customer.city = document.getElementById("modal-city").value;
+      customer.province = document.getElementById("modal-province").value;
+      customer.postalCode = document.getElementById("modal-postal").value;
+
+      fillCustomer(customer);
+
+      alert("Customer has been successfully updated.");
+
+      let customerDetailsModal = document.getElementById('customerDetailsModal');
+      let modalInstance = bootstrap.Modal.getInstance(customerDetailsModal);
+      modalInstance.hide();
+    }else{
+      updateCustomerForm.reportValidity();
     }
+  });
 
-    //event handler for selecting an option in owned equipment list
-    document.getElementById("equipment-list").addEventListener("change", function() {
-        //hides user feedback message and empties repair list
-        $("#repair-requests-list").empty();
-        $("#no-repair-requests").hide();
-        $("#details-repair-request").prop('disabled', true); 
-        //$("#details-repair-request").hide();
+  document.getElementById("details-equipment-btn").addEventListener("click", function (e) {
+    fillEquipmentInputs();
+    toggleDisabledEquipmentForm(true);
+    document.getElementById("equipmentModalLabel").innerHTML = "Selected Equipment Details";
+    let updateEquipmentButton = document.getElementById("update-equipment-btn");
+    updateEquipmentButton.innerHTML = "Update Equipment";
+  });
 
-        //"disables" repair details button
-        $("#details-repair-request").css("background-color", "grey");
+  document.getElementById("add-equipment-btn").addEventListener("click", function (e) {
+    toggleDisabledEquipmentForm(false);
+    let addEquipmentButton = document.getElementById("update-equipment-btn");
+    document.getElementById("equipmentModalLabel").innerHTML = "Add Equipment";
+    addEquipmentButton.innerHTML = "Save"
+    resetEquipmentInputs()
+  });
 
-        //gets selected equipment id
-        const selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
+  document.getElementById("update-equipment-btn").addEventListener("click", function (e) {
+    e.preventDefault;
+    let updateEquipmentButton = document.getElementById("update-equipment-btn");
+    let updateEquipmentForm = document.getElementById("equipment-form");
+    let equipmentModalLabel = document.getElementById("equipmentModalLabel");
+    let updateEquipmentButtonContent = updateEquipmentButton.innerHTML;
 
-        //id of 0 reserved for new equipment created scenario. passes new equipment data instead of an id.
-        $("#create-repair-request").attr("href", selectedEquipment != 0 ? `../pages/repair-request-create.html?cid=${customerId}eid=${selectedEquipment}` : 
-                                                                            `../pages/repair-request-create.html?cid=${customerId}equipment-name=${newEquipmentName}`);
-
-        let repairRequests = [];
-        //gets ownership record for selected equipment
-        let ownership = ownershipDatabase.find(o => o.customerId == customerId && o.equipmentId == selectedEquipment)
-
-        $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
-        $('#details-equipment-btn').prop('disabled', false);
-
-        if(selectedEquipment != 0){
-          let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
-
-          /*
-          $("#equipment-name").html(`<b>${equipment.equipmentName}</b>`);
-          $("#equipment-manufacturer").html(`<b>${equipment.manufacturer}</b>`);
-          $("#equipment-type").html(`<b>${equipment.equipmentType}</b>`);
-          $("#equipment-colour").html(`<b>${equipment.colour}</b>`);
-          $("#equipment-model").html(`<b>${equipment.modelNumber}</b>`);
-          $("#equipment-serial").html(`<b>${equipment.serialNumber}</b>`);
-          */
-
-          document.getElementById("equipment-name").value = equipment.equipmentName;
-          document.getElementById("equipment-manufacturer").value = equipment.manufacturer;
-          document.getElementById("equipment-type").value = equipment.equipmentType;
-          document.getElementById("equipment-colour").value = equipment.colour;
-          document.getElementById("equipment-model").value = equipment.modelNumber;
-          document.getElementById("equipment-serial").value = equipment.serialNumber;
-  
-          //$("#update-equipment-btn").attr("href", `../pages/equipment-update.html?cid=${customerId}&oid=${ownership.id}&eid=${equipment.id}`);
-        }
-        else if(selectedEquipment == 0){
-          /*
-          $("#equipment-name").html(`<b>${newEquipmentName}</b>`);
-          $("#equipment-manufacturer").html(`<b>${newEquipmentManufacturer}</b>`);
-          $("#equipment-type").html(`<b>${newEquipmentType}</b>`);
-          $("#equipment-colour").html(`<b>${newEquipmentColour}</b>`);
-          $("#equipment-model").html(`<b>${newEquipmentModelNumber}</b>`);
-          $("#equipment-serial").html(`<b>${serialNumber}</b>`);
-          */
-
-          document.getElementById("equipment-name").value = newEquipmentName;
-          document.getElementById("equipment-manufacturer").value = newEquipmentManufacturer;
-          document.getElementById("equipment-type").value = newEquipmentType;
-          document.getElementById("equipment-colour").value = newEquipmentColour;
-          document.getElementById("equipment-model").value = newEquipmentModelNumber;
-          document.getElementById("equipment-serial").value = serialNumber;
-
-          /*
-          document.getElementById("update-equipment-btn").href = `../pages/equipment-update.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
-                                                        `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`;
-          */
-        }
-
-        if (ownership != undefined){
-            //$("#details-equipment-btn").attr("href", `../pages/equipment-details.html?oid=${ownership.id}&cid=${customerId}`)
-            //if record exists, gets all repair records for selected equipment
-            repairRequests = repairRequestDatabase.filter(r => r.ownershipId == ownership.id);
-        }else if(selectedEquipment != 0){
-            //$("#details-equipment-btn").attr("href", `../pages/equipment-details.html?eid=${selectedEquipment}&cid=${customerId}&serial-number=${serialNumber}`)
-        }else{
-            //$("#details-equipment-btn").attr("href",    `../pages/equipment-details.html?equipment-name=${newEquipmentName}&manufacturer=${newEquipmentManufacturer}&equipment-type=${newEquipmentType}` + 
-            //                                            `&colour=${newEquipmentColour}&model-number=${newEquipmentModelNumber}&serial-number=${serialNumber}&cid=${customerId}`)
-        }
-
-        if (repairRequests.length > 0){
-            //if repair request records exist, shows list and displays all records in list
-            repairRequests.forEach(r => {
-                var option = document.createElement('option')
-                option.value = r.id;
-                option.text = `${r.invoiceDate}#${r.invoiceNumber}: ${r.issueDescription}`;
-                repairRequestList.add(option);
-            });
-            
-        }else{
-            //if no records exist, ask user if they want to create a repair record for the selected equipment
-            
-            //var confirmCancel = window.confirm("No Repair Requests for the selected equipment. Would you like to create one?");
-
-            if (confirmCancel) {
-                window.location.href = document.getElementById("create-repair-request").href;
-            }
-            
-            var option = document.createElement('option')
-            option.value = "";
-            option.text = `No Repair Requests. Click the button below to create one.`;
-            repairRequestList.add(option);
-            $("#repair-requests").fadeIn();
-            $("#no-repair-requests").html("No Repair Requests for the selected equipment. Would you like to create one?");
-        }
-        
-    });
-
-    
-
-    //event handler for if a repair record was selected from the list
-    document.getElementById("repair-requests-list").addEventListener("change", function() {
-        $("#details-repair-request").show();
-        //gets selected id for repair record and "activates" the button by adding the url with parameter to button
-        const selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
-        if (selectedRepairRequest != ""){
-        $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
-        //$("#details-repair-request").attr("href", equipmentId > 0 ? `../pages/repair-request-details.html?rrid=${selectedRepairRequest}&eid=${equipmentId}` : 
-        //                                                            `../pages/repair-request-details.html?rrid=${selectedRepairRequest}`);
-        $('#details-repair-request').prop('disabled', false);
-        }
-
-        let repairRequest = repairRequestDatabase.find(r => r.id == selectedRepairRequest);
-
-        $("#invoice-date").html(`<b>${repairRequest.invoiceDate}</b>`);
-        $("#invoice-number").html(`<b>${repairRequest.invoiceNumber}</b>`);
-        $("#issue-description").html(`<b>${repairRequest.issueDescription}</b>`);
-        $("#valid-warranty").html(`<b>${repairRequest.hasWarranty == true ? "Yes" : "No"}</b>`);
-    });
-
-    document.getElementById("update-equipment-btn").addEventListener("click", function(e) {
-      e.preventDefault;
-      let updateEquipmentButton = document.getElementById("update-equipment-btn");
-      let updateEquipmentForm = document.getElementById("equipment-form");
-      let updateEquipmentButtonContent = updateEquipmentButton.innerHTML;
-
-      if (updateEquipmentButtonContent == "Update Equipment"){
-        toggleDisabledEquipmentForm(false)
-        updateEquipmentButton.innerHTML = "Save"
-      }
-      else if(updateEquipmentButtonContent == "Save" && updateEquipmentForm.checkValidity()){
-        updateEquipmentForm.submit();
-      }
-      else{
-        updateEquipmentForm.reportValidity();
-      }
-    });
-
-    document.getElementById("close-equipment-modal").addEventListener("click", function(e) {
+    if (updateEquipmentButtonContent == "Update Equipment") {
+      toggleDisabledEquipmentForm(false);
+      updateEquipmentButton.innerHTML = "Save";
+    }
+    else if (updateEquipmentButtonContent == "Save" && updateEquipmentForm.checkValidity()) {
       toggleDisabledEquipmentForm(true);
-      document.getElementById("update-equipment-btn").innerHTML = "Update Equipment";
-    });
+      if (equipmentModalLabel.innerHTML == "Add Equipment") {
+        let equipmentDetailsModal = document.getElementById('equipmentDetailsModal');
+        let modalInstance = bootstrap.Modal.getInstance(equipmentDetailsModal);
+        modalInstance.hide();
+
+        let equipmentName = document.getElementById("equipment-name").value;
+        let equipmentModel = document.getElementById("equipment-model").value;
+        let equipmentType = document.getElementById("equipment-type").value;
+
+        let equipmentDisabled = document.getElementById("equipment-list").disabled;
+        if (equipmentDisabled == true){
+          $("#equipment-list").empty();
+          $("#equipment-list").prop('disabled', false);
+        }
+
+        addEquipment(equipmentName, equipmentType, equipmentModel);
+        
+        alert("This equipment has successfully been created and added to customer.");
+      } else {
+        updateEquipmentButton.innerHTML = "Update Equipment";
+      }
+    }
+    else {
+      updateEquipmentForm.reportValidity();
+    }
+  });
+
+  document.getElementById("details-repair-request").addEventListener("click", function (e) {
+    let selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
+    fillRepairRequestForm(selectedRepairRequest);
+    toggleDisabledRepairRequestForm(true);
+    document.getElementById("repairRequestModalLabel").innerHTML = "Selected Repair Request Details";
+    let updateRepairRequestButton = document.getElementById("update-repair-request-btn");
+    updateRepairRequestButton.innerHTML = "Update Repair Request";
+  });
+
+  document.getElementById("create-repair-request").addEventListener("click", function (e) {
+    toggleDisabledRepairRequestForm(false);
+    let addRepairRequestButton = document.getElementById("update-repair-request-btn");
+    document.getElementById("repairRequestModalLabel").innerHTML = "Create Repair Request";
+    addRepairRequestButton.innerHTML = "Save";
+    resetRepairRequestInputs();
+  });
+
+  document.getElementById("update-repair-request-btn").addEventListener("click", function (e) {
+    e.preventDefault;
+    let updateRepairRequestButton = document.getElementById("update-repair-request-btn");
+    let updateRepairRequestForm = document.getElementById("repair-request-form");
+    let repairRequestModalLabel = document.getElementById("repairRequestModalLabel");
+    let updateRepairRequestButtonContent = updateRepairRequestButton.innerHTML;
+
+    if (updateRepairRequestButtonContent == "Update Repair Request") {
+      toggleDisabledRepairRequestForm(false);
+      updateRepairRequestButton.innerHTML = "Save";
+    }
+    else if (updateRepairRequestButtonContent == "Save" && updateRepairRequestForm.checkValidity()) {
+      toggleDisabledRepairRequestForm(true);
+      if (repairRequestModalLabel.innerHTML == "Create Repair Request") {
+        //$("repairRequestDetailsModal").modal('hide');
+        let repairRequestDetailsModal = document.getElementById('repairRequestDetailsModal');
+        let modalInstance = bootstrap.Modal.getInstance(repairRequestDetailsModal);
+        modalInstance.hide();
+
+        $("#all-repairs-btn").addClass('active');
+        $("#active-repairs-btn").removeClass('active');
+        $("#completed-repairs-btn").removeClass('active');
+
+        let repairRequestDisabled = document.getElementById("repair-requests-list").disabled;
+        if (repairRequestDisabled == true){
+          $("#repair-requests-list").empty();
+          $("#repair-requests-list").prop('disabled', false);
+        }
+
+        fillRepairRequestList();
+
+        let invoiceNumber = document.getElementById("invoice-number").innerHTML;
+        let invoiceDate = document.getElementById("invoice-date").innerHTML;
+        let issueDescription = document.getElementById("issue-description").value;
+
+        addRepairRequest(invoiceNumber, invoiceDate, issueDescription);
+
+        alert("The Repair Request has successfully been created and added to customer's equipment.");
+      } else {
+        updateRepairRequestButton.innerHTML = "Update Repair Request";
+      }
+    }
+    else {
+      updateRepairRequestForm.reportValidity();
+    }
+  });
 
 } else {
-    //if no customer id passed as parameter, page is blank with user message
-    $(`#customer-details`).html("<h2>No customer details found.</h2>");
+  //if no customer id passed as parameter, page is blank with user message
+  $(`#customer-details`).html("<h2>No customer details found.</h2>");
 }
 
-function toggleDisabledEquipmentForm(disabled){
+function fillCustomer(customer){
+  $("#customer-name").html(`<b>${customer.firstName} ${customer.lastName}</b>`);
+  $("#customer-name-equip").html(`${customer.firstName}'s Equipment`);
+
+  $("#customer-email").html(`${customer.email}`);
+  $("#customer-phone").html(`${customer.phone}`);
+  $("#customer-street").html(`${customer.street}`);
+  $("#customer-city").html(`${customer.city}`);
+  $("#customer-province").html(`${customer.province}`);
+  $("#customer-postal").html(`${customer.postalCode}`);
+}
+
+function fillEquipmentInputs(){
+  let equipmentList = document.getElementById("equipment-list")
+  let selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
+
+  if (selectedEquipment != 0){
+    let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
+
+    document.getElementById("equipment-name").value = equipment.equipmentName;
+    document.getElementById("equipment-manufacturer").value = equipment.manufacturer;
+    document.getElementById("equipment-type").value = equipment.equipmentType;
+    document.getElementById("equipment-colour").value = equipment.colour;
+    document.getElementById("equipment-model").value = equipment.modelNumber;
+    document.getElementById("equipment-serial").value = equipment.serialNumber;
+  }
+}
+
+function fillRepairRequestList(activeTab){
+  let equipmentList = document.getElementById("equipment-list");
+  $("#repair-requests-list").empty();
+  let repairRequests = [];
+
+  let selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
+
+  let ownership = ownershipDatabase.find(o => o.customerId == customerId && o.equipmentId == selectedEquipment)
+
+  if (ownership != undefined){
+    repairRequests = repairRequestDatabase.filter(r => r.ownershipId == ownership.id);
+
+    if(activeTab == true){
+      repairRequests = repairRequests.filter(r => r.ownershipId == ownership.id && r.isActive == true);
+    }else if(activeTab == false){
+      repairRequests = repairRequests.filter(r => r.ownershipId == ownership.id && r.isActive == false);
+    }
+  }
+
+  if (repairRequests.length > 0){
+    repairRequests.forEach(r => {
+      addRepairRequest(r.invoiceNumber, r.invoiceDate, r.issueDescription, r.id, r.isActive)
+    });
+  }else{
+    return true;
+  }
+}
+
+function noRepairRequestMessage(message){
+  var option = document.createElement('option')
+  option.value = "";
+  option.text = message;
+  document.getElementById("repair-requests-list").add(option);
+  $("#repair-requests-list").prop('disabled', true);
+}
+
+function fillRepairRequestForm(id){
+  if(id != 0){
+    let repairRequest = repairRequestDatabase.find(r => r.id == id);
+
+    document.getElementById("invoice-date").innerHTML = `<b>${repairRequest.invoiceDate}</b>`;
+    document.getElementById("invoice-number").innerHTML = `<b>${repairRequest.invoiceNumber}</b>`;
+    document.getElementById("issue-description").value = repairRequest.issueDescription;
+    document.getElementById("valid-warranty").checked = repairRequest.hasWarranty;
+  }
+}
+
+function addEquipment(equipmentName, equipmentType, equipmentModel, equipmentId) {
+  let equipmentList = document.getElementById("equipment-list");
+
+  var option = document.createElement('option');
+  option.value = equipmentId == undefined ? 0 : equipmentId;
+  option.text = `(M/N: ${equipmentModel})${equipmentName} - ${equipmentType}`;
+  equipmentList.add(option);
+}
+
+function addRepairRequest(invoiceNumber, invoiceDate, issueDescription, repairRequestId, isActive) {
+  let repairRequestList = document.getElementById("repair-requests-list");
+
+  var option = document.createElement('option')
+  option.value = repairRequestId == undefined ? 0 : repairRequestId;
+  if (isActive != undefined){
+    option.text = `(${isActive == true ? "Active" : "Complete"})${invoiceDate}#${invoiceNumber}: ${issueDescription}`;
+  }else{
+    option.text = `(Active)${invoiceDate}#${invoiceNumber}: ${issueDescription}`;
+  }
+  repairRequestList.add(option);
+}
+
+function toggleDisabledEquipmentForm(disabled) {
   $("#equipment-name").prop("disabled", disabled);
   $("#equipment-manufacturer").prop("disabled", disabled);
   $("#equipment-type").prop("disabled", disabled);
@@ -253,8 +447,37 @@ function toggleDisabledEquipmentForm(disabled){
   $("#equipment-serial").prop("disabled", disabled);
 }
 
+function toggleDisabledRepairRequestForm(disabled) {
+  $("#issue-description").prop("disabled", disabled);
+  $("#valid-warranty").prop("disabled", disabled);
+}
+
+function resetEquipmentInputs() {
+  document.getElementById("equipment-name").value = "";
+  document.getElementById("equipment-manufacturer").value = "";
+  document.getElementById("equipment-type").value = "";
+  document.getElementById("equipment-colour").value = "";
+  document.getElementById("equipment-model").value = "";
+  document.getElementById("equipment-serial").value = "";
+}
+
+function resetRepairRequestInputs() {
+  const currentDate = new Date();
+  let year = currentDate.getFullYear();
+  let month = currentDate.getMonth() + 1; // Months are 0-based in JavaScript
+  let day = currentDate.getDate();
+
+  let formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+  document.getElementById("invoice-date").innerHTML = formattedDate;
+  document.getElementById("invoice-number").innerHTML = ++startInvoiceNumber;
+  document.getElementById("issue-description").value = "";
+  document.getElementById("valid-warranty").checked = false;
+}
+
+/*
 // I found removing any of the jquery broke the page, so I opted to keep it, but just removed its functionality in the site where needed, which was only a few spots. 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const activeRepairsBtn = document.getElementById('active-repairs-btn');
   const completedRepairsBtn = document.getElementById('completed-repairs-btn');
   const repairsList = document.getElementById('repair-requests-list');
@@ -262,36 +485,36 @@ document.addEventListener('DOMContentLoaded', function() {
   const customerId = urlParams.get('cid');
 
 
-  activeRepairsBtn.addEventListener('click', function() {
-      populateRepairsList('active');
-      $("#details-repair-request").css("background-color", "grey");
-      $("#repair-requests-list").prop('disabled', true); 
-      $("#details-repair-request").prop('disabled', true); 
+  activeRepairsBtn.addEventListener('click', function () {
+    populateRepairsList('active');
+    $("#details-repair-request").css("background-color", "grey");
+    $("#repair-requests-list").prop('disabled', true);
+    $("#details-repair-request").prop('disabled', true);
   });
 
-  completedRepairsBtn.addEventListener('click', function() {
-      populateRepairsList('completed');
-      $("#details-repair-request").css("background-color", "grey");
-      $("#repair-requests-list").prop('disabled', true); 
-      $("#details-repair-request").prop('disabled', true); 
+  completedRepairsBtn.addEventListener('click', function () {
+    populateRepairsList('completed');
+    $("#details-repair-request").css("background-color", "grey");
+    $("#repair-requests-list").prop('disabled', true);
+    $("#details-repair-request").prop('disabled', true);
   });
 
   function populateRepairsList(type) {
-      repairsList.innerHTML = '';
-      let repairsData = type === 'active' ? getActiveRepairs() : getCompletedRepairs();
-      console.log(repairsData);
+    repairsList.innerHTML = '';
+    let repairsData = type === 'active' ? getActiveRepairs() : getCompletedRepairs();
+    console.log(repairsData);
 
-      let filteredRepairs = repairsData.filter(repair => repair.id == customerId);
-      console.log("Filtered Repairs:", filteredRepairs);
-      if (filteredRepairs.length === 0) {
-          repairsList.appendChild(new Option("No repair requests found", ""));
-      }
+    let filteredRepairs = repairsData.filter(repair => repair.id == customerId);
+    console.log("Filtered Repairs:", filteredRepairs);
+    if (filteredRepairs.length === 0) {
+      repairsList.appendChild(new Option("No repair requests found", ""));
+    }
 
-      filteredRepairs.forEach(repair => {
-          let optionText = `${repair.equipmentModel} - ${repair.equipmentType} - ${repair.issue} - ${repair.orderDate}`;
-          let option = new Option(optionText, repair.id);
-          repairsList.appendChild(option);
-      });
+    filteredRepairs.forEach(repair => {
+      let optionText = `${repair.equipmentModel} - ${repair.equipmentType} - ${repair.issue} - ${repair.orderDate}`;
+      let option = new Option(optionText, repair.id);
+      repairsList.appendChild(option);
+    });
   }
 
   function getActiveRepairs() {
@@ -436,661 +659,715 @@ document.addEventListener('DOMContentLoaded', function() {
         equipmentModel: "GlassGlider Pro",
         issue: "Handle broken"
       },
-      
+
     ];
   }
 });
 
-document.getElementById('equipment-list').addEventListener('click', function() {
+document.getElementById('equipment-list').addEventListener('click', function () {
   $("#repair-requests-list").prop('disabled', false);
 });
+*/
 
 
+function getCustomerData() {
+  return [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@gmail.com",
+      "phone": "(905) 456-7890",
+      "street": "123 Main St.",
+      "city": "St. Catharines",
+      "province": "Ontario",
+      "postalCode": "L4K 8F9",
+      "fullName": "John Doe"
+    },
+    {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "janesmith@gmail.com",
+      "phone": "(905) 123-4567",
+      "street": "456 Elm St.",
+      "city": "Hamilton",
+      "province": "Ontario",
+      "postalCode": "L5T 9K3",
+      "fullName": "Jane Smith"
+    },
+    {
+      "id": 3,
+      "firstName": "Emily",
+      "lastName": "Johnson",
+      "email": "emilyj@gmail.com",
+      "phone": "(905) 789-0123",
+      "street": "789 Maple Ave.",
+      "city": "Mississauga",
+      "province": "Ontario",
+      "postalCode": "L6P 5G7",
+      "fullName": "Emily Johnson"
+    },
+    {
+      "id": 4,
+      "firstName": "William",
+      "lastName": "Brown",
+      "email": "williambrown@gmail.com",
+      "phone": "(905) 654-3210",
+      "street": "101 Oak Dr.",
+      "city": "Toronto",
+      "province": "Ontario",
+      "postalCode": "L7R 2W4",
+      "fullName": "William Brown"
+    },
+    {
+      "id": 5,
+      "firstName": "Olivia",
+      "lastName": "White",
+      "email": "oliviawhite@gmail.com",
+      "phone": "(905) 876-5432",
+      "street": "234 Pine St.",
+      "city": "Brampton",
+      "province": "Ontario",
+      "postalCode": "L8S 3T9",
+      "fullName": "Olivia White"
+    },
+    {
+      "id": 6,
+      "firstName": "Michael",
+      "lastName": "Wilson",
+      "email": "michaelwilson@gmail.com",
+      "phone": "(905) 678-9056",
+      "street": "567 Birch Blvd.",
+      "city": "Waterloo",
+      "province": "Ontario",
+      "postalCode": "L9Z 2X8",
+      "fullName": "Michael Wilson"
+    },
+    {
+      "id": 7,
+      "firstName": "Sophia",
+      "lastName": "Taylor",
+      "email": "sophiataylor@gmail.com",
+      "phone": "(905) 234-5678",
+      "street": "890 Cedar Ln.",
+      "city": "London",
+      "province": "Ontario",
+      "postalCode": "L0A 1B2",
+      "fullName": "Sophia Taylor"
+    },
+    {
+      "id": 8,
+      "firstName": "James",
+      "lastName": "Thomas",
+      "email": "jamesthomas@gmail.com",
+      "phone": "(905) 987-6543",
+      "street": "123 Walnut St.",
+      "city": "Oshawa",
+      "province": "Ontario",
+      "postalCode": "L1T 2Y4",
+      "fullName": "James Thomas"
 
-function getCustomerData(){
-    return [
-      {
-        "id": 1,
-        "firstName": "John",
-        "lastName": "Doe",
-        "email": "johndoe@gmail.com",
-        "phone": "(905) 456-7890",
-        "street": "123 Main St.",
-        "city": "St. Catharines",
-        "province": "Ontario",
-        "postalCode": "L4K 8F9",
-        "fullName" : "John Doe"
-      },
-      {
-        "id": 2,
-        "firstName": "Jane",
-        "lastName": "Smith",
-        "email": "janesmith@gmail.com",
-        "phone": "(905) 123-4567",
-        "street": "456 Elm St.",
-        "city": "Hamilton",
-        "province": "Ontario",
-        "postalCode": "L5T 9K3",
-        "fullName" : "Jane Smith"
-      },
-      {
-        "id": 3,
-        "firstName": "Emily",
-        "lastName": "Johnson",
-        "email": "emilyj@gmail.com",
-        "phone": "(905) 789-0123",
-        "street": "789 Maple Ave.",
-        "city": "Mississauga",
-        "province": "Ontario",
-        "postalCode": "L6P 5G7",
-        "fullName" : "Emily Johnson"
-      },
-      {
-        "id": 4,
-        "firstName": "William",
-        "lastName": "Brown",
-        "email": "williambrown@gmail.com",
-        "phone": "(905) 654-3210",
-        "street": "101 Oak Dr.",
-        "city": "Toronto",
-        "province": "Ontario",
-        "postalCode": "L7R 2W4",
-        "fullName" : "William Brown"
-      },
-      {
-        "id": 5,
-        "firstName": "Olivia",
-        "lastName": "White",
-        "email": "oliviawhite@gmail.com",
-        "phone": "(905) 876-5432",
-        "street": "234 Pine St.",
-        "city": "Brampton",
-        "province": "Ontario",
-        "postalCode": "L8S 3T9",
-        "fullName" : "Olivia White"
-      },
-      {
-        "id": 6,
-        "firstName": "Michael",
-        "lastName": "Wilson",
-        "email": "michaelwilson@gmail.com",
-        "phone": "(905) 678-9056",
-        "street": "567 Birch Blvd.",
-        "city": "Waterloo",
-        "province": "Ontario",
-        "postalCode": "L9Z 2X8",
-        "fullName" : "Michael Wilson"
-      },
-      {
-        "id": 7,
-        "firstName": "Sophia",
-        "lastName": "Taylor",
-        "email": "sophiataylor@gmail.com",
-        "phone": "(905) 234-5678",
-        "street": "890 Cedar Ln.",
-        "city": "London",
-        "province": "Ontario",
-        "postalCode": "L0A 1B2",
-        "fullName" : "Sophia Taylor"
-      },
-      {
-        "id": 8,
-        "firstName": "James",
-        "lastName": "Thomas",
-        "email": "jamesthomas@gmail.com",
-        "phone": "(905) 987-6543",
-        "street": "123 Walnut St.",
-        "city": "Oshawa",
-        "province": "Ontario",
-        "postalCode": "L1T 2Y4",
-        "fullName" : "James Thomas"
-        
-      },
-      {
-        "id": 9,
-        "firstName": "Ava",
-        "lastName": "Martin",
-        "email": "avamartin@gmail.com",
-        "phone": "(905) 432-1987",
-        "street": "456 Spruce Ave.",
-        "city": "Markham",
-        "province": "Ontario",
-        "postalCode": "L2E 3F5",
-        "fullName" : "Ava Martin"
-      },
-      {
-        "id": 10,
-        "firstName": "Ethan",
-        "lastName": "Miller",
-        "email": "ethanmiller@gmail.com",
-        "phone": "(905) 321-7654",
-        "street": "789 Oak Lane",
-        "city": "Kitchener",
-        "province": "Ontario",
-        "postalCode": "L3M 6N1",
-        "fullName" : "Ethan Miller"
-      },
-      {
-        "id": 11,
-        "firstName": "John",
-        "lastName": "Smith",
-        "email": "jSmith@gmail.com",
-        "phone": "(905) 377-7654",
-        "street": "789 Oak Lane",
-        "city": "Waterloo",
-        "province": "Ontario",
-        "postalCode": "L3M 6N1",
-        "fullName" : "John Smith"
-      }
-      ,
-      {
-        "id": 12,
-        "firstName": "Kaylee",
-        "lastName": "Johnson",
-        "email": "johnsonKay@gmail.com",
-        "phone": "(905) 367-3345",
-        "street": "180 Russel Lane",
-        "city": "Niagara Falls",
-        "province": "Ontario",
-        "postalCode": "L5Q 6F1",
-        "fullName" : "Kaylee Johnson"
-      },
-      {
-        "id": 13,
-        "firstName": "Andrew",
-        "lastName": "Blackwell",
-        "email": "andrew20@gmail.com",
-        "phone": "(289) 663-7654",
-        "street": "10 Water Street",
-        "city": "St. Catharines",
-        "province": "Ontario",
-        "postalCode": "L2R 7H7",
-        "fullName" : "Andrew Blackwell"
-      },
-      {
-        "id": 14,
-        "firstName": "James",
-        "lastName": "Perez",
-        "email": "jPerez@gmail.com",
-        "phone": "(289) 402-3133",
-        "street": "700 Watertown Street",
-        "city": "London",
-        "province": "Ontario",
-        "postalCode": "N6B 2W6",
-        "fullName" : "James Perez"
-      },
-      {
-        "id": 15,
-        "firstName": "Xander",
-        "lastName": "Kohut",
-        "email": "xander999@gmail.com",
-        "phone": "(289) 407-2132",
-        "street": "800 Township Rd",
-        "city": "Thorold",
-        "province": "Ontario",
-        "postalCode": "L2E 4H4",
-        "fullName" : "Xander Kohut"
-      }
-      ,
-      {
-        "id": 16,
-        "firstName": "Vladimir",
-        "lastName": "Rosolov",
-        "email": "vRosolov@gmail.com",
-        "phone": "(304) 111-2222",
-        "street": "100 Main Street",
-        "city": "Toronto",
-        "province": "Ontario",
-        "postalCode": "L3M 6N1",
-        "fullName" : "Vladimir Rosolov"
-      },
-      {
-        "id": 17,
-        "firstName": "Drake",
-        "lastName": "Taylor",
-        "email": "dTaylor@gmail.com",
-        "phone": "(404) 337-3254",
-        "street": "10 Oak Lane",
-        "city": "Waterloo",
-        "province": "Ontario",
-        "postalCode": "L3M 4H4",
-        "fullName" : "Drake Taylor"
-      },
-      {
-        "id": 18,
-        "firstName": "David",
-        "lastName": "Bernard",
-        "email": "dBernard@gmail.com",
-        "phone": "(905) 668-0933",
-        "street": "10 Carlton Street",
-        "city": "St.Catharines",
-        "province": "Ontario",
-        "postalCode": "L2R 2L2",
-        "fullName" : "David Bernard"
-      }
-      ];
+    },
+    {
+      "id": 9,
+      "firstName": "Ava",
+      "lastName": "Martin",
+      "email": "avamartin@gmail.com",
+      "phone": "(905) 432-1987",
+      "street": "456 Spruce Ave.",
+      "city": "Markham",
+      "province": "Ontario",
+      "postalCode": "L2E 3F5",
+      "fullName": "Ava Martin"
+    },
+    {
+      "id": 10,
+      "firstName": "Ethan",
+      "lastName": "Miller",
+      "email": "ethanmiller@gmail.com",
+      "phone": "(905) 321-7654",
+      "street": "789 Oak Lane",
+      "city": "Kitchener",
+      "province": "Ontario",
+      "postalCode": "L3M 6N1",
+      "fullName": "Ethan Miller"
+    },
+    {
+      "id": 11,
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "jSmith@gmail.com",
+      "phone": "(905) 377-7654",
+      "street": "789 Oak Lane",
+      "city": "Waterloo",
+      "province": "Ontario",
+      "postalCode": "L3M 6N1",
+      "fullName": "John Smith"
+    }
+    ,
+    {
+      "id": 12,
+      "firstName": "Kaylee",
+      "lastName": "Johnson",
+      "email": "johnsonKay@gmail.com",
+      "phone": "(905) 367-3345",
+      "street": "180 Russel Lane",
+      "city": "Niagara Falls",
+      "province": "Ontario",
+      "postalCode": "L5Q 6F1",
+      "fullName": "Kaylee Johnson"
+    },
+    {
+      "id": 13,
+      "firstName": "Andrew",
+      "lastName": "Blackwell",
+      "email": "andrew20@gmail.com",
+      "phone": "(289) 663-7654",
+      "street": "10 Water Street",
+      "city": "St. Catharines",
+      "province": "Ontario",
+      "postalCode": "L2R 7H7",
+      "fullName": "Andrew Blackwell"
+    },
+    {
+      "id": 14,
+      "firstName": "James",
+      "lastName": "Perez",
+      "email": "jPerez@gmail.com",
+      "phone": "(289) 402-3133",
+      "street": "700 Watertown Street",
+      "city": "London",
+      "province": "Ontario",
+      "postalCode": "N6B 2W6",
+      "fullName": "James Perez"
+    },
+    {
+      "id": 15,
+      "firstName": "Xander",
+      "lastName": "Kohut",
+      "email": "xander999@gmail.com",
+      "phone": "(289) 407-2132",
+      "street": "800 Township Rd",
+      "city": "Thorold",
+      "province": "Ontario",
+      "postalCode": "L2E 4H4",
+      "fullName": "Xander Kohut"
+    }
+    ,
+    {
+      "id": 16,
+      "firstName": "Vladimir",
+      "lastName": "Rosolov",
+      "email": "vRosolov@gmail.com",
+      "phone": "(304) 111-2222",
+      "street": "100 Main Street",
+      "city": "Toronto",
+      "province": "Ontario",
+      "postalCode": "L3M 6N1",
+      "fullName": "Vladimir Rosolov"
+    },
+    {
+      "id": 17,
+      "firstName": "Drake",
+      "lastName": "Taylor",
+      "email": "dTaylor@gmail.com",
+      "phone": "(404) 337-3254",
+      "street": "10 Oak Lane",
+      "city": "Waterloo",
+      "province": "Ontario",
+      "postalCode": "L3M 4H4",
+      "fullName": "Drake Taylor"
+    },
+    {
+      "id": 18,
+      "firstName": "David",
+      "lastName": "Bernard",
+      "email": "dBernard@gmail.com",
+      "phone": "(905) 668-0933",
+      "street": "10 Carlton Street",
+      "city": "St.Catharines",
+      "province": "Ontario",
+      "postalCode": "L2R 2L2",
+      "fullName": "David Bernard"
+    }
+  ];
 }
 
-function getEquipmentData(){
-    return [
-        {
-          "id": 1,
-          "equipmentName": "GrassGlider Pro",
-          "equipmentType": "Lawn Mower",
-          "serialNumber": "20931890",
-          "modelNumber": "A02B",
-          "manufacturer": "Pro-Power Canada",
-          "colour": "Red"
-        },
-        {
-          "id": 2,
-          "equipmentName": "LawnMaster 2000",
-          "equipmentType": "Lawn Mower",
-          "serialNumber": "987654321",
-          "modelNumber": "B05C",
-          "manufacturer": "Troy-Bilt",
-          "colour": "Green"
-        },
-        {
-          "id": 3,
-          "equipmentName": "PowerHedge 300",
-          "equipmentType": "Hedge Trimmer",
-          "serialNumber": "123456789",
-          "modelNumber": "H12D",
-          "manufacturer": "HedgeMaster",
-          "colour": "Blue"
-        },
-        {
-          "id": 4,
-          "equipmentName": "LeafBlaster 5000",
-          "equipmentType": "Leaf Blower",
-          "serialNumber": "456789123",
-          "modelNumber": "L30X",
-          "manufacturer": "Toro",
-          "colour": "Yellow"
-        },
-        {
-          "id": 5,
-          "equipmentName": "SnowBuster Deluxe",
-          "equipmentType": "Snow Blower",
-          "serialNumber": "987654987",
-          "modelNumber": "S08M",
-          "manufacturer": "SnowMaster",
-          "colour": "White"
-        },
-        {
-          "id": 6,
-          "equipmentName": "PressureWasher Pro",
-          "equipmentType": "Pressure Washer",
-          "serialNumber": "654321789",
-          "modelNumber": "P15T",
-          "manufacturer": "Pro-Power Canada",
-          "colour": "Silver"
-        },
-        {
-          "id": 7,
-          "equipmentName": "ChainSaw Master",
-          "equipmentType": "Chainsaw",
-          "serialNumber": "789123456",
-          "modelNumber": "C10R",
-          "manufacturer": "Craftsman",
-          "colour": "Black"
-        },
-        {
-          "id": 8,
-          "equipmentName": "TurfMaster 1500",
-          "equipmentType": "Lawn Mower",
-          "serialNumber": "876543210",
-          "modelNumber": "TM15Z",
-          "manufacturer": "Pro-Power Canada",
-          "colour": "Red"
-        },
-        {
-          "id": 9,
-          "equipmentName": "LeafSweeper Pro",
-          "equipmentType": "Leaf Blower",
-          "serialNumber": "123789456",
-          "modelNumber": "LS20Y",
-          "manufacturer": "Toro",
-          "colour": "Yellow"
-        },
-        {
-          "id": 10,
-          "equipmentName": "EdgeTrimmer X",
-          "equipmentType": "Hedge Trimmer",
-          "serialNumber": "789456123",
-          "modelNumber": "ET10W",
-          "manufacturer": "HedgeMaster",
-          "colour": "Blue"
-        },
-        {
-          "id": 11,
-          "equipmentName": "ProSnow 3000",
-          "equipmentType": "Snow Blower",
-          "serialNumber": "321654987",
-          "modelNumber": "PS30Q",
-          "manufacturer": "SnowMaster",
-          "colour": "White"
-        },
-        {
-          "id": 12,
-          "equipmentName": "PowerChain X",
-          "equipmentType": "Chainsaw",
-          "serialNumber": "456123789",
-          "modelNumber": "PC12K",
-          "manufacturer": "Craftsman",
-          "colour": "Black"
-        }
-      ];
+function getEquipmentData() {
+  return [
+    {
+      "id": 1,
+      "equipmentName": "GrassGlider Pro",
+      "equipmentType": "Lawn Mower",
+      "serialNumber": "20931890",
+      "modelNumber": "A02B",
+      "manufacturer": "Pro-Power Canada",
+      "colour": "Red"
+    },
+    {
+      "id": 2,
+      "equipmentName": "LawnMaster 2000",
+      "equipmentType": "Lawn Mower",
+      "serialNumber": "987654321",
+      "modelNumber": "B05C",
+      "manufacturer": "Troy-Bilt",
+      "colour": "Green"
+    },
+    {
+      "id": 3,
+      "equipmentName": "PowerHedge 300",
+      "equipmentType": "Hedge Trimmer",
+      "serialNumber": "123456789",
+      "modelNumber": "H12D",
+      "manufacturer": "HedgeMaster",
+      "colour": "Blue"
+    },
+    {
+      "id": 4,
+      "equipmentName": "LeafBlaster 5000",
+      "equipmentType": "Leaf Blower",
+      "serialNumber": "456789123",
+      "modelNumber": "L30X",
+      "manufacturer": "Toro",
+      "colour": "Yellow"
+    },
+    {
+      "id": 5,
+      "equipmentName": "SnowBuster Deluxe",
+      "equipmentType": "Snow Blower",
+      "serialNumber": "987654987",
+      "modelNumber": "S08M",
+      "manufacturer": "SnowMaster",
+      "colour": "White"
+    },
+    {
+      "id": 6,
+      "equipmentName": "PressureWasher Pro",
+      "equipmentType": "Pressure Washer",
+      "serialNumber": "654321789",
+      "modelNumber": "P15T",
+      "manufacturer": "Pro-Power Canada",
+      "colour": "Silver"
+    },
+    {
+      "id": 7,
+      "equipmentName": "ChainSaw Master",
+      "equipmentType": "Chainsaw",
+      "serialNumber": "789123456",
+      "modelNumber": "C10R",
+      "manufacturer": "Craftsman",
+      "colour": "Black"
+    },
+    {
+      "id": 8,
+      "equipmentName": "TurfMaster 1500",
+      "equipmentType": "Lawn Mower",
+      "serialNumber": "876543210",
+      "modelNumber": "TM15Z",
+      "manufacturer": "Pro-Power Canada",
+      "colour": "Red"
+    },
+    {
+      "id": 9,
+      "equipmentName": "LeafSweeper Pro",
+      "equipmentType": "Leaf Blower",
+      "serialNumber": "123789456",
+      "modelNumber": "LS20Y",
+      "manufacturer": "Toro",
+      "colour": "Yellow"
+    },
+    {
+      "id": 10,
+      "equipmentName": "EdgeTrimmer X",
+      "equipmentType": "Hedge Trimmer",
+      "serialNumber": "789456123",
+      "modelNumber": "ET10W",
+      "manufacturer": "HedgeMaster",
+      "colour": "Blue"
+    },
+    {
+      "id": 11,
+      "equipmentName": "ProSnow 3000",
+      "equipmentType": "Snow Blower",
+      "serialNumber": "321654987",
+      "modelNumber": "PS30Q",
+      "manufacturer": "SnowMaster",
+      "colour": "White"
+    },
+    {
+      "id": 12,
+      "equipmentName": "PowerChain X",
+      "equipmentType": "Chainsaw",
+      "serialNumber": "456123789",
+      "modelNumber": "PC12K",
+      "manufacturer": "Craftsman",
+      "colour": "Black"
+    },
+  ];
 }
 
-function getOwnershipData(){
-    return [
-        {
-          "id": 1,
-          "customerId": 1,
-          "equipmentId": 1,
-          "serialNumber": "6S985C78866"
-        },
-        {
-          "id": 2,
-          "customerId": 1,
-          "equipmentId": 3,
-          "serialNumber": "7U942Z45486"
-        },
-        {
-          "id": 3,
-          "customerId": 2,
-          "equipmentId": 2,
-          "serialNumber": "2Z867N46698"
-        },
-        {
-          "id": 4,
-          "customerId": 2,
-          "equipmentId": 4,
-          "serialNumber": "6D247A85967"
-        },
-        {
-          "id": 5,
-          "customerId": 3,
-          "equipmentId": 5,
-          "serialNumber": "8A979P36869"
-        },
-        {
-          "id": 6,
-          "customerId": 3,
-          "equipmentId": 7,
-          "serialNumber": "8E445U62644"
-        },
-        {
-          "id": 7,
-          "customerId": 4,
-          "equipmentId": 6,
-          "serialNumber": "5Z935M24736"
-        },
-        {
-          "id": 8,
-          "customerId": 4,
-          "equipmentId": 8,
-          "serialNumber": "7E537T79592"
-        },
-        {
-          "id": 9,
-          "customerId": 5,
-          "equipmentId": 9,
-          "serialNumber": "8S828W84428"
-        },
-        {
-          "id": 10,
-          "customerId": 5,
-          "equipmentId": 11,
-          "serialNumber": "6W727K88322"
-        },
-        {
-          "id": 11,
-          "customerId": 6,
-          "equipmentId": 10,
-          "serialNumber": "6V897N22689"
-        },
-        {
-          "id": 12,
-          "customerId": 6,
-          "equipmentId": 12,
-          "serialNumber": "5J638F23992"
-        },
-        {
-          "id": 13,
-          "customerId": 7,
-          "equipmentId": 1,
-          "serialNumber": "9B475T53372"
-        },
-        {
-          "id": 14,
-          "customerId": 7,
-          "equipmentId": 3,
-          "serialNumber": "6H483T94664"
-        },
-        {
-          "id": 15,
-          "customerId": 8,
-          "equipmentId": 5,
-          "serialNumber": "9Y864M68339"
-        },
-        {
-          "id": 16,
-          "customerId": 8,
-          "equipmentId": 7,
-          "serialNumber": "5L383T77572"
-        },
-        {
-          "id": 17,
-          "customerId": 9,
-          "equipmentId": 9,
-          "serialNumber": "7N992J69283"
-        },
-        {
-          "id": 18,
-          "customerId": 9,
-          "equipmentId": 11,
-          "serialNumber": "7H826B47548"
-        },
-        {
-          "id": 19,
-          "customerId": 1,
-          "equipmentId": 10,
-          "serialNumber": "7Y686J58959"
-        },
-        {
-          "id": 20,
-          "customerId": 2,
-          "equipmentId": 12,
-          "serialNumber": "5X522H66584"
-        },
-        {
-          "id": 21,
-          "customerId": 11,
-          "equipmentId": 1,
-          "serialNumber": "5324F555584"
-        }
-        ,
-        {
-          "id": 22,
-          "customerId": 12,
-          "equipmentId": 2,
-          "serialNumber": "ABSJBSBJ293"
-        },
-        {
-          "id": 23,
-          "customerId": 13,
-          "equipmentId": 3,
-          "serialNumber": "498597BDJHW"
-        },
-        {
-          "id": 24,
-          "customerId": 14,
-          "equipmentId": 4,
-          "serialNumber": "381948741ABJ"
-        },
-        {
-          "id": 25,
-          "customerId": 15,
-          "equipmentId": 5,
-          "serialNumber": "PLSIEJ448313"
-        },
-        {
-          "id": 26,
-          "customerId": 16,
-          "equipmentId": 7,
-          "serialNumber": "WOEJEI213393"
-        },
-        {
-          "id": 27,
-          "customerId": 17,
-          "equipmentId": 12,
-          "serialNumber": "5X309131KDBS"
-        }
-        ,
-        {
-          "id": 28,
-          "customerId": 18,
-          "equipmentId": 10,
-          "serialNumber": "DKNDSJBSAJ39"
-        }
-        
-        
-
-      ];
+function getOwnershipData() {
+  return [
+    {
+      "id": 1,
+      "customerId": 1,
+      "equipmentId": 1,
+      "serialNumber": "6S985C78866"
+    },
+    {
+      "id": 2,
+      "customerId": 1,
+      "equipmentId": 3,
+      "serialNumber": "7U942Z45486"
+    },
+    {
+      "id": 3,
+      "customerId": 2,
+      "equipmentId": 2,
+      "serialNumber": "2Z867N46698"
+    },
+    {
+      "id": 4,
+      "customerId": 2,
+      "equipmentId": 4,
+      "serialNumber": "6D247A85967"
+    },
+    {
+      "id": 5,
+      "customerId": 3,
+      "equipmentId": 5,
+      "serialNumber": "8A979P36869"
+    },
+    {
+      "id": 6,
+      "customerId": 3,
+      "equipmentId": 7,
+      "serialNumber": "8E445U62644"
+    },
+    {
+      "id": 7,
+      "customerId": 4,
+      "equipmentId": 6,
+      "serialNumber": "5Z935M24736"
+    },
+    {
+      "id": 8,
+      "customerId": 4,
+      "equipmentId": 8,
+      "serialNumber": "7E537T79592"
+    },
+    {
+      "id": 9,
+      "customerId": 5,
+      "equipmentId": 9,
+      "serialNumber": "8S828W84428"
+    },
+    {
+      "id": 10,
+      "customerId": 5,
+      "equipmentId": 11,
+      "serialNumber": "6W727K88322"
+    },
+    {
+      "id": 11,
+      "customerId": 6,
+      "equipmentId": 10,
+      "serialNumber": "6V897N22689"
+    },
+    {
+      "id": 12,
+      "customerId": 6,
+      "equipmentId": 12,
+      "serialNumber": "5J638F23992"
+    },
+    {
+      "id": 13,
+      "customerId": 7,
+      "equipmentId": 1,
+      "serialNumber": "9B475T53372"
+    },
+    {
+      "id": 14,
+      "customerId": 7,
+      "equipmentId": 3,
+      "serialNumber": "6H483T94664"
+    },
+    {
+      "id": 15,
+      "customerId": 8,
+      "equipmentId": 5,
+      "serialNumber": "9Y864M68339"
+    },
+    {
+      "id": 16,
+      "customerId": 8,
+      "equipmentId": 7,
+      "serialNumber": "5L383T77572"
+    },
+    {
+      "id": 17,
+      "customerId": 9,
+      "equipmentId": 9,
+      "serialNumber": "7N992J69283"
+    },
+    {
+      "id": 18,
+      "customerId": 9,
+      "equipmentId": 11,
+      "serialNumber": "7H826B47548"
+    },
+    {
+      "id": 19,
+      "customerId": 1,
+      "equipmentId": 10,
+      "serialNumber": "7Y686J58959"
+    },
+    {
+      "id": 20,
+      "customerId": 2,
+      "equipmentId": 12,
+      "serialNumber": "5X522H66584"
+    },
+    {
+      "id": 21,
+      "customerId": 11,
+      "equipmentId": 1,
+      "serialNumber": "5324F555584"
+    }
+    ,
+    {
+      "id": 22,
+      "customerId": 12,
+      "equipmentId": 2,
+      "serialNumber": "ABSJBSBJ293"
+    },
+    {
+      "id": 23,
+      "customerId": 13,
+      "equipmentId": 3,
+      "serialNumber": "498597BDJHW"
+    },
+    {
+      "id": 24,
+      "customerId": 14,
+      "equipmentId": 4,
+      "serialNumber": "381948741ABJ"
+    },
+    {
+      "id": 25,
+      "customerId": 15,
+      "equipmentId": 5,
+      "serialNumber": "PLSIEJ448313"
+    },
+    {
+      "id": 26,
+      "customerId": 16,
+      "equipmentId": 7,
+      "serialNumber": "WOEJEI213393"
+    },
+    {
+      "id": 27,
+      "customerId": 17,
+      "equipmentId": 12,
+      "serialNumber": "5X309131KDBS"
+    },
+    {
+      "id": 28,
+      "customerId": 18,
+      "equipmentId": 10,
+      "serialNumber": "DKNDSJBSAJ39"
+    },
+    {
+      "id": 29,
+      "customerId": 3,
+      "equipmentId": 9,
+      "serialNumber": "7N996H95392"
+    }
+  ];
 }
 
-function getRepairRequestData(){
-    return [
-        {
-          "id": 1,
-          "invoiceDate": "2023-10-08",
-          "invoiceNumber": 1234566,
-          "issueDescription": "Engine won't start.",
-          "hasWarranty": true,
-          "ownershipId": 1
-        },
-        {
-          "id": 2,
-          "invoiceDate": "2023-10-26",
-          "invoiceNumber": 1234567,
-          "issueDescription": "Blades need sharpening",
-          "hasWarranty": true,
-          "ownershipId": 1
-        },
-        {
-          "id": 3,
-          "invoiceDate": "2023-07-14",
-          "invoiceNumber": 1234568,
-          "issueDescription": "Battery replacement needed",
-          "hasWarranty": false,
-          "ownershipId": 2
-        },
-        {
-          "id": 4,
-          "invoiceDate": "2023-06-10",
-          "invoiceNumber": 1234569,
-          "issueDescription": "Drive belt snapped",
-          "hasWarranty": true,
-          "ownershipId": 3
-        },
-        {
-          "id": 5,
-          "invoiceDate": "2023-05-22",
-          "invoiceNumber": 1234570,
-          "issueDescription": "Engine won't start",
-          "hasWarranty": false,
-          "ownershipId": 4
-        },
-        {
-          "id": 6,
-          "invoiceDate": "2023-04-18",
-          "invoiceNumber": 1234571,
-          "issueDescription": "Spark plug malfunction",
-          "hasWarranty": true,
-          "ownershipId": 5
-        },
-        {
-          "id": 7,
-          "invoiceDate": "2023-03-15",
-          "invoiceNumber": 1234572,
-          "issueDescription": "Chain needs tightening",
-          "hasWarranty": false,
-          "ownershipId": 6
-        },
-        {
-          "id": 8,
-          "invoiceDate": "2023-02-10",
-          "invoiceNumber": 1234573,
-          "issueDescription": "Hose connector leak",
-          "hasWarranty": true,
-          "ownershipId": 7
-        },
-        {
-          "id": 9,
-          "invoiceDate": "2023-01-05",
-          "invoiceNumber": 1234574,
-          "issueDescription": "Blades not spinning",
-          "hasWarranty": false,
-          "ownershipId": 8
-        },
-        {
-          "id": 10,
-          "invoiceDate": "2023-08-20",
-          "invoiceNumber": 1234575,
-          "issueDescription": "Fan malfunction",
-          "hasWarranty": true,
-          "ownershipId": 9
-        },
-        {
-          "id": 11,
-          "invoiceDate": "2023-09-25",
-          "invoiceNumber": 1234576,
-          "issueDescription": "Fuel line clog",
-          "hasWarranty": false,
-          "ownershipId": 10
-        },
-        {
-          "id": 12,
-          "invoiceDate": "2023-10-01",
-          "invoiceNumber": 1234577,
-          "issueDescription": "Auger not turning",
-          "hasWarranty": true,
-          "ownershipId": 11
-        },
-        {
-          "id": 13,
-          "invoiceDate": "2023-10-08",
-          "invoiceNumber": 1234578,
-          "issueDescription": "Chain came off",
-          "hasWarranty": false,
-          "ownershipId": 12
-        },
-        {
-          "id": 14,
-          "invoiceDate": "2023-10-15",
-          "invoiceNumber": 1234579,
-          "issueDescription": "Handle broken",
-          "hasWarranty": true,
-          "ownershipId": 13
-        },
-        {
-          "id": 15,
-          "invoiceDate": "2023-10-22",
-          "invoiceNumber": 1234580,
-          "issueDescription": "Blades need sharpening",
-          "hasWarranty": false,
-          "ownershipId": 14
-        },
-        {
-          "id": 16,
-          "invoiceDate": "2023-10-29",
-          "invoiceNumber": 1234581,
-          "issueDescription": "Oil leak",
-          "hasWarranty": true,
-          "ownershipId": 15
-        }
-      ];
+function getRepairRequestData() {
+  return [
+    {
+      "id": 1,
+      "invoiceDate": "2023-10-08",
+      "invoiceNumber": 1234566,
+      "issueDescription": "Engine won't start.",
+      "hasWarranty": true,
+      "isActive": true,
+      "ownershipId": 1
+    },
+    {
+      "id": 2,
+      "invoiceDate": "2023-10-26",
+      "invoiceNumber": 1234567,
+      "issueDescription": "Blades need sharpening",
+      "hasWarranty": true,
+      "isActive": false,
+      "ownershipId": 1
+    },
+    {
+      "id": 3,
+      "invoiceDate": "2023-07-14",
+      "invoiceNumber": 1234568,
+      "issueDescription": "Battery replacement needed",
+      "hasWarranty": false,
+      "isActive": false,
+      "ownershipId": 2
+    },
+    {
+      "id": 4,
+      "invoiceDate": "2023-06-10",
+      "invoiceNumber": 1234569,
+      "issueDescription": "Drive belt snapped",
+      "hasWarranty": true,
+      "isActive": true,
+      "ownershipId": 3
+    },
+    {
+      "id": 5,
+      "invoiceDate": "2023-05-22",
+      "invoiceNumber": 1234570,
+      "issueDescription": "Engine won't start",
+      "hasWarranty": false,
+      "isActive": false,
+      "ownershipId": 4
+    },
+    {
+      "id": 6,
+      "invoiceDate": "2023-04-18",
+      "invoiceNumber": 1234571,
+      "issueDescription": "Impeller damaged",
+      "hasWarranty": true,
+      "isActive": false,
+      "ownershipId": 5
+    },
+    {
+      "id": 7,
+      "invoiceDate": "2023-03-15",
+      "invoiceNumber": 1234572,
+      "issueDescription": "Chain needs tightening",
+      "hasWarranty": false,
+      "isActive": false,
+      "ownershipId": 6
+    },
+    {
+      "id": 8,
+      "invoiceDate": "2023-02-10",
+      "invoiceNumber": 1234573,
+      "issueDescription": "Hose connector leak",
+      "hasWarranty": true,
+      "isActive": true,
+      "ownershipId": 7
+    },
+    {
+      "id": 9,
+      "invoiceDate": "2023-01-05",
+      "invoiceNumber": 1234574,
+      "issueDescription": "Blades not spinning",
+      "hasWarranty": false,
+      "isActive": false,
+      "ownershipId": 8
+    },
+    {
+      "id": 10,
+      "invoiceDate": "2023-08-20",
+      "invoiceNumber": 1234575,
+      "issueDescription": "Fan malfunction",
+      "hasWarranty": true,
+      "isActive": true,
+      "ownershipId": 9
+    },
+    {
+      "id": 11,
+      "invoiceDate": "2023-09-25",
+      "invoiceNumber": 1234576,
+      "issueDescription": "Fuel line clog",
+      "hasWarranty": false,
+      "isActive": false,
+      "ownershipId": 10
+    },
+    {
+      "id": 12,
+      "invoiceDate": "2023-10-01",
+      "invoiceNumber": 1234577,
+      "issueDescription": "Auger not turning",
+      "hasWarranty": true,
+      "isActive": false,
+      "ownershipId": 11
+    },
+    {
+      "id": 13,
+      "invoiceDate": "2023-10-08",
+      "invoiceNumber": 1234578,
+      "issueDescription": "Chain came off",
+      "hasWarranty": false,
+      "isActive": true,
+      "ownershipId": 12
+    },
+    {
+      "id": 14,
+      "invoiceDate": "2023-10-15",
+      "invoiceNumber": 1234579,
+      "issueDescription": "Handle broken",
+      "hasWarranty": true,
+      "isActive": false,
+      "ownershipId": 13
+    },
+    {
+      "id": 15,
+      "invoiceDate": "2023-10-22",
+      "invoiceNumber": 1234580,
+      "issueDescription": "Blades need sharpening",
+      "hasWarranty": false,
+      "isActive": true,
+      "ownershipId": 14
+    },
+    {
+      "id": 16,
+      "invoiceDate": "2023-10-29",
+      "invoiceNumber": 1234581,
+      "issueDescription": "Oil leak",
+      "hasWarranty": true,
+      "isActive": true,
+      "ownershipId": 15
+    },
+    {
+      "id": 17,
+      "invoiceDate": "2023-11-05",
+      "invoiceNumber": 1234582,
+      "issueDescription": "Oil leak in engine",
+      "hasWarranty": false,
+      "isActive": false,
+      "ownershipId": 6
+    },
+    {
+      "id": 18,
+      "invoiceDate": "2023-12-02",
+      "invoiceNumber": 1234583,
+      "issueDescription": "Chain dull and requires replacement",
+      "hasWarranty": true,
+      "isActive": false,
+      "ownershipId": 6
+    },
+    {
+      "id": 19,
+      "invoiceDate": "2023-11-19",
+      "invoiceNumber": 1234584,
+      "issueDescription": "Starter rope broken",
+      "hasWarranty": false,
+      "isActive": false,
+      "ownershipId": 5
+    },
+    {
+      "id": 20,
+      "invoiceDate": "2023-12-04",
+      "invoiceNumber": 1234585,
+      "issueDescription": "Spark plug malfunction",
+      "hasWarranty": true,
+      "isActive": true,
+      "ownershipId": 5
+    }
+];
 }
