@@ -91,7 +91,7 @@
                                         </span>
                                     </div>
                                 </a>
-                                <a href="../pages/reports-home.html" data-roles="technician salesRep admin">
+                                <a href="../pages/reports-home.html" data-roles="admin">
                                     <div class="nav-btn bg-grp4">
                                         <span class="nav-btn-txt">Reports</span>
                                         <span class="nav-btn-icon">
@@ -247,6 +247,10 @@
                 if (selectedRole === 'technician') {
                     event.preventDefault();
                     window.location.href = '../pages/active-repairs.html'; 
+                }
+                if (selectedRole === 'admin') {
+                        event.preventDefault();
+                        window.location.href = '../pages/reports-home.html';
                 }
             });
         }
