@@ -144,6 +144,10 @@ textarea {
     grid-template-columns: 1fr 2.2fr;
 }
 
+#invoice-date, #invoice-number {
+    font-weight: bold;
+}
+
 .customer-field {
     grid-template-columns: 1fr 1.8fr;
 }

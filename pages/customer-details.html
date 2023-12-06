@@ -149,23 +149,21 @@
                                 </div>
                             </div>
                             <div id="repair-requests">
-                                <div class="what">
-                                    <div class="container">
-                                        <ul class="nav nav-tabs">
-                                          <li class="nav-item">
-                                            <button disabled class="nav-link active" id="all-repairs-btn">All Repairs</button>
-                                          </li>
-                                          <li class="nav-item">
-                                            <button disabled class="nav-link" id="active-repairs-btn">Active Repairs</button>
-                                          </li>
-                                          <li class="nav-item">
-                                            <button disabled class="nav-link" id="completed-repairs-btn">Completed Repairs</button>
-                                          </li>
-                                        </ul>
-                                    </div>
-                                    <select name="Orders" disabled class="form-select" id="repair-requests-list" size="5">   
-                                    </select>
+                                <div class="container">
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                        <button disabled class="nav-link active" id="all-repairs-btn">All Repairs</button>
+                                        </li>
+                                        <li class="nav-item">
+                                        <button disabled class="nav-link" id="active-repairs-btn">Active Repairs</button>
+                                        </li>
+                                        <li class="nav-item">
+                                        <button disabled class="nav-link" id="completed-repairs-btn">Completed Repairs</button>
+                                        </li>
+                                    </ul>
                                 </div>
+                                <select name="Orders" disabled class="form-select" id="repair-requests-list" size="5">   
+                                </select>
                                 <div class="d-flex">
                                     <button disabled id="create-repair-request" class="button btns" style="background-color: grey;" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Create Repair Request</button>
                                     <button disabled id="details-repair-request" class="button btns" style="background-color: grey;" data-bs-toggle="modal" data-bs-target="#repairRequestDetailsModal">Repair Request Details</button>
@@ -194,27 +192,27 @@
                         </div>
                         <hr>
                         <div class="customer-field">
-                            <label for="modal-last-name">Last Name</label>
+                            <label for="modal-last-name">Last Name:</label>
                             <input type="text" placeholder="E.g. Smith" id="modal-last-name" name="modal-last-name" required>
                         </div>
                         <hr>
                         <div class="customer-field">
-                            <label for="modal-email">Email</label>
+                            <label for="modal-email">Email:</label>
                             <input id="modal-email" name="modal-email" type="email" placeholder="E.g. johnsmith@gmail.com" required>
                         </div>
                         <hr>
                         <div class="customer-field">
-                            <label for="modal-phone">Phone Number</label>
+                            <label for="modal-phone">Phone Number:</label>
                             <input type="tel" placeholder="E.g. (123) 456 - 7890" id="modal-phone" name="modal-phone" required>
                         </div>
                         <hr>
                         <div class="customer-field">
-                            <label for="modal-address">Address</label>
+                            <label for="modal-address">Address:</label>
                             <input type="text" placeholder="E.g. 22 Full Moon Crescent" id="modal-address" name="modal-address" required>
                         </div>
                         <hr>
                         <div class="customer-field">
-                            <label for="modal-city">City</label>
+                            <label for="modal-city">City:</label>
                             <select name="modal-city" id="modal-city" required>
                                 <option value="">Select a City</option>
                                 <option value="Brampton">Brampton</option>
@@ -235,7 +233,7 @@
                         </div>
                         <hr>
                         <div class="customer-field">
-                            <label for="modal-province">Province</label>
+                            <label for="modal-province">Province:</label>
                             <select name="modal-province" id="modal-province" required>
                                 <option value="">Select a Province</option>
                                 <option value="Alberta">Alberta</option>
@@ -254,7 +252,7 @@
                         </div>
                         <hr>
                         <div class="customer-field">
-                            <label for="modal-postal">Postal Code</label>
+                            <label for="modal-postal">Postal Code:</label>
                             <input id="modal-postal" name="modal-postal" type="text" placeholder="E.g. L3C 0A8" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" required>
                         </div>
                     </fieldset>
@@ -333,7 +331,7 @@
                         </div>
                         <hr>
                         <div class="equipment-field">
-                            <label for="equipment-colour">Name:</label>
+                            <label for="equipment-colour">Colour:</label>
                             <select id="equipment-colour" name="equipment-colour" required disabled>
                                 <option value="" disabled selected>Select Colour</option>
                                 <option value="Red">
@@ -405,7 +403,7 @@
                         </div>
                         <hr>
                         <div class="repair-field">
-                            <label for="valid-warranty">Valid Warranty?</label>
+                            <label for="valid-warranty">Valid Warranty?:</label>
                             <div><input id="valid-warranty" name="valid-warranty" type="checkbox" class="form-check-input" style="text-align: left;"></div>
                         </div>
                     </fieldset>
