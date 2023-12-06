@@ -190,21 +190,40 @@
 
 
         });
-        document.addEventListener('DOMContentLoaded', function() {
-        const backToHomeLink = document.getElementById('backToHome');
-        if (backToHomeLink) {
-            backToHomeLink.addEventListener('click', function(event) {
-            const selectedRole = localStorage.getItem('selectedRole') || 'default';
-                if (selectedRole === 'technician') {
-                    event.preventDefault();
-                    window.location.href = '../pages/active-repairs.html'; 
+        
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const backToHomeLink = document.getElementById('backToHome');
+            if (backToHomeLink) {
+                backToHomeLink.addEventListener('click', function (event) {
+                    const selectedRole = localStorage.getItem('selectedRole') || 'default';
+                    if (selectedRole === 'technician') {
+                        event.preventDefault();
+                        window.location.href = '../pages/active-repairs.html';
+                    }
+                    if (selectedRole === 'admin') {
+                        event.preventDefault();
+                        window.location.href = '../pages/reports-home.html';
                 }
-                if (selectedRole === 'admin') {
-                    event.preventDefault();
-                    window.location.href = '../pages/reports-home.html';
+
+                });
+            }
+
+            const backToHomeNav = document.getElementById('backToHomeNav');
+            if (backToHomeNav) {
+                backToHomeNav.addEventListener('click', function(event) {
+                    const selectedRole = localStorage.getItem('selectedRole') || 'default';
+                    if (selectedRole === 'technician') {
+                        event.preventDefault();
+                        window.location.href = '../pages/active-repairs.html'; 
+                    }
+                    if (selectedRole === 'admin') {
+                        event.preventDefault();
+                        window.location.href = '../pages/reports-home.html';
                 }
-            });
-        }
+                });
+            }
         });
     </script>
     
