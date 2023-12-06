@@ -9,16 +9,16 @@ const repairRequestDatabase = getRepairRequestData();
 // retrieves all url parameters to display the right customer and equipments from previous page.
 const urlParam = new URLSearchParams(window.location.search);
 const newEquipmentName = urlParam.getAll("equipment-name");
-const newEquipmentType = urlParam.getAll("equipment-type")
-const newEquipmentManufacturer = urlParam.getAll("manufacturer")
-const newEquipmentColour = urlParam.getAll("colour")
-const newEquipmentModelNumber = urlParam.getAll("model-number")
+const newEquipmentType = urlParam.getAll("equipment-type");
+const newEquipmentManufacturer = urlParam.getAll("manufacturer");
+const newEquipmentColour = urlParam.getAll("colour");
+const newEquipmentModelNumber = urlParam.getAll("model-number");
 const serialNumber = urlParam.getAll("serial-number");
 const customerId = urlParam.getAll("cid");
 const equipmentId = urlParam.getAll("eid");
 
 //Starting invoice number.
-let startInvoiceNumber = 1234581;
+let startInvoiceNumber = 1234585;
 
 // only runs block if there was a customer passed
 if (customerId.length > 0) {
@@ -37,7 +37,7 @@ if (customerId.length > 0) {
 
 
   //retrieves owned equipment data
-  let ownership = ownershipDatabase.filter(o => o.customerId == customerId)
+  let ownership = ownershipDatabase.filter(o => o.customerId == customerId);
 
   //gets select element from html page
   let equipmentList = document.getElementById("equipment-list");
@@ -47,7 +47,7 @@ if (customerId.length > 0) {
   if (ownership.length > 0) {
     ownership.forEach(o => {
       let equipment = equipmentDatabase.find(e => e.id == o.equipmentId);
-      addEquipment(equipment.equipmentName, equipment.equipmentType, equipment.modelNumber, o.equipmentId)
+      addEquipment(equipment.equipmentName, equipment.equipmentType, equipment.modelNumber, o.equipmentId);
     });
   }
 
@@ -58,15 +58,15 @@ if (customerId.length > 0) {
         return (o.equipmentId == equipmentId && o.customerId == customerId);
     });*/
 
-    addEquipment(newEquipment.equipmentName, newEquipment.equipmentType, newEquipment.modelNumber, newEquipment.id)
+    addEquipment(newEquipment.equipmentName, newEquipment.equipmentType, newEquipment.modelNumber, newEquipment.id);
 
   } else if (newEquipmentName.length > 0) {
-    addEquipment(newEquipmentName, newEquipmentType, newEquipmentModelNumber)
+    addEquipment(newEquipmentName, newEquipmentType, newEquipmentModelNumber);
   }
 
   //user feedback for if theres nothing in equipment list
   if (equipmentList.options.length == 0) {
-    var option = document.createElement('option')
+    var option = document.createElement('option');
     option.value = "";
     option.text = `Customer has no equipment. Click the button below to add one.`;
     equipmentList.add(option);
@@ -228,8 +228,8 @@ if (customerId.length > 0) {
     toggleDisabledEquipmentForm(false);
     let addEquipmentButton = document.getElementById("update-equipment-btn");
     document.getElementById("equipmentModalLabel").innerHTML = "Add Equipment";
-    addEquipmentButton.innerHTML = "Save"
-    resetEquipmentInputs()
+    addEquipmentButton.innerHTML = "Save";
+    resetEquipmentInputs();
   });
 
   document.getElementById("update-equipment-btn").addEventListener("click", function (e) {
@@ -325,6 +325,7 @@ if (customerId.length > 0) {
         let issueDescription = document.getElementById("issue-description").value;
 
         addRepairRequest(invoiceNumber, invoiceDate, issueDescription);
+        startInvoiceNumber++;
 
         alert("The Repair Request has successfully been created and added to customer's equipment.");
       } else {
@@ -390,7 +391,7 @@ function fillRepairRequestList(activeTab){
 
   if (repairRequests.length > 0){
     repairRequests.forEach(r => {
-      addRepairRequest(r.invoiceNumber, r.invoiceDate, r.issueDescription, r.id, r.isActive)
+      addRepairRequest(r.invoiceNumber, r.invoiceDate, r.issueDescription, r.id, r.isActive);
     });
   }else{
     return true;
@@ -398,7 +399,7 @@ function fillRepairRequestList(activeTab){
 }
 
 function noRepairRequestMessage(message){
-  var option = document.createElement('option')
+  var option = document.createElement('option');
   option.value = "";
   option.text = message;
   document.getElementById("repair-requests-list").add(option);
@@ -409,8 +410,8 @@ function fillRepairRequestForm(id){
   if(id != 0){
     let repairRequest = repairRequestDatabase.find(r => r.id == id);
 
-    document.getElementById("invoice-date").innerHTML = `<b>${repairRequest.invoiceDate}</b>`;
-    document.getElementById("invoice-number").innerHTML = `<b>${repairRequest.invoiceNumber}</b>`;
+    document.getElementById("invoice-date").innerHTML = `${repairRequest.invoiceDate}`;
+    document.getElementById("invoice-number").innerHTML = `${repairRequest.invoiceNumber}`;
     document.getElementById("issue-description").value = repairRequest.issueDescription;
     document.getElementById("valid-warranty").checked = repairRequest.hasWarranty;
   }
@@ -464,13 +465,13 @@ function resetEquipmentInputs() {
 function resetRepairRequestInputs() {
   const currentDate = new Date();
   let year = currentDate.getFullYear();
-  let month = currentDate.getMonth() + 1; // Months are 0-based in JavaScript
+  let month = currentDate.getMonth() + 1;
   let day = currentDate.getDate();
 
   let formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
   document.getElementById("invoice-date").innerHTML = formattedDate;
-  document.getElementById("invoice-number").innerHTML = ++startInvoiceNumber;
+  document.getElementById("invoice-number").innerHTML = startInvoiceNumber + 1;
   document.getElementById("issue-description").value = "";
   document.getElementById("valid-warranty").checked = false;
 }
