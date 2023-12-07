@@ -279,6 +279,10 @@ if (customerId.length > 0) {
     document.getElementById("repairRequestModalLabel").innerHTML = "Selected Repair Request Details";
     let updateRepairRequestButton = document.getElementById("update-repair-request-btn");
     updateRepairRequestButton.innerHTML = "Update Repair Request";
+
+    //IF REPAIR IS SELECTED AND REPAIR REQUEST DETAILS IS CLICKED, INVOICE BUTTON APPEARS (REMOVE DISPLAY:NONE CLASS)
+    let invoiceRepairRequestButton = document.getElementById("invoice-repair-request-modal");
+    invoiceRepairRequestButton.classList.remove("d-none");
   });
 
   document.getElementById("create-repair-request").addEventListener("click", function (e) {
@@ -1036,13 +1040,13 @@ function getOwnershipData() {
     },
     {
       "id": 5,
-      "customerId": 3,
+      "customerId": 3, //Emily - SnowBuster Deluxe
       "equipmentId": 5,
       "serialNumber": "8A979P36869"
     },
     {
       "id": 6,
-      "customerId": 3,
+      "customerId": 9, //removed from Emily(3) and given to Ava(9)
       "equipmentId": 7,
       "serialNumber": "8E445U62644"
     },
@@ -1181,7 +1185,7 @@ function getOwnershipData() {
     },
     {
       "id": 29,
-      "customerId": 3,
+      "customerId": 9, //removed from Emily(3) and given to Ava(9)
       "equipmentId": 9,
       "serialNumber": "7N996H95392"
     }
@@ -1242,7 +1246,7 @@ function getRepairRequestData() {
       "issueDescription": "Impeller damaged",
       "hasWarranty": true,
       "isActive": false,
-      "ownershipId": 5
+      "ownershipId": 0 //changed from 5 to 0 to remove from Emily's repair requests
     },
     {
       "id": 7,
@@ -1359,7 +1363,7 @@ function getRepairRequestData() {
       "issueDescription": "Starter rope broken",
       "hasWarranty": false,
       "isActive": false,
-      "ownershipId": 5
+      "ownershipId": 0 //changed from 5 to 0 to remove from Emily's repair requests
     },
     {
       "id": 20,
