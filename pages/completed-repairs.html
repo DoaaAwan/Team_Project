@@ -58,20 +58,20 @@
                                         </span>
                                     </div>
                                 </a>
+                                <a href="../pages/customer-create.html" data-roles="salesRep admin">
+                                    <div class="nav-btn bg-grp3">
+                                        <span class="nav-btn-txt">Create Customer</span>
+                                        <span class="nav-btn-icon">
+                                            <ion-icon name="person-add-outline"></ion-icon>
+                                        </span>
+                                    </div>
+                                </a>
                                 <a href="../index.html" data-roles="salesRep admin technician">
                                     <div class="nav-btn bg-grp2" >
                                         <span class="nav-btn-txt">Search Customer
                                         </span>
                                         <span class="nav-btn-icon">
                                             <ion-icon name="search-outline"></ion-icon>
-                                        </span>
-                                    </div>
-                                </a>
-                                <a href="../pages/customer-create.html" data-roles="salesRep admin">
-                                    <div class="nav-btn bg-grp3">
-                                        <span class="nav-btn-txt">Create Customer</span>
-                                        <span class="nav-btn-icon">
-                                            <ion-icon name="person-add-outline"></ion-icon>
                                         </span>
                                     </div>
                                 </a>
@@ -115,10 +115,10 @@
                         <button class="help-icon bg-white rounded-circle" aria-label="Help">
                             <span class="tooltip-text">To sort the table, press the header of the column you would like to sort by. This will change the direction of the sorting.</span>
                           </button>
-                        <a href="javascript:history.back()" class="button secondary-btn" >
+                        <!-- <a href="javascript:history.back()" class="button secondary-btn" >
                             Back
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </header>
@@ -127,7 +127,7 @@
                     <thead>
                         <tr>
                             <th>Customer</th>
-                            <th>Order Date</th>
+                            <th>Completed Date</th>
                             <th>Location</th>
                             <th>Equipment</th>
                             <th>Notes</th>
@@ -137,8 +137,73 @@
                     </thead>
                     <tbody id="customerTableBody">
                         <tr>
+                            <td class="cust-name">Johnson, Emily</td>
+                            <td>2023-12-11</td>
+                            <td>Mississauga, ON</td>
+                            <td><b>Snow Blower</b><br>SnowBuster Deluxe</td>
+                            <td>Spark plug malfunction</td>
+                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-3" id="btn3">Contact 
+                                <ion-icon name="person-outline"></ion-icon>
+                            </a>
+                                <!-- modal content -->
+                                <div class="modal fade" id="reg-modal-3" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-light">
+                                        <div class="modal-header bg-grn">
+                                        <h5 class="modal-title" id="modal-title">Emily Johnson</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cust-details-modal-container">
+                                                <div class="mb-3 cust-details-modal">
+                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 789-0123</p>
+                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>emilyj@gmail.com</p>
+                                                    <p class="mt-2">
+                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
+                                                        789 Maple Ave. 
+                                                        <div class="address-lines-modal">Mississauga, Ontario</div>
+                                                        <div class="address-lines-modal">L6P 5G7</div>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <label for="modal-contacted" class="form-label">Contacted</label>
+                                                        <input type="checkbox" id="modal-contacted-3" onchange="toggleRadioGroup(3,3)">
+                                                    </div>
+                                                
+                                                    <div class="form-radio-group" id="radio-group-3">
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
+                                                            </label>
+                                                        </div>
+                                                        <div>
+                                                            <label class="form-radio">
+                                                                <input type="radio" name="status" value="order-complete"> Order Complete
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(3,'btn3')" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            <td><a href="demo-emily-invoice.html" class="btn rounded-circle report">
+                                <ion-icon name="reader-outline"></ion-icon></a>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="cust-name">Doe, John</td>
-                            <td>2023-07-14</td>
+                            <td>2023-12-10</td>
                             <td>St.Catharines, ON</td>
                             <td><b>Hedge Trimmer</b><br>PowerHedge 200</td>
                             <td>Battery replaced</td>
@@ -203,12 +268,11 @@
                         </tr>
                         <tr>
                             <td class="cust-name">Smith, Jane</td>
-                            <td>2023-05-22</td>
+                            <td>2023-12-08</td>
                             <td>Hamilton, ON</td>
                             <td><b>Leaf Blower</b><br>LeafBlaster 5000</td>
                             <td>Engine fixed</td>
-                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-2" id="btn2">Contact 
-                                <ion-icon name="person-outline"></ion-icon>
+                            <td><a href="" class="repair-btn button continue data-bs-toggle="modal" data-bs-target="#reg-modal-2" id="btn2">Contacted 
                             </a>
                                 <!-- modal content -->
                                 <div class="modal fade" id="reg-modal-2" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -268,78 +332,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="cust-name">Johnson, Emily</td>
-                            <td>2023-03-15</td>
-                            <td>Mississauga, ON</td>
-                            <td><b>Snow Blower</b><br>SnowBuster Deluxe</td>
-                            <td>Spark plug malfunction</td>
-                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-3" id="btn3">Contact 
-                                <ion-icon name="person-outline"></ion-icon>
-                            </a>
-                                <!-- modal content -->
-                                <div class="modal fade" id="reg-modal-3" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content bg-light">
-                                        <div class="modal-header bg-grn">
-                                        <h5 class="modal-title" id="modal-title">Emily Johnson</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="cust-details-modal-container">
-                                                <div class="mb-3 cust-details-modal">
-                                                    <p><ion-icon name="phone-portrait-outline" class="icon-modal me-2"></ion-icon>(905) 789-0123</p>
-                                                    <p class="mt-2"><ion-icon name="mail-outline" class="icon-modal me-2"></ion-icon>emilyj@gmail.com</p>
-                                                    <p class="mt-2">
-                                                        <ion-icon name="home-outline" class="icon-modal"></ion-icon>
-                                                        789 Maple Ave. 
-                                                        <div class="address-lines-modal">Mississauga, Ontario</div>
-                                                        <div class="address-lines-modal">L6P 5G7</div>
-                                                    </p>
-                                                </div>
-                                                <div>
-                                                    <div>
-                                                        <label for="modal-contacted" class="form-label">Contacted</label>
-                                                        <input type="checkbox" id="modal-contacted-3" onchange="toggleRadioGroup(3,3)">
-                                                    </div>
-                                                
-                                                    <div class="form-radio-group" id="radio-group-3">
-                                                        <div>
-                                                            <label class="form-radio">
-                                                                <input type="radio" name="status" value="awaiting-pickup"> Awaiting Pickup
-                                                            </label>
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-radio">
-                                                                <input type="radio" name="status" value="need-to-follow-up"> Need to Follow Up
-                                                            </label>
-                                                        </div>
-                                                        <div>
-                                                            <label class="form-radio">
-                                                                <input type="radio" name="status" value="order-complete"> Order Complete
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary btn-save-modal" onclick="saveModalChanges(3,'btn3')" data-bs-dismiss="modal" aria-label="Close">Save</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            <td><a href="reports-home.html" class="btn rounded-circle report">
-                                <ion-icon name="reader-outline"></ion-icon></a>
-                            </td>
-                        </tr>
-                        <tr>
                             <td class="cust-name">Brown, William</td>
-                            <td>2023-01-05</td>
+                            <td>2023-12-06</td>
                             <td>Toronto, ON</td>
                             <td><b>Lawn Mower</b><br>TurfMaster 1500</td>
                             <td>Blades working</td>
-                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-4" id="btn4">Contact 
-                                <ion-icon name="person-outline"></ion-icon>
+                            <td><a href="" class="repair-btn button continue" data-bs-toggle="modal" data-bs-target="#reg-modal-4" id="btn4">Contacted 
                             </a>
                                 <!-- modal content -->
                                 <div class="modal fade" id="reg-modal-4" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -399,12 +397,11 @@
                         </tr>
                         <tr>
                             <td class="cust-name">White, Olivia</td>
-                            <td>2023-08-20</td>
+                            <td>2023-12-05</td>
                             <td>Brampton, ON</td>
                             <td><b>Leaf Blower</b><br>LeafSweeper Pro</td>
                             <td>Fan fixed</td>
-                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-5" id="btn5">Contact 
-                                <ion-icon name="person-outline"></ion-icon>
+                            <td><a href="" class="repair-btn button continue" data-bs-toggle="modal" data-bs-target="#reg-modal-5" id="btn5">Contacted 
                             </a>
                                 <!-- modal content -->
                                 <div class="modal fade" id="reg-modal-5" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -463,12 +460,11 @@
                         </tr>
                         <tr>
                             <td class="cust-name">Wilson, Michael</td>
-                            <td>2023-10-01</td>
+                            <td>2023-12-03</td>
                             <td>Waterloo, ON</td>
                             <td><b>Hedge Trimmer</b><br>EdgeTrimmer X</td>
                             <td>Auger working</td>
-                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-6" id="btn6">Contact 
-                                <ion-icon name="person-outline"></ion-icon>
+                            <td><a href="" class="repair-btn button continue" data-bs-toggle="modal" data-bs-target="#reg-modal-6" id="btn6">Contacted 
                             </a>
                                 <!-- modal content -->
                                 <div class="modal fade" id="reg-modal-6" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
@@ -527,12 +523,11 @@
                         </tr>
                         <tr>
                             <td class="cust-name">Taylor, Sophia</td>
-                            <td>2023-10-15</td>
+                            <td>2023-11-25</td>
                             <td>London, ON</td>
                             <td><b>Lawn Mower</b><br>GrassGlider Pro</td>
                             <td>Handle fixed</td>
-                            <td><a href="" class="repair-btn button" data-bs-toggle="modal" data-bs-target="#reg-modal-7" id="btn7">Contact 
-                                <ion-icon name="person-outline"></ion-icon>
+                            <td><a href="" class="repair-btn button continue" data-bs-toggle="modal" data-bs-target="#reg-modal-7" id="btn7">Contacted 
                             </a>
                                 <!-- modal content -->
                                 <div class="modal fade" id="reg-modal-7" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">

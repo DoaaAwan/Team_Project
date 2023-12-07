@@ -9,14 +9,12 @@
     <script src="https://kit.fontawesome.com/44b9581dbb.js" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../src/jquery-3.7.1.min.js"></script>
-    <!--<script async src="../scripts/import-nav.js"></script>-->
+    <script src="./src/jquery-3.7.1.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
     </style>
     <link rel="stylesheet" href="../src/style.css">
-    <link rel="stylesheet" href="../styles/equipment-details.css">
-    <!-- <link rel="stylesheet" href="../styles/equipment-details.css"> -->
+    <link rel="stylesheet" href="../styles/help-button.css">
 </head>
 <body>
     <div class="app-container">
@@ -39,8 +37,8 @@
                     <div class="offcanvas-body">
                         <div class="container">
                             <div class="d-flex justify-content-center">
-                                <div class="nav-user-img" >
-                                    <div><img src="../images/user-profile.png" id="navUserImg" class="" alt=""></div>
+                                <div class="nav-user-img">
+                                    <div><img src="../images/user-profile.png" class="" alt="" id="navUserImg"></div>
                                 </div>
                                 <div class="ms-3">
                                     <div class="nav-user-info">
@@ -106,89 +104,66 @@
                 </div>
             </div>
         </nav>
-        <section class="page-container">
+        <section class="page-container active-repair-pg">
             <header>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h1>Equipment Details</h1>
+                        <h1>Emily's Invoice</h1>
                     </div>
                     <div>
-                        <a href="javascript:history.back()" id="go-to-customer" style="display: none;" class="button secondary-btn me-4">
-                            Back to Customer
+                        <a href="" onclick="window.print();" class="button secondary-btn me-3 noPrint">
+                            Print
+                            <ion-icon name="print-outline"></ion-icon>
+                        </a>
+                        <a href="javascript:history.back()" class="button secondary-btn" >
+                            Back
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
-                        <!-- <a href="../pages/equipment-search.html" id="back-to-search" style="display: none;" class="button secondary-btn me-4">
-                            Back to Equipment Search
-                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
-                        </a> -->
                     </div>
                 </div>
             </header>
-
             <div class="page">
-                <div class="equipment-details" id="equipment-details">
-                    <div id="equipment-name"></div>
-                    <hr>
-                    <div class="row">
-                        <div class="column">
-                            <p id="equipment-customer"></p>
-                            <p id="equipment-manufacturer"></p>
-                            <p id="equipment-type"></p>
-                            <p id="equipment-colour"></p>
-                            <p id="equipment-model"></p>
-                            <p id="equipment-serial" style="display: none"></p>
-                        </div>
-                        <div class="d-flex">
-                            <a href="../pages/equipment-update.html" class="button btns" style="display: none;" id="update-serial-btn">Update Equipment Details</a>
-                            <!-- <a href="../pages/equipment-update.html" class="button btns" style="display: none;" id="update-equipment-btn">Update Equipment</a> -->
-                        </div>
-                    </div> 
 
-                </div>
-                <!-- <div>
-                    <a href="../pages/equipment-search.html" class="btn btn-secondary">
-                        Return
-                    </a>
-                </div> -->
             </div>
         </section>
     </div>
-    <script src="../scripts/equipment-details.js"></script>
+
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/update-nav.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const backToHomeLink = document.getElementById('backToHome');
-            if (backToHomeLink) {
-                backToHomeLink.addEventListener('click', function (event) {
-                    const selectedRole = localStorage.getItem('selectedRole') || 'default';
-                    if (selectedRole === 'technician') {
-                        event.preventDefault();
-                        window.location.href = '../pages/active-repairs.html';
-                    }
-                    if (selectedRole === 'admin') {
-                        event.preventDefault();
-                        window.location.href = '../pages/reports-home.html';
+        document.addEventListener('DOMContentLoaded', function() {
+        const backToHomeLink = document.getElementById('backToHome');
+        if (backToHomeLink) {
+            backToHomeLink.addEventListener('click', function(event) {
+            const selectedRole = localStorage.getItem('selectedRole') || 'default';
+                if (selectedRole === 'technician') {
+                    event.preventDefault();
+                    window.location.href = '../pages/active-repairs.html'; 
                 }
-    
-                });
+                if (selectedRole === 'admin') {
+                    event.preventDefault();
+                    window.location.href = '../pages/reports-home.html';
+                }
+            });
+        }
+                
+        const backToHomeNav = document.getElementById('backToHomeNav');
+        if (backToHomeNav) {
+            backToHomeNav.addEventListener('click', function(event) {
+            const selectedRole = localStorage.getItem('selectedRole') || 'default';
+            if (selectedRole === 'technician') {
+                event.preventDefault();
+                window.location.href = '../pages/active-repairs.html'; 
             }
-    
-            const backToHomeNav = document.getElementById('backToHomeNav');
-            if (backToHomeNav) {
-                backToHomeNav.addEventListener('click', function(event) {
-                    const selectedRole = localStorage.getItem('selectedRole') || 'default';
-                    if (selectedRole === 'technician') {
-                        event.preventDefault();
-                        window.location.href = '../pages/active-repairs.html'; 
-                    }
-                    if (selectedRole === 'admin') {
-                        event.preventDefault();
-                        window.location.href = '../pages/reports-home.html';
-                }
-                });
+            if (selectedRole === 'admin') {
+                event.preventDefault();
+                window.location.href = '../pages/reports-home.html';
             }
         });
+        }
+    });
+
     </script>
 </body>
 </html>
