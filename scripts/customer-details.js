@@ -1241,7 +1241,7 @@ function getRepairRequestData() {
     },
     {
       "id": 6,
-      "invoiceDate": "2023-04-18",
+      "invoiceDate": "2023-12-01",
       "invoiceNumber": 1234571,
       "issueDescription": "Impeller damaged",
       "hasWarranty": true,
