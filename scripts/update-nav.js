@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (userName) {
-            userName.textContent = selectedRole === 'technician' ? 'Dion Phaneuf' : 'Jane Doe';
+            userName.textContent = selectedRole === 'technician' ? 'Eugene' : 'Emily';
         }
 
         if (userRole) {
