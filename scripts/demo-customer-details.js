@@ -306,33 +306,6 @@ if (customerId.length > 0) {
         //$("repairRequestDetailsModal").modal('hide');
         let repairRequestDetailsModal = document.getElementById('repairRequestDetailsModal');
 
-          // Change the innerHTML of the modal to the order confirmation content
-          repairRequestDetailsModal.innerHTML = `
-              <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h2 class="modal-title fs-5">Repair Request Created</h2>
-                          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body" style="line-height: 1.5;">
-                          <p>The Repair Request has successfully been created and added to customer's equipment.</p>
-                          <div class="info-border">
-                          <div class="info">
-                              <p><b>Customer:</b> Emily Johnson</span></p>
-                              <p><b>Date:</b> 2023-12-11</p>
-                              <p><b>Invoice:</b> 1234585</p>
-                              <p><b>Equipment:</b> SnowBuster Deluxe</p>
-                              <p><b>Issue:</b> Spark plug malfunction</p>
-                          </div>
-                      </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="window.location.href = '../pages/order-confirmation.html';">Invoice</button>
-                      </div>
-                  </div>
-              </div>
-          `;
         // let modalInstance = bootstrap.Modal.getInstance(repairRequestDetailsModal);
         // modalInstance.hide();
 
@@ -357,6 +330,33 @@ if (customerId.length > 0) {
         addRepairRequest(invoiceNumber, invoiceDate, issueDescription);
         startInvoiceNumber++;
 
+            // Change the innerHTML of the modal to the order confirmation content
+            repairRequestDetailsModal.innerHTML = `
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5">Repair Request Created</h2>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="line-height: 1.5;">
+                        <p>The Repair Request has successfully been created and added to customer's equipment.</p>
+                        <div class="info-border">
+                        <div class="info">
+                            <p><b>Customer:</b> Emily Johnson</span></p>
+                            <p><b>Date:</b> 2023-12-11</p>
+                            <p><b>Invoice:</b> 1234585</p>
+                            <p><b>Equipment:</b> SnowBuster Deluxe</p>
+                            <p><b>Issue:</b> Spark plug malfunction</p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" onclick="window.location.href = '../pages/order-confirmation.html';">Invoice</button>
+                    </div>
+                </div>
+            </div>
+        `;
         // alert("The Repair Request has successfully been created and added to customer's equipment.");
       } else {
         updateRepairRequestButton.innerHTML = "Update Repair Request";
