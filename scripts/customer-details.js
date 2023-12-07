@@ -1112,13 +1112,13 @@ function getOwnershipData() {
     },
     {
       "id": 17,
-      "customerId": 9,
+      "customerId": 0, //remove from Ava(9)
       "equipmentId": 9,
       "serialNumber": "7N992J69283"
     },
     {
       "id": 18,
-      "customerId": 9,
+      "customerId": 0, //remove from Ava(9)
       "equipmentId": 11,
       "serialNumber": "7H826B47548"
     },
@@ -1245,8 +1245,8 @@ function getRepairRequestData() {
       "invoiceNumber": 1234571,
       "issueDescription": "Impeller damaged",
       "hasWarranty": true,
-      "isActive": false,
-      "ownershipId": 0 //changed from 5 to 0 to remove from Emily's repair requests
+      "isActive": true, //changed to Active
+      "ownershipId": 6 //changed from 5 to 6 to remove from Emily and give to Ava
     },
     {
       "id": 7,
@@ -1255,7 +1255,7 @@ function getRepairRequestData() {
       "issueDescription": "Chain needs tightening",
       "hasWarranty": false,
       "isActive": false,
-      "ownershipId": 6
+      "ownershipId": 0 //remove from Ava(6)
     },
     {
       "id": 8,
