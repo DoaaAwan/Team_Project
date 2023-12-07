@@ -20,6 +20,20 @@ const equipmentId = urlParam.getAll("eid");
 //Starting invoice number.
 let startInvoiceNumber = 1234585;
 
+//Saving created equipment data
+let newCreatedEquipmentName = "";
+let newCreatedEquipmentManufacturer = "";
+let newCreatedEquipmentType = "";
+let newCreatedEquipmentColour = "";
+let newCreatedEquipmentModelNumber = "";
+let newCreatedEquipmentSerialNumber = "";
+
+//Saving created repair request data
+let newCreatedInvoiceNumber = "";
+let newCreatedInvoiceDate = "";
+let newCreatedIssueDescription = "";
+let newCreatedValidWarranty = undefined;
+
 // only runs block if there was a customer passed
 if (customerId.length > 0) {
 
@@ -97,16 +111,11 @@ if (customerId.length > 0) {
     //gets selected equipment id
     const selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
 
-    if (selectedEquipment != 0) {
-      $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
-      $('#details-equipment-btn').prop('disabled', false);
+    $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
+    $('#details-equipment-btn').prop('disabled', false);
 
-      fillEquipmentInputs();
-    }
-    else{
-      $("#details-equipment-btn").css("background-color", "grey");
-      $('#details-equipment-btn').prop('disabled', true);
-    }
+    fillEquipmentInputs();
+
 
     if(fillRepairRequestList()){
       noRepairRequestMessage(`No Repair Requests. Click the button below to create one.`);
@@ -170,13 +179,9 @@ if (customerId.length > 0) {
     //gets selected id for repair record and "activates" the button by adding the url with parameter to button
     let selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
 
-    if (selectedRepairRequest != 0) {
-      $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
-      $('#details-repair-request').prop('disabled', false);
-    }else{
-      $("#details-repair-request").css("background-color", "grey");
-      $('#details-repair-request').prop('disabled', true);
-    }
+    $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
+    $('#details-repair-request').prop('disabled', false);
+
 
   });
 
@@ -205,8 +210,9 @@ if (customerId.length > 0) {
       customer.postalCode = document.getElementById("modal-postal").value;
 
       fillCustomer(customer);
-
-      alert("Customer has been successfully updated.");
+      
+      showToast("Customer Update", `${customer.firstName} ${customer.lastName}`);
+      //alert("Customer has been successfully updated.");
 
       let customerDetailsModal = document.getElementById('customerDetailsModal');
       let modalInstance = bootstrap.Modal.getInstance(customerDetailsModal);
@@ -250,9 +256,12 @@ if (customerId.length > 0) {
         let modalInstance = bootstrap.Modal.getInstance(equipmentDetailsModal);
         modalInstance.hide();
 
-        let equipmentName = document.getElementById("equipment-name").value;
-        let equipmentModel = document.getElementById("equipment-model").value;
-        let equipmentType = document.getElementById("equipment-type").value;
+        newCreatedEquipmentName = document.getElementById("equipment-name").value;
+        newCreatedEquipmentManufacturer = document.getElementById("equipment-manufacturer").value;
+        newCreatedEquipmentType = document.getElementById("equipment-type").value;
+        newCreatedEquipmentColour = document.getElementById("equipment-colour").value;
+        newCreatedEquipmentModelNumber = document.getElementById("equipment-model").value;
+        newCreatedEquipmentSerialNumber = document.getElementById("equipment-serial").value;
 
         let equipmentDisabled = document.getElementById("equipment-list").disabled;
         if (equipmentDisabled == true){
@@ -260,11 +269,14 @@ if (customerId.length > 0) {
           $("#equipment-list").prop('disabled', false);
         }
 
-        addEquipment(equipmentName, equipmentType, equipmentModel);
-        
-        alert("This equipment has successfully been created and added to customer.");
+        addEquipment(newCreatedEquipmentName, newCreatedEquipmentType, newCreatedEquipmentModelNumber);
+
+        showToast("Equipment Create", newCreatedEquipmentName);
+        //alert("This equipment has successfully been created and added to customer.");
       } else {
         updateEquipmentButton.innerHTML = "Update Equipment";
+        let updatedEquipmentName = document.getElementById("equipment-name").value;
+        showToast("Equipment Update", updatedEquipmentName);
       }
     }
     else {
@@ -324,16 +336,31 @@ if (customerId.length > 0) {
 
         fillRepairRequestList();
 
-        let invoiceNumber = document.getElementById("invoice-number").innerHTML;
-        let invoiceDate = document.getElementById("invoice-date").innerHTML;
-        let issueDescription = document.getElementById("issue-description").value;
+        newCreatedInvoiceNumber = document.getElementById("invoice-number").innerHTML;
+        newCreatedInvoiceDate = document.getElementById("invoice-date").innerHTML;
+        newCreatedIssueDescription = document.getElementById("issue-description").value;
+        newCreatedValidWarranty = document.getElementById("valid-warranty").checked;
 
-        addRepairRequest(invoiceNumber, invoiceDate, issueDescription);
+        addRepairRequest(newCreatedInvoiceNumber, newCreatedInvoiceDate, newCreatedIssueDescription);
         startInvoiceNumber++;
 
-        alert("The Repair Request has successfully been created and added to customer's equipment.");
+        let equipmentList = document.getElementById("equipment-list")
+        let selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
+        let equipmentName = "";
+
+        if (selectedEquipment != 0){
+          let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
+          equipmentName = equipment.equipmentName;
+        }else{
+          equipmentName = newCreatedEquipmentName;
+        }
+
+        showToast("Repair Request Create", equipmentName);
+        //alert("The Repair Request has successfully been created and added to customer's equipment.");
       } else {
         updateRepairRequestButton.innerHTML = "Update Repair Request";
+        let updatedInvoiceNumber = document.getElementById("invoice-number").innerHTML;
+        showToast("Repair Request Update", updatedInvoiceNumber);
       }
     }
     else {
@@ -344,6 +371,36 @@ if (customerId.length > 0) {
 } else {
   //if no customer id passed as parameter, page is blank with user message
   $(`#customer-details`).html("<h2>No customer details found.</h2>");
+}
+
+function showToast(action, item){
+  let toast = undefined;
+  if(action == "Customer Update"){
+    document.getElementById("toast-customer-update-body").innerHTML = `The customer(${item}) has successfully been updated.`;
+    const toastContainer = document.getElementById("customerCreateToast")
+    toast = new bootstrap.Toast(toastContainer)
+  }
+  else if(action == "Equipment Create"){
+    document.getElementById("toast-equipment-create-body").innerHTML = `A ${item} has successfully been created and added to customer.`;
+    const toastContainer = document.getElementById("equipmentCreateToast")
+    toast = new bootstrap.Toast(toastContainer);
+  }
+  else if(action == "Equipment Update"){
+    document.getElementById("toast-equipment-update-body").innerHTML = `${item} has successfully been updated.`;
+    const toastContainer = document.getElementById("equipmentUpdateToast")
+    toast = new bootstrap.Toast(toastContainer)
+  }
+  else if(action == "Repair Request Create"){
+    document.getElementById("toast-repair-request-create-body").innerHTML = `Repair Request for the ${item} has successfully been created.`;
+    const toastContainer = document.getElementById("repairRequestCreateToast")
+    toast = new bootstrap.Toast(toastContainer);
+  }
+  else if(action == "Repair Request Update"){
+    document.getElementById("toast-repair-request-update-body").innerHTML = `Repair Request #${item} has successfully been updated.`;
+    const toastContainer = document.getElementById("repairRequestUpdateToast")
+    toast = new bootstrap.Toast(toastContainer)
+  }
+  toast.show()
 }
 
 function fillCustomer(customer){
@@ -371,6 +428,14 @@ function fillEquipmentInputs(){
     document.getElementById("equipment-colour").value = equipment.colour;
     document.getElementById("equipment-model").value = equipment.modelNumber;
     document.getElementById("equipment-serial").value = equipment.serialNumber;
+  }
+  else{
+    document.getElementById("equipment-name").value = newCreatedEquipmentName;
+    document.getElementById("equipment-manufacturer").value = newCreatedEquipmentManufacturer;
+    document.getElementById("equipment-type").value = newCreatedEquipmentType;
+    document.getElementById("equipment-colour").value = newCreatedEquipmentColour;
+    document.getElementById("equipment-model").value = newCreatedEquipmentModelNumber;
+    document.getElementById("equipment-serial").value = newCreatedEquipmentSerialNumber;
   }
 }
 
@@ -418,6 +483,12 @@ function fillRepairRequestForm(id){
     document.getElementById("invoice-number").innerHTML = `${repairRequest.invoiceNumber}`;
     document.getElementById("issue-description").value = repairRequest.issueDescription;
     document.getElementById("valid-warranty").checked = repairRequest.hasWarranty;
+  }
+  else if(id == 0){
+    document.getElementById("invoice-date").innerHTML = newCreatedInvoiceNumber;
+    document.getElementById("invoice-number").innerHTML = newCreatedInvoiceDate;
+    document.getElementById("issue-description").value = newCreatedIssueDescription;
+    document.getElementById("valid-warranty").checked = newCreatedValidWarranty;
   }
 }
 

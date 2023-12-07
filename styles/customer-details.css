@@ -2,6 +2,16 @@ textarea {
     height: 200px;
 }
 
+#toastPlacement ion-icon{
+    color: green;
+    font-size: 1.5rem;
+}
+
+.toast-body {
+    background-color: white;
+    border-radius: 5px;
+}
+
 .customer-details h2 {
     color: #000;
     font-size: 24px;
