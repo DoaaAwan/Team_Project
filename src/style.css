@@ -320,6 +320,11 @@ h3 {
     color: #FFF;
 }
 
+.btn-invoice{
+    background: #236477; 
+    color: #FFF;
+}
+
 .btn-search{
     background: #236477; 
     color: #FFF;
@@ -396,6 +401,28 @@ h3 {
 .nav-btn:active {
     background-image: linear-gradient(rgba(0, 0, 0, 0.15), 0 0);
 } */
+
+/* MODAL SECOND PAGE REPAIR REQUEST CREATED (DEMO) */
+
+.info {
+    margin: 5px;
+    /* text-align: center; */
+    font-size: 18px;
+    color: #307676;
+    text-transform: none;
+}
+
+.info p {
+    margin-top: 0px;
+}
+
+.info-border {
+    display: flex;
+    justify-content: center;
+    border: none;
+    width: 100%;
+    margin: 5px auto;
+}
 
 
 /*** Revert to Default ***/

@@ -269,7 +269,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="equipmentModalLabel">Create Equipment</h2>
+                    <h2 class="modal-title fs-5" id="equipmentModalLabel">Create Equipment </h2>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
@@ -370,6 +370,7 @@
                     </fieldset>
                 </form>
                 <div class="modal-footer">
+                    <button class="border border-rounded p-2 btn" id="btnFill"></button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-equipment-modal">Close</button>
                     <button id="update-equipment-btn" class="button btns">Update Equipment</button>
                 </div>
@@ -409,6 +410,7 @@
                     </fieldset>
                 </form>
                 <div class="modal-footer">
+                    <button class="border border-rounded p-2 btn" id="btnFill2"></button>
                     <button type="button" class="btn btn-secondary" id="close-repair-request-modal" data-bs-dismiss="modal">Close</button>
                     <button class="button btns" id="update-repair-request-btn">Update Repair Request</button>
                 </div>
@@ -416,33 +418,32 @@
         </div>
     </div>
 
-    
-
-    <script src="../scripts/role-based-nav.js"></script>
-    <script src="../scripts/customer-details.js"></script>
-    <script src="../scripts/help-tooltip.js"></script>
-    <script src="../scripts/update-nav.js"></script>
-    <!--
+    <!-- PRE-FILL DATA WHEN BUTTON CLICKED -->
     <script>
-        //passing data to the repairs page
-        document.getElementById("create-repair-request").addEventListener("click", function (e) {
-            e.preventDefault();
-            const customerName = document.getElementById("customer-name").textContent;
-            const equipmentList = document.getElementById("equipment-list");
+        document.getElementById('btnFill').addEventListener('click', function(event) {
+            event.preventDefault();
 
-            const chosenEquipmentId = equipmentList.options[equipmentList.selectedIndex].textContent;
+            let first = document.getElementById('equipment-name').value = 'SnowBuster Deluxe';
+            let last = document.getElementById('equipment-manufacturer').value = 'SnowMaster';
+            let email = document.getElementById('equipment-type').value = 'Snow Blower';
+            let phone = document.getElementById('equipment-colour').value = 'White';
+            let address = document.getElementById('equipment-model').value = 'S08M';
+            let unit = document.getElementById('equipment-serial').value = '987654987';
+        });
 
-            const createRepairRequestURL = `../pages/repair-request-create.html?customerName=${encodeURIComponent(customerName)}&chosenEquipment=${encodeURIComponent(chosenEquipmentId)}`;
-            
-            console.log(customerName);
-            console.log(chosenEquipmentId);
-            // Navigate to the new page with query parameters
-            window.location.href = createRepairRequestURL;
-
+        document.getElementById('btnFill2').addEventListener('click', function(event) {
+            event.preventDefault();
+            let issue = document.getElementById('issue-description').value = 'Spark plug malfunction';
 
         });
+
+        
     </script>
-    -->
+
+    <script src="../scripts/demo-customer-details.js"></script>
+    <script src="../scripts/role-based-nav.js"></script>
+    <script src="../scripts/help-tooltip.js"></script>
+    <script src="../scripts/update-nav.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const backToHomeLink = document.getElementById('backToHome');

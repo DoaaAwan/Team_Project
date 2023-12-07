@@ -14,7 +14,7 @@ const newEquipmentManufacturer = urlParam.getAll("manufacturer");
 const newEquipmentColour = urlParam.getAll("colour");
 const newEquipmentModelNumber = urlParam.getAll("model-number");
 const serialNumber = urlParam.getAll("serial-number");
-const customerId = urlParam.getAll("cid");
+const customerId = "3"; //id for emily johnson
 const equipmentId = urlParam.getAll("eid");
 
 //Starting invoice number.
@@ -305,8 +305,36 @@ if (customerId.length > 0) {
       if (repairRequestModalLabel.innerHTML == "Create Repair Request") {
         //$("repairRequestDetailsModal").modal('hide');
         let repairRequestDetailsModal = document.getElementById('repairRequestDetailsModal');
-        let modalInstance = bootstrap.Modal.getInstance(repairRequestDetailsModal);
-        modalInstance.hide();
+
+          // Change the innerHTML of the modal to the order confirmation content
+          repairRequestDetailsModal.innerHTML = `
+              <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h2 class="modal-title fs-5">Repair Request Created</h2>
+                          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body" style="line-height: 1.5;">
+                          <p>The Repair Request has successfully been created and added to customer's equipment.</p>
+                          <div class="info-border">
+                          <div class="info">
+                              <p><b>Customer:</b> Emily Johnson</span></p>
+                              <p><b>Date:</b> 2023-12-11</p>
+                              <p><b>Invoice:</b> 1234585</p>
+                              <p><b>Equipment:</b> SnowBuster Deluxe</p>
+                              <p><b>Issue:</b> Spark plug malfunction</p>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = '../pages/order-confirmation.html';">Invoice</button>
+                      </div>
+                  </div>
+              </div>
+          `;
+        // let modalInstance = bootstrap.Modal.getInstance(repairRequestDetailsModal);
+        // modalInstance.hide();
 
         $("#all-repairs-btn").addClass('active');
         $("#active-repairs-btn").removeClass('active');
@@ -324,10 +352,12 @@ if (customerId.length > 0) {
         let invoiceDate = document.getElementById("invoice-date").innerHTML;
         let issueDescription = document.getElementById("issue-description").value;
 
+
+
         addRepairRequest(invoiceNumber, invoiceDate, issueDescription);
         startInvoiceNumber++;
 
-        alert("The Repair Request has successfully been created and added to customer's equipment.");
+        // alert("The Repair Request has successfully been created and added to customer's equipment.");
       } else {
         updateRepairRequestButton.innerHTML = "Update Repair Request";
       }
@@ -476,227 +506,8 @@ function resetRepairRequestInputs() {
   document.getElementById("valid-warranty").checked = false;
 }
 
-/*
-// I found removing any of the jquery broke the page, so I opted to keep it, but just removed its functionality in the site where needed, which was only a few spots. 
-document.addEventListener('DOMContentLoaded', function () {
-  const activeRepairsBtn = document.getElementById('active-repairs-btn');
-  const completedRepairsBtn = document.getElementById('completed-repairs-btn');
-  const repairsList = document.getElementById('repair-requests-list');
-  const urlParams = new URLSearchParams(window.location.search);
-  const customerId = urlParams.get('cid');
-
-
-  activeRepairsBtn.addEventListener('click', function () {
-    populateRepairsList('active');
-    $("#details-repair-request").css("background-color", "grey");
-    $("#repair-requests-list").prop('disabled', true);
-    $("#details-repair-request").prop('disabled', true);
-  });
-
-  completedRepairsBtn.addEventListener('click', function () {
-    populateRepairsList('completed');
-    $("#details-repair-request").css("background-color", "grey");
-    $("#repair-requests-list").prop('disabled', true);
-    $("#details-repair-request").prop('disabled', true);
-  });
-
-  function populateRepairsList(type) {
-    repairsList.innerHTML = '';
-    let repairsData = type === 'active' ? getActiveRepairs() : getCompletedRepairs();
-    console.log(repairsData);
-
-    let filteredRepairs = repairsData.filter(repair => repair.id == customerId);
-    console.log("Filtered Repairs:", filteredRepairs);
-    if (filteredRepairs.length === 0) {
-      repairsList.appendChild(new Option("No repair requests found", ""));
-    }
-
-    filteredRepairs.forEach(repair => {
-      let optionText = `${repair.equipmentModel} - ${repair.equipmentType} - ${repair.issue} - ${repair.orderDate}`;
-      let option = new Option(optionText, repair.id);
-      repairsList.appendChild(option);
-    });
-  }
-
-  function getActiveRepairs() {
-    return [
-      {
-        id: 1,
-        name: "John Doe",
-        orderDate: "2023-10-08",
-        city: "St.Catharines",
-        equipmentType: "Lawn Mower",
-        equipmentModel: "GlassGlider Pro",
-        issue: "Engine won't start"
-      },
-      {
-        id: 2,
-        name: "Jane Smith",
-        orderDate: "2023-06-10",
-        city: "Hamilton",//doubt we need city here, just included it anyways, wont be displayed in select list
-        equipmentType: "Lawn Mower",
-        equipmentModel: "LeafBlaster 5000",
-        issue: "Drive belt snapped"
-      },
-      {
-        id: 3,
-        name: "Emily Johnson",
-        orderDate: "2023-04-18",
-        city: "Mississauga",
-        equipmentType: "Snow Blower",
-        equipmentModel: "SnowBuster Deluxe",
-        issue: "Spark plug malfunction"
-      },
-      {
-        id: 4,
-        name: "William Brown",
-        orderDate: "2023-02-10",
-        city: "Toronto",
-        equipmentType: "Pressure Washer",
-        equipmentModel: "PressureWasher Pro",
-        issue: "Hose connector leak"
-      },
-      {
-        id: 5,
-        name: "Olivia White",
-        orderDate: "2023--09-25",
-        city: "Brampton",
-        equipmentType: "Snow Blower",
-        equipmentModel: "ProSnow 3000",
-        issue: "Fan malfunction"
-      },
-      {
-        id: 6,
-        name: "Michael Wilson",
-        orderDate: "2023-10-08",
-        city: "Waterloo",
-        equipmentType: "Chainsaw",
-        equipmentModel: "PowerChain x",
-        issue: "Chain came off"
-      },
-      {
-        id: 7,
-        name: "Sophia Taylor",
-        orderDate: "2023-10-12",
-        city: "London",
-        equipmentType: "Hedge Trimmer",
-        equipmentModel: "PowerHedge 300",
-        issue: "Blades need sharpening"
-      },
-      {
-        id: 8,
-        name: "James Thomas",
-        orderDate: "2023-10-29",
-        city: "Oshawa",
-        equipmentType: "Snow Blower",
-        equipmentModel: "SnowBuster Deluxe",
-        issue: "Oil leak"
-      }
-    ];
-  }
-
-  function getCompletedRepairs() {
-    return [
-      {
-        id: 1,
-        name: "John Doe",
-        orderDate: "2023-07-14",
-        city: "St.Catharines",
-        equipmentType: "Lawn Mower",
-        equipmentModel: "GlassGlider Pro",
-        issue: "Battery replacement needed"
-      },
-      {
-        id: 2,
-        name: "Jane Smith",
-        orderDate: "2023-05-22",
-        city: "Hamilton, ON",
-        equipmentType: "Lawn Mower",
-        equipmentModel: "LeafBlaster 5000",
-        issue: "Engine won't start"
-      },
-      {
-        id: 3,
-        name: "Emily Johnson",
-        orderDate: "2023-03-15",
-        city: "Mississauga",
-        equipmentType: "Chainsaw",
-        equipmentModel: "ChainSaw Master",
-        issue: "Chain needs tightening"
-      },
-      {
-        id: 4,
-        name: "William Brown",
-        orderDate: "2023-01-05",
-        city: "Toronto",
-        equipmentType: "Lawn Mower",
-        equipmentModel: "Turfmaster 1500",
-        issue: "Blades not spinning"
-      },
-      {
-        id: 5,
-        name: "Olivia White",
-        orderDate: "2023-08-20",
-        city: "Brampton",
-        equipmentType: "Leaf Blower",
-        equipmentModel: "LeafSweeper Pro",
-        issue: "Fan malfunction"
-      },
-      {
-        id: 6,
-        name: "Michael Wilson",
-        orderDate: "2023-10-01",
-        city: "Waterloo",
-        equipmentType: "Hedge Trimmer",
-        equipmentModel: "Edge Trimmer",
-        issue: "Auger not turning"
-      },
-      {
-        id: 7,
-        name: "Sophia Taylor",
-        orderDate: "2023-10-15",
-        city: "London",
-        equipmentType: "Lawn Mower",
-        equipmentModel: "GlassGlider Pro",
-        issue: "Handle broken"
-      },
-
-    ];
-  }
-});
-
-document.getElementById('equipment-list').addEventListener('click', function () {
-  $("#repair-requests-list").prop('disabled', false);
-});
-*/
-
-
 function getCustomerData() {
   return [
-    {
-      "id": 1,
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "johndoe@gmail.com",
-      "phone": "(905) 456-7890",
-      "street": "123 Main St.",
-      "city": "St. Catharines",
-      "province": "Ontario",
-      "postalCode": "L4K 8F9",
-      "fullName": "John Doe"
-    },
-    {
-      "id": 2,
-      "firstName": "Jane",
-      "lastName": "Smith",
-      "email": "janesmith@gmail.com",
-      "phone": "(905) 123-4567",
-      "street": "456 Elm St.",
-      "city": "Hamilton",
-      "province": "Ontario",
-      "postalCode": "L5T 9K3",
-      "fullName": "Jane Smith"
-    },
     {
       "id": 3,
       "firstName": "Emily",
@@ -708,189 +519,6 @@ function getCustomerData() {
       "province": "Ontario",
       "postalCode": "L6P 5G7",
       "fullName": "Emily Johnson"
-    },
-    {
-      "id": 4,
-      "firstName": "William",
-      "lastName": "Brown",
-      "email": "williambrown@gmail.com",
-      "phone": "(905) 654-3210",
-      "street": "101 Oak Dr.",
-      "city": "Toronto",
-      "province": "Ontario",
-      "postalCode": "L7R 2W4",
-      "fullName": "William Brown"
-    },
-    {
-      "id": 5,
-      "firstName": "Olivia",
-      "lastName": "White",
-      "email": "oliviawhite@gmail.com",
-      "phone": "(905) 876-5432",
-      "street": "234 Pine St.",
-      "city": "Brampton",
-      "province": "Ontario",
-      "postalCode": "L8S 3T9",
-      "fullName": "Olivia White"
-    },
-    {
-      "id": 6,
-      "firstName": "Michael",
-      "lastName": "Wilson",
-      "email": "michaelwilson@gmail.com",
-      "phone": "(905) 678-9056",
-      "street": "567 Birch Blvd.",
-      "city": "Waterloo",
-      "province": "Ontario",
-      "postalCode": "L9Z 2X8",
-      "fullName": "Michael Wilson"
-    },
-    {
-      "id": 7,
-      "firstName": "Sophia",
-      "lastName": "Taylor",
-      "email": "sophiataylor@gmail.com",
-      "phone": "(905) 234-5678",
-      "street": "890 Cedar Ln.",
-      "city": "London",
-      "province": "Ontario",
-      "postalCode": "L0A 1B2",
-      "fullName": "Sophia Taylor"
-    },
-    {
-      "id": 8,
-      "firstName": "James",
-      "lastName": "Thomas",
-      "email": "jamesthomas@gmail.com",
-      "phone": "(905) 987-6543",
-      "street": "123 Walnut St.",
-      "city": "Oshawa",
-      "province": "Ontario",
-      "postalCode": "L1T 2Y4",
-      "fullName": "James Thomas"
-
-    },
-    {
-      "id": 9,
-      "firstName": "Ava",
-      "lastName": "Martin",
-      "email": "avamartin@gmail.com",
-      "phone": "(905) 432-1987",
-      "street": "456 Spruce Ave.",
-      "city": "Markham",
-      "province": "Ontario",
-      "postalCode": "L2E 3F5",
-      "fullName": "Ava Martin"
-    },
-    {
-      "id": 10,
-      "firstName": "Ethan",
-      "lastName": "Miller",
-      "email": "ethanmiller@gmail.com",
-      "phone": "(905) 321-7654",
-      "street": "789 Oak Lane",
-      "city": "Kitchener",
-      "province": "Ontario",
-      "postalCode": "L3M 6N1",
-      "fullName": "Ethan Miller"
-    },
-    {
-      "id": 11,
-      "firstName": "John",
-      "lastName": "Smith",
-      "email": "jSmith@gmail.com",
-      "phone": "(905) 377-7654",
-      "street": "789 Oak Lane",
-      "city": "Waterloo",
-      "province": "Ontario",
-      "postalCode": "L3M 6N1",
-      "fullName": "John Smith"
-    }
-    ,
-    {
-      "id": 12,
-      "firstName": "Kaylee",
-      "lastName": "Johnson",
-      "email": "johnsonKay@gmail.com",
-      "phone": "(905) 367-3345",
-      "street": "180 Russel Lane",
-      "city": "Niagara Falls",
-      "province": "Ontario",
-      "postalCode": "L5Q 6F1",
-      "fullName": "Kaylee Johnson"
-    },
-    {
-      "id": 13,
-      "firstName": "Andrew",
-      "lastName": "Blackwell",
-      "email": "andrew20@gmail.com",
-      "phone": "(289) 663-7654",
-      "street": "10 Water Street",
-      "city": "St. Catharines",
-      "province": "Ontario",
-      "postalCode": "L2R 7H7",
-      "fullName": "Andrew Blackwell"
-    },
-    {
-      "id": 14,
-      "firstName": "James",
-      "lastName": "Perez",
-      "email": "jPerez@gmail.com",
-      "phone": "(289) 402-3133",
-      "street": "700 Watertown Street",
-      "city": "London",
-      "province": "Ontario",
-      "postalCode": "N6B 2W6",
-      "fullName": "James Perez"
-    },
-    {
-      "id": 15,
-      "firstName": "Xander",
-      "lastName": "Kohut",
-      "email": "xander999@gmail.com",
-      "phone": "(289) 407-2132",
-      "street": "800 Township Rd",
-      "city": "Thorold",
-      "province": "Ontario",
-      "postalCode": "L2E 4H4",
-      "fullName": "Xander Kohut"
-    }
-    ,
-    {
-      "id": 16,
-      "firstName": "Vladimir",
-      "lastName": "Rosolov",
-      "email": "vRosolov@gmail.com",
-      "phone": "(304) 111-2222",
-      "street": "100 Main Street",
-      "city": "Toronto",
-      "province": "Ontario",
-      "postalCode": "L3M 6N1",
-      "fullName": "Vladimir Rosolov"
-    },
-    {
-      "id": 17,
-      "firstName": "Drake",
-      "lastName": "Taylor",
-      "email": "dTaylor@gmail.com",
-      "phone": "(404) 337-3254",
-      "street": "10 Oak Lane",
-      "city": "Waterloo",
-      "province": "Ontario",
-      "postalCode": "L3M 4H4",
-      "fullName": "Drake Taylor"
-    },
-    {
-      "id": 18,
-      "firstName": "David",
-      "lastName": "Bernard",
-      "email": "dBernard@gmail.com",
-      "phone": "(905) 668-0933",
-      "street": "10 Carlton Street",
-      "city": "St.Catharines",
-      "province": "Ontario",
-      "postalCode": "L2R 2L2",
-      "fullName": "David Bernard"
     }
   ];
 }
@@ -1036,13 +664,13 @@ function getOwnershipData() {
     },
     {
       "id": 5,
-      "customerId": 3,
+      "customerId": 0, //removed emily
       "equipmentId": 5,
       "serialNumber": "8A979P36869"
     },
     {
       "id": 6,
-      "customerId": 3,
+      "customerId": 0, //removed emily
       "equipmentId": 7,
       "serialNumber": "8E445U62644"
     },
@@ -1181,7 +809,7 @@ function getOwnershipData() {
     },
     {
       "id": 29,
-      "customerId": 3,
+      "customerId": 0, //removed emily
       "equipmentId": 9,
       "serialNumber": "7N996H95392"
     }
@@ -1363,7 +991,7 @@ function getRepairRequestData() {
     },
     {
       "id": 20,
-      "invoiceDate": "2023-12-11",
+      "invoiceDate": "2023-12-04",
       "invoiceNumber": 1234585,
       "issueDescription": "Spark plug malfunction",
       "hasWarranty": true,
