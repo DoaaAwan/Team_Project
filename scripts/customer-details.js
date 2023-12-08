@@ -285,6 +285,7 @@ if (customerId.length > 0) {
 
     if (updateRepairRequestButtonContent == "Update Repair Request") {
       toggleDisabledRepairRequestForm(false);
+      $("#invoice-btn").hide();
       updateRepairRequestButton.innerHTML = "Save";
     }
     else if (updateRepairRequestButtonContent == "Save" && updateRepairRequestForm.checkValidity()) {
@@ -345,6 +346,7 @@ if (customerId.length > 0) {
         // alert("The Repair Request has successfully been created and added to customer's equipment.");
       } else {
         updateRepairRequestButton.innerHTML = "Update Repair Request";
+        $("#invoice-btn").show();
         let updatedInvoiceNumber = document.getElementById("invoice-number").innerHTML;
         showToast("Repair Request Update", updatedInvoiceNumber);
       }
