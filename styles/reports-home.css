@@ -17,8 +17,10 @@
     clear: both;
   }
 
-.button {
-    margin-top: 8px;
+.report-center {
+    display: block;
+    margin: 0 auto;
+    width: 40%;
 }
 
 .reports-home .btns {
