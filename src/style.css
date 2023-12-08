@@ -353,6 +353,15 @@ h3 {
     bottom: 5px;
 }
 
+.secondary-btn2{
+    border: 1.5px solid white !important;
+    background: #236477;
+    color: white;
+    padding: 12px 20px;
+    position: relative;
+    bottom: 5px;
+}
+
 .secondary-btn ion-icon{
     padding-left: 5px;
     font-size: 1.3em;
@@ -424,6 +433,10 @@ h3 {
     margin: 5px auto;
 }
 
+.invoice-pg-center{
+    display: block;
+    margin: 0 auto;
+}
 
 /*** Revert to Default ***/
 
