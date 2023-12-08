@@ -252,6 +252,7 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("details-repair-request").addEventListener("click", function (e) {
+    $("#invoice-btn").show();
     let selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
     fillRepairRequestForm(selectedRepairRequest);
     toggleDisabledRepairRequestForm(true);
@@ -259,12 +260,15 @@ if (customerId.length > 0) {
     let updateRepairRequestButton = document.getElementById("update-repair-request-btn");
     updateRepairRequestButton.innerHTML = "Update Repair Request";
 
+    /*
     //IF REPAIR IS SELECTED AND REPAIR REQUEST DETAILS IS CLICKED, INVOICE BUTTON APPEARS (REMOVE DISPLAY:NONE CLASS)
     let invoiceRepairRequestButton = document.getElementById("invoice-repair-request-modal");
     invoiceRepairRequestButton.classList.remove("d-none");
+    */
   });
 
   document.getElementById("create-repair-request").addEventListener("click", function (e) {
+    $("#invoice-btn").hide();
     toggleDisabledRepairRequestForm(false);
     let addRepairRequestButton = document.getElementById("update-repair-request-btn");
     document.getElementById("repairRequestModalLabel").innerHTML = "Create Repair Request";
