@@ -438,6 +438,17 @@ h3 {
     margin: 0 auto;
 }
 
+.nav-icon-white{
+    float: right;
+    color: white;
+    font-size: 60px;
+    margin: 20px 35px;
+    /* max-width: 40px */
+    
+}
+
+
+
 /*** Revert to Default ***/
 
 b {
