@@ -32,6 +32,7 @@ let newCreatedEquipmentSerialNumber = "";
 let newCreatedInvoiceNumber = "";
 let newCreatedInvoiceDate = "";
 let newCreatedIssueDescription = "";
+let newCreatedInvoiceIsActive = "";
 let newCreatedValidWarranty = undefined;
 
 // only runs block if there was a customer passed
@@ -252,6 +253,7 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("details-repair-request").addEventListener("click", function (e) {
+    $(".invoice-status-field").show();
     $("#invoice-btn").show();
     let selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
     fillRepairRequestForm(selectedRepairRequest);
@@ -268,6 +270,7 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("create-repair-request").addEventListener("click", function (e) {
+    $(".invoice-status-field").hide();
     $("#invoice-btn").hide();
     toggleDisabledRepairRequestForm(false);
     let addRepairRequestButton = document.getElementById("update-repair-request-btn");
@@ -320,6 +323,7 @@ if (customerId.length > 0) {
 
         fillRepairRequestList();
 
+        newCreatedInvoiceIsActive = document.getElementById("invoice-status").innerHTML;
         newCreatedInvoiceNumber = document.getElementById("invoice-number").innerHTML;
         newCreatedInvoiceDate = document.getElementById("invoice-date").innerHTML;
         newCreatedIssueDescription = document.getElementById("issue-description").value;
@@ -508,12 +512,14 @@ function fillRepairRequestForm(id){
   if(id != 0){
     let repairRequest = repairRequestDatabase.find(r => r.id == id);
 
+    document.getElementById("invoice-status").innerHTML = `${repairRequest.isActive == true ? "Active" : "Completed"}`;
     document.getElementById("invoice-date").innerHTML = `${repairRequest.invoiceDate}`;
     document.getElementById("invoice-number").innerHTML = `${repairRequest.invoiceNumber}`;
     document.getElementById("issue-description").value = repairRequest.issueDescription;
     document.getElementById("valid-warranty").checked = repairRequest.hasWarranty;
   }
   else if(id == 0){
+    document.getElementById("invoice-status").innerHTML = `Active`;
     document.getElementById("invoice-date").innerHTML = newCreatedInvoiceDate;
     document.getElementById("invoice-number").innerHTML = newCreatedInvoiceNumber;
     document.getElementById("issue-description").value = newCreatedIssueDescription;

@@ -161,7 +161,7 @@ textarea {
     grid-template-columns: 1fr 2.2fr;
 }
 
-#invoice-date, #invoice-number {
+#invoice-date, #invoice-number, #invoice-status {
     font-weight: bold;
 }
 
