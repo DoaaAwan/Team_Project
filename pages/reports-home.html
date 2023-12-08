@@ -116,18 +116,68 @@
                 <h1>Reports</h1>
             </header>
             <div class="page">
-                <h2>What kind of report would you like to generate?</h2>
-                <form id="navigationForm">
-                    <label for="reportType"></label>
-                    <select id="reportType">
-                        <option value="">Choose a report type</option>
-                        <option value="warranty">Warranty Report</option>
-                        <option value="repair">Repair Report</option>
-                        <option value="weekly">Weekly Report</option>
-                    </select>
-                    <br>
-                    <button type="button" class="button" onclick="navigate()">Submit</button>
-                </form>
+
+                <div class="row">
+                    <div class="column one">
+                        <label for="reportType">Select a report type:</label>
+                        <select id="reportType">
+                            <option value="warranty">Warranty Report</option>
+                            <option value="repair">Repair Report</option>
+                            <option value="weekly">Weekly Report</option>
+                        </select>
+                    </div>
+
+                    <div class="column two">
+                        <label for="start">Report start date:</label>
+                        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+                            max="2018-12-31" />
+                    </div>
+
+                    <div class="column three">
+                            <label for="start">Report end date:</label>
+                            <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
+                                max="2018-12-31" />
+                    </div>
+
+                    <div class="column four">
+                        <label for="equipManufacturer">Select a manufacturer:</label>
+                        <select id="equipManufacturer">
+                            <option value="allManufacturer">All Manufacturers</option>
+                            <option value="deereco">Deere & Co.</option>
+                            <option value="dewalt">DeWalt</option>
+                            <option value="greenworks">Greenworks</option>
+                            <option value="husqvarna">Husqvarna</option>
+                            <option value="redmax">Redmax</option>
+                            <option value="ryobi">Ryobi</option>
+                            <option value="snapperpro">Snapper Pro</option>
+                            <option value="snowbuster">SnowBuster</option>
+                            <option value="stihl">Stihl</option>
+                            <option value="toro">Toro</option>
+                            <option value="worx">Worx</option>
+                        </select>
+                    </div>
+
+                    <div class="column five">
+                        <label for="equipmentType">Select a type of equipment:</label>
+                        <select id="equipmentType">
+                            <option value="allEquip">All Equipment</option>
+                            <option value="chainsaw">Chainsaw</option>
+                            <option value="grasstrimmer">Grass trimmer</option>
+                            <option value="hedgetrimmer">Hedge trimmer</option>
+                            <option value="lawnmower">Lawn mower</option>
+                            <option value="leafblower">Leaf blower</option>
+                            <option value="snowblower">Snow blower</option>
+                        </select>                    
+                    </div>
+                </div>
+
+                <div class="row">
+                        <button type="button" class="button btns" onclick="navigate()">Generate</button>
+                </div>
+
+                <div class="row">
+
+                </div>
             </div>
         </section>
     </div>
@@ -145,24 +195,24 @@
                         window.location.href = '../pages/active-repairs.html';
                     }
                     if (selectedRole === 'admin') {
-                    event.preventDefault();
-                    window.location.href = '../pages/reports-home.html';
+                        event.preventDefault();
+                        window.location.href = '../pages/reports-home.html';
                     }
                 });
             }
 
             const backToHomeNav = document.getElementById('backToHomeNav');
             if (backToHomeNav) {
-                backToHomeNav.addEventListener('click', function(event) {
+                backToHomeNav.addEventListener('click', function (event) {
                     const selectedRole = localStorage.getItem('selectedRole') || 'default';
                     if (selectedRole === 'technician') {
                         event.preventDefault();
-                        window.location.href = '../pages/active-repairs.html'; 
+                        window.location.href = '../pages/active-repairs.html';
                     }
                     if (selectedRole === 'admin') {
                         event.preventDefault();
                         window.location.href = '../pages/reports-home.html';
-                }
+                    }
                 });
             }
         });
@@ -186,7 +236,7 @@
             }
         }
     </script>
-    
+
 </body>
 
 </html>
