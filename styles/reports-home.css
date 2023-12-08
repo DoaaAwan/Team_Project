@@ -1,0 +1,30 @@
+.column {
+    float: left;
+    padding: 5px;
+  }
+  
+  .one, .four, .five {
+    width: 25%;
+  }
+  
+  .two, .three {
+    width: 12.5%;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.button {
+    margin-top: 8px;
+}
+
+.reports-home .btns {
+  width: 100%;
+  margin: 5px;
+  padding-top: 5px;
+  color: white;
+  background-color: #236477;
+}
