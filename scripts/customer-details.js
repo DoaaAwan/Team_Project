@@ -578,6 +578,13 @@ function resetRepairRequestInputs() {
   document.getElementById("valid-warranty").checked = false;
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  let toastHelp = document.getElementById("helpToast");
+  let toast = new bootstrap.Toast(toastHelp)
+  toast.show();
+});
+
+
 /*
 // I found removing any of the jquery broke the page, so I opted to keep it, but just removed its functionality in the site where needed, which was only a few spots. 
 document.addEventListener('DOMContentLoaded', function () {

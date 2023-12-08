@@ -572,6 +572,11 @@ function resetRepairRequestInputs() {
   document.getElementById("valid-warranty").checked = false;
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  let toastHelp = document.getElementById("helpToast");
+  let toast = new bootstrap.Toast(toastHelp)
+  toast.show();
+});
 
 
 function getCustomerData() {
