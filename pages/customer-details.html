@@ -416,6 +416,60 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="equipmentConfirmationModal" tabindex="-1" aria-labelledby="equipmentConfirmationModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="equipmentConfirmationModalLabel">Equipment Created</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="line-height: 1.5;">
+                    <p>The Equipment has successfully been created and added to the customer.</p>
+                    <div class="info-border">
+                    <div class="info">
+                        <p><b>Name: </b><span id="equipmentConfirmationName"></span></p>
+                        <p><b>Manufacturer: </b><span id="equipmentConfirmationManufacturer"></span></p>
+                        <p><b>Equipment Type: </b><span id="equipmentConfirmationType"></span></p>
+                        <p><b>Colour: </b><span id="equipmentConfirmationColour"></span></p>
+                        <p><b>M/N(Model Number): </b><span id="equipmentConfirmationModel"></span></p>
+                        <p><b>S/N(Serial Number): </b><span id="equipmentConfirmationSerial"></span></p>
+                    </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="repairRequestConfirmationModal" tabindex="-1" aria-labelledby="repairRequestConfirmationModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="repairRequestConfirmationModalLabel">Repair Request Created</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="line-height: 1.5;">
+                    <p>The Repair Request has successfully been created and added to customer's equipment.</p>
+                    <div class="info-border">
+                    <div class="info">
+                        <p><b>Customer: </b><span id="repairConfirmationName">Emily Johnson</span></p>
+                        <p><b>Date: </b><span id="repairConfirmationDate">2023-12-11</span></p>
+                        <p><b>Invoice: </b><span id="repairConfirmationNumber">1234585</span></p>
+                        <p><b>Equipment: </b><span id="repairConfirmationEquipment">SnowBuster Deluxe</span></p>
+                        <p><b>Issue: </b><span id="repairConfirmationIssue">Spark plug malfunction</span></p>
+                    </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href = '../pages/order-confirmation.html';">Invoice</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="toast-container p-3 bottom-0 start-50 translate-middle-x" id="toastPlacement">
         <div id="repairRequestUpdateToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="10000">
             <div class="toast-header">
