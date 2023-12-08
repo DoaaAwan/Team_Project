@@ -228,7 +228,7 @@
                         <div>
                             <div class="myDIV">
                                 <label style="display: inline;">Invoice Date:</label>
-                                <p style="display: inline;">December 4th, 2023</p>
+                                <p style="display: inline;">December 11th, 2023</p>
                             </div>
                             <!--not able to place it besides the date, not needed anyway as the date is auto-->
                             <!--div class="hide" style="position: absolute;">The date is in mm/dd/yyy format.</div-->
@@ -236,7 +236,7 @@
                         <!-- Invoice Number -->
                         <div>
                             <label style="display: inline;">Invoice Number:</label>
-                            <p style="display: inline;">2023OCT345</p>
+                            <p style="display: inline;">2023DEC345</p>
                         </div>
                         <!--Customer dropdown list-->
                         <div>
@@ -292,6 +292,8 @@
                                                     <option value="part1">Air Filter</option>
                                                     <option value="part2">Spark Plug</option>
                                                     <option value="part3">Carburetor</option>
+                                                    <option value="part4">Fuel Cap</option>
+                                                    <option value="part5">Mower Blade</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -404,8 +406,8 @@
             var cell4 = newRow.insertCell(3);
             var cell5 = newRow.insertCell(4);
            
-            cell1.innerHTML = '<select name="parts[]" aria-label="Select a part"><option value="none">None</option><option value="part1">Air Filter</option><option value="part2">Spark Plug</option><option value="part3">Carburetor</option></select>';
-            //cell2.innerHTML = '<input type="number" step="0.01" name="unitCost[]" min="0.01" oninput="updateAmount(this, \'amount\')" aria-label="Unit cost (minimum 0.01)">';
+            cell1.innerHTML = '<select name="parts[]" aria-label="Select a part"><option value="none">None</option><option value="part1">Air Filter</option><option value="part2">Spark Plug</option><option value="part3">Carburetor</option><option value="part4">Fuel Cap</option><option value="part5">Mower Blade</option></select>';
+            //cell2.innerHTML = '<input type="number" step="0.01" name="unitCost[]" min="0.01" oninput="updateAmount(this, \'amount\')" aria-label="Unit cost (minimum 0.01)">'<option value="part4">Fuel Cap</option>
             cell2.innerHTML = '<input type="number" step="1" name="quantity[]" min="1" aria-label="Quantity (minimum 0)">';
             //cell4.innerHTML = '<input type="number" name="amount[]" readonly aria-label="Amount (auto-calculated)">';
             cell5.innerHTML = '<p class="invoice-date" style="display: inline;"></p>';
@@ -492,7 +494,7 @@
         }
     </script>
    
-    <!-- <script>
+    <script>
         function DynamicIndex() {
             // Get all focusable elements in the document
             var focusableElements = document.querySelectorAll('input, select, textarea, label, p');
@@ -508,7 +510,7 @@
 
         // Call the function
         DynamicIndex();
-    </script> -->
+    </script>
     
     <script>
     //trigger starttime on page reload by chat Gpt
