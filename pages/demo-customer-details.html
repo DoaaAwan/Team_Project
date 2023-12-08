@@ -139,7 +139,12 @@
                         </div>
                         <div class="customer-lists-grid">
                             <div>
-                                <h2 id="customer-name-equip" style="display: none;">Customer's Equipments</h2>
+                                <div class="flex-label">
+                                    <h2 id="customer-name-equip" style="display: none;">Customer's Equipments</h2>
+                                    <button class="help-icon" aria-label="Help">
+                                        <span class="tooltip-text">To add an equipment, press the button below. To update an equipment, select one from the list and then press the details button.</span>
+                                    </button>
+                                </div>
                                 <select name="Orders" class="form-select" id="equipment-list" size="5">   
                                 </select>
                                 <div class="d-flex">
@@ -149,7 +154,7 @@
                                 </div>
                             </div>
                             <div id="repair-requests">
-                                <div class="container">
+                                <div class="container flex-label">
                                     <ul class="nav nav-tabs">
                                         <li class="nav-item">
                                         <button disabled class="nav-link active" id="all-repairs-btn">All Repairs</button>
@@ -161,6 +166,9 @@
                                         <button disabled class="nav-link" id="completed-repairs-btn">Completed Repairs</button>
                                         </li>
                                     </ul>
+                                    <button class="help-icon" aria-label="Help">
+                                        <span class="tooltip-text">All of the repair requests for the selected equipment will show up in the list below. To create a repair request for the selected equipment, press the create button. To update a repair request, select one from the list and then press the details button.</span>
+                                    </button>
                                 </div>
                                 <select name="Orders" disabled class="form-select" id="repair-requests-list" size="5">   
                                 </select>
@@ -526,6 +534,19 @@
             </div>
             <div class="toast-body equipment-toast-body" id="toast-customer-update-body">
                 This equipment has successfully been created and added to customer.
+            </div>
+        </div>
+    </div>
+    <div class="toast-container p-3 bottom-0 start-0" id="toastPlacementHelp">
+        <div id="helpToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="30000">
+            <div class="toast-header">
+                <ion-icon name="help-circle-outline"></ion-icon>
+                <strong class="me-auto">Help</strong>
+                <small class="text-muted">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body equipment-toast-body" id="toast-customer-update-body">
+                Hover your cursor over the question mark icons across the website for help.
             </div>
         </div>
     </div>

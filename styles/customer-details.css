@@ -7,6 +7,11 @@ textarea {
     font-size: 1.5rem;
 }
 
+#toastPlacementHelp ion-icon{
+    color: #236477;
+    font-size: 1.5rem;
+}
+
 .toast-body {
     background-color: white;
     border-radius: 5px;
@@ -64,6 +69,11 @@ textarea {
     width: 200px;
 }
 
+.flex-label {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* help button */
 
 .help-icon {
@@ -71,17 +81,14 @@ textarea {
     border: none;
     cursor: pointer;
     position: relative;
-    width: 30px;
-    height: 30px;
-    padding: 23px;
-    color: transparent;
-    margin-left: 4px;
-    bottom: 5px;    
+    width: 35px;
+    height: 35px;
+    color: transparent;  
 }
 
 .tooltip-text {
     visibility: hidden;
-    width: 200px;
+    width: 450px;
     background-color: white;
     color: #236477;
     text-align: center;
@@ -92,7 +99,7 @@ textarea {
     z-index: 1;
     bottom: 125%;
     left: 70%;
-    margin-left: -100px;
+    margin-left: -425px;
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -118,7 +125,7 @@ textarea {
     display: grid;
     grid-column-gap: 20px;
     grid-row-gap: 50px;
-    grid-template-columns: 0.7fr 2fr;
+    grid-template-columns: 0.5fr 2fr;
 }
 
 .customer-lists-grid {
@@ -132,14 +139,14 @@ textarea {
 }
 
 .customer-details-grid select {
-    height: 204px;
+    height: 193px;
     margin: 5px 0;
     width: 100%;
 }
 
 #repair-requests select {
     margin-top: 0px;
-    height: 200px;
+    height: 198px;
 }
 
 .equipment-field, .repair-field, .customer-field {
