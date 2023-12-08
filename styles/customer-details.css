@@ -46,7 +46,7 @@ textarea {
     background-color: #236477;   
 }
 
-#close-equipment-modal, #close-repair-request-modal, #close-customer-modal {
+#close-equipment-modal, #close-repair-request-modal, #close-customer-modal, #invoice-btn {
     padding: 9px 15px;
 }
 

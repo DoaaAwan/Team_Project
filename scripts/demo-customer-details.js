@@ -88,43 +88,7 @@ if (customerId.length > 0) {
   }
 
   //event handler for selecting an option in owned equipment list
-  document.getElementById("equipment-list").addEventListener("change", function () {
-    //hides user feedback message and empties repair list
-    $("#repair-requests-list").empty();
-    $("#repair-requests").fadeIn();
-    $("#all-repairs-btn").prop('disabled', false);
-    $("#active-repairs-btn").prop('disabled', false);
-    $("#completed-repairs-btn").prop('disabled', false);
-    $("#all-repairs-btn").addClass('active');
-    $("#active-repairs-btn").removeClass('active');
-    $("#completed-repairs-btn").removeClass('active');
-
-    $("#no-repair-requests").hide();
-    $("#details-repair-request").prop('disabled', true);
-    $("#create-repair-request").prop('disabled', false);
-    //$("#details-repair-request").hide();
-
-    //"disables" repair details button
-    $("#details-repair-request").css("background-color", "grey");
-    $("#create-repair-request").css("background-color", "#236477");
-
-    //gets selected equipment id
-    const selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
-
-    $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
-    $('#details-equipment-btn').prop('disabled', false);
-
-    fillEquipmentInputs();
-
-    if(fillRepairRequestList()){
-      noRepairRequestMessage(`No Repair Requests. Click the button below to create one.`);
-      $("#all-repairs-btn").prop('disabled', true);
-      $("#active-repairs-btn").prop('disabled', true);
-      $("#completed-repairs-btn").prop('disabled', true);
-    }else{
-      $("#repair-requests-list").prop('disabled', false);
-    }
-  });
+  document.getElementById("equipment-list").addEventListener("change", equipmentSelectedEvent);
 
   document.getElementById("all-repairs-btn").addEventListener("click", function () {
     $("#all-repairs-btn").addClass('active');
@@ -171,18 +135,8 @@ if (customerId.length > 0) {
     }
   });
 
-
   //event handler for if a repair record was selected from the list
-  document.getElementById("repair-requests-list").addEventListener("change", function () {
-
-    //gets selected id for repair record and "activates" the button by adding the url with parameter to button
-    let selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
-
-    $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
-    $('#details-repair-request').prop('disabled', false);
-
-
-  });
+  document.getElementById("repair-requests-list").addEventListener("change", repairRequestSelectedEvent);
 
   document.getElementById("update-customer-btn").addEventListener("click", function (e) {
     document.getElementById("modal-first-name").value = customer.firstName;
@@ -270,6 +224,20 @@ if (customerId.length > 0) {
 
         addEquipment(newCreatedEquipmentName, newCreatedEquipmentType, newCreatedEquipmentModelNumber);
 
+        equipmentList.selectedIndex = equipmentList.options.length - 1;
+        equipmentSelectedEvent();
+
+        $("#equipmentConfirmationName").html(newCreatedEquipmentName);
+        $("#equipmentConfirmationManufacturer").html(newCreatedEquipmentManufacturer);
+        $("#equipmentConfirmationType").html(newCreatedEquipmentType);
+        $("#equipmentConfirmationColour").html(newCreatedEquipmentColour);
+        $("#equipmentConfirmationModel").html(newCreatedEquipmentModelNumber);
+        $("#equipmentConfirmationSerial").html(newCreatedEquipmentSerialNumber);
+
+        let equipmentConfirmationModal = document.getElementById("equipmentConfirmationModal");
+        let equipmentConfirmationModalInstance = new bootstrap.Modal(equipmentConfirmationModal);
+        equipmentConfirmationModalInstance.show();
+
         showToast("Equipment Create", newCreatedEquipmentName);
         //alert("This equipment has successfully been created and added to customer.");
       } else {
@@ -284,6 +252,7 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("details-repair-request").addEventListener("click", function (e) {
+    $("#invoice-btn").show();
     let selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
     fillRepairRequestForm(selectedRepairRequest);
     toggleDisabledRepairRequestForm(true);
@@ -293,6 +262,7 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("create-repair-request").addEventListener("click", function (e) {
+    $("#invoice-btn").hide();
     toggleDisabledRepairRequestForm(false);
     let addRepairRequestButton = document.getElementById("update-repair-request-btn");
     document.getElementById("repairRequestModalLabel").innerHTML = "Create Repair Request";
@@ -314,11 +284,22 @@ if (customerId.length > 0) {
     else if (updateRepairRequestButtonContent == "Save" && updateRepairRequestForm.checkValidity()) {
       toggleDisabledRepairRequestForm(true);
       if (repairRequestModalLabel.innerHTML == "Create Repair Request") {
-        //$("repairRequestDetailsModal").modal('hide');
-        let repairRequestDetailsModal = document.getElementById('repairRequestDetailsModal');
 
-        // let modalInstance = bootstrap.Modal.getInstance(repairRequestDetailsModal);
-        // modalInstance.hide();
+        let repairRequestDetailsModal = document.getElementById('repairRequestDetailsModal');
+        let modalInstance = bootstrap.Modal.getInstance(repairRequestDetailsModal);
+        modalInstance.hide();
+
+
+        let equipmentList = document.getElementById("equipment-list")
+        let selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
+        let equipmentName = "";
+
+        if (selectedEquipment != 0){
+          let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
+          equipmentName = equipment.equipmentName;
+        }else{
+          equipmentName = newCreatedEquipmentName;
+        }
 
         $("#all-repairs-btn").addClass('active');
         $("#active-repairs-btn").removeClass('active');
@@ -340,44 +321,19 @@ if (customerId.length > 0) {
         addRepairRequest(newCreatedInvoiceNumber, newCreatedInvoiceDate, newCreatedIssueDescription);
         startInvoiceNumber++;
 
-            // Change the innerHTML of the modal to the order confirmation content
-            repairRequestDetailsModal.innerHTML = `
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title fs-5">Repair Request Created</h2>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" style="line-height: 1.5;">
-                        <p>The Repair Request has successfully been created and added to customer's equipment.</p>
-                        <div class="info-border">
-                        <div class="info">
-                            <p><b>Customer:</b> Emily Johnson</span></p>
-                            <p><b>Date:</b> 2023-12-11</p>
-                            <p><b>Invoice:</b> 1234585</p>
-                            <p><b>Equipment:</b> SnowBuster Deluxe</p>
-                            <p><b>Issue:</b> Spark plug malfunction</p>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" onclick="window.location.href = '../pages/order-confirmation.html';">Invoice</button>
-                    </div>
-                </div>
-            </div>
-        `;
+        let repairRequestList = document.getElementById("repair-requests-list");
+        repairRequestList.selectedIndex = repairRequestList.options.length - 1;
+        repairRequestSelectedEvent();
 
-        let equipmentList = document.getElementById("equipment-list")
-        let selectedEquipment = equipmentList.options[equipmentList.selectedIndex].value;
-        let equipmentName = "";
+        $("#repairConfirmationName").html(`${customer.firstName} ${customer.lastName}`);
+        $("#repairConfirmationDate").html(newCreatedInvoiceDate);
+        $("#repairConfirmationNumber").html(newCreatedInvoiceNumber);
+        $("#repairConfirmationEquipment").html(equipmentName);
+        $("#repairConfirmationIssue").html(newCreatedIssueDescription);
 
-        if (selectedEquipment != 0){
-          let equipment = equipmentDatabase.find(e => e.id == selectedEquipment);
-          equipmentName = equipment.equipmentName;
-        }else{
-          equipmentName = newCreatedEquipmentName;
-        }
+        let repairRequestConfirmationModal = document.getElementById("repairRequestConfirmationModal");
+        let repairRequestConfirmationModalInstance = new bootstrap.Modal(repairRequestConfirmationModal);
+        repairRequestConfirmationModalInstance.show();
 
         showToast("Repair Request Create", equipmentName);
         // alert("The Repair Request has successfully been created and added to customer's equipment.");
@@ -395,6 +351,46 @@ if (customerId.length > 0) {
 } else {
   //if no customer id passed as parameter, page is blank with user message
   $(`#customer-details`).html("<h2>No customer details found.</h2>");
+}
+
+function equipmentSelectedEvent(){
+  //hides user feedback message and empties repair list
+  $("#repair-requests-list").empty();
+  $("#repair-requests").fadeIn();
+  $("#all-repairs-btn").prop('disabled', false);
+  $("#active-repairs-btn").prop('disabled', false);
+  $("#completed-repairs-btn").prop('disabled', false);
+  $("#all-repairs-btn").addClass('active');
+  $("#active-repairs-btn").removeClass('active');
+  $("#completed-repairs-btn").removeClass('active');
+
+  $("#no-repair-requests").hide();
+  $("#details-repair-request").prop('disabled', true);
+  $("#create-repair-request").prop('disabled', false);
+  //$("#details-repair-request").hide();
+
+  //"disables" repair details button
+  $("#details-repair-request").css("background-color", "grey");
+  $("#create-repair-request").css("background-color", "#236477");
+
+  $("#details-equipment-btn").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
+  $('#details-equipment-btn').prop('disabled', false);
+
+  fillEquipmentInputs();
+
+  if(fillRepairRequestList()){
+    noRepairRequestMessage(`No Repair Requests. Click the button below to create one.`);
+    $("#all-repairs-btn").prop('disabled', true);
+    $("#active-repairs-btn").prop('disabled', true);
+    $("#completed-repairs-btn").prop('disabled', true);
+  }else{
+    $("#repair-requests-list").prop('disabled', false);
+  }
+}
+
+function repairRequestSelectedEvent(){
+  $("#details-repair-request").css("background-color", "#236477"); //gives a look that the button is active by changing back to the site button color
+  $('#details-repair-request').prop('disabled', false);
 }
 
 function showToast(action, item){
@@ -510,8 +506,8 @@ function fillRepairRequestForm(id){
     document.getElementById("valid-warranty").checked = repairRequest.hasWarranty;
   }
   else if(id == 0){
-    document.getElementById("invoice-date").innerHTML = newCreatedInvoiceNumber;
-    document.getElementById("invoice-number").innerHTML = newCreatedInvoiceDate;
+    document.getElementById("invoice-date").innerHTML = newCreatedInvoiceDate;
+    document.getElementById("invoice-number").innerHTML = newCreatedInvoiceNumber;
     document.getElementById("issue-description").value = newCreatedIssueDescription;
     document.getElementById("valid-warranty").checked = newCreatedValidWarranty;
   }
