@@ -1,6 +1,10 @@
 .column {
     float: left;
-    padding: 5px;
+    padding: 10px;
+  }
+
+  .row-one {
+    margin-top: 15px;
   }
   
   .one, .four, .five {
@@ -8,7 +12,23 @@
   }
   
   .two, .three {
-    width: 12.5%;
+    width: 25%;
+  }
+
+  #repair-report-form {
+    display:none;
+  }
+
+  #weekly-report-form {
+    display:none;
+  }
+
+  .week{
+    width: 100%;
+    border: 1px solid #236377;
+    border-radius: 10px;
+    padding: 0 10px;
+    height: 35px;
   }
 
   .row:after {
