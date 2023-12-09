@@ -139,7 +139,7 @@
                         </div>
                         <div class="customer-lists-grid">
                             <div>
-                                <div class="flex-label">
+                                <div class="d-flex justify-content-between">
                                     <h2 id="customer-name-equip" style="display: none;">Customer's Equipments</h2>
                                     <button class="help-icon" aria-label="Help">
                                         <span class="tooltip-text">To add an equipment, press the button below. To update an equipment, select one from the list and then press the details button.</span>
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <div id="repair-requests">
-                                <div class="container flex-label">
+                                <div class="container d-flex justify-content-between">
                                     <ul class="nav nav-tabs">
                                         <li class="nav-item">
                                         <button disabled class="nav-link active" id="all-repairs-btn">All Repairs</button>
@@ -268,6 +268,9 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-customer-modal">Close</button>
                     <button id="update-customer-modal-btn" class="button btns">Save</button>
+                    <button class="help-icon" aria-label="Help">
+                        <span class="tooltip-text modal-tooltip">Press the save button to update the customer once you've changed the customer's information in the input fields above. Simply press the close button to cancel this action.</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -381,6 +384,12 @@
                     <button class="border border-rounded p-2 btn" id="btnFill"></button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-equipment-modal">Close</button>
                     <button id="update-equipment-btn" class="button btns">Update Equipment</button>
+                    <button class="help-icon" aria-label="Help" id="help-equipment-add">
+                        <span class="tooltip-text modal-tooltip">Fill out the input fields above and then press the save button when you're ready to add the equipment to the customer.</span>
+                    </button>
+                    <button class="help-icon" aria-label="Help" id="help-equipment-update">
+                        <span class="tooltip-text modal-tooltip">Press the update equipment button to enable changes to the selected equipment. Once you've made the desired changes, press the save button to update the equipment.</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -427,6 +436,12 @@
                     <button type="button" class="btn btn-secondary" id="close-repair-request-modal" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" onclick="window.location.href = '../pages/demo-emily-invoice-order.html';" id="invoice-btn">Invoice</button>
                     <button class="button btns" id="update-repair-request-btn">Update Repair Request</button>
+                    <button class="help-icon" aria-label="Help" id="help-repair-add">
+                        <span class="tooltip-text modal-tooltip">Fill out the input fields above and then press the save button when you're ready to create the repair request for the selected customer's equipment.</span>
+                    </button>
+                    <button class="help-icon" aria-label="Help" id="help-repair-update">
+                        <span class="tooltip-text modal-tooltip">Press the update repair request button to enable changes to the selected repair request. Once you've made the desired changes, press the save button to update the repair request.</span>
+                    </button>
                 </div>
             </div>
         </div>
