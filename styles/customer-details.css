@@ -100,8 +100,12 @@ textarea {
 }
 
 .modal-tooltip{
-    margin-bottom: -125px;
+    margin-bottom: -100px;
     margin-left: -450px;
+}
+
+#help-repair-update-text{
+    margin-bottom: -120px;
 }
 
 .help-icon:hover .tooltip-text {
