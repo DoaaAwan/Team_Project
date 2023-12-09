@@ -69,11 +69,6 @@ textarea {
     width: 200px;
 }
 
-.flex-label {
-    display: flex;
-    justify-content: space-between;
-}
-
 /* help button */
 
 .help-icon {
@@ -102,6 +97,11 @@ textarea {
     margin-left: -425px;
     opacity: 0;
     transition: opacity 0.3s;
+}
+
+.modal-tooltip{
+    margin-bottom: -125px;
+    margin-left: -450px;
 }
 
 .help-icon:hover .tooltip-text {

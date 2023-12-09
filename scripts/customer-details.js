@@ -177,6 +177,8 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("details-equipment-btn").addEventListener("click", function (e) {
+    $("#help-equipment-add").hide();
+    $("#help-equipment-update").show();
     fillEquipmentInputs();
     toggleDisabledEquipmentForm(true);
     document.getElementById("equipmentModalLabel").innerHTML = "Selected Equipment Details";
@@ -185,6 +187,8 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("add-equipment-btn").addEventListener("click", function (e) {
+    $("#help-equipment-add").show();
+    $("#help-equipment-update").hide();
     toggleDisabledEquipmentForm(false);
     let addEquipmentButton = document.getElementById("update-equipment-btn");
     document.getElementById("equipmentModalLabel").innerHTML = "Add Equipment";
@@ -253,6 +257,8 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("details-repair-request").addEventListener("click", function (e) {
+    $("#help-repair-add").hide();
+    $("#help-repair-update").show();
     $(".invoice-status-field").show();
     $("#invoice-btn").show();
     let selectedRepairRequest = repairRequestList.options[repairRequestList.selectedIndex].value;
@@ -270,6 +276,8 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("create-repair-request").addEventListener("click", function (e) {
+    $("#help-repair-add").show();
+    $("#help-repair-update").hide();
     $(".invoice-status-field").hide();
     $("#invoice-btn").hide();
     toggleDisabledRepairRequestForm(false);
