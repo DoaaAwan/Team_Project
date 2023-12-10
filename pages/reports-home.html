@@ -202,6 +202,7 @@
 
                 <div class="row-one">
                     <br>
+                    <br>
                     <h2>Generated Reports</h2>
                 </div>
 
@@ -413,6 +414,8 @@
                 return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
             }
 
+            // For updating options at top, their labels and the tables
+
             document.getElementById('reportType').addEventListener('change', function () {
                 var warrantyForm = document.getElementById('warranty-form');
                 var repairReportForm = document.getElementById('repair-report-form');
@@ -483,30 +486,47 @@
                     saleTypeSelect.style.display = 'block';
                 }
             });
+
+            function generateRow() {
+                var newRow = document.createElement('tr');
+                var tbody = document.getElementById('customerTableBody'); // Assuming your table body has this ID
+
+                if (document.getElementById('reportType').value === "0") {
+                    newRow.innerHTML = `
+                    <td>New Start Date</td>
+                    <td>New End Date</td>
+                    <td>New Manufacturer</td>
+                    <td>New Equipment</td>
+                    <td><a href="warranty-report.html" class="btn rounded-circle report">
+                            <ion-icon name="reader-outline"></ion-icon></a>
+                    </td>
+                `;
+                } else if (document.getElementById('reportType').value === "1") {
+                    newRow.innerHTML = `
+                    <td>New Start Date</td>
+                    <td>New End Date</td>
+                    <td>New Repair Type</td>
+                    <td>New # of Repairs</td>
+                    <td><a href="repair-report.html" class="btn rounded-circle report">
+                            <ion-icon name="reader-outline"></ion-icon></a>
+                    </td>
+                `;
+                } else if (document.getElementById('reportType').value === "2") {
+                    newRow.innerHTML = `
+                    <td>New Start Date</td>
+                    <td>New End Date</td>
+                    <td>New Sale Type</td>
+                    <td>New Total Sales</td>
+                    <td><a href="weekly-sales-report.html" class="btn rounded-circle report">
+                            <ion-icon name="reader-outline"></ion-icon></a>
+                    </td>
+                `;
+                }
+
+                tbody.insertBefore(newRow, tbody.firstChild);
+            }
         });
-
-        function generateRow() {
-            var reportTypeSelect = document.getElementById("reportType");
-            var selectedOption = reportTypeSelect.options[reportTypeSelect.selectedIndex];
-
-            var selectedReport = selectedOption.textContent;
-
-            var tbody = document.getElementById("customerTableBody");
-
-            var newRow = document.createElement("tr");
-
-            newRow.innerHTML = `
-                <td>2023-12-04</td>
-                <td>2023-12-10</td>
-                <td>SnowBuster</td>
-                <td>Snow Blower</td>
-                <td><a href="completed-warranty-report.html" class="btn rounded-circle report">
-                        <ion-icon name="reader-outline"></ion-icon></a>
-                </td>
-            `;
-
-            tbody.insertBefore(newRow, tbody.firstChild);
-        }
+        
     </script>
 
 </body>

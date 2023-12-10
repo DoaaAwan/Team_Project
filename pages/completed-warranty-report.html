@@ -22,6 +22,10 @@
             margin: 20px;
         }
 
+        #printable-content {
+            margin-top: 20px;
+        }
+
         .report-container {
             max-width: 600px;
             margin: 0 auto;
@@ -57,7 +61,7 @@
             #printable-content {
                 position: absolute;
                 left: 0;
-                top: 0;
+                top: 3px;
             }
 
             .invoice-pg-center {
@@ -161,32 +165,31 @@
             </div>
         </nav>
 
-        <div class="page-container">
-            <header>
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h1>SnowBuster Warranty Report</h1>
-                    </div>
+        <div class="page-container" style="padding: 120px 70px 80px;">
+            <header style="background: transparent;">
+                <div class="d-flex justify-content-end">
 
                     <div>
                         <a href="javascript:history.back()" class="button secondary-btn ms-3" id="btnBackToCustomer">
                             Back
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
+                    </div>
+                    <div>
                         <a href="" onclick="window.print();" class="button secondary-btn ms-3" id="btnBackToCustomer">
                             Print Report
+                            <ion-icon name="print-outline"></ion-icon>
                         </a>
                     </div>
                 </div>
             </header>
 
-            <div class="page">
-                <div id="printable-content">
-                    <img src="../images/warranty-report.jpg" alt="" class="img-fluid invoice-pg-center shadow mb-5"
-                        width="50%">
+            <div id="printable-content">
+                <img src="../images/warranty-report.jpg" alt="" class="img-fluid invoice-pg-center shadow mb-5"
+                    width="50%">
 
-                    <img src="../images/warranty-report2.jpg" alt="" class="img-fluid invoice-pg-center shadow mb-5"
-                        width="50%">
-                </div>
+                <img src="../images/warranty-report2.jpg" alt="" class="img-fluid invoice-pg-center shadow mb-5"
+                    width="50%">
             </div>
 
         </div>
