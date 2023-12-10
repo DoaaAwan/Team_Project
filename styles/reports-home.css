@@ -3,10 +3,14 @@
     padding: 10px;
   }
 
-  .row-one {
-    margin-top: 15px;
+  #warranty-options {
+    margin-top: 10px;
   }
   
+  .row {
+    margin-top: -2px;
+  }
+
   .one, .four, .five {
     width: 25%;
   }

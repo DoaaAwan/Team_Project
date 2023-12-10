@@ -122,13 +122,13 @@
 
                 <!-- Options for warranty report -->
                 <form id="warranty-options">
-                    <div class="row-one">
+                    <div class="row">
                         <div class="column one">
                             <label for="reportType">Select a report type:</label>
-                            <select id="reportType">
+                            <select id="reportType" enabled required>
                                 <option value="0">Warranty Report</option>
                                 <option value="1">Repair Report</option>
-                                <option value="2">Weekly Report</option>
+                                <option value="2">Weekly Sales Report</option>
                             </select>
                         </div>
 
@@ -136,13 +136,13 @@
                             <label for="week">Report duration:</label>
                             <div>
                                 <input type="week" class="week" id="week" name="report-week" min="2023-W01"
-                                    max="2023-W52" required />
+                                    max="2023-W52" enabled/>
                             </div>
                         </div>
 
                         <div class="column four">
                             <label for="equipManufacturer">Select a manufacturer:</label>
-                            <select id="equipManufacturer" required>
+                            <select id="equipManufacturer" enabled>
                                 <option value="allManufacturer">All Manufacturers</option>
                                 <option value="deereco">Deere & Co.</option>
                                 <option value="dewalt">DeWalt</option>
@@ -159,8 +159,8 @@
                         </div>
 
                         <div class="column five">
-                            <label for="equipmentType">Select a type of equipment:</label>
-                            <select id="equipmentType">
+                            <label for="equipType">Select a type of equipment:</label>
+                            <select id="equipType" enabled>
                                 <option value="allEquip">All Equipment</option>
                                 <option value="chainsaw">Chainsaw</option>
                                 <option value="grasstrimmer">Grass trimmer</option>
@@ -172,6 +172,26 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="column one">
+                            <label for="repairPart">Select a repair part:</label>
+                            <select id="repairPart" disabled>
+                                <option value="allSales">All parts</option>
+                                <option value="purchases">Purchases</option>
+                                <option value="repairs">Repairs</option>
+                            </select>
+                        </div>
+
+                        <div class="column two">
+                            <label for="saleType">Select a type of sale:</label>
+                            <select id="saleType" disabled>
+                                <option value="allSales">All sales</option>
+                                <option value="purchases">Purchases</option>
+                                <option value="repairs">Repairs</option>
+                            </select>
+                        </div>
+                    </div>
                 </form>
 
                 <!-- Generate Button-->
@@ -180,12 +200,16 @@
                     <button type="button" class="button btns" onclick="generateRow()">Generate</button>
                 </div>
 
+                <div class="row-one">
+                <br>
+                <h2>Generated Reports</h2>
+            </div>
+                
                 <div class="row">
                     <form id="warranty-form">
                         <table class="content-table table-sortable">
                             <thead>
                                 <tr>
-                                    <th>Report Type</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Manufacturer</th>
@@ -195,30 +219,27 @@
                             </thead>
                             <tbody id="customerTableBody">
                                 <tr>
-                                    <td class="report-name">Warranty Report</td>
                                     <td>2023-11-27</td>
                                     <td>2023-12-03</td>
-                                    <td><b>Worx</b></td>
+                                    <td>Worx</td>
                                     <td>Pressure Washer</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="report-name">Warranty Report</td>
                                     <td>2023-11-20</td>
                                     <td>2023-11-26</td>
-                                    <td><b>Ryobi</b></td>
+                                    <td>Ryobi</td>
                                     <td>All Equipment</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="report-name">Warranty Report</td>
                                     <td>2023-11-13</td>
                                     <td>2023-11-19</td>
-                                    <td><b>Husqvarna</b></td>
+                                    <td>Husqvarna</td>
                                     <td>Chainsaw</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
@@ -236,7 +257,6 @@
                         <table class="content-table table-sortable">
                             <thead>
                                 <tr>
-                                    <th>Report Type</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Repair Type</th>
@@ -246,30 +266,27 @@
                             </thead>
                             <tbody id="customerTableBody">
                                 <tr>
-                                    <td class="report-name">Repair Report</td>
-                                    <td>2023-02-10</td>
-                                    <td>2023-02-10</td>
-                                    <td><b>Spark Plug</b></td>
+                                    <td>2023-11-27</td>
+                                    <td>2023-12-03</td>
+                                    <td>Spark Plug</td>
                                     <td>20</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="report-name">Repair Report</td>
-                                    <td>2023-10-08</td>
-                                    <td>2023-10-08</td>
-                                    <td><b>Blades</b></td>
+                                    <td>2023-11-20</td>
+                                    <td>2023-11-26</td>
+                                    <td>Blades</td>
                                     <td>13</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="report-name">Repair Report</td>
-                                    <td>2023-10-09</td>
-                                    <td>2023-02-10</td>
-                                    <td><b>Motor</b></td>
+                                    <td>2023-11-13</td>
+                                    <td>2023-11-19</td>
+                                    <td>Motor</td>
                                     <td>36</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
@@ -287,41 +304,46 @@
                         <table class="content-table table-sortable">
                             <thead>
                                 <tr>
-                                    <th>Report Type</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
-                                    <th>Customer</th>
-                                    <th>Repair Type</th>
+                                    <th>Sale Type</th>
+                                    <th>Total Sales</th>
                                     <th>View</th>
                                 </tr>
                             </thead>
                             <tbody id="customerTableBody">
                                 <tr>
-                                    <td class="report-name">Weekly Report</td>
-                                    <td>2023-02-10</td>
-                                    <td>2023-02-10</td>
-                                    <td><b>Worx</b></td>
-                                    <td>Pressure Washer</td>
+                                    <td>2023-11-27</td>
+                                    <td>2023-12-03</td>
+                                    <td>Purchases</td>
+                                    <td>$4, 763</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="report-name">Weekly Report</td>
-                                    <td>2023-10-08</td>
-                                    <td>2023-10-08</td>
-                                    <td><b>Ryobi</b></td>
-                                    <td>All Equipment</td>
+                                    <td>2023-11-27</td>
+                                    <td>2023-12-03</td>
+                                    <td>Repairs</td>
+                                    <td>$3, 328</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="report-name">Weekly Report</td>
-                                    <td>2023-10-09</td>
-                                    <td>2023-02-10</td>
-                                    <td><b>Husqvarna</b></td>
-                                    <td>Chainsaw</td>
+                                    <td>2023-11-20</td>
+                                    <td>2023-11-26</td>
+                                    <td>All sales</td>
+                                    <td>$4, 100</td>
+                                    <td><a href="" class="btn rounded-circle report">
+                                            <ion-icon name="reader-outline"></ion-icon></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-11-20</td>
+                                    <td>2023-11-26</td>
+                                    <td>Purchases</td>
+                                    <td>$3, 328</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
@@ -374,30 +396,25 @@
         });
 
         function generateRow() {
-            // Get the selected option element
             var reportTypeSelect = document.getElementById("reportType");
             var selectedOption = reportTypeSelect.options[reportTypeSelect.selectedIndex];
 
-            // Get the text content of the selected option
             var selectedReport = selectedOption.textContent;
 
             var tbody = document.getElementById("customerTableBody");
 
             var newRow = document.createElement("tr");
 
-            // Replace the sample data with your actual data
             newRow.innerHTML = `
-        <td class="report-name">${selectedReport}</td>
         <td>2023-12-04</td>
         <td>2023-12-10</td>
-        <td><b>SnowBuster</b></td>
+        <td>SnowBuster</td>
         <td>Snow Blower</td>
         <td><a href="completed-warranty-report.html" class="btn rounded-circle report">
                 <ion-icon name="reader-outline"></ion-icon></a>
         </td>
     `;
 
-            // Insert the new row at the beginning of the tbody
             tbody.insertBefore(newRow, tbody.firstChild);
         }
 
@@ -444,6 +461,28 @@
                 weeklyReportForm.style.display = 'block';
             }
         });
+
+        // Disable / Enable options at top
+        document.addEventListener('DOMContentLoaded', function () {
+
+        document.getElementById('reportType').addEventListener('change', function () {
+            var equipManuSelect = document.getElementById('equipManufacturer');
+            var equipSelect = document.getElementById('equipType');
+            var repairPartSelect = document.getElementById('repairPart');
+            var saleTypeSelect = document.getElementById('saleType');
+
+            if (this.value === "1") {
+                repairPartSelect.removeAttribute('disabled');
+                equipManuSelect.setAttribute('disabled', 'disabled');
+                equipSelect.setAttribute('disabled', 'disabled');
+            } else if (this.value === "2") {
+                repairPartSelect.setAttribute('disabled', 'disabled');
+                equipManuSelect.setAttribute('disabled', 'disabled');
+                equipSelect.setAttribute('disabled', 'disabled');
+                saleTypeSelect.removeAttribute('disabled');
+            }
+        });
+    });
     </script>
 
 </body>
