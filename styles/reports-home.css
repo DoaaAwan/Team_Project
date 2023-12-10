@@ -3,6 +3,11 @@
     padding: 10px;
   }
 
+  #repairPart, #saleType {
+    border-radius: 10px;
+    height: 35px;
+  }
+
   #warranty-options {
     margin-top: 10px;
   }
