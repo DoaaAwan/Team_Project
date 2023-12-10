@@ -125,7 +125,7 @@
                     <div class="row">
                         <div class="column one">
                             <label for="reportType">Select a report type:</label>
-                            <select id="reportType" enabled required>
+                            <select id="reportType">
                                 <option value="0">Warranty Report</option>
                                 <option value="1">Repair Report</option>
                                 <option value="2">Weekly Sales Report</option>
@@ -136,13 +136,13 @@
                             <label for="week">Report duration:</label>
                             <div>
                                 <input type="week" class="week" id="week" name="report-week" min="2023-W01"
-                                    max="2023-W52" enabled/>
+                                    max="2023-W52" />
                             </div>
                         </div>
 
                         <div class="column four">
-                            <label for="equipManufacturer">Select a manufacturer:</label>
-                            <select id="equipManufacturer" enabled>
+                            <label id="equipManuLabel" for="equipManu">Select a manufacturer:</label>
+                            <select id="equipManu">
                                 <option value="allManufacturer">All Manufacturers</option>
                                 <option value="deereco">Deere & Co.</option>
                                 <option value="dewalt">DeWalt</option>
@@ -159,8 +159,8 @@
                         </div>
 
                         <div class="column five">
-                            <label for="equipType">Select a type of equipment:</label>
-                            <select id="equipType" enabled>
+                            <label id="equipTypeLabel" for="equipType">Select a type of equipment:</label>
+                            <select id="equipType">
                                 <option value="allEquip">All Equipment</option>
                                 <option value="chainsaw">Chainsaw</option>
                                 <option value="grasstrimmer">Grass trimmer</option>
@@ -175,8 +175,8 @@
 
                     <div class="row">
                         <div class="column one">
-                            <label for="repairPart">Select a repair part:</label>
-                            <select id="repairPart" disabled>
+                            <label id="repairPartLabel" for="repairPart">Select a repair part:</label>
+                            <select id="repairPart">
                                 <option value="allSales">All parts</option>
                                 <option value="purchases">Purchases</option>
                                 <option value="repairs">Repairs</option>
@@ -184,8 +184,8 @@
                         </div>
 
                         <div class="column two">
-                            <label for="saleType">Select a type of sale:</label>
-                            <select id="saleType" disabled>
+                            <label id="saleTypeLabel" for="saleType">Select a type of sale:</label>
+                            <select id="saleType">
                                 <option value="allSales">All sales</option>
                                 <option value="purchases">Purchases</option>
                                 <option value="repairs">Repairs</option>
@@ -201,10 +201,10 @@
                 </div>
 
                 <div class="row-one">
-                <br>
-                <h2>Generated Reports</h2>
-            </div>
-                
+                    <br>
+                    <h2>Generated Reports</h2>
+                </div>
+
                 <div class="row">
                     <form id="warranty-form">
                         <table class="content-table table-sortable">
@@ -393,6 +393,96 @@
                     }
                 });
             }
+
+            // For week default
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var currentWeek = getWeekNumber(currentDate);
+
+            // Format the week value as "YYYY-W##"
+            var defaultWeekValue = currentYear + "-W" + (currentWeek < 10 ? "0" + currentWeek : currentWeek);
+
+            // Set the default value of the week input
+            document.getElementById("week").value = defaultWeekValue;
+
+            function getWeekNumber(date) {
+                var d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+                var dayNum = d.getUTCDay() || 7;
+                d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+                var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+                return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+            }
+
+            document.getElementById('reportType').addEventListener('change', function () {
+                var warrantyForm = document.getElementById('warranty-form');
+                var repairReportForm = document.getElementById('repair-report-form');
+                var weeklyReportForm = document.getElementById('weekly-report-form');
+
+                var equipManuLabel = document.getElementById('equipManuLabel');
+                var equipSelectLabel = document.getElementById('equipTypeLabel');
+                var repairPartLabel = document.getElementById('repairPartLabel');
+                var saleTypeLabel = document.getElementById('saleTypeLabel');
+
+
+                var equipManuSelect = document.getElementById('equipManu');
+                var equipSelect = document.getElementById('equipType');
+                var repairPartSelect = document.getElementById('repairPart');
+                var saleTypeSelect = document.getElementById('saleType');
+
+                if (this.value === "0") {
+                    warrantyForm.style.display = 'block';
+                    repairReportForm.style.display = 'none';
+                    weeklyReportForm.style.display = 'none';
+
+                    equipManuLabel.style.display = 'block';
+                    equipSelectLabel.style.display = 'block';
+                    repairPartLabel.style.display = 'none';
+                    saleTypeLabel.style.display = 'none';
+
+                    equipManuSelect.style.display = 'block';
+                    equipSelect.style.display = 'block';
+                    repairPartSelect.style.display = 'none';
+                    saleTypeSelect.style.display = 'none';
+
+                } else if (this.value === "1") {
+
+                    equipManuSelect.parentNode.insertBefore(repairPartSelect, equipManuSelect.nextSibling);
+                    equipManuLabel.parentNode.insertBefore(repairPartLabel, equipManuLabel.nextSibling);
+
+                    warrantyForm.style.display = 'none';
+                    repairReportForm.style.display = 'block';
+                    weeklyReportForm.style.display = 'none';
+
+                    repairPartLabel.style.display = 'block';
+                    equipManuLabel.style.display = 'none';
+                    equipSelectLabel.style.display = 'block';
+                    saleTypeLabel.style.display = 'none';
+
+                    repairPartSelect.style.display = 'block';
+                    equipManuSelect.style.display = 'none';
+                    equipSelect.style.display = 'block';
+                    saleTypeSelect.style.display = 'none';
+
+                } else if (this.value === "2") {
+
+                    equipManuSelect.parentNode.insertBefore(saleTypeSelect, equipManuSelect.nextSibling);
+                    equipManuLabel.parentNode.insertBefore(saleTypeLabel, equipManuLabel.nextSibling);
+
+                    warrantyForm.style.display = 'none';
+                    repairReportForm.style.display = 'none';
+                    weeklyReportForm.style.display = 'block';
+
+                    repairPartLabel.style.display = 'none';
+                    equipManuLabel.style.display = 'none';
+                    equipSelectLabel.style.display = 'none';
+                    saleTypeLabel.style.display = 'block';
+
+                    repairPartSelect.style.display = 'none';
+                    equipManuSelect.style.display = 'none';
+                    equipSelect.style.display = 'none';
+                    saleTypeSelect.style.display = 'block';
+                }
+            });
         });
 
         function generateRow() {
@@ -406,83 +496,17 @@
             var newRow = document.createElement("tr");
 
             newRow.innerHTML = `
-        <td>2023-12-04</td>
-        <td>2023-12-10</td>
-        <td>SnowBuster</td>
-        <td>Snow Blower</td>
-        <td><a href="completed-warranty-report.html" class="btn rounded-circle report">
-                <ion-icon name="reader-outline"></ion-icon></a>
-        </td>
-    `;
+                <td>2023-12-04</td>
+                <td>2023-12-10</td>
+                <td>SnowBuster</td>
+                <td>Snow Blower</td>
+                <td><a href="completed-warranty-report.html" class="btn rounded-circle report">
+                        <ion-icon name="reader-outline"></ion-icon></a>
+                </td>
+            `;
 
             tbody.insertBefore(newRow, tbody.firstChild);
         }
-
-
-
-        // For week default
-        document.addEventListener("DOMContentLoaded", function () {
-            var currentDate = new Date();
-            var currentYear = currentDate.getFullYear();
-            var currentWeek = getWeekNumber(currentDate);
-
-            // Format the week value as "YYYY-W##"
-            var defaultWeekValue = currentYear + "-W" + (currentWeek < 10 ? "0" + currentWeek : currentWeek);
-
-            // Set the default value of the week input
-            document.getElementById("week").value = defaultWeekValue;
-        });
-
-        function getWeekNumber(date) {
-            var d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-            var dayNum = d.getUTCDay() || 7;
-            d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-            var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-            return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-        }
-
-        // For hiding / showing tables
-        document.getElementById('reportType').addEventListener('change', function () {
-            var warrantyForm = document.getElementById('warranty-form');
-            var repairReportForm = document.getElementById('repair-report-form');
-            var weeklyReportForm = document.getElementById('weekly-report-form');
-
-            if (this.value === "0") {
-                warrantyForm.style.display = 'block';
-                repairReportForm.style.display = 'none';
-                weeklyReportForm.style.display = 'none';
-            } else if (this.value === "1") {
-                warrantyForm.style.display = 'none';
-                repairReportForm.style.display = 'block';
-                weeklyReportForm.style.display = 'none';
-            } else if (this.value === "2") {
-                warrantyForm.style.display = 'none';
-                repairReportForm.style.display = 'none';
-                weeklyReportForm.style.display = 'block';
-            }
-        });
-
-        // Disable / Enable options at top
-        document.addEventListener('DOMContentLoaded', function () {
-
-        document.getElementById('reportType').addEventListener('change', function () {
-            var equipManuSelect = document.getElementById('equipManufacturer');
-            var equipSelect = document.getElementById('equipType');
-            var repairPartSelect = document.getElementById('repairPart');
-            var saleTypeSelect = document.getElementById('saleType');
-
-            if (this.value === "1") {
-                repairPartSelect.removeAttribute('disabled');
-                equipManuSelect.setAttribute('disabled', 'disabled');
-                equipSelect.setAttribute('disabled', 'disabled');
-            } else if (this.value === "2") {
-                repairPartSelect.setAttribute('disabled', 'disabled');
-                equipManuSelect.setAttribute('disabled', 'disabled');
-                equipSelect.setAttribute('disabled', 'disabled');
-                saleTypeSelect.removeAttribute('disabled');
-            }
-        });
-    });
     </script>
 
 </body>
