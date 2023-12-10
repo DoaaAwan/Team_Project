@@ -6,6 +6,10 @@
   #warranty-options {
     margin-top: 10px;
   }
+
+  #saleType, #saleTypeLabel, #repairPart, #repairPartLabel {
+    display: none;
+}
   
   .row {
     margin-top: -2px;
