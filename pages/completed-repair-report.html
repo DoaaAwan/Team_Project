@@ -149,74 +149,35 @@
                 </div>
             </div>
         </nav>
-        <section class="page-container">
-            <header>
-                <h1>Repair Report</h1>
-            </header>
-            <div class="page">
+        <div class="page-container" style="padding: 120px 70px 80px;">
+            <header style="background: transparent;">
+                <div class="d-flex justify-content-end">
 
-                <div class="report-container">
-
-                    <div class="report-section">
-                        <label for="customerName">Customer Name:</label>
-                        <p id="customerName">Emily Johnson</p>
+                    <div>
+                        <a href="reports-home-repair-copy.html" class="button secondary-btn ms-3" id="btnBackToCustomer">
+                            Back
+                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </a>
                     </div>
-
-                    <div class="report-section">
-                        <label for="customerEmail">Customer Email:</label>
-                        <p id="customerEmail">emilyj@gmail.com</p>
-                    </div>
-
-                    <div class="report-section">
-                        <label for="customerPhone">Customer Phone:</label>
-                        <p id="customerPhone">905-789-0123</p>
-                    </div>
-
-                    <div class="report-section">
-                        <label for="equipmentName">Equipment:</label>
-                        <p id="equipmentName">(M/N: S08M) SnowBuster Deluxe - Snow Blower</p>
-                    </div>
-
-                    <div class="report-section">
-                        <label for="summaryOfWork">Summary of Work:</label>
-                        <p id="summaryOfWork">Spark plug malfunction</p>
-                    </div>
-
-                    <div class="report-section">
-                        <label for="summaryOfWork">Summary of Session 1:</label>
-                        <p id="summaryOfWork">Spark plug changed</p>
-                    </div>
-
-                    <div class="report-section">
-                        <label for="summaryOfWork">Summary of Session 2:</label>
-                        <p id="summaryOfWork">Routine check</p>
-                    </div>
-
-                    <div class="report-section">
-                        <label for="summaryOfWork">Parts Used:</label>
-                        <p id="summaryOfWork">1 part(s) used</p>
-                    </div>
-
-                    <div class="report-section">
-                        <label for="summaryOfWork">Parts Cost:</label>
-                        <p id="summaryOfWork">$10</p>
-                    </div>
-
-                    <div class="report-section">
-                        <label for="totalCost">Total Cost of Repair:</label>
-                        <p id="totalCost" class="total-cost">$100.00</p>
+                    <div>
+                        <a href="" onclick="window.print();" class="button secondary-btn ms-3" id="btnBackToCustomer">
+                            Print Report
+                            <ion-icon name="print-outline"></ion-icon>
+                        </a>
                     </div>
                 </div>
+            </header>
 
-                <a href="" onclick="window.print();" class="button secondary-btn ms-3 noPrint" id="btnBackToCustomer">
-                    Print Report
-                </a>
+            <div id="printable-content">
+                <img src="../images/repair-report.jpg" alt="" class="img-fluid invoice-pg-center shadow mb-5"
+                    width="50%">
+
+                <img src="../images/repair-report2.jpg" alt="" class="img-fluid invoice-pg-center shadow mb-5"
+                    width="50%">
             </div>
 
-    </div>
-    </section>
-    </div>
-    <script src="../scripts/help-tooltip.js"></script>
+        </div>
+    </div>    <script src="../scripts/help-tooltip.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/update-nav.js"></script>
     <script>

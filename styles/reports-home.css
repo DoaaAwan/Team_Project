@@ -15,6 +15,11 @@
   #saleType, #saleTypeLabel, #repairPart, #repairPartLabel {
     display: none;
 }
+
+button {
+  background-color: #70bdbd;
+  color: white;
+}
   
   .row {
     margin-top: -2px;
