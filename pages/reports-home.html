@@ -169,6 +169,7 @@
                                 <option value="leafblower">Leaf blower</option>
                                 <option value="pressurewasher">Pressure washer</option>
                                 <option value="snowblower">Snow blower</option>
+                                <option value="snowshovel">Snow shovel</option>
                             </select>
                         </div>
                     </div>
@@ -178,8 +179,12 @@
                             <label id="repairPartLabel" for="repairPart">Select a repair part:</label>
                             <select id="repairPart">
                                 <option value="allSales">All parts</option>
-                                <option value="purchases">Purchases</option>
-                                <option value="repairs">Repairs</option>
+                                <option value="purchases">Air filter</option>
+                                <option value="repairs">Carburetor</option>
+                                <option value="repairs">Fuel cap</option>
+                                <option value="repairs">Ignition coil</option>
+                                <option value="repairs">Mower blade</option>
+                                <option value="repairs">Spark plug</option>
                             </select>
                         </div>
 
@@ -199,7 +204,7 @@
                 <div class="row-one">
                     <button id="btnFlash" type="button" class="button btns" onclick="generateRow()">Generate</button>
                     <button class="help-icon" aria-label="Help">
-                        <span class="tooltip-text">Select all the options desired for your report, then press the
+                        <span class="tooltip-text">Select all of the desired data needed for your report, then press the
                             generate button. Newest reports will appear at the top of the table.</span>
                     </button>
                 </div>
@@ -218,7 +223,7 @@
                                     <th>Report Start Date</th>
                                     <th>Report End Date</th>
                                     <th>Manufacturer</th>
-                                    <th>Equipment</th>
+                                    <th>Equipment Type</th>
                                     <th>View Report</th>
                                 </tr>
                             </thead>
@@ -513,7 +518,7 @@
             <td id="row2">2023-12-04</td>
             <td>2023-12-10</td>
             <td>SnowBuster</td>
-            <td>Snow Blower</td>
+            <td>All Equipment</td>
             <td><a href="completed-warranty-report.html" class="btn rounded-circle report">
                     <ion-icon name="reader-outline"></ion-icon></a>
             </td>
