@@ -420,6 +420,7 @@
 
             // For week default
             var currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() - 7); // Subtract 7 days
             var currentYear = currentDate.getFullYear();
             var currentWeek = getWeekNumber(currentDate);
 
