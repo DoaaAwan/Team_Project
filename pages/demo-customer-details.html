@@ -405,11 +405,10 @@
                 </div>
                 <form method="post" action="https://webdevbasics.net/scripts/demo.php" id="repair-request-form">
                     <fieldset class="modal-body">
-                        <div class="repair-field invoice-status-field">
-                            <p>Status:</p>
-                            <p id="invoice-status"></p>
+                        <div id="selected-equipment-repair">
+                            <p>Equipment: <span id="invoice-equipment"></span></p>
                         </div>
-                        <hr class="invoice-status-field">
+                        <hr>
                         <div class="repair-field">
                             <p>Invoice Date:</p>
                             <p id="invoice-date"></p>
@@ -425,9 +424,15 @@
                             <textarea id="issue-description" name="issue-description"  class="form-control" required></textarea>
                         </div>
                         <hr>
-                        <div class="repair-field">
-                            <label for="valid-warranty">Valid Warranty?:</label>
-                            <div><input id="valid-warranty" name="valid-warranty" type="checkbox" class="form-check-input" style="text-align: left;"></div>
+                        <div id="status-warranty-container" class="d-flex justify-content-around">
+                            <div class="status-field invoice-status-field">
+                                <p id="status-label">Status:</p>
+                                <p id="invoice-status"></p>
+                            </div>
+                            <div id="warranty-field" class="warranty-field">
+                                <label for="valid-warranty">Valid Warranty?:</label>
+                                <div><input id="valid-warranty" name="valid-warranty" type="checkbox" class="form-check-input" style="text-align: left;"></div>
+                            </div>
                         </div>
                     </fieldset>
                 </form>
