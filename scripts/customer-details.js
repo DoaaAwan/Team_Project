@@ -257,6 +257,10 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("details-repair-request").addEventListener("click", function (e) {
+    $("#status-warranty-container").addClass('justify-content-around');
+    $("#status-warranty-container").addClass('d-flex');
+    $("#warranty-field").addClass('warranty-field');
+    $("#warranty-field").removeClass('repair-field');
     $("#help-repair-add").hide();
     $("#help-repair-update").show();
     $(".invoice-status-field").show();
@@ -276,10 +280,20 @@ if (customerId.length > 0) {
   });
 
   document.getElementById("create-repair-request").addEventListener("click", function (e) {
+    $("#status-warranty-container").removeClass('justify-content-around');
+    $("#status-warranty-container").removeClass('d-flex');
+    $("#warranty-field").removeClass('warranty-field');
+    $("#warranty-field").addClass('repair-field');
     $("#help-repair-add").show();
     $("#help-repair-update").hide();
     $(".invoice-status-field").hide();
     $("#invoice-btn").hide();
+
+    equipmentList = document.getElementById("equipment-list")
+    let selectedEquipment = equipmentList.options[equipmentList.selectedIndex].text;
+  
+    document.getElementById("invoice-equipment").innerHTML = selectedEquipment;
+
     toggleDisabledRepairRequestForm(false);
     let addRepairRequestButton = document.getElementById("update-repair-request-btn");
     document.getElementById("repairRequestModalLabel").innerHTML = "Create Repair Request";
@@ -517,6 +531,12 @@ function noRepairRequestMessage(message){
 }
 
 function fillRepairRequestForm(id){
+
+  let equipmentList = document.getElementById("equipment-list")
+  let selectedEquipment = equipmentList.options[equipmentList.selectedIndex].text;
+
+  document.getElementById("invoice-equipment").innerHTML = selectedEquipment;
+
   if(id != 0){
     let repairRequest = repairRequestDatabase.find(r => r.id == id);
 
