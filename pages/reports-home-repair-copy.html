@@ -223,6 +223,7 @@
                                 <option value="leafblower">Leaf blower</option>
                                 <option value="pressurewasher">Pressure washer</option>
                                 <option value="snowblower">Snow blower</option>
+                                <option value="snowshovel">Snow shovel</option>
                             </select>
                         </div>
                     </div>
@@ -251,8 +252,11 @@
                 <!-- Generate Button-->
 
                 <div class="row-one">
-                    <button type="button" class="button btns" onclick="generateRow()">Generate</button>
-                </div>
+                    <button id="btnFlash" type="button" class="button btns" onclick="generateRow()">Generate</button>
+                    <button class="help-icon" aria-label="Help">
+                        <span class="tooltip-text">Select all of the desired data needed for your report, then press the
+                            generate button. Newest reports will appear at the top of the table.</span>
+                    </button>                </div>
 
                 <div class="row-one">
                     <br>
@@ -268,7 +272,7 @@
                                     <th>Report Start Date</th>
                                     <th>Report End Date</th>
                                     <th>Manufacturer</th>
-                                    <th>Equipment</th>
+                                    <th>Equipment Type</th>
                                     <th>View Report</th>
                                 </tr>
                             </thead>
@@ -581,7 +585,7 @@
             <td>2023-12-04</td>
             <td>2023-12-10</td>
             <td>SnowBuster</td>
-            <td>Snow Blower</td>
+            <td>All Equipment</td>
             <td><a href="completed-warranty-report.html" class="btn rounded-circle report">
                     <ion-icon name="reader-outline"></ion-icon></a>
             </td>
