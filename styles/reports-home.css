@@ -16,6 +16,26 @@
     display: none;
 }
 
+.flash {
+  animation: flashAnimation 3s ease-in-out 1 alternate backwards;
+}
+
+@keyframes flashAnimation {
+  0% {
+    background-color: inherit;
+  }
+
+  10%,
+  90% {
+    background-color: lightblue;
+  }
+
+  100% {
+    background-color: inherit;
+  }
+}
+
+
 button {
   background-color: #70bdbd;
   color: white;
