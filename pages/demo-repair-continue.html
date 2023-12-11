@@ -229,7 +229,7 @@
                         <div>
                             <div class="myDIV">
                                 <label style="display: inline;">Invoice Date:</label>
-                                <p style="display: inline;">December 4th, 2023</p>
+                                <p style="display: inline;">December 11th, 2023</p>
                             </div>
                             <!--not able to place it besides the date, not needed anyway as the date is auto-->
                             <!--div class="hide" style="position: absolute;">The date is in mm/dd/yyy format.</div-->
@@ -237,7 +237,7 @@
                         <!-- Invoice Number -->
                         <div>
                             <label style="display: inline;">Invoice Number:</label>
-                            <p style="display: inline;">2023DEC345</p>
+                            <p style="display: inline;">1234585</p>
                         </div>
                         <!--Customer dropdown list-->
                         <div>
@@ -300,6 +300,7 @@
                                                     <option value="part3">Carburetor</option>
                                                     <option value="part4">Fuel Cap</option>
                                                     <option value="part5">Mower Blade</option>
+                                                    <option value="part6">Ignition Coil</option>
                                                 </select>
                                             </td>
                                             <!--td>
@@ -362,7 +363,7 @@
                                 </div>
                                 <label>Details: </label><br>
                                 <p id="details" class="p-3 border" name="issueDescription" rows="4" required style="width: 810px; height:100px; border: 1px solid black;"
-                                aria-label="Describe the details of repair" >Replaced the spark plug</p>
+                                aria-label="Describe the details of repair" >Replaced the spark plug.</p>
                                 
                             </div>
                         </div>
@@ -410,14 +411,14 @@
             let part = document.getElementById('parts2');
             let quantity = document.getElementById('quantity2');
 
-            part.value = 'part3';
+            part.value = 'part6';
             quantity.value = 1;
 
             // Update the repairDescription textarea
             const repairDescriptionTextarea = document.getElementById('repairDescription');
             if (repairDescriptionTextarea) {
                 // Add text to the textarea
-                const additionalText = "\nNeeded another part";
+                const additionalText = "\nReplaced the ignition coil.";
                 repairDescriptionTextarea.value += additionalText;
             }
         });
