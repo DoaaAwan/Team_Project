@@ -327,8 +327,8 @@
                                 <tr>
                                     <th>Report Start Date</th>
                                     <th>Report End Date</th>
-                                    <th>Repair Type</th>
-                                    <th># of Repairs</th>
+                                    <th>Repair Purpose</th>
+                                    <th>Avg. Repair Time</th>
                                     <th>View Report</th>
                                 </tr>
                             </thead>
@@ -336,17 +336,17 @@
                                 <tr>
                                     <td>2023-12-04</td>
                                     <td>2023-12-10</td>
-                                    <td>Spark Plug</td>
-                                    <td>10</td>
-                                    <td><a href="completed-repair-report.html" class="btn rounded-circle report">
+                                    <td>Replace spark plug</td>
+                                    <td>15 minutes</td>
+                                    <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>2023-11-27</td>
                                     <td>2023-12-03</td>
-                                    <td>Spark Plug</td>
-                                    <td>20</td>
+                                    <td>Replace air filter</td>
+                                    <td>30 minutes</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
@@ -354,8 +354,8 @@
                                 <tr>
                                     <td>2023-11-20</td>
                                     <td>2023-11-26</td>
-                                    <td>Blades</td>
-                                    <td>13</td>
+                                    <td>Clean carburetor</td>
+                                    <td>1 hour 30 minutes</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
@@ -363,8 +363,8 @@
                                 <tr>
                                     <td>2023-11-13</td>
                                     <td>2023-11-19</td>
-                                    <td>Motor</td>
-                                    <td>36</td>
+                                    <td>Oil change</td>
+                                    <td>45 minutes</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
@@ -393,14 +393,14 @@
                                     <td>2023-11-27</td>
                                     <td>2023-12-03</td>
                                     <td>Purchases</td>
-                                    <td>$4,763.11</td>
+                                    <td>$2,763.11</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2023-11-27</td>
-                                    <td>2023-12-03</td>
+                                    <td>2023-11-20</td>
+                                    <td>2023-11-26</td>
                                     <td>Repairs</td>
                                     <td>$3,328.67</td>
                                     <td><a href="" class="btn rounded-circle report">
@@ -408,8 +408,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2023-11-20</td>
-                                    <td>2023-11-26</td>
+                                    <td>2023-11-13</td>
+                                    <td>2023-11-19</td>
                                     <td>All sales</td>
                                     <td>$4,100.92</td>
                                     <td><a href="" class="btn rounded-circle report">
@@ -417,10 +417,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2023-11-20</td>
-                                    <td>2023-11-26</td>
+                                    <td>2023-11-06</td>
+                                    <td>2023-11-12</td>
                                     <td>Purchases</td>
-                                    <td>$3, 328.23</td>
+                                    <td>$1, 928.23</td>
                                     <td><a href="" class="btn rounded-circle report">
                                             <ion-icon name="reader-outline"></ion-icon></a>
                                     </td>
@@ -429,6 +429,7 @@
                         </table>
                     </form>
                 </div>
+
 
 
             </div>
@@ -534,12 +535,12 @@
 
                     repairPartLabel.style.display = 'block';
                     equipManuLabel.style.display = 'none';
-                    equipSelectLabel.style.display = 'block';
+                    equipSelectLabel.style.display = 'none';
                     saleTypeLabel.style.display = 'none';
 
                     repairPartSelect.style.display = 'block';
                     equipManuSelect.style.display = 'none';
-                    equipSelect.style.display = 'block';
+                    equipSelect.style.display = 'none';
                     saleTypeSelect.style.display = 'none';
 
                 } else if (this.value === "2") {
@@ -594,8 +595,8 @@
         newRow.innerHTML = `
             <td>2023-12-04</td>
             <td>2023-12-10</td>
-            <td>Spark Plug</td>
-            <td>10</td>
+            <td>Replace spark plug</td>
+            <td>15 minutes</td>
             <td><a href="completed-repair-report.html" class="btn rounded-circle report">
                     <ion-icon name="reader-outline"></ion-icon></a>
             </td>
