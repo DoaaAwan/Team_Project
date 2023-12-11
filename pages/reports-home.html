@@ -178,10 +178,10 @@
                         <div class="column one">
                             <label id="repairPartLabel" for="repairPart">Select a repair purpose:</label>
                             <select id="repairPart">
-                                <option value="" disabled selected>Repair purposes</option>    
-                                <option value="repairs">Blade sharpening</option>  
-                                <option value="repairs">Clean carburetor</option>    
-                                <option value="repairs">Oil change</option>               
+                                <option value="" disabled selected>Repair purposes</option>
+                                <option value="repairs">Blade sharpening</option>
+                                <option value="repairs">Clean carburetor</option>
+                                <option value="repairs">Oil change</option>
                                 <option value="purchases">Replace air filter</option>
                                 <option value="repairs">Replace auger cable</option>
                                 <option value="repairs">Replace battery</option>
@@ -411,6 +411,7 @@
 
             // For week default
             var currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() - 7); // Subtract 7 days
             var currentYear = currentDate.getFullYear();
             var currentWeek = getWeekNumber(currentDate);
 
@@ -427,6 +428,7 @@
                 var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
                 return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
             }
+
 
             // For updating options at top, their labels and the tables
 
