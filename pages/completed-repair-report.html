@@ -22,6 +22,10 @@
             margin: 20px;
         }
 
+        #printable-content {
+            margin-top: 20px;
+        }
+
         .report-container {
             max-width: 600px;
             margin: 0 auto;
@@ -44,15 +48,26 @@
             font-weight: bold;
         }
 
-        .total-cost {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #28a745;
-        }
-
         @media print {
-            .noPrint {
-                display: none;
+            body * {
+                visibility: hidden;
+            }
+
+            #printable-content,
+            #printable-content * {
+                visibility: visible;
+            }
+
+            #printable-content {
+                position: absolute;
+                left: 0;
+                top: 3px;
+            }
+
+            .invoice-pg-center {
+                display: block;
+                margin: 0 auto;
+                width: 90%;
             }
         }
     </style>
@@ -154,7 +169,7 @@
                 <div class="d-flex justify-content-end">
 
                     <div>
-                        <a href="reports-home-repair-copy.html" class="button secondary-btn ms-3" id="btnBackToCustomer">
+                        <a href="reports-home-after-warranty.html" class="button secondary-btn ms-3" id="btnBackToCustomer">
                             Back
                             <ion-icon name="arrow-back-circle-outline"></ion-icon>
                         </a>
@@ -177,7 +192,8 @@
             </div>
 
         </div>
-    </div>    <script src="../scripts/help-tooltip.js"></script>
+    </div>
+    <script src="../scripts/help-tooltip.js"></script>
     <script src="../scripts/role-based-nav.js"></script>
     <script src="../scripts/update-nav.js"></script>
     <script>
@@ -193,23 +209,23 @@
                     if (selectedRole === 'admin') {
                         event.preventDefault();
                         window.location.href = '../pages/reports-home.html';
-                }
+                    }
 
                 });
             }
 
             const backToHomeNav = document.getElementById('backToHomeNav');
             if (backToHomeNav) {
-                backToHomeNav.addEventListener('click', function(event) {
+                backToHomeNav.addEventListener('click', function (event) {
                     const selectedRole = localStorage.getItem('selectedRole') || 'default';
                     if (selectedRole === 'technician') {
                         event.preventDefault();
-                        window.location.href = '../pages/active-repairs.html'; 
+                        window.location.href = '../pages/active-repairs.html';
                     }
                     if (selectedRole === 'admin') {
                         event.preventDefault();
                         window.location.href = '../pages/reports-home.html';
-                }
+                    }
                 });
             }
         });
