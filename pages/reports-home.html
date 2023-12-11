@@ -197,10 +197,11 @@
                 <!-- Generate Button-->
 
                 <div class="row-one">
-                    <button type="button" class="button btns" onclick="generateRow()">Generate</button>
+                    <button id="btnFlash" type="button" class="button btns" onclick="generateRow()">Generate</button>
                     <button class="help-icon" aria-label="Help">
-                        <span class="tooltip-text">Select all the options desired for your report, then press the generate button. Newest reports will appear at the top of the table.</span>
-                    </button>    
+                        <span class="tooltip-text">Select all the options desired for your report, then press the
+                            generate button. Newest reports will appear at the top of the table.</span>
+                    </button>
                 </div>
 
                 <div class="row-one">
@@ -492,24 +493,24 @@
         });
 
         function generateRow() {
-    var reportTypeSelect = document.getElementById("reportType");
-    var selectedOption = reportTypeSelect.options[reportTypeSelect.selectedIndex];
-    var selectedReport = selectedOption.textContent;
-    var tbody;
+            var reportTypeSelect = document.getElementById("reportType");
+            var selectedOption = reportTypeSelect.options[reportTypeSelect.selectedIndex];
+            var selectedReport = selectedOption.textContent;
+            var tbody;
 
-    if (selectedReport === "Warranty Report") {
-        tbody = document.getElementById("warrantyTableBody");
-    } else if (selectedReport === "Repair Report") {
-        tbody = document.getElementById("reportTableBody");
-    } else if (selectedReport === "Weekly Sales Report") {
-        tbody = document.getElementById("weeklyTableBody");
-    }
+            if (selectedReport === "Warranty Report") {
+                tbody = document.getElementById("warrantyTableBody");
+            } else if (selectedReport === "Repair Report") {
+                tbody = document.getElementById("reportTableBody");
+            } else if (selectedReport === "Weekly Sales Report") {
+                tbody = document.getElementById("weeklyTableBody");
+            }
 
-    var newRow = document.createElement("tr");
+            var newRow = document.createElement("tr");
 
-    if (selectedReport === "Warranty Report") {
-        newRow.innerHTML = `
-            <td>2023-12-04</td>
+            if (selectedReport === "Warranty Report") {
+                newRow.innerHTML = `
+            <td id="row2">2023-12-04</td>
             <td>2023-12-10</td>
             <td>SnowBuster</td>
             <td>Snow Blower</td>
@@ -517,8 +518,8 @@
                     <ion-icon name="reader-outline"></ion-icon></a>
             </td>
         `;
-    } else if (selectedReport === "Repair Report") {
-        newRow.innerHTML = `
+            } else if (selectedReport === "Repair Report") {
+                newRow.innerHTML = `
             <td>2023-12-04</td>
             <td>2023-12-10</td>
             <td>Spark Plug</td>
@@ -527,8 +528,8 @@
                     <ion-icon name="reader-outline"></ion-icon></a>
             </td>
         `;
-    } else if (selectedReport === "Weekly Sales Report") {
-        newRow.innerHTML = `
+            } else if (selectedReport === "Weekly Sales Report") {
+                newRow.innerHTML = `
             <td>2023-12-04</td>
             <td>2023-12-10</td>
             <td>All sales</td>
@@ -537,11 +538,24 @@
                     <ion-icon name="reader-outline"></ion-icon></a>
             </td>
         `;
-    }
+            }
 
-    tbody.insertBefore(newRow, tbody.firstChild);
-}
+            newRow.className = "flash";
 
+            tbody.insertBefore(newRow, tbody.firstChild);
+        }
+
+        document.getElementById("btnFlash").addEventListener("click", e => {
+            var el = document.querySelector(".flash");
+
+            if (el) {
+                el.addEventListener("animationend", e => {
+                    el.className = "";
+                });
+
+                el.className = "flash";
+            }
+        });
 
 
     </script>
