@@ -125,62 +125,6 @@
             <div class="page">
                 <div class="lookup-update" >
                     <div class="two-col-lookup">
-                        <div class="add-prov">
-                            <h2>Add a province</h2>
-                            <form>
-                                <div class="container row mt-3">
-                                    <div class="d-flex p-0" id="search-form">
-                                        <input
-                                            type="search"
-                                            placeholder="Enter a province"
-                                            autocomplete="off"
-                                            autofocus
-                                            id="search-value"
-                                            class="search-bar"
-                                            required>
-                                            <div class="ps-2">
-                                                <button id="add-prov" class="button btn-search">Add</button>
-                                            </div>
-
-                                            <button class="help-icon" aria-label="Help">
-                                                <span class="tooltip-text">To add a new Province to the list, please enter a name, followed by the add button. To update, please click update list and update a name below.</span>
-                                            </button>   
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="prov-list" id="prov-list">
-                                <div class="d-flex justify-content-between list-header">
-                                    <label>List of Provinces</label>
-                                    <button class="update-btn" id="update-prov"> 
-                                        Update List
-                                        <ion-icon name="create-outline" class="edit-icon"></ion-icon>
-                                    </button>
-                                </div>
-                                <div class="prov-list-container" id="prov-list-container">
-                                    <input type="text" value="Ontario" class="prov-list-item" required disabled>
-                                    <input type="text" value="Alberta" class="prov-list-item" required disabled>
-                                    <input type="text" value="British Columbia" class="prov-list-item" required disabled>
-                                    <input type="text" value="Manitoba" class="prov-list-item" required disabled>
-                                    <input type="text" value="New Brunswick" class="prov-list-item" required disabled>
-                                    <input type="text" value="Newfoundland and Labrador" class="prov-list-item" required disabled>
-                                    <input type="text" value="Northwest Territories" class="prov-list-item" required disabled>
-                                    <input type="text" value="Nova Scotia" class="prov-list-item" required disabled>
-                                    <input type="text" value="Nunavut" class="prov-list-item" required disabled>
-                                    <input type="text" value="Ontario" class="prov-list-item" required disabled>
-                                    <input type="text" value="Prince Edward Island" class="prov-list-item" required disabled>
-                                    <input type="text" value="Quebec" class="prov-list-item" required disabled>
-                                    <input type="text" value="Saskatchewan" class="prov-list-item" required disabled>
-                                </div>
-                                <div class="action-btns" id="action-btns" style="display: none;"> 
-                                    <!-- <button class="button btn-cancel me-4" id="cancel-btn">
-                                        Cancel
-                                    </button> -->
-                                    <button type="submit" value="Save" class="button btn-save" id="save-prov" onclick="saveUpdate()">
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                         <div class="add-city">
                             <h2>Add a city</h2>
                             <form>
@@ -234,6 +178,62 @@
                                         Cancel
                                     </button> -->
                                     <button type="submit" value="Save" class="button btn-save" id="save-city" onclick="saveUpdate()">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-prov">
+                            <h2>Add a province</h2>
+                            <form>
+                                <div class="container row mt-3">
+                                    <div class="d-flex p-0" id="search-form">
+                                        <input
+                                            type="search"
+                                            placeholder="Enter a province"
+                                            autocomplete="off"
+                                            autofocus
+                                            id="search-value"
+                                            class="search-bar"
+                                            required>
+                                            <div class="ps-2">
+                                                <button id="add-prov" class="button btn-search">Add</button>
+                                            </div>
+
+                                            <button class="help-icon" aria-label="Help">
+                                                <span class="tooltip-text">To add a new Province to the list, please enter a name, followed by the add button. To update, please click update list and update a name below.</span>
+                                            </button>   
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="prov-list" id="prov-list">
+                                <div class="d-flex justify-content-between list-header">
+                                    <label>List of Provinces</label>
+                                    <button class="update-btn" id="update-prov"> 
+                                        Update List
+                                        <ion-icon name="create-outline" class="edit-icon"></ion-icon>
+                                    </button>
+                                </div>
+                                <div class="prov-list-container" id="prov-list-container">
+                                    <input type="text" value="Ontario" class="prov-list-item" required disabled>
+                                    <input type="text" value="Alberta" class="prov-list-item" required disabled>
+                                    <input type="text" value="British Columbia" class="prov-list-item" required disabled>
+                                    <input type="text" value="Manitoba" class="prov-list-item" required disabled>
+                                    <input type="text" value="New Brunswick" class="prov-list-item" required disabled>
+                                    <input type="text" value="Newfoundland and Labrador" class="prov-list-item" required disabled>
+                                    <input type="text" value="Northwest Territories" class="prov-list-item" required disabled>
+                                    <input type="text" value="Nova Scotia" class="prov-list-item" required disabled>
+                                    <input type="text" value="Nunavut" class="prov-list-item" required disabled>
+                                    <input type="text" value="Ontario" class="prov-list-item" required disabled>
+                                    <input type="text" value="Prince Edward Island" class="prov-list-item" required disabled>
+                                    <input type="text" value="Quebec" class="prov-list-item" required disabled>
+                                    <input type="text" value="Saskatchewan" class="prov-list-item" required disabled>
+                                </div>
+                                <div class="action-btns" id="action-btns" style="display: none;"> 
+                                    <!-- <button class="button btn-cancel me-4" id="cancel-btn">
+                                        Cancel
+                                    </button> -->
+                                    <button type="submit" value="Save" class="button btn-save" id="save-prov" onclick="saveUpdate()">
                                         Save
                                     </button>
                                 </div>
